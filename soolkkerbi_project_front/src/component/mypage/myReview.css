@@ -1,0 +1,8 @@
+.my-reviewList-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.my-reviewList-tbl > table td {
+  text-align: center;
+  padding: 5px;
+}
