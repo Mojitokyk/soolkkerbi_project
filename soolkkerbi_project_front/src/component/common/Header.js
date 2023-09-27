@@ -68,7 +68,7 @@ const HeaderMember = () => {
         <Link to="#">술주머니</Link>
       </span>
       <span className="login">
-        <Link to="#">로그인</Link>
+        <Link to="/login">로그인</Link>
       </span>
       <span className="join">
         <Link to="/join">회원가입</Link>
