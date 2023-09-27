@@ -49,11 +49,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 15px;
+  font-size: 17px;
 }
 .product-item-price {
   font-weight: bold;
-  font-size: 15px;
+  font-size: 17px;
 }
 .product-item-more {
   overflow: hidden;
@@ -76,7 +76,7 @@
   padding-right: 5px;
 }
 .product-item-star > .star-rate {
-  font-weight: 500;
+  font-size: 15px;
 }
 .product-item-cart > .material-icons {
   font-size: 20px;
