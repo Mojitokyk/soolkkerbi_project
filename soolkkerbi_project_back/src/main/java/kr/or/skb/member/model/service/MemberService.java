@@ -1,5 +1,9 @@
 package kr.or.skb.member.model.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.JwtUtil;
+import kr.or.skb.PageInfo;
+import kr.or.skb.Pagination;
 import kr.or.skb.member.model.dao.MemberDao;
 import kr.or.skb.member.model.vo.Member;
 
@@ -23,6 +29,8 @@ public class MemberService {
 	@Value("${jwt.secret}")
 	private String secretKey;
 	private long expiredMs;
+	@Autowired
+	private Pagination pagination;
 	
 	public MemberService() {
 		super();
@@ -47,6 +55,18 @@ public class MemberService {
 			return "실패";
 		}
 
+	}
+
+	public Map readAllMember(int reqPage) {
+		int totalCount = memberDao.totalCount();
+		int numPerPage = 10;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List memberList = memberDao.selectAllMember(pi);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", memberList);
+		map.put("pi", pi);
+		return map;
 	}
 
 }

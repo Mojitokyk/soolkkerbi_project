@@ -6,7 +6,7 @@ import ReadAllMember from "./ReadAllMember";
 
 const AdminMain = () => {
   const [menus, setMenus] = useState([
-    { url: "info", text: "회원정보 수정", active: false },
+    { url: "info", text: "회원정보 수정", active: true },
     { url: "readAllMember", text: "전체회원 조회", active: false },
     { url: "insertProduct", text: "상품 등록", active: false },
     { url: "manageStock", text: "상품재고 관리", active: false },
