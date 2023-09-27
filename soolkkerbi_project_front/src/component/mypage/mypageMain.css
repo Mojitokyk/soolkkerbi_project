@@ -24,6 +24,7 @@
 .my-side > ul > li > a.active-side {
   background-color: #4f4f4f;
   color: #fff;
+  font-weight: 700;
 }
 .mypage-content {
   display: flex;
