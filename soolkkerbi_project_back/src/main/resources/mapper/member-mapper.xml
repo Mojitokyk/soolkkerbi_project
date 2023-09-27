@@ -8,7 +8,19 @@
  
  
 	 <insert id="insertMember">
-	 	INSERT into MEMBER values(member_seq.nextval,#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberEmail},2,#{memberRegDate})
+	 	INSERT into MEMBER values(member_seq.nextval,#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberEmail},2,#{memberRegDate},null)
 	 </insert>
+	 
+	 <select id="totalCount" resultType="int">
+	 	select count(*) from member
+	 </select>
+	 
+	 <select id="selectAllMember" resultType="member">
+	 	select * from
+	 		(select rownum as rnum, m.* from
+	 			(select * from member order by member_level) m
+	 		)
+	 	where rnum between #{start} and #{end}
+	 </select>
  
 </mapper>

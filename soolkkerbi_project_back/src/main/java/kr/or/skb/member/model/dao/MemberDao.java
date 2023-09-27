@@ -1,7 +1,10 @@
 package kr.or.skb.member.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.or.skb.PageInfo;
 import kr.or.skb.member.model.vo.Member;
 
 
@@ -11,6 +14,10 @@ public interface MemberDao {
 	Member selectOneMember(String memberId);
 
 	int insertMember(Member member);
+
+	int totalCount();
+
+	List selectAllMember(PageInfo pi);
 
 
 }
