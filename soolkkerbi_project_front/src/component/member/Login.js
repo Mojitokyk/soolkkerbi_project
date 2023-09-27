@@ -11,9 +11,6 @@ const Login = (props) => {
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const navigate = useNavigate();
-  const join = () => {
-    navigate("/join");
-  };
   const login = () => {
     const member = { memberId, memberPw };
     axios
