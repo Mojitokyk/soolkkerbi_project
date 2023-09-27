@@ -1,0 +1,26 @@
+/*
+메인색상
+#071952 rgb(7, 25, 82)
+#088395 rgb(8, 131, 149)
+#35A29F rgb(53, 162, 159)
+#F2F7A1 rgb(242, 247, 161)
+*/
+.btn {
+  width: 100%;
+  padding: 0.7rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: ns-eb;
+  border: none;
+  outline: none;
+  color: #fff;
+}
+.st1 {
+  background-color: #071952;
+}
+.st2 {
+  background-color: #088395;
+}
+.st3 {
+  background-color: #35a29f;
+}
