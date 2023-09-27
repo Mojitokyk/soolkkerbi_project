@@ -1,7 +1,7 @@
 const MyInfo = () => {
   return (
-    <div>
-      <div>정보수정</div>
+    <div className="mypage-content-wrap">
+      <div className="mypage-content-title">정보수정</div>
     </div>
   );
 };

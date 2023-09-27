@@ -1,8 +1,8 @@
 import "./myReservation.css";
 const MyReservation = () => {
   return (
-    <div>
-      <div>예약 관리</div>
+    <div className="mypage-content-wrap">
+      <div className="mypage-content-title">예약 관리</div>
     </div>
   );
 };
