@@ -1,4 +1,4 @@
-package kr.or.skb.member.vo;
+package kr.or.skb.member.model.vo;
 
 
 import org.apache.ibatis.type.Alias;

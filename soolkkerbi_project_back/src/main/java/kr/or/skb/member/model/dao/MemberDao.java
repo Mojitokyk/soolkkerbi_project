@@ -1,8 +1,8 @@
-package kr.or.skb.member.dao;
+package kr.or.skb.member.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import kr.or.skb.member.vo.Member;
+import kr.or.skb.member.model.vo.Member;
 
 
 @Mapper

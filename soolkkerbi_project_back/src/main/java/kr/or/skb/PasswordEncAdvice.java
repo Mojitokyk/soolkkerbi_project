@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import kr.or.skb.member.vo.Member;
+import kr.or.skb.member.model.vo.Member;
 
 
 @Aspect
@@ -17,7 +17,7 @@ public class PasswordEncAdvice {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@Pointcut(value = "execution (int kr.or.skb.Servise.memberSerivce.*Member(kr.or.skb.member.vo.Member))")
+	@Pointcut(value = "execution (int kr.or.skb.member.model.service.MemberService.*Member(kr.or.skb.member.model.vo.Member))")
      public void pwEncPointcut() {}
 	
 	@Before(value = "pwEncPointcut()")

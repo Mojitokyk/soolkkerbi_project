@@ -27,14 +27,15 @@ const Join = () => {
         .get("/member/checkId/" + memberId)
         .then((res) => {
           console.log(res);
-          if (res.data == 0) {
+          console.log(memberId);
+          if (res.data === 0) {
             setCheckIdMsg("");
           } else {
             setCheckIdMsg("이미사용중인 아이디");
           }
         })
         .catch((res) => {
-          console.log(res);
+          console.log(res.response.status);
         });
         setCheckIdMsg("");
     }
@@ -50,7 +51,7 @@ const Join = () => {
   const join = () => {
     if (CheckIdMsg === "" && CheckPwMsg === "") {
     
-      const member = { memberId, memberPw, memberName, memberPhone };
+      const member = { memberId, memberPw, memberName, memberPhone, memberEmail };
       axios
        
         .post("/member/join", member)
@@ -109,7 +110,7 @@ const Join = () => {
         data={memberPhone}
         setData={setMemberPhone}
         type="text"
-        content="memberPone"
+        content="setMemberPhone"
         label="전화번호"
       />
       <JoinInputWrap

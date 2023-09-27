@@ -1,4 +1,4 @@
-package kr.or.skb.member.servise;
+package kr.or.skb.member.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.JwtUtil;
-import kr.or.skb.member.dao.MemberDao;
-import kr.or.skb.member.vo.Member;
+import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
 
 
 @Service
-public class MemberServise {
+public class MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
@@ -24,19 +24,17 @@ public class MemberServise {
 	private String secretKey;
 	private long expiredMs;
 	
-	public MemberServise() {
+	public MemberService() {
 		super();
 		expiredMs = 1000 * 60 * 60l;
 	}
 
 	public Member selectOneMember(String memberId) {
-		// TODO Auto-generated method stub
 		return memberDao.selectOneMember(memberId);
 	}
 
 	@Transactional
 	public int insertMember(Member member) {
-		// System.out.println(member);
 		return memberDao.insertMember(member);
 	}
 
