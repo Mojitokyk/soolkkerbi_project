@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./adminMain.css";
 import { Link, Route, Routes } from "react-router-dom";
 import MyInfo from "../mypage/MyInfo";
+import ReadAllMember from "./ReadAllMember";
 
 const AdminMain = () => {
   const [menus, setMenus] = useState([
@@ -24,6 +25,7 @@ const AdminMain = () => {
         <div className="admin-menu-content">
           <Routes>
             <Route path="info" element={<MyInfo />} />
+            <Route path="readAllMember" element={<ReadAllMember />} />
           </Routes>
         </div>
       </div>
