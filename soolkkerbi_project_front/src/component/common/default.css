@@ -1,6 +1,8 @@
 /*
-핑크색
-#FF6289
+메인색상
+검정색 #4f4f4f
+핑크색 #FF6289
+회색 #eee
 */
 @font-face {
   font-family: ns-l;
@@ -27,6 +29,7 @@
   margin: 0;
   padding: 0;
   font-family: ns-l;
+  color: #4f4f4f;
 }
 
 a {

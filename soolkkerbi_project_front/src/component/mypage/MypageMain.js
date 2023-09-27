@@ -21,7 +21,7 @@ const MypageMain = () => {
   ]);
   return (
     <div className="mypage-wrap">
-      <div className="mypage-title">마이페이지</div>
+      <div className="mypage-title"></div>
       <div className="mypage-content">
         <MySideMenu menus={menus} setMenus={setMenus} />
         <div className="current-content">
