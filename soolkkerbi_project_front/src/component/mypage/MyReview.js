@@ -1,8 +1,8 @@
 import "./myReview.css";
 const MyReview = () => {
   return (
-    <div>
-      <div>작성 후기</div>
+    <div className="mypage-content-wrap">
+      <div className="mypage-content-title">작성 후기</div>
     </div>
   );
 };

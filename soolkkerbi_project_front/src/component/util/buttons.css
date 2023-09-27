@@ -10,17 +10,18 @@
   padding: 0.7rem;
   cursor: pointer;
   border-radius: 5px;
-  font-family: ns-eb;
+  font-family: ns-m;
   border: none;
   outline: none;
   color: #fff;
 }
 .st1 {
-  background-color: #071952;
+  background-color: black;
 }
 .st2 {
-  background-color: #088395;
+  background-color: #4F4F4F;
 }
 .st3 {
-  background-color: #35a29f;
+  color: black;
+  border:1px solid #eee
 }
