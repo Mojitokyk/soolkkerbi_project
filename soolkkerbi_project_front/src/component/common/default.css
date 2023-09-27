@@ -1,0 +1,23 @@
+/*
+#FF6289
+*/
+@font-face {
+  font-family: ns-l;
+  src: url(/public/font/NotoSerifKR-Light.otf);
+}
+@font-face {
+  font-family: ns-r;
+  src: url(/public/font/NotoSerifKR-Regular.otf);
+}
+@font-face {
+  font-family: ns-m;
+  src: url(/public/font/NotoSerifKR-Medium.otf);
+}
+@font-face {
+  font-family: ns-b;
+  src: url(/public/font/NotoSerifKR-Bold.otf);
+}
+@font-face {
+  font-family: ns-black;
+  src: url(/public/font/NotoSerifKR-Black.otf);
+}
