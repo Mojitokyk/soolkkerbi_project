@@ -7,6 +7,10 @@ import "swiper/components/pagination/pagination.min.css";
 import "./main.css";
 
 const Main = () => {
+  return <SwiperMain />;
+};
+
+const SwiperMain = () => {
   SwiperCore.use([Autoplay, Navigation, Pagination]);
   return (
     <div className="main-slide">
@@ -36,4 +40,38 @@ const Main = () => {
   );
 };
 
+const mainList = () => {
+  return (
+    <div className="product-all-wrap">
+      <div className="product-title">탁주</div>
+      <div className="product-list-wrap">
+        <ProductRecommend />
+      </div>
+      <div className="product-page"></div>
+    </div>
+  );
+};
+
+const ProductRecommend = () => {
+  <>
+    <div className="product-item">
+      <div className="product-item-img">
+        <img src="/image/product_img/막쿠르트.jpg" />
+      </div>
+      <div className="product-item-info">
+        <div className="product-item-name">양(陽) 막걸리</div>
+        <div className="product-item-price">22000원</div>
+        <div className="product-item-more">
+          <div className="product-item-star">
+            <span className="material-icons">star</span>
+            <span className="star-rate">4</span>
+          </div>
+          <div className="product-item-cart">
+            <span className="material-icons">shopping_cart</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>;
+};
 export default Main;

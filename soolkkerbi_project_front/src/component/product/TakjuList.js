@@ -17,7 +17,7 @@ const ProductItem = () => {
     <>
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/막쿠르트.jpg" />
+          <img src="/image/product_img/takju1.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">양(陽) 막걸리</div>
@@ -36,7 +36,7 @@ const ProductItem = () => {
 
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/술취한원숭이.jpg" />
+          <img src="/image/product_img/takju2.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">양(陽) 막걸리</div>
@@ -55,7 +55,7 @@ const ProductItem = () => {
 
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/붉은원숭이.jpg" />
+          <img src="/image/product_img/takju3.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">양(陽) 막걸리</div>
@@ -74,7 +74,7 @@ const ProductItem = () => {
 
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/복순도가.jpg" />
+          <img src="/image/product_img/takju4.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">양(陽) 막걸리</div>
@@ -93,7 +93,7 @@ const ProductItem = () => {
 
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/막걸리.jpg" />
+          <img src="/image/product_img/takju5.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">

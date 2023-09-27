@@ -9,12 +9,12 @@ const Footer = () => {
           <div className="footer-info">
             <p>
               상호: 술꺼비 / 대표: 이윤수 / 고객센터 02-1234-5678 / E-Mail:
-              urisul@iei.or.kr <br />
+              sulkkeobi@iei.or.kr <br />
               주소: 서울시 당산동 이레빌딩 / 사업자 등록번호: 789-01-4563
             </p>
           </div>
           <div className="footer-logo">
-            <Link to="#">
+            <Link to="/">
               <img src="/image/logo_png/logo_title.png" />
             </Link>
           </div>

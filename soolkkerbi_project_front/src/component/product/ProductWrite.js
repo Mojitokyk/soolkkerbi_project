@@ -1,9 +1,11 @@
-import "./productWrite.css";
+import ProductFrm from "./ProductFrm";
+import "./productList.css";
 
 const ProductWrite = () => {
   return (
-    <div>
-      <div>상품등록</div>
+    <div className="product-all-wrap">
+      <div className="product-title">상품 등록</div>
+      <ProductFrm />
     </div>
   );
 };
