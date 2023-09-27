@@ -1,3 +1,14 @@
 .main-slide img {
-  width: 100%;
+  width: 100%; /*스와이퍼 이미지 꽉 채우기*/
+}
+span.swiper-pagination-bullet-active /*불릿 활성화 기호*/ {
+  background-color: rgb(255, 255, 255);
+}
+.swiper-button-prev::after, .swiper-button-next:after /*슬라이더 화살표 '<', '>'*/ {
+  color: #3a3a3a;
+  opacity: 0.5;
+}
+.swiper-button-prev:hover:after, .swiper-button-next:hover:after /*hover적용 순서 -> :after:hover X*/ {
+  color: #fff;
+  opacity: 1;
 }

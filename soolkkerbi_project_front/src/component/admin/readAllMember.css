@@ -8,3 +8,8 @@
   width: 100%;
   border-spacing: 0;
 }
+
+.readAllMember-content > table td {
+  text-align: center;
+  padding: 5px;
+}

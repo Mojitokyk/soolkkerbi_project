@@ -21,7 +21,6 @@ public class MemberController {
 	
 	@GetMapping(value = "/checkId/{memberId}") 
 	public int checkId(@PathVariable String memberId) {
-		System.out.println(memberId);
 		Member m = memberService.selectOneMember(memberId);
 		if (m == null) {
 			return 0;
