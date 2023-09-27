@@ -12,10 +12,23 @@
 }
 .wish-item-img {
   text-align: center;
+  position: relative;
 }
 .wish-item-img > img {
   width: 70%;
   object-fit: contain;
+}
+.wish-item-img > span {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+  color: #fff;
+}
+.deleteWish {
+  display: none;
+}
+.wish-item-img:hover {
+  opacity: 0.5;
 }
 .wish-item-info > div {
   text-align: center;
