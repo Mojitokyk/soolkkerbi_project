@@ -55,7 +55,7 @@ const ProductItem = () => {
 
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/붉은원숭이.jpg" />
+          <img src="/image/product_img/red-monkey.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">양(陽) 막걸리</div>
