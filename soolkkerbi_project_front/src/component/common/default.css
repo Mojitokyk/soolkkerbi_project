@@ -6,23 +6,23 @@
 */
 @font-face {
   font-family: ns-l;
-  src: url(/public/font/NotoSerifKR-Light.otf);
+  src: url(/public/font/NotoSansKR-Light.ttf);
 }
 @font-face {
   font-family: ns-r;
-  src: url(/public/font/NotoSerifKR-Regular.otf);
-}
-@font-face {
-  font-family: ns-m;
-  src: url(/public/font/NotoSerifKR-Medium.otf);
+  src: url(/public/font/NotoSansKR-Regular.ttf);
 }
 @font-face {
   font-family: ns-b;
-  src: url(/public/font/NotoSerifKR-Bold.otf);
+  src: url(/public/font/NotoSansKR-Bold.ttf);
+}
+@font-face {
+  font-family: ns-eb;
+  src: url(/public/font/NotoSansKR-ExtraBold.ttf);
 }
 @font-face {
   font-family: ns-black;
-  src: url(/public/font/NotoSerifKR-Black.otf);
+  src: url(/public/font/NotoSansKR-Black.ttf);
 }
 
 * {
@@ -37,6 +37,9 @@ a {
 }
 
 /* header */
+header {
+  z-index: 100;
+}
 header * {
   outline: none;
   list-style-type: none;
@@ -76,7 +79,7 @@ header * {
   color: rgb(180, 180, 180);
 }
 .notice > span > a {
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
 }
 .member-group {
   text-align: right;
@@ -86,7 +89,7 @@ header * {
   margin-right: 20px;
 }
 .member-group > span > a {
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
 }
 .member-group > span > a:hover {
   color: rgb(180, 180, 180);
@@ -129,7 +132,7 @@ header * {
   height: 40px;
   line-height: 40px;
   width: 125px;
-  font-size: 0.8em;
+  /* font-size: 0.8em; */
 }
 .sub-navi-ul > li:hover {
   text-decoration: underline;

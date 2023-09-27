@@ -9,16 +9,17 @@ import Join from "./component/member/Join";
 import Login from "./component/member/Login";
 
 import Footer from "./component/common/Footer";
+import About from "./component/mainpage/About";
 
 function App() {
   return (
     <div className="wrap">
       <Header />
-
       <div className="content">
         <Routes>
-        <Route path="/join" element={<Join />} />
-        <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
           <Route path="/product/*" element={<ProductMain />} />
         </Routes>
