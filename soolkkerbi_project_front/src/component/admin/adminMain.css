@@ -1,0 +1,36 @@
+.admin-wrap {
+  width: 1200px;
+  margin: 30px auto;
+}
+.admin-title {
+  font-size: 24px;
+  font-family: ns-b;
+  padding: 30px 10px;
+  border-bottom: 2px solid #4f4f4f;
+}
+.admin-side {
+  width: 200px;
+}
+.admin-side > ul {
+  list-style-type: none;
+  box-sizing: border-box;
+  padding: 30px 10px;
+  margin: 0;
+}
+.admin-side > ul > li > a {
+  display: block;
+  padding: 10px;
+}
+.admin-side > ul > li > a.active-side {
+  background-color: #4f4f4f;
+  color: #fff;
+  font-weight: 700;
+}
+.admin-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+.admin-menu-content {
+  width: 900px;
+  margin: 30px auto;
+}

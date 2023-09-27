@@ -1,0 +1,8 @@
+.my-order-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.my-order-tbl > table td {
+  text-align: center;
+  padding: 5px;
+}
