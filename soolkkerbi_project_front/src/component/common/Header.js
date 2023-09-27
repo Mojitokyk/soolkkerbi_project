@@ -33,7 +33,7 @@ const Category = () => {
     <div className="category">
       <ul>
         <li>
-          <Link to="#">술꺼비 소개</Link>
+          <Link to="about">술꺼비 소개</Link>
         </li>
         <li>
           <Link to="#">오시는 길</Link>
@@ -42,16 +42,16 @@ const Category = () => {
           주류
           <ul className="sub-navi-ul">
             <li>
-              <Link to="#">탁주</Link>
+              <Link to="/product/takju">탁주</Link>
             </li>
             <li>
-              <Link to="#">약주/청주</Link>
+              <Link to="/product/yakju">약주/청주</Link>
             </li>
             <li>
-              <Link to="#">과실주</Link>
+              <Link to="/product/fruit">과실주</Link>
             </li>
             <li>
-              <Link to="#">증류주</Link>
+              <Link to="/product/spirits">증류주</Link>
             </li>
           </ul>
         </li>

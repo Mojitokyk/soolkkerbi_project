@@ -1,17 +1,19 @@
-import ProductList from "./ProductList";
+import FruitList from "./FruitList";
 import ProductWrite from "./ProductWrite";
-import "./productMain.css";
+import SpiritsList from "./SpiritsList";
+import TakjuList from "./TakjuList";
+import YakjuList from "./YakjuList";
 import { Routes, Route } from "react-router-dom";
 
 const ProductMain = () => {
   return (
-    <div>
-      <div>ProductMain</div>
-      <Routes>
-        <Route path="write" element={<ProductWrite />}></Route>
-        <Route path="*" element={<ProductList />}></Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="write" element={<ProductWrite />}></Route>
+      <Route path="takju" element={<TakjuList />}></Route>
+      <Route path="yakju" element={<YakjuList />}></Route>
+      <Route path="fruit" element={<FruitList />}></Route>
+      <Route path="spirits" element={<SpiritsList />}></Route>
+    </Routes>
   );
 };
 
