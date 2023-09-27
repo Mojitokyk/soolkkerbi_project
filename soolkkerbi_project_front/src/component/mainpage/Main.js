@@ -7,7 +7,11 @@ import "swiper/components/pagination/pagination.min.css";
 import "./main.css";
 
 const Main = () => {
-  return <SwiperMain />;
+  return (
+    <>
+      <SwiperMain /> <MainList />
+    </>
+  );
 };
 
 const SwiperMain = () => {
@@ -40,38 +44,72 @@ const SwiperMain = () => {
   );
 };
 
-const mainList = () => {
+const MainList = () => {
+  const [mainList, setMainList] = useState([]);
+
   return (
-    <div className="product-all-wrap">
-      <div className="product-title">탁주</div>
-      <div className="product-list-wrap">
-        <ProductRecommend />
+    <div className="productR-all-wrap">
+      <div className="productR-title">술꺼비 추천</div>
+      <div className="productR-list-wrap">
+        {mainList.map((main, index) => {
+          return <ProductRecommend key={"main" + index} main={main} />; //진행 중 - 객체 배열 생성 필요?
+        })}
       </div>
-      <div className="product-page"></div>
+      <div className="productR-page"></div>
     </div>
   );
 };
 
 const ProductRecommend = () => {
-  <>
-    <div className="product-item">
-      <div className="product-item-img">
-        <img src="/image/product_img/막쿠르트.jpg" />
-      </div>
-      <div className="product-item-info">
-        <div className="product-item-name">양(陽) 막걸리</div>
-        <div className="product-item-price">22000원</div>
-        <div className="product-item-more">
-          <div className="product-item-star">
-            <span className="material-icons">star</span>
-            <span className="star-rate">4</span>
-          </div>
-          <div className="product-item-cart">
-            <span className="material-icons">shopping_cart</span>
+  return (
+    <>
+      <div className="productR-item">
+        <div className="productR-item-img">
+          <img src="/image/product_img/takju1.jpg" />
+        </div>
+        <div className="productR-item-info">
+          <div className="productR-item-name">양(陽) 막걸리</div>
+          <div className="productR-item-price">22000원</div>
+          <div className="productR-item-more">
+            <div className="productR-item-star"></div>
+            <div className="productR-item-cart">
+              <span className="material-icons">shopping_cart</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </>;
+      <div className="productR-item">
+        <div className="productR-item-img">
+          <img src="/image/product_img/takju1.jpg" />
+        </div>
+        <div className="productR-item-info">
+          <div className="productR-item-name">양(陽) 막걸리</div>
+          <div className="productR-item-price">22000원</div>
+          <div className="productR-item-more">
+            <div className="productR-item-star"></div>
+            <div className="productR-item-cart">
+              <span className="material-icons">shopping_cart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="productR-item">
+        <div className="productR-item-img">
+          <img src="/image/product_img/takju1.jpg" />
+        </div>
+        <div className="productR-item-info">
+          <div className="productR-item-name">양(陽) 막걸리</div>
+          <div className="productR-item-price">22000원</div>
+          <div className="productR-item-more">
+            <div className="productR-item-star"></div>
+            <div className="productR-item-cart">
+              <span className="material-icons">shopping_cart</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
+
 export default Main;

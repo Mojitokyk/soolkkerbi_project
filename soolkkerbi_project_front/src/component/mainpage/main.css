@@ -12,3 +12,68 @@ span.swiper-pagination-bullet-active /*불릿 활성화 기호*/ {
   color: #fff;
   opacity: 1;
 }
+
+/*상품 추천 리스트 조회*/
+.productR-all-wrap {
+  width: 1200px;
+  margin: 50px auto;
+  margin-bottom: 80px;
+}
+.productR-title {
+  text-align: center;
+  font-size: 30px;
+  font-family: ns-b;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.productR-list-wrap {
+  overflow: hidden;
+  padding: 10px;
+}
+.productR-item {
+  float: left;
+  box-sizing: border-box;
+  width: calc(100% / 3);
+  padding: 30px;
+  cursor: pointer;
+}
+.productR-item-img {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.productR-item-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.productR-item-img > img:hover {
+  transform: scale(1.02);
+  transition-duration: 0.5s;
+}
+.productR-item-info {
+  text-align: center;
+  margin-top: 10px;
+}
+.productR-item-info > div {
+  padding: 2px 0px;
+}
+.productR-item-name {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 24px;
+}
+.productR-item-price {
+  font-weight: bold;
+  font-size: 20px;
+  color: #ff6289;
+}
+.productR-item-more {
+  overflow: hidden;
+}
+
+.productR-item-cart > .material-icons {
+  font-size: 25px;
+}
