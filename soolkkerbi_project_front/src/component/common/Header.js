@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <header>
       <div className="main-logo">
-        <img src="/image/logo_png/logo_title.png" />
+        <Link to="#">
+          <img src="/image/logo_png/logo_title.png" />
+        </Link>
       </div>
       <div className="header-navi">
         <Notice />
@@ -68,10 +70,10 @@ const HeaderMember = () => {
         <Link to="#">술주머니</Link>
       </span>
       <span className="login">
-        <Link to="#">로그인</Link>
+        <Link to="/login">로그인</Link>
       </span>
       <span className="join">
-        <Link to="#">회원가입</Link>
+        <Link to="/join">회원가입</Link>
       </span>
     </div>
   );
