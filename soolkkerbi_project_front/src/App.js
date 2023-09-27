@@ -9,6 +9,7 @@ import Login from "./component/member/Login";
 import Footer from "./component/common/Footer";
 import About from "./component/mainpage/About";
 import AdminMain from "./component/admin/AdminMain";
+import Main from "./component/mainpage/Main";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Header />
       <div className="content">
         <Routes>
+          <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
