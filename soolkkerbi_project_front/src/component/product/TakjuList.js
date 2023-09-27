@@ -93,7 +93,7 @@ const ProductItem = () => {
 
       <div className="product-item">
         <div className="product-item-img">
-          <img src="/image/product_img/막걸리.jpg" />
+          <img src="/image/product_img/takju5.jpg" />
         </div>
         <div className="product-item-info">
           <div className="product-item-name">
