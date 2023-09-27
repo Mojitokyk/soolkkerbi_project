@@ -5,17 +5,17 @@
   }
   .join-title {
     text-align: center;
-    font-family: ns-eb;
+    font-family: ns-b;
     font-size: 30px;
-    color: #071952;
+    color: black;
     padding: 30px;
+    border-bottom : 2px solid #4f4f4f;
+    margin-bottom: 30px;
   }
   .join-input-wrap {
     display: flex;
     flex-direction: column;
     padding: 15px 0px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
   }
   .join-input-wrap > div {
     display: flex;
@@ -28,17 +28,19 @@
   .join-input-wrap > div > .label > label {
     font-size: 1.1em;
     font-family: ns-b;
-    color: #071952;
+    color: black;
     text-align: center;
   }
   .join-input-wrap > div > .input {
-    width: 70%;
+    width: 65%;
   }
   .check-msg {
     font-size: 0.8em;
     width: 70%;
     align-self: flex-end;
-    color: red;
+    color: #FF6289;
+    box-sizing: border-box;
+    padding-left: 30px;
   }
   .join-btn-box{
   padding: 20px 0px;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "./component/common/Header";
 import MypageMain from "./component/mypage/MypageMain";
 import ProductMain from "./component/product/ProductMain";
+import Join from "./component/member/Join";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
 
       <div className="content">
         <Routes>
+        <Route path="/join" element={<Join />} />
           <Route path="/mypage/*" element={<MypageMain />} />
           <Route path="/product/*" element={<ProductMain />} />
         </Routes>

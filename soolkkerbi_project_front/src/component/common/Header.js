@@ -71,7 +71,7 @@ const HeaderMember = () => {
         <Link to="#">로그인</Link>
       </span>
       <span className="join">
-        <Link to="#">회원가입</Link>
+        <Link to="/join">회원가입</Link>
       </span>
     </div>
   );

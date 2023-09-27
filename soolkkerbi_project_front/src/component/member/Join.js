@@ -40,7 +40,7 @@ const Join = () => {
   };
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비번확인");
+      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
     } else {
       setCheckPWMsg("");
     }
@@ -112,7 +112,7 @@ const Join = () => {
         label="전화번호"
       />
       <div className="join-btn-box">
-        <Button2 text="회원가입" clickEvent={join}></Button2>
+        <Button1 text="회원가입" clickEvent={join}></Button1>
       </div>
     </div>
   );
