@@ -109,6 +109,7 @@ header * {
 .category > ul > li > a {
   display: block;
   text-align: center;
+  font-family: ns-b;
 }
 .category > ul > li > a:hover {
   color: rgb(201, 201, 201);
@@ -116,6 +117,7 @@ header * {
 .category > ul > :nth-child(3) {
   color: #fff;
   cursor: pointer;
+  font-family: ns-b;
 }
 .category > ul > :nth-child(3):hover {
   color: rgb(180, 180, 180);
