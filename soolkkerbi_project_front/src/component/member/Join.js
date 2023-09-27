@@ -109,14 +109,14 @@ const Join = () => {
         data={memberPhone}
         setData={setMemberPhone}
         type="text"
-        content="setMemberPone"
+        content="memberPone"
         label="전화번호"
       />
       <JoinInputWrap
         data={memberEmail}
         setData={setMemberEmail}
         type="text"
-        content="setMemberEmail"
+        content="memberEmail"
         label="이메일"
       />
       <div className="join-btn-box">
