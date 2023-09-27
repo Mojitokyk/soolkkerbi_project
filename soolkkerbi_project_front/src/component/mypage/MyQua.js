@@ -1,8 +1,8 @@
 import "./myQna.css";
 const MyQna = () => {
   return (
-    <div>
-      <div>1:1 문의</div>
+    <div className="mypage-content-wrap">
+      <div className="mypage-content-title">1:1 문의</div>
     </div>
   );
 };
