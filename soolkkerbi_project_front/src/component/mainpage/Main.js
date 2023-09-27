@@ -17,7 +17,7 @@ const Main = () => {
         loop
       >
         <SwiperSlide>
-          <img src="/image/main_img/main1.png"></img>
+          <img src="/image/main_img/main1.jpg"></img>
         </SwiperSlide>
         <SwiperSlide>
           <img src="/image/main_img/main2.jpg"></img>
