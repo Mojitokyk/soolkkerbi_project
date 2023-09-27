@@ -1,0 +1,23 @@
+.my-wish-list {
+  width: 100%;
+  padding: 30px 0;
+  overflow: hidden;
+}
+.wish-item {
+  float: left;
+  width: calc(100% / 3);
+  padding: 30px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.wish-item-img {
+  text-align: center;
+}
+.wish-item-img > img {
+  width: 70%;
+  object-fit: contain;
+}
+.wish-item-info > div {
+  text-align: center;
+  font-size: 18px;
+}
