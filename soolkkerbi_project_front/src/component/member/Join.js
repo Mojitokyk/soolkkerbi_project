@@ -11,6 +11,7 @@ const Join = () => {
   const [memberPwRe, setMemberPwRe] = useState("");
   const [memberName, setMemberName] = useState("");
   const [memberPhone, setMemberPhone] = useState("");
+  const [memberEmail, setMemberEmail] = useState("");
   const [CheckIdMsg, setCheckIdMsg] = useState("");
  // const [okcheckId, setOkCheckId] = useState(""); 만족시 파란색으로 사용가능?
   const [CheckPwMsg, setCheckPWMsg] = useState("");
@@ -111,9 +112,17 @@ const Join = () => {
         content="setMemberPone"
         label="전화번호"
       />
+      <JoinInputWrap
+        data={memberEmail}
+        setData={setMemberEmail}
+        type="text"
+        content="setMemberEmail"
+        label="이메일"
+      />
       <div className="join-btn-box">
         <Button1 text="회원가입" clickEvent={join}></Button1>
       </div>
+
     </div>
   );
 };
