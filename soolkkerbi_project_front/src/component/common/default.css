@@ -108,7 +108,7 @@ header * {
   text-align: center;
 }
 .category > ul > li > a:hover {
-  color: rgb(180, 180, 180);
+  color: rgb(201, 201, 201);
 }
 .category > ul > :nth-child(3) {
   color: #fff;
@@ -133,6 +133,7 @@ header * {
 }
 .sub-navi-ul > li:hover {
   text-decoration: underline;
+  color: #fff;
 }
 /*------------------------------------------- header */
 
