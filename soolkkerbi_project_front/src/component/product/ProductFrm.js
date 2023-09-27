@@ -10,7 +10,7 @@ const ProductFrm = () => {
     <div className="product-frm-wrap">
       <div className="product-frm-top">
         <div className="product-thumbnail">
-          <img src="/image/product_img/붉은원숭이.jpg" />
+          <img src="/image/product_img/takju1.jpg" />
         </div>
         <div className="product-info">
           <table className="product-info-tbl">
