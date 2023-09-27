@@ -13,7 +13,7 @@ const Join = () => {
   const [memberPhone, setMemberPhone] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
   const [CheckIdMsg, setCheckIdMsg] = useState("");
- // const [okcheckId, setOkCheckId] = useState(""); 만족시 파란색으로 사용가능?
+  // const [okcheckId, setOkCheckId] = useState(""); 만족시 파란색으로 사용가능?
   const [CheckPwMsg, setCheckPWMsg] = useState("");
   const navigate = useNavigate();
   const idCheck = () => {
@@ -27,7 +27,6 @@ const Join = () => {
         .get("/member/checkId/" + memberId)
         .then((res) => {
           console.log(res);
-          console.log(memberId);
           if (res.data === 0) {
             setCheckIdMsg("");
           } else {
@@ -37,7 +36,7 @@ const Join = () => {
         .catch((res) => {
           console.log(res.response.status);
         });
-        setCheckIdMsg("");
+      setCheckIdMsg("");
     }
   };
   const pwCheck = () => {
@@ -47,13 +46,18 @@ const Join = () => {
       setCheckPWMsg("");
     }
   };
- 
+
   const join = () => {
     if (CheckIdMsg === "" && CheckPwMsg === "") {
-    
-      const member = { memberId, memberPw, memberName, memberPhone, memberEmail };
+      const member = {
+        memberId,
+        memberPw,
+        memberName,
+        memberPhone,
+        memberEmail,
+      };
       axios
-       
+
         .post("/member/join", member)
         .then((res) => {
           console.log(res.data);
@@ -81,7 +85,7 @@ const Join = () => {
         content="memberId"
         label="아이디"
         CheckMsg={CheckIdMsg}
-        blurEvent={idCheck} 
+        blurEvent={idCheck}
       />
       <JoinInputWrap
         data={memberPw}
@@ -123,7 +127,6 @@ const Join = () => {
       <div className="join-btn-box">
         <Button1 text="회원가입" clickEvent={join}></Button1>
       </div>
-
     </div>
   );
 };
