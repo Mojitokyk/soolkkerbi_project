@@ -4,12 +4,11 @@ import { useEffect, useState } from "react";
 import Header from "./component/common/Header";
 import MypageMain from "./component/mypage/MypageMain";
 import ProductMain from "./component/product/ProductMain";
-
 import Join from "./component/member/Join";
 import Login from "./component/member/Login";
-
 import Footer from "./component/common/Footer";
 import About from "./component/mainpage/About";
+import AdminMain from "./component/admin/AdminMain";
 
 function App() {
   return (
@@ -21,6 +20,7 @@ function App() {
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
+          <Route path="/admin/*" element={<AdminMain />} />
           <Route path="/product/*" element={<ProductMain />} />
         </Routes>
       </div>
