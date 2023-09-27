@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header>
       <div className="main-logo">
-        <Link to="#">
+        <Link to="/">
           <img src="/image/logo_png/logo_title.png" />
         </Link>
       </div>
@@ -33,7 +33,7 @@ const Category = () => {
     <div className="category">
       <ul>
         <li>
-          <Link to="#">술꺼비 소개</Link>
+          <Link to="about">술꺼비 소개</Link>
         </li>
         <li>
           <Link to="#">오시는 길</Link>
