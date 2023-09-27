@@ -1,6 +1,9 @@
 import "./productFrm.css";
 import TextEditor from "../util/TextEditor";
 import { Button1 } from "../util/Buttons";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const ProductFrm = () => {
   return (
@@ -24,8 +27,15 @@ const ProductFrm = () => {
                 <td>
                   <label htmlFor="productCase">카테고리</label>
                 </td>
-                <td>
-                  <select type="text" />
+                <td className="category">
+                  <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    <Select>
+                      <MenuItem value={1}>탁주</MenuItem>
+                      <MenuItem value={2}>약,청주</MenuItem>
+                      <MenuItem value={3}>과실주</MenuItem>
+                      <MenuItem value={4}>증류주</MenuItem>
+                    </Select>
+                  </FormControl>
                 </td>
               </tr>
               <tr>
@@ -46,7 +56,7 @@ const ProductFrm = () => {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="productPrice">상품가격</label>
+                  <label htmlFor="productPrice">상품 가격</label>
                 </td>
                 <td>
                   <input type="text" />
@@ -65,7 +75,7 @@ const ProductFrm = () => {
                   <label htmlFor="thumbnail">상품 이미지</label>
                 </td>
                 <td>
-                  <input />
+                  <input type="text" />
                 </td>
               </tr>
             </tbody>
