@@ -1,0 +1,33 @@
+.mypage-wrap {
+  width: 1200px;
+  margin: 30px auto;
+}
+.mypage-title {
+  font-size: 24px;
+  font-family: ns-b;
+  padding: 10px 0;
+}
+.my-side {
+  width: 200px;
+}
+.my-side > ul {
+  list-style-type: none;
+  box-sizing: border-box;
+  padding: 30px;
+  margin: 0;
+}
+.my-side > ul > li > a {
+  display: block;
+  padding: 10px;
+}
+.my-side > ul > li > a.active-side {
+  background-color: #4f4f4f;
+  color: #fff;
+}
+.mypage-content {
+  display: flex;
+  justify-content: space-evenly;
+}
+.current-content {
+  width: 900px;
+}
