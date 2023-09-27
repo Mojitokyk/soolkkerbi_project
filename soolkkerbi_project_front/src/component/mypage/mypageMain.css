@@ -5,7 +5,8 @@
 .mypage-title {
   font-size: 24px;
   font-family: ns-b;
-  padding: 10px 0;
+  padding: 30px 10px;
+  border-bottom: 2px solid #4f4f4f;
 }
 .my-side {
   width: 200px;
@@ -13,7 +14,7 @@
 .my-side > ul {
   list-style-type: none;
   box-sizing: border-box;
-  padding: 30px;
+  padding: 30px 10px;
   margin: 0;
 }
 .my-side > ul > li > a {
@@ -30,4 +31,10 @@
 }
 .current-content {
   width: 900px;
+  margin: 30px auto;
+}
+.mypage-content-title {
+  padding-bottom: 30px;
+  font-family: ns-b;
+  font-size: 24px;
 }
