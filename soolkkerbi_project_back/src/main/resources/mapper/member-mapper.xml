@@ -18,7 +18,7 @@
 	 <select id="selectAllMember" resultType="member">
 	 	select * from
 	 		(select rownum as rnum, m.* from
-	 			(select * from member order by member_level) m
+	 			(select * from member order by 1) m
 	 		)
 	 	where rnum between #{start} and #{end}
 	 </select>

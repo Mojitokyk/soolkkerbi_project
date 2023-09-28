@@ -30,7 +30,7 @@ const ReadAllMember = () => {
             <tr>
               <td width={"10%"}>회원번호</td>
               <td width={"20%"}>아이디</td>
-              <td width={"10%"}>이름</td>
+              <td width={"15%"}>이름</td>
               <td width={"15%"}>전화번호</td>
               <td width={"20%"}>이메일</td>
               <td width={"20%"}>가입일</td>

@@ -1,0 +1,19 @@
+.manageStock-title {
+  padding-bottom: 30px;
+  font-family: ns-b;
+  font-size: 22px;
+}
+
+.manageStock-content > table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.manageStock-content > table td {
+  text-align: center;
+  padding: 5px;
+}
+
+.admin-paging-wrap {
+  margin-top: 50px;
+}
