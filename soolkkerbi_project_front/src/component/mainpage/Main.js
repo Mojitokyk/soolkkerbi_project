@@ -51,9 +51,7 @@ const MainList = () => {
     <div className="productR-all-wrap">
       <div className="productR-title">술꺼비 추천</div>
       <div className="productR-list-wrap">
-        {mainList.map((main, index) => {
-          return <ProductRecommend key={"main" + index} main={main} />; //진행 중 - 객체 배열 생성 필요?
-        })}
+        <ProductRecommend />; 
       </div>
       <div className="productR-page"></div>
     </div>
