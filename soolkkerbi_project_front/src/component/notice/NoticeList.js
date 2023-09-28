@@ -33,18 +33,21 @@ const NoticeList = (props) => {
 
   return (
     <>
-      <div className="notice-list">
-        {noticeList.map((notice, index) => {
-          return <NoticeItem key={"notice" + index} notice={notice} />;
-        })}
-      </div>
-      <div className="notice-pagination">
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-        />
-      </div>
+      <table className="notice-list">
+        <thead>
+          <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>게시일</th>
+          </tr>
+        </thead>
+        <tbody>
+          {noticeList.map((notice, index) => {
+            return <NoticeItem key={"notice" + index} notice={notice} />;
+          })}
+        </tbody>
+      </table>
 
       {isLogin ? (
         <div className="notice-write-btn">
@@ -53,6 +56,14 @@ const NoticeList = (props) => {
       ) : (
         ""
       )}
+
+      <div className="notice-pagination">
+        <Pagination
+          reqPage={reqPage}
+          setReqPage={setReqPage}
+          pageInfo={pageInfo}
+        />
+      </div>
     </>
   );
 };
@@ -64,14 +75,12 @@ const NoticeItem = (props) => {
     navigate("/notice/NoticeView", { state: { noticeNo: notice.noticedNo } });
   };
   return (
-    <div className="notice-item" onClick={noticeView}>
-      <div className="notice-item-info">
-        <div className="notice-item-no">{notice.noticeNo}</div>
-        <div className="notice-item-title">{notice.noticeTitle}</div>
-        <div className="notice-item-writer">{notice.memberId}</div>
-        <div className="notice-item-date">{notice.noticeDate}</div>
-      </div>
-    </div>
+    <tr className="notice-item" onClick={noticeView}>
+      <td className="notice-item-no">{notice.noticeNo}</td>
+      <td className="notice-item-title">{notice.noticeTitle}</td>
+      <td className="notice-item-writer">{notice.memberName}</td>
+      <td className="notice-item-date">{notice.noticeDate}</td>
+    </tr>
   );
 };
 

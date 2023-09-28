@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.notice-all-wrap {
+  width: 800px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.notice-title {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.notice-list {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.notice-list tr {
+  height: 40px;
+}
+.notice-list > tbody > tr {
+  border-bottom: 1px solid #ccc;
+}
+.notice-list .notice-list > thead > tr > :first-child {
+  width: 10%;
+}
+.notice-list > thead > tr > :nth-child(2) {
+  width: 60%;
+}
+.notice-list > thead > tr > :nth-child(3) {
+  width: 15%;
+}
+.notice-list > thead > tr > :last-child {
+  width: 15%;
+}
+.notice-list > tbody > tr > :first-child,
+.notice-list > tbody > tr > :nth-child(2),
+.notice-list > tbody > tr > :nth-child(3),
+.notice-list > tbody > tr > :last-child {
+  text-align: center;
+}
+
+.notice-list > thead > tr {
+  background-color: #4f4f4f;
+}
+.notice-list > thead > tr th {
+  color: #fff;
+}
+.notice-list > tbody > tr {
+  border-bottom: 1px solid #ccc;
+}
+.notice-list > tbody > tr:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.notice-write-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.notice-write-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}

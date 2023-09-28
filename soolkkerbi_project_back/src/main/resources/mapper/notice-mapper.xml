@@ -14,7 +14,7 @@
 		        (SELECT
 		            NOTICE_NO, 
 		            NOTICE_TITLE, 		            
-		            NOTICE_MEMBER_NO, 		             
+		            MEMBER_NAME, 		             
 		            TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NOTICE_DATE
 		        FROM NOTICE
 		        JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) 
