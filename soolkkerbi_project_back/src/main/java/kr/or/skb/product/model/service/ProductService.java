@@ -6,10 +6,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.product.model.dao.ProductDao;
+import kr.or.skb.product.model.vo.Product;
 
 @Service
 public class ProductService {
@@ -28,5 +30,10 @@ public class ProductService {
 		map.put("list", productList);
 		map.put("pi", pi);
 		return map;
+	}
+
+	@Transactional
+	public int updateStock(Product p) {
+		return productDao.updateStock(p);
 	}
 }

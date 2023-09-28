@@ -9,16 +9,44 @@
   border-spacing: 0;
 }
 
+.manageStock-content > table > thead td {
+  font-family: ns-b;
+  border-bottom: 1px solid #4f4f4f;
+}
 .manageStock-content > table td {
   text-align: center;
-  padding: 5px;
+  padding: 20px 5px;
 }
 
 .admin-paging-wrap {
   margin-top: 50px;
 }
 
+.admin-product-stock-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.admin-product-stock-text {
+  width: 25%;
+  margin: 0px 5px;
+}
+.admin-product-stock-text > input {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.stock-mg-btn {
+  color: #4f4f4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .admin-product-btn-box {
-  width: 100%;
+  width: 70%;
   margin: 0 auto;
 }
