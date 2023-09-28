@@ -11,18 +11,31 @@ import About from "./component/mainpage/About";
 import AdminMain from "./component/admin/AdminMain";
 import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
-import Notice from "./component/notice/Notice";
+import NoticeMain from "./component/notice/NoticeMain";
 
 function App() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [num, setNum] = useState(0);
+  useEffect(() => {
+    const token = window.localStorage.getItem("token");
+    if (token === null) {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+  }, [num]);
   return (
     <div className="wrap">
-      <Header />
+      <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <div className="content">
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/direction" element={<Direction />} />
-          <Route path="/notice" element={<Notice />} />
+          <Route
+            path="/notice/*"
+            element={<NoticeMain isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
