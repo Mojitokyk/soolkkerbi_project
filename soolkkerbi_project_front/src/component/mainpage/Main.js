@@ -51,7 +51,7 @@ const MainList = () => {
     <div className="productR-all-wrap">
       <div className="productR-title">술꺼비 추천</div>
       <div className="productR-list-wrap">
-        <ProductRecommend />; 
+        <ProductRecommend />
       </div>
       <div className="productR-page"></div>
     </div>
