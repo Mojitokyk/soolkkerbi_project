@@ -22,7 +22,7 @@ const Notice = () => {
   return (
     <div className="notice">
       <span>
-        <Link to="#">공지사항</Link>
+        <Link to="notice">공지사항</Link>
       </span>
     </div>
   );

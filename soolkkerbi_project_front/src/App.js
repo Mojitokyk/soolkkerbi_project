@@ -11,6 +11,7 @@ import About from "./component/mainpage/About";
 import AdminMain from "./component/admin/AdminMain";
 import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
+import Notice from "./component/notice/Notice";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
           <Route path="/direction" element={<Direction />} />
+          <Route path="/notice" element={<Notice />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
