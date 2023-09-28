@@ -68,7 +68,7 @@ const NoticeItem = (props) => {
       <div className="notice-item-info">
         <div className="notice-item-no">{notice.noticeNo}</div>
         <div className="notice-item-title">{notice.noticeTitle}</div>
-        <div className="notice-item-writer">{notice.memberId}</div>
+        <div className="notice-item-writer">{notice.noticeMemberNo}</div>
         <div className="notice-item-date">{notice.noticeDate}</div>
       </div>
     </div>
