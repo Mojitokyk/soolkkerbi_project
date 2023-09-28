@@ -8,7 +8,7 @@
  
  
 	 <insert id="insertMember">
-	 	INSERT into MEMBER values(member_seq.nextval,#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberEmail},2,#{memberRegDate},null)
+	 	INSERT into MEMBER values(member_seq.nextval,#{memberId},#{memberPw},#{memberName},#{memberPhone},#{memberEmail},2,sysdate,null)
 	 </insert>
 	 
 	 <select id="totalCount" resultType="int">
