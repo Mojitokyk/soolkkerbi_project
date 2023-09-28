@@ -12,7 +12,6 @@ const ReadAllMember = () => {
     axios
       .get("/member/readAllMember/" + reqPage)
       .then((res) => {
-        console.log(res.data);
         setMemberList(res.data.list);
         setPageInfo(res.data.pi);
       })

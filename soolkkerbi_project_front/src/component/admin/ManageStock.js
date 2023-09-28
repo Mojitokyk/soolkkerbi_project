@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./manageStock.css";
 import Pagination from "../common/Pagination";
+import axios from "axios";
+import { Button4 } from "../util/Buttons";
 
 const ManageStock = () => {
   const [productList, setProductList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
 
+  useEffect(() => {
+    axios
+      .get("/product/readAllProduct/" + reqPage)
+      .then((res) => {
+        setProductList(res.data.list);
+        setPageInfo(res.data.pi);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, [reqPage]);
   return (
     <div className="manageStock-wrap">
       <div className="manageStock-title">상품재고 관리</div>
@@ -16,13 +29,17 @@ const ManageStock = () => {
             <tr>
               <td width={"10%"}>상품번호</td>
               <td width={"10%"}>상품구분</td>
-              <td width={"20%"}>상품명</td>
+              <td width={"30%"}>상품명</td>
               <td width={"15%"}>상품가격</td>
               <td width={"25%"}>상품수량</td>
-              <td width={"20%"}>수정하기</td>
+              <td width={"10%"}>수정하기</td>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {productList.map((product, index) => {
+              return <ProductItem key={"product" + index} product={product} />;
+            })}
+          </tbody>
         </table>
       </div>
       <div className="admin-paging-wrap">
@@ -33,6 +50,39 @@ const ManageStock = () => {
         />
       </div>
     </div>
+  );
+};
+
+const ProductItem = (props) => {
+  const product = props.product;
+  const productPrice = props.product.productPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return (
+    <tr>
+      <td>{product.productNo}</td>
+      <td>
+        {product.productCase === 1
+          ? "탁주"
+          : product.productCase === 2
+          ? "약,청주"
+          : product.productCase === 3
+          ? "과실주"
+          : "증류주"}
+      </td>
+      <td>{product.productName}</td>
+      <td>
+        {productPrice}
+        <span> 원</span>
+      </td>
+      <td>{product.productStock}</td>
+      <td>
+        <div className="admin-product-btn-box">
+          <Button4 text="수정하기" />
+        </div>
+      </td>
+    </tr>
   );
 };
 
