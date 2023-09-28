@@ -10,6 +10,7 @@ import Footer from "./component/common/Footer";
 import About from "./component/mainpage/About";
 import AdminMain from "./component/admin/AdminMain";
 import Main from "./component/mainpage/Main";
+import Direction from "./component/mainpage/Direction";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/about" element={<About />} />
+          <Route path="/direction" element={<Direction />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />

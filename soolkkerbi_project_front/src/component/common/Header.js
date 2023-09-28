@@ -36,7 +36,7 @@ const Category = () => {
           <Link to="about">술꺼비 소개</Link>
         </li>
         <li>
-          <Link to="#">오시는 길</Link>
+          <Link to="direction">오시는 길</Link>
         </li>
         <li>
           주류
