@@ -8,7 +8,7 @@
 	</select>
 	
 	<!-- 페이지 네비게이션 및 게시물 개수 조회 --> 
- 	<select id="selectNoticeList" resultType="board">
+ 	<select id="selectNoticeList" resultType="notice">
  		SELECT * FROM 
 		    (SELECT ROWNUM AS RNUM, B.* FROM
 		        (SELECT
