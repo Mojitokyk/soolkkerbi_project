@@ -2,7 +2,8 @@ import "./notice.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button1 } from "../util/Buttons";
-import Pagenation from "../common/Pagination";
+import Pagination from "../common/Pagination";
+import axios from "axios";
 
 const Notice = (props) => {
   const isLogin = props.isLogin;
@@ -17,7 +18,7 @@ const Notice = (props) => {
       .get("/board/list/" + reqPage) //get메서드 사용
       .then((res) => {
         console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
-        setBoardList(res.data.boardList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
+        setNoticeList(res.data.noticeList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
         setPageInfo(res.data.pi); //res.data의 'pi'key의 값을 setPageInfo에 넣음
       })
       .catch((res) => {
@@ -41,7 +42,7 @@ const Notice = (props) => {
         })}
       </div>
       <div className="notice-pagination">
-        <Pagenation
+        <Pagination
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
