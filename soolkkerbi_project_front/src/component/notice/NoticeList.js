@@ -5,7 +5,7 @@ import { Button1 } from "../util/Buttons";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 
-const Notice = (props) => {
+const NoticeList = (props) => {
   const isLogin = props.isLogin;
   const [noticeList, setNoticeList] = useState([]);
   const [reqPage, setReqPage] = useState(1); //1로 시작
@@ -15,7 +15,7 @@ const Notice = (props) => {
   useEffect(() => {
     //로그인 체크 후 조회시: post
     axios
-      .get("/board/list/" + reqPage) //get메서드 사용
+      .get("/notice/list/" + reqPage) //get메서드 사용
       .then((res) => {
         console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setNoticeList(res.data.noticeList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
@@ -32,10 +32,7 @@ const Notice = (props) => {
   };
 
   return (
-    <div className="notico-wrap">
-      <div className="notice-title">
-        <h2>공지사항</h2>
-      </div>
+    <>
       <div className="notice-list">
         {noticeList.map((notice, index) => {
           return <NoticeItem key={"notice" + index} notice={notice} />;
@@ -50,13 +47,13 @@ const Notice = (props) => {
       </div>
 
       {isLogin ? (
-        <div className="board-write-btn">
+        <div className="notice-write-btn">
           <Button1 text="작성하기" clickEvent={write} />
         </div>
       ) : (
         ""
       )}
-    </div>
+    </>
   );
 };
 
@@ -78,4 +75,4 @@ const NoticeItem = (props) => {
   );
 };
 
-export default Notice;
+export default NoticeList;
