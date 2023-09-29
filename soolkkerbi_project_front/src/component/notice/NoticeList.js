@@ -28,7 +28,7 @@ const NoticeList = (props) => {
 
   const navigate = useNavigate();
   const write = () => {
-    navigate("write");
+    navigate("noticeWrite");
   };
 
   return (
@@ -48,6 +48,10 @@ const NoticeList = (props) => {
           })}
         </tbody>
       </table>
+
+      {/* <div className="notice-write-btn">
+        <Button1 text="작성하기" clickEvent={write} />
+      </div> */}
 
       {isLogin ? (
         <div className="notice-write-btn">
@@ -72,7 +76,7 @@ const NoticeItem = (props) => {
   const notice = props.notice;
   const navigate = useNavigate();
   const noticeView = () => {
-    navigate("/notice/NoticeView", { state: { noticeNo: notice.noticedNo } });
+    navigate("/notice/noticeView", { state: { noticeNo: notice.noticedNo } });
   };
   return (
     <tr className="notice-item" onClick={noticeView}>
