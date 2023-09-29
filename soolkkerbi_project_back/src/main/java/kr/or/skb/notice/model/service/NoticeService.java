@@ -50,18 +50,19 @@ public class NoticeService {
 	
 	//게시글 작성
 	@Transactional
-	public int insertBoard(Notice n, ArrayList<NoticeFile> fileList) {
+	public int insertNotice(Notice n, ArrayList<NoticeFile> fileList) {
 		System.out.println(n);
 		System.out.println(fileList);
 		
 		//Board테이블에 insert하기 위해서는 회원번호를 알아야한다.
 		//작성자 정보를 현재 아이디만 알고있다. -> Board테이블에는 회원번호가 외래키로 설정되어있다.
 		//아이디를 이용하여 회원번호를 구해온다(회원정보를 조회하여 회원 정보 중 회원번호를 사용한다)
-		Member member = memberDao.selectOneMember(n.getMemberId());
-		System.out.println("memberNo: "+member.getMemberNo());
-		n.setNoticeMemberNo(member.getMemberNo());
-		System.out.println("BoardWriter: "+n.getNoticeMemberNo());
-		System.out.println("BoardNo: "+n.getNoticeNo());
+
+//		Member member = memberDao.selectOneMember(n.getMemberId());
+//		System.out.println("memberNo: "+member.getMemberNo());
+//		n.setNoticeMemberNo(member.getMemberNo());
+//		System.out.println("noticeMemberNo: "+n.getNoticeMemberNo());
+		System.out.println("noticeNo: "+n.getNoticeNo());
 		int result = noticeDao.insertNotice(n);
 		for(NoticeFile noticeFile : fileList) {
 			noticeFile.setNoticeNo(n.getNoticeNo()); //board-mapper의 <selectKey>에서 구해진 boardNo를 삽입

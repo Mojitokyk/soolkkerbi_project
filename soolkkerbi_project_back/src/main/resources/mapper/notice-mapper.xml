@@ -22,11 +22,11 @@
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
  	
- 	<!-- 게시글 작성 -->
+ 	<!-- 게시글 작성 --> <!-- 임시회원번호1 /#{noticeMemberNo} -->
  	<insert id="insertNotice">
- 		insert into notice values(notice_seq.nextval, #{noticeMemberNo}, #{noticeTitle}, #{noticeContent}, sysdate)
+ 		insert into notice values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, sysdate)
  
- 		<selectKey resultType="int" keyProperty="boardNo" order="AFTER">
+ 		<selectKey resultType="int" keyProperty="noticeNo" order="AFTER">
  			select max(notice_no) from notice
  		</selectKey><!-- 'insertBoard' 수행 후 작성된 쿼리를 수행하여, int타입으로 boardNo속성에 삽입: insertBoardFile에서 사용되는 boardNo를 구하기 위함 -->
  	</insert>

@@ -41,12 +41,12 @@ public class NoticeController {
 	//MultipartFile thumbnail: thumbnail
 	//MultipartFile[] boardFile: 첨부파일
 	@PostMapping(value="/insert")
-	public int insertNotice(@ModelAttribute Notice n, @ModelAttribute MultipartFile thumbnail, @ModelAttribute MultipartFile[] noticeFile, @RequestAttribute String memberId) {
+	public int insertNotice(@ModelAttribute Notice n, @ModelAttribute MultipartFile thumbnail, @ModelAttribute MultipartFile[] noticeFile) {// @RequestAttribute String memberId
 		System.out.println(n);
-		System.out.println(memberId);
+//		System.out.println(memberId);
 		
-		n.setMemberId(memberId);
-		String savepath = root+"board/"; //root: C/Temp/react_web
+//		n.setMemberId(memberId);
+		String savepath = root+"notice/"; //root: C/Temp/react_web
 		if(thumbnail != null) {		
 			System.out.println(thumbnail.getOriginalFilename());
 			String filename = thumbnail.getOriginalFilename();
@@ -69,7 +69,7 @@ public class NoticeController {
 				fileList.add(nf);
 			}
 		}
-		int result = noticeService.insertBoard(n, fileList);
+		int result = noticeService.insertNotice(n, fileList);
 		return result;
 	}
 }
