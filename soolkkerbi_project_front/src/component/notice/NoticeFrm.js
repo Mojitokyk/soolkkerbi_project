@@ -63,7 +63,6 @@ const NoticeFrm = (props) => {
                     data={noticeTitle}
                     setData={setNoticeTitle}
                     content="noticeTitle"
-                    placeholder="제목을 입력하세요"
                   />
                 </td>
               </tr>
@@ -72,14 +71,6 @@ const NoticeFrm = (props) => {
         </div>
       </div>
       <div className="notice-content-box">
-        {/* <textarea
-          onChange={(e) => {
-            const changeValue = e.currentTarget.value;
-            setBoardDetail(changeValue);
-          }}
-        >
-          {boardDetail}
-        </textarea> */}
         <TextEditor
           data={noticeDetail}
           setData={setNoticeDetail}
@@ -88,9 +79,9 @@ const NoticeFrm = (props) => {
       </div>
       <div className="notice-btn-box">
         {type === "modify" ? (
-          <Button1 text="작성하기" clickEvent={buttonEvent} />
+          <Button1 text="수성하기" clickEvent={buttonEvent} />
         ) : (
-          <Button1 text="수정하기" clickEvent={buttonEvent} />
+          <Button1 text="작정하기" clickEvent={buttonEvent} />
         )}
       </div>
     </div>
