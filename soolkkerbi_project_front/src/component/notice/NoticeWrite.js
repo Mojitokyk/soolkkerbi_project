@@ -10,7 +10,7 @@ const NoticeWrite = () => {
   //변수명과 안 맞춘 것 - 첨부파일(배열, 객체로 받음)
   const [noticeTitle, setNoticeTitle] = useState("");
   const [thumbnail, setThumbnail] = useState({});
-  const [noticeDetail, setNoticeDetail] = useState("");
+  const [noticeContent, setNoticeContent] = useState("");
   const [noticeFile, setNoticeFile] = useState([]);
 
   //화면용(화면에 데이터를 띄움)
@@ -23,14 +23,14 @@ const NoticeWrite = () => {
   const write = () => {
     console.log(noticeTitle);
     console.log(thumbnail);
-    console.log(noticeDetail);
+    console.log(noticeContent);
     console.log(noticeFile);
-    if (noticeTitle !== "" && noticeDetail !== "") {
+    if (noticeTitle !== "" && noticeContent !== "") {
       //기본적인 문자열 또는 숫자데이터를 전송하는 경우, JSON을 전송
       //파일이 포함되어 있는 경우 -> FormData
       const form = new FormData();
       form.append("noticeTitle", noticeTitle);
-      form.append("noticeDetail", noticeDetail);
+      form.append("noticeContent", noticeContent);
       form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우, File객체를 전송
       //첨부파일이 여러개인 경우(multiple인 경우 -> 같은 이름으로 첨부파일이 여려개인 경우) - 객체 배열
       for (let i = 0; i < noticeFile.length; i++) {
@@ -38,14 +38,14 @@ const NoticeWrite = () => {
         form.append("noticeFile", noticeFile[i]);
       }
 
-      const token = window.localStorage.getItem("token");
+      //   const token = window.localStorage.getItem("token");
       axios
         .post("/notice/insert", form, {
           headers: {
             //processData, contentType: 문자열만 전송하는 것이 아닌, 파일 타입도 있다는 것을 인지시킴
             processData: false,
             contentType: "multipart/form-data",
-            Authorization: "Bearer " + token,
+            // Authorization: "Bearer " + token,
           },
         })
         .then((res) => {
@@ -65,8 +65,8 @@ const NoticeWrite = () => {
       <NoticeFrm
         noticeTitle={noticeTitle}
         setNoticeTitle={setNoticeTitle}
-        noticeDetail={noticeDetail}
-        setNoticeDetail={setNoticeDetail}
+        noticeContent={noticeContent}
+        setNoticeContent={setNoticeContent}
         thumbnail={thumbnail}
         setThumbnail={setThumbnail}
         noticeFile={noticeFile}

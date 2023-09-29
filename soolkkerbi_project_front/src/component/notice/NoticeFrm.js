@@ -6,8 +6,8 @@ import InputTitle from "../util/InputFormTitle";
 const NoticeFrm = (props) => {
   const noticeTitle = props.noticeTitle;
   const setNoticeTitle = props.setNoticeTitle;
-  const noticeDetail = props.noticeDetail;
-  const setNoticeDetail = props.setNoticeDetail;
+  const noticeContent = props.noticeContent;
+  const setNoticeContent = props.setNoticeContent;
   const thumbnail = props.thumbnail;
   const setThumbnail = props.setThumbnail;
   const noticeFile = props.noticeFile;
@@ -72,14 +72,14 @@ const NoticeFrm = (props) => {
       </div>
       <div className="notice-content-box">
         <TextEditor
-          data={noticeDetail}
-          setData={setNoticeDetail}
+          data={noticeContent}
+          setData={setNoticeContent}
           url="/notice/contentImg"
         />
       </div>
       <div className="notice-btn-box">
         {type === "modify" ? (
-          <Button1 text="수성하기" clickEvent={buttonEvent} />
+          <Button1 text="수정하기" clickEvent={buttonEvent} />
         ) : (
           <Button1 text="등록" clickEvent={buttonEvent} />
         )}
