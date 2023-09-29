@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.or.iei.board.model.vo.Board;
-import kr.or.iei.board.model.vo.BoardFile;
+import kr.or.skb.notice.model.vo.NoticeFile;
+import kr.or.skb.FileUtil;
 import kr.or.skb.notice.model.service.NoticeService;
 import kr.or.skb.notice.model.vo.Notice;
 
@@ -23,6 +24,10 @@ import kr.or.skb.notice.model.vo.Notice;
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private FileUtil fileUtil;
+	@Value("${file.root}")
+	private String root;
 	
 	//게시물 조회
 	@GetMapping(value="/list/{reqPage}")
@@ -37,34 +42,34 @@ public class NoticeController {
 	//MultipartFile[] boardFile: 첨부파일
 	@PostMapping(value="/insert")
 	public int insertNotice(@ModelAttribute Notice n, @ModelAttribute MultipartFile thumbnail, @ModelAttribute MultipartFile[] noticeFile, @RequestAttribute String memberId) {
-		System.out.println(b);
+		System.out.println(n);
 		System.out.println(memberId);
 		
-		b.setMemberId(memberId);
+		n.setMemberId(memberId);
 		String savepath = root+"board/"; //root: C/Temp/react_web
 		if(thumbnail != null) {		
 			System.out.println(thumbnail.getOriginalFilename());
 			String filename = thumbnail.getOriginalFilename();
 			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
-			b.setBoardImg(filepath);
+			n.setNoticeImg(filepath);
 		}
-		ArrayList<BoardFile> fileList = new ArrayList<BoardFile>();
-		if(boardFile != null) {
+		ArrayList<NoticeFile> fileList = new ArrayList<NoticeFile>();
+		if(noticeFile != null) {
 			/*
 			for(int i=0;i<boardFile.length;i++) {
 				System.out.println(boardFile[i].getOriginalFilename());
 			}
 			*/
-			for(MultipartFile file : boardFile) {
+			for(MultipartFile file : noticeFile) {
 				String filename = file.getOriginalFilename();
 				String filepath = fileUtil.getFilepath(savepath, filename, file);
-				BoardFile bf = new BoardFile();
-				bf.setFilename(filename);
-				bf.setFilepath(filepath);
-				fileList.add(bf);
+				NoticeFile nf = new NoticeFile();
+				nf.setNoticeFileName(filename);
+				nf.setNoticeFilePath(filepath);
+				fileList.add(nf);
 			}
 		}
-		int result = boardService.insertBoard(b, fileList);
+		int result = noticeService.insertBoard(n, fileList);
 		return result;
 	}
 }
