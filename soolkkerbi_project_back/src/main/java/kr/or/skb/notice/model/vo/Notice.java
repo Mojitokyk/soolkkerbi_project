@@ -1,5 +1,7 @@
 package kr.or.skb.notice.model.vo;
 
+import java.util.List;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.AllArgsConstructor;
@@ -18,4 +20,6 @@ public class Notice {
 	private String noticeDate;
 	
 	private String memberName;
+	private List fileList;
+	private String delFileNo;
 }

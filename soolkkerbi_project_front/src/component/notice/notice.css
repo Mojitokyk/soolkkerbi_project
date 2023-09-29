@@ -18,7 +18,7 @@
 .notice-list {
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .notice-list tr {
   height: 40px;
@@ -99,6 +99,7 @@
   border: none;
   border-bottom: 1px solid #ccc;
   height: 300px;
+  font-size: 1em;
 }
 
 .notice-frm-wrap > .notice-btn-box {
@@ -106,4 +107,5 @@
 }
 .notice-btn-box > button {
   width: 100px;
+  font-family: ns-b;
 }

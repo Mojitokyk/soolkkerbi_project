@@ -49,17 +49,17 @@ const NoticeList = (props) => {
         </tbody>
       </table>
 
-      {/* <div className="notice-write-btn">
+      <div className="notice-write-btn">
         <Button1 text="작성하기" clickEvent={write} />
-      </div> */}
+      </div>
 
-      {isLogin ? (
+      {/* {isLogin ? (
         <div className="notice-write-btn">
           <Button1 text="작성하기" clickEvent={write} />
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       <div className="notice-pagination">
         <Pagination

@@ -81,7 +81,7 @@ const NoticeFrm = (props) => {
         {type === "modify" ? (
           <Button1 text="수성하기" clickEvent={buttonEvent} />
         ) : (
-          <Button1 text="작정하기" clickEvent={buttonEvent} />
+          <Button1 text="등록" clickEvent={buttonEvent} />
         )}
       </div>
     </div>
