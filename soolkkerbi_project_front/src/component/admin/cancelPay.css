@@ -1,0 +1,24 @@
+.cancelPay-title {
+  padding-bottom: 30px;
+  font-family: ns-b;
+  font-size: 22px;
+}
+
+.cancelPay-content > table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.cancelPay-content > table > thead td {
+  font-family: ns-b;
+  border-bottom: 1px solid #4f4f4f;
+}
+
+.cancelPay-content > table td {
+  text-align: center;
+  padding: 20px 5px;
+}
+
+.admin-paging-wrap {
+  margin-top: 50px;
+}
