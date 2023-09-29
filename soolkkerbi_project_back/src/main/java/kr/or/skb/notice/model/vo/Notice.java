@@ -19,7 +19,10 @@ public class Notice {
 	private String noticeContent;
 	private String noticeDate;
 	
+	private String noticeImg;
+	
 	private String memberName;
+	private String memberId;
 	private List fileList;
 	private String delFileNo;
 }
