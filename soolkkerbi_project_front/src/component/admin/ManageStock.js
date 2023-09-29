@@ -3,11 +3,14 @@ import "./manageStock.css";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 import { Button4 } from "../util/Buttons";
+import Input from "../util/InputForm";
+import Swal from "sweetalert2";
 
 const ManageStock = () => {
   const [productList, setProductList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     axios
@@ -20,6 +23,7 @@ const ManageStock = () => {
         console.log(res.response.status);
       });
   }, [reqPage]);
+
   return (
     <div className="manageStock-wrap">
       <div className="manageStock-title">상품재고 관리</div>
@@ -32,12 +36,18 @@ const ManageStock = () => {
               <td width={"30%"}>상품명</td>
               <td width={"15%"}>상품가격</td>
               <td width={"25%"}>상품수량</td>
-              <td width={"10%"}>수정하기</td>
+              <td width={"10%"}>재고변경</td>
             </tr>
           </thead>
           <tbody>
             {productList.map((product, index) => {
-              return <ProductItem key={"product" + index} product={product} />;
+              return (
+                <ProductItem
+                  key={"product" + index}
+                  product={product}
+                  setProduct={setProduct}
+                />
+              );
             })}
           </tbody>
         </table>
@@ -55,9 +65,30 @@ const ManageStock = () => {
 
 const ProductItem = (props) => {
   const product = props.product;
-  const productPrice = props.product.productPrice
+  const setProduct = props.setProduct;
+  const productPrice = product.productPrice
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  const setProductStock = (data) => {
+    product.productStock = data;
+    setProduct({ ...product });
+  };
+
+  const updateStock = () => {
+    const productNo = product.productNo;
+    const productStock = product.productStock;
+    const p = { productNo, productStock };
+
+    axios
+      .post("/product/updateStock", p)
+      .then((res) => {
+        Swal.fire("재고가 변경되었습니다.");
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
 
   return (
     <tr>
@@ -76,10 +107,27 @@ const ProductItem = (props) => {
         {productPrice}
         <span> 원</span>
       </td>
-      <td>{product.productStock}</td>
+      <td>
+        <div className="admin-product-stock-wrap">
+          <div className="admin-product-stock">
+            <span className="material-icons stock-mg-btn">add_circle</span>
+          </div>
+          <div className="admin-product-stock-text">
+            <Input
+              type="text"
+              data={product.productStock === 0 ? "0" : product.productStock}
+              setData={setProductStock}
+              content="productStock"
+            />
+          </div>
+          <div className="admin-product-stock">
+            <span className="material-icons stock-mg-btn">remove_circle</span>
+          </div>
+        </div>
+      </td>
       <td>
         <div className="admin-product-btn-box">
-          <Button4 text="수정하기" />
+          <Button4 text="변경" clickEvent={updateStock} />
         </div>
       </td>
     </tr>

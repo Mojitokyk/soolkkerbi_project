@@ -9,9 +9,14 @@
   border-spacing: 0;
 }
 
+.readAllMember-content > table > thead td {
+  font-family: ns-b;
+  border-bottom: 1px solid #4f4f4f;
+}
+
 .readAllMember-content > table td {
   text-align: center;
-  padding: 5px;
+  padding: 20px 5px;
 }
 
 .admin-paging-wrap {
