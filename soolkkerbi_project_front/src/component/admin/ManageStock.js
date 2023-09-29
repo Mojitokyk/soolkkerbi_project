@@ -90,6 +90,12 @@ const ProductItem = (props) => {
       });
   };
 
+  const addStock = () => {
+    let productStock = product.productStock;
+    productStock++;
+    setProductStock(productStock);
+  };
+
   return (
     <tr>
       <td>{product.productNo}</td>
@@ -110,7 +116,14 @@ const ProductItem = (props) => {
       <td>
         <div className="admin-product-stock-wrap">
           <div className="admin-product-stock">
-            <span className="material-icons stock-mg-btn">add_circle</span>
+            <span
+              className="material-icons stock-mg-btn"
+              onClick={() => {
+                addStock();
+              }}
+            >
+              add_circle
+            </span>
           </div>
           <div className="admin-product-stock-text">
             <Input
