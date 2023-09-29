@@ -96,6 +96,14 @@ const ProductItem = (props) => {
     setProductStock(productStock);
   };
 
+  const removeStock = () => {
+    let productStock = product.productStock;
+    if (productStock !== 0) {
+      productStock--;
+    }
+    setProductStock(productStock);
+  };
+
   return (
     <tr>
       <td>{product.productNo}</td>
@@ -134,7 +142,14 @@ const ProductItem = (props) => {
             />
           </div>
           <div className="admin-product-stock">
-            <span className="material-icons stock-mg-btn">remove_circle</span>
+            <span
+              className="material-icons stock-mg-btn"
+              onClick={() => {
+                removeStock();
+              }}
+            >
+              remove_circle
+            </span>
           </div>
         </div>
       </td>
