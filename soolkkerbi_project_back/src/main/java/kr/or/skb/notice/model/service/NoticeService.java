@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.notice.model.dao.NoticeDao;
@@ -75,6 +76,19 @@ public class NoticeService {
 		}else {
 			return 0;
 		}
+	}
+	
+	//게시글 상세보기
+	public Notice selectOneNotice(int noticeNo) {
+		Notice n = noticeDao.selectOneNotice(noticeNo);
+//		List fileList = noticeDao.selectOneNoticeFile(noticeNo);
+//		n.setFileList(fileList);
+		return n;
+	}
+	//게시글 파일 다운로드
+	public NoticeFile getNoticeFile(int noticeFileNo) {
+		// TODO Auto-generated method stub
+		return noticeDao.getNoticeFile(noticeFileNo);
 	}
 
 }

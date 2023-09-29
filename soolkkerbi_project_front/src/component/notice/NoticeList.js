@@ -76,7 +76,8 @@ const NoticeItem = (props) => {
   const notice = props.notice;
   const navigate = useNavigate();
   const noticeView = () => {
-    navigate("/notice/noticeView", { state: { noticeNo: notice.noticedNo } });
+    console.log("NoticeItem - noticeNo: " + notice.noticeNo);
+    navigate("/notice/noticeView", { state: { noticeNo: notice.noticeNo } });
   };
   return (
     <tr className="notice-item" onClick={noticeView}>
