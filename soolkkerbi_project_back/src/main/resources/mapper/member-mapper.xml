@@ -22,5 +22,9 @@
 	 		)
 	 	where rnum between #{start} and #{end}
 	 </select>
+	 
+	 <select id="selectMemberId" resultType="member">
+	 select * from member where member_name=#{memberName} and member_email=#{memberEmail}
+	 </select>
  
 </mapper>

@@ -30,6 +30,16 @@
   .search-box > a:hover {
     text-decoration: underline;
   }
+  .find {
+    font-size: 0.9em;
+    height: 20px;
+    line-height: 20px;
+  }
+  .find:hover {
+    text-decoration: underline;
+  }
+
+  
   .search-box > span {
     font-size: 22px;
     transform: rotate(90deg);
@@ -38,4 +48,15 @@
     margin: 20px 0px;
     font-size: 18px;
   }
-  
+  .Search_id_result {
+    width: 80%;
+    margin-top: 8%;
+    margin-left: 10%;
+    height: 280px;
+    border: solid 1px #ababab;
+}
+
+.Search_id_result p { color: #ababab; }
+.Search_id_result_div { margin-top: 50px; }
+.Search_id_result_div div { margin-bottom : 50px;}
+.Search_id_result_div h5 { height: 5px; }
