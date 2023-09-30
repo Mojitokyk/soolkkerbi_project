@@ -3,6 +3,7 @@
   padding: 0;
 }
 
+/*공지사항 메인(리스트)*/
 .notice-all-wrap {
   width: 800px;
   margin: 0 auto;
@@ -17,7 +18,7 @@
 .notice-list {
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .notice-list tr {
   height: 40px;
@@ -63,6 +64,48 @@
   margin-bottom: 5px;
 }
 .notice-write-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}
+/*-----------------------공지사항 메인(리스트)*/
+
+/*공지사항 등록*/
+.notice-frm-wrap {
+  width: 800px;
+}
+.notice-info-tbl {
+  width: 100%;
+}
+.notice-info-tbl > tbody > tr > td > input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.notice-content-box {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.quill {
+  width: 100%;
+}
+.quill > .ql-toolbar {
+  border: none;
+  background-color: #ccc;
+}
+.quill > .ql-container {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  height: 300px;
+  font-size: 1em;
+}
+
+.notice-frm-wrap > .notice-btn-box {
+  text-align: right;
+}
+.notice-btn-box > button {
   width: 100px;
   font-family: ns-b;
 }

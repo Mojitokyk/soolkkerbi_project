@@ -21,4 +21,41 @@
 		        ORDER BY 1 DESC)B)
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
+ 	
+ 	<!-- 게시글 작성 --> <!-- 임시회원번호1 /#{noticeMemberNo} -->
+ 	<insert id="insertNotice">
+ 		insert into notice values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, sysdate)
+ 
+ 		<selectKey resultType="int" keyProperty="noticeNo" order="AFTER">
+ 			select max(notice_no) from notice
+ 		</selectKey><!-- 'insertBoard' 수행 후 작성된 쿼리를 수행하여, int타입으로 boardNo속성에 삽입: insertBoardFile에서 사용되는 boardNo를 구하기 위함 -->
+ 	</insert>
+ 	
+ 	<!-- 게시글 작성 파일 업로드 -->
+ 	<insert id="insertNoticeFile">
+ 		insert into notice_file values(notice_file_seq.nextval, #{noticeNo}, #{noticeFileName}, #{noticeFilePath})
+ 	</insert>
+ 	
+ 	 	<!-- 게시글 상세보기 -->
+ 	<select id="selectOneNotice" resultMap="getNotice">
+ 		select notice_no, notice_title, member_name, notice_content, to_char(notice_date, 'yyyy-mm-dd') as notice_date from notice JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) where notice_no=#{noticeNo}
+ 	</select>
+ 	<!--  게시글 상세보기 - 파일 -->
+	<select id="selectOneNoticeFile" resultType="NoticeFile">
+		select * from notice_file where notice_no=#{noticeNo}
+	</select>
+ 	<resultMap type="notice" id="getNotice">
+		<result column="notice_no" property="noticeNo"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_member_no" property="noticeMemberNo"/>
+		<result column="notice_content" property="noticeContent"/>
+		<result column="notice_date" property="noticeDate"/>
+		<collection
+			property="fileList"
+			select="selectOneNoticeFile"
+			column="notice_no"
+			javaType="java.util.List"
+			ofType="noticeFile"
+		/>
+	</resultMap>
 </mapper>

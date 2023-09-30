@@ -6,7 +6,7 @@ import ImageResize from "quill-image-resize-module-react";
 Quill.register("modules/ImageResize", ImageResize);
 const TextEditor = (props) => {
   //컴포넌트 내부에서 특정 DOM객체를 선택해야할 때
-  const quillRef = useRef(); 
+  const quillRef = useRef();
   const data = props.data;
   const setData = props.setData;
   const url = props.url;
@@ -17,20 +17,21 @@ const TextEditor = (props) => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
-    input.click(); 
-       
-    input.onchange = async () => { //비동기 요청을 동기 처리
+    input.click();
+
+    input.onchange = async () => {
+      //비동기 요청을 동기 처리
       const file = input.files;
       if (file !== null) {
         const form = new FormData();
         form.append("image", file[0]);
-        const token = window.localStorage.getItem("token");
+        // const token = window.localStorage.getItem("token");
         axios
           .post(url, form, {
             headers: {
               contentType: "multipart/form-data",
               processData: false,
-              Authorization: "Bearer " + token,
+              // Authorization: "Bearer " + token,
             },
           })
           .then((res) => {
@@ -47,7 +48,7 @@ const TextEditor = (props) => {
     };
   };
   //quill에이터 형식옵션을 닫는배열
- 
+
   const formats = [
     "header",
     "font",
@@ -67,7 +68,8 @@ const TextEditor = (props) => {
   //바로 가져오는 hooks
   const modules = useMemo(() => {
     return {
-      toolbar: {         //툴바에 넣을 기능을 순서대로 나열
+      toolbar: {
+        //툴바에 넣을 기능을 순서대로 나열
         container: [
           ["bold", "italic", "underline", "strike", "blockquote"],
           [{ size: ["small", false, "large", "huge"] }, { color: [] }],

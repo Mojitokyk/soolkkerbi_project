@@ -13,5 +13,7 @@
 		where rnum between #{start} and #{end}
 	</select>
 	
-	
+	<update id="updateStock">
+		update product set product_stock = #{productStock} where product_no = #{productNo}
+	</update>
 </mapper>

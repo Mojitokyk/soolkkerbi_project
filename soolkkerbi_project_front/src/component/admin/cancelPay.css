@@ -1,20 +1,20 @@
-.readAllMember-title {
+.cancelPay-title {
   padding-bottom: 30px;
   font-family: ns-b;
   font-size: 22px;
 }
 
-.readAllMember-content > table {
+.cancelPay-content > table {
   width: 100%;
   border-spacing: 0;
 }
 
-.readAllMember-content > table > thead td {
+.cancelPay-content > table > thead td {
   font-family: ns-b;
   border-bottom: 1px solid #4f4f4f;
 }
 
-.readAllMember-content > table td {
+.cancelPay-content > table td {
   text-align: center;
   padding: 20px 5px;
 }
