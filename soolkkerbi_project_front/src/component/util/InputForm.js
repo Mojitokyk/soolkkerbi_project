@@ -4,7 +4,7 @@ const Input = (props) => {
   const data = props.data;
   const setData = props.setData;
   const type = props.type;
-  const content = props.content; /*? */
+  const content = props.content;
   const blurEvent = props.blurEvent;
   const changeValue = (e) => {
     const inputValue = e.currentTarget.value;
@@ -16,7 +16,7 @@ const Input = (props) => {
         className="input-form"
         type={type}
         value={data || ""}
-        content={content}
+        id={content}
         onChange={changeValue}
         onBlur={blurEvent}
       ></input>

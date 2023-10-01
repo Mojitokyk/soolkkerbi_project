@@ -16,4 +16,9 @@
 	<update id="updateStock">
 		update product set product_stock = #{productStock} where product_no = #{productNo}
 	</update>
+	
+	<insert id="insertProduct">
+	  	insert into product values (product_seq.nextval,#{productCase},#{productName},#{productAlc},#{productLiter},
+	  								#{productInfo},#{productPrice},#{productStock},0,#{productFilepath})
+	</insert>
 </mapper>

@@ -36,4 +36,9 @@ public class ProductService {
 	public int updateStock(Product p) {
 		return productDao.updateStock(p);
 	}
+	
+	@Transactional
+	public int insertProduct(Product p) {
+		return productDao.insertProduct(p);
+	}
 }
