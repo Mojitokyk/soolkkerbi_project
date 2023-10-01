@@ -8,7 +8,6 @@ import { Routes, Route } from "react-router-dom";
 const ProductMain = () => {
   return (
     <Routes>
-      <Route path="write" element={<ProductWrite />}></Route>
       <Route path="takju" element={<TakjuList />}></Route>
       <Route path="yakju" element={<YakjuList />}></Route>
       <Route path="fruit" element={<FruitList />}></Route>

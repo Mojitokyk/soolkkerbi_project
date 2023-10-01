@@ -3,6 +3,10 @@
   width: 1200px;
   margin: 50px auto;
 }
+.product-insert-all-wrap {
+  width: 900px;
+  margin: 30px auto;
+}
 .product-title {
   text-align: center;
   font-size: 22px;
