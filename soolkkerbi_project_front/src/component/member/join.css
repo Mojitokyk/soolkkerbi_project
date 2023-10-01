@@ -48,3 +48,20 @@
   .join-btn-box>button{
     font-size: 18px;
   }
+  #modal-modal-description{
+    width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  #modal-modal-description>h3{
+    padding: 0.5em;
+    text-align: center;
+  }
+  .modal-content{
+    border: #4f4f4f;
+    width: 90%;
+    height: 100px;
+    overflow: auto;
+
+    
+  }

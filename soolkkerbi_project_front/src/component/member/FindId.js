@@ -37,6 +37,8 @@ const back =()=>{
 }
 
   const find=(props)=>{
+    const memberName=props.memberName;
+    const memberEmail=props.memberEmail;
     const member = { memberName, memberEmail};
     const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
    if(member != ""&& emailCheck.test(memberEmail)){
