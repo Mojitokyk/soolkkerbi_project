@@ -5,6 +5,8 @@
           npm install quill-image-resize-module-react
           npm install @mui/material @emotion/react @emotion/styled
           npm install swiper@6.8.4
+
 23.09.29  npm install react-awesome-modal => x
           npm i react-modal => x
           npm install nodemailer => x
+

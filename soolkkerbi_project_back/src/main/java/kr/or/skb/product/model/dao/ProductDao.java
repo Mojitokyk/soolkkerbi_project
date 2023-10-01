@@ -15,5 +15,7 @@ public interface ProductDao {
 	List selectAllProduct(PageInfo pi);
 
 	int updateStock(Product p);
+
+	int insertProduct(Product p);
 	
 }
