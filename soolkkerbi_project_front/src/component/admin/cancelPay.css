@@ -22,3 +22,8 @@
 .admin-paging-wrap {
   margin-top: 50px;
 }
+
+.admin-cancelPay-btn-box {
+  width: 70%;
+  margin: 0 auto;
+}

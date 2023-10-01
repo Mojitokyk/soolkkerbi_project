@@ -83,7 +83,9 @@ const ProductItem = (props) => {
     axios
       .post("/product/updateStock", p)
       .then((res) => {
-        Swal.fire("재고가 변경되었습니다.");
+        if (res.data === 1) {
+          Swal.fire("재고가 변경되었습니다.");
+        }
       })
       .catch((res) => {
         console.log(res.response.status);
