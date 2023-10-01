@@ -5,6 +5,7 @@ import MyInfo from "../mypage/MyInfo";
 import ReadAllMember from "./ReadAllMember";
 import ManageStock from "./ManageStock";
 import CancelPay from "./CancelPay";
+import CancelReservation from "./CancelReservation";
 
 const AdminMain = () => {
   const [menus, setMenus] = useState([
@@ -30,6 +31,7 @@ const AdminMain = () => {
             <Route path="readAllMember" element={<ReadAllMember />} />
             <Route path="manageStock" element={<ManageStock />} />
             <Route path="cancelPay" element={<CancelPay />} />
+            <Route path="cancelReservation" element={<CancelReservation />} />
           </Routes>
         </div>
       </div>

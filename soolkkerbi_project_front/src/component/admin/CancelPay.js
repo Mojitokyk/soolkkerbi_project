@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import "./cancelPay.css";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 import { Button4 } from "../util/Buttons";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 const CancelPay = () => {
   const [payList, setPayList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
-  const [pay, setPay] = useState({});
 
   useEffect(() => {
     axios
@@ -25,9 +22,9 @@ const CancelPay = () => {
   }, [reqPage]);
 
   return (
-    <div className="cancelPay-wrap">
-      <div className="cancelPay-title">결제취소 관리</div>
-      <div className="cancelPay-content">
+    <div className="admin-content-wrap">
+      <div className="admin-content-title">결제취소 관리</div>
+      <div className="admin-content-tbl">
         <table>
           <thead>
             <tr>
@@ -92,7 +89,7 @@ const PayItem = (props) => {
         <span> 원</span>
       </td>
       <td>
-        <div className="admin-cancelPay-btn-box">
+        <div className="admin-change-btn-box">
           <Button4 text="취소" clickEvent={updatePayStatus} />
         </div>
       </td>

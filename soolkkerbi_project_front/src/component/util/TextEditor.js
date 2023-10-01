@@ -22,6 +22,7 @@ const TextEditor = (props) => {
     input.onchange = async () => {
       //비동기 요청을 동기 처리
       const file = input.files;
+      console.log(file);
       if (file !== null) {
         const form = new FormData();
         form.append("image", file[0]);

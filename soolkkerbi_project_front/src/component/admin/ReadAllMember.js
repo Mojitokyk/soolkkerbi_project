@@ -1,4 +1,3 @@
-import "./readAllMember.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "../common/Pagination";
@@ -21,9 +20,9 @@ const ReadAllMember = () => {
   }, [reqPage]);
 
   return (
-    <div className="readAllMember-wrap">
-      <div className="readAllMember-title">전체회원목록</div>
-      <div className="readAllMember-content">
+    <div className="admin-content-wrap">
+      <div className="admin-content-title">전체회원목록</div>
+      <div className="admin-content-tbl">
         <table>
           <thead>
             <tr>

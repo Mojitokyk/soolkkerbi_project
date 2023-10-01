@@ -34,3 +34,57 @@
   width: 900px;
   margin: 30px auto;
 }
+
+.admin-content-title {
+  padding-bottom: 30px;
+  font-family: ns-b;
+  font-size: 22px;
+}
+
+.admin-content-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.admin-content-tbl > table > thead td {
+  font-family: ns-b;
+  border-bottom: 1px solid #4f4f4f;
+}
+
+.admin-content-tbl > table td {
+  text-align: center;
+  padding: 20px 5px;
+}
+
+.admin-paging-wrap {
+  margin-top: 50px;
+}
+
+.admin-product-stock-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.admin-product-stock-text {
+  width: 25%;
+  margin: 0px 5px;
+}
+.admin-product-stock-text > input {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.stock-mg-btn {
+  color: #4f4f4f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.admin-change-btn-box {
+  width: 70%;
+  margin: 0 auto;
+}

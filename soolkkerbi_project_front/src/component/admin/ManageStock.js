@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./manageStock.css";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 import { Button4 } from "../util/Buttons";
@@ -25,9 +24,9 @@ const ManageStock = () => {
   }, [reqPage]);
 
   return (
-    <div className="manageStock-wrap">
-      <div className="manageStock-title">상품재고 관리</div>
-      <div className="manageStock-content">
+    <div className="admin-content-wrap">
+      <div className="admin-content-title">상품재고 관리</div>
+      <div className="admin-content-tbl">
         <table>
           <thead>
             <tr>
@@ -156,7 +155,7 @@ const ProductItem = (props) => {
         </div>
       </td>
       <td>
-        <div className="admin-product-btn-box">
+        <div className="admin-change-btn-box">
           <Button4 text="변경" clickEvent={updateStock} />
         </div>
       </td>

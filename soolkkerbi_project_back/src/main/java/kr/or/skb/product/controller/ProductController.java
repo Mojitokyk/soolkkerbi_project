@@ -48,7 +48,7 @@ public class ProductController {
 		String savepath = root+"product/editor/";
 		String filename = image.getOriginalFilename();
 		String filepath = fileUtil.getFilepath(savepath, filename, image);
-		return "/prduct/editor/"+filepath;
+		return "/product/editor/"+filepath;
 	}
 	
 	@GetMapping(value = "/readAllProduct/{reqPage}")

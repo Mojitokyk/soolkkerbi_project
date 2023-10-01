@@ -10,11 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/board/**")
-		.addResourceLocations("file:///C:/Temp/react_web/board/");
+		registry.addResourceHandler("/product/**")
+		.addResourceLocations("file:///C:/Temp/soolkkerbi/product/");
 		
-		registry.addResourceHandler("/board/editor/**")
-		.addResourceLocations("file:///C:/Temp/react_web/board/editor/");
+		registry.addResourceHandler("/product/editor/**")
+		.addResourceLocations("file:///C:/Temp/soolkkerbi/product/editor/");
 	}
 
 	@Bean
