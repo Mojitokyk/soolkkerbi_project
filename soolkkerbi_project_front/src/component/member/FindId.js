@@ -89,7 +89,7 @@ const back =()=>{
           setData={setMemberName}
           data={memberName}
           type="type"
-          content="memberName"
+          id="memberName"
         ></Input>
       </div>
       <div className="input-wrap">
@@ -98,28 +98,12 @@ const back =()=>{
           setData={setMemberEmail}
           data={memberEmail}
           type="type"
-          content="memberEmail"
+          id="memberEmail"
         ></Input>
       </div>
       <div style={{marginTop: "30px"}}> <Button1 text="조회하기" clickEvent={find}/></div>
-     
-                {/* <div>  
-                  <h5> 이름 </h5>
-                  <input type='text' maxLength='15' name='search_id_name'/>
-                </div>
-                <div>  
-                  <h5> 이메일 </h5>
-                  <input type='text' maxLength='20' name='search_id_email'/> 
-                
-                  <div id='search_id_email_div'>
-                    @
-                    <input type='text' maxLength='15' name='search_id_write_email'/>
-                  </div>
-                </div>  이메일 mui뒷부분 선택폼 ?*/}
+                {/*  이메일 mui뒷부분 선택폼 ?*/}
 
-                {/* <div>
-                  <input type='button' value='조회하기' name='search_id_submit'/> 
-                </div> */}
           </Typography>
         </Box>
         : //아이디를 조회한 경우

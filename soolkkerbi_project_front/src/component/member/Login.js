@@ -7,6 +7,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import FindId from "./FindId";
 import FindPw from "./FindPw";
+import SearchPw from "./SearchPw";
+
 
 
 const Login = (props) => {
@@ -57,7 +59,8 @@ const Login = (props) => {
       <div className="search-box">
         <FindId className="find"/>
          <span className="material-icons">horizontal_rule</span>
-        <FindPw className="find"/>
+         {/* <SearchPw className="find"/> */}
+        {/* <FindPw className="find"/> */}
         <span className="material-icons">horizontal_rule</span>
         <Link to="/join">회원가입</Link>
       </div>

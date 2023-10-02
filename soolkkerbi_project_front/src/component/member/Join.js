@@ -297,7 +297,7 @@ const Join = () => {
           <div className="join-btn-box">
           <Button2 text="약관확인 및 회원가입" clickEvent={join}></Button2>
           </div>
-
+{/* 동의체크박스혀말어? */}
           </Typography>
         </Box>
       </Modal>
