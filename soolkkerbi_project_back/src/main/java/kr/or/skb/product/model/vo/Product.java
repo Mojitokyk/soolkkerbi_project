@@ -21,4 +21,6 @@ public class Product {
 	private int productStock;
 	private int productDiscount;
 	private String productFilepath;
+	private int starRate;
+	private String memberId;
 }

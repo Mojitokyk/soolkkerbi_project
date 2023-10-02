@@ -3,6 +3,11 @@
   width: 1200px;
   margin: 50px auto;
 }
+/*상품등록 전체 wrap*/
+.product-insert-all-wrap {
+  width: 900px;
+  margin: 30px auto;
+}
 .product-title {
   text-align: center;
   font-size: 22px;
@@ -20,6 +25,7 @@
   width: calc(100% / 4);
   padding: 30px;
   cursor: pointer;
+  position: relative;
 }
 .product-item-img {
   border-radius: 10px;
@@ -36,6 +42,15 @@
   transform: scale(1.02);
   transition-duration: 0.5s;
 }
+.like-zone {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+}
+.like-zone > span {
+  color: #ff6289;
+  font-size: 22px;
+}
 .product-item-info {
   margin-top: 10px;
 }
@@ -51,6 +66,11 @@
   color: black;
 }
 .product-item-price {
+  font-weight: bold;
+  font-size: 17px;
+  color: black;
+}
+.product-item-price > span {
   font-weight: bold;
   font-size: 17px;
   color: black;

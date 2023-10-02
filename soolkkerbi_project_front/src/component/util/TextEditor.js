@@ -4,13 +4,13 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageResize from "quill-image-resize-module-react";
 Quill.register("modules/ImageResize", ImageResize);
+
 const TextEditor = (props) => {
   //컴포넌트 내부에서 특정 DOM객체를 선택해야할 때
   const quillRef = useRef();
   const data = props.data;
   const setData = props.setData;
   const url = props.url;
-
   //이미지를 업로드하고 에디터 내부에 추가하는 함수
   const imageHandler = () => {
     //input태그 생성
@@ -18,37 +18,35 @@ const TextEditor = (props) => {
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
     input.click();
-
+    //async : 비동기요청을 동기처리해라
     input.onchange = async () => {
-      //비동기 요청을 동기 처리
       const file = input.files;
+      console.log(file);
       if (file !== null) {
         const form = new FormData();
         form.append("image", file[0]);
-        // const token = window.localStorage.getItem("token");
+        //const token = window.localStorage.getItem("token");
         axios
           .post(url, form, {
             headers: {
               contentType: "multipart/form-data",
               processData: false,
-              // Authorization: "Bearer " + token,
+              //Authorization: "Bearer " + token,
             },
           })
           .then((res) => {
             const editor = quillRef.current.getEditor();
-            const range = editor.getSelection(); //에디터 내부에서 관리하는 용도
-
+            const range = editor.getSelection();
             editor.insertEmbed(range.index, "image", res.data);
             editor.setSelection(range.index + 1);
           })
           .catch((res) => {
-            console.log(res);
+            console.log(res.response.status);
           });
       }
     };
   };
-  //quill에이터 형식옵션을 닫는배열
-
+  //quill에디터 형식 옵션을 담는 배열
   const formats = [
     "header",
     "font",
@@ -83,7 +81,7 @@ const TextEditor = (props) => {
           ["image", "video"],
         ],
         handlers: {
-          //이미지 업로드 버튼 클릭시 우리가 만든 함수가 동작하도록 설정
+          //이미지 업로드 버튼 클릭 시 우리가 만든 함수가 동작하도록 설정
           image: imageHandler,
         },
       },

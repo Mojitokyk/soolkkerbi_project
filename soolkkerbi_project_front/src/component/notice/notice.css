@@ -109,3 +109,30 @@
   width: 100px;
   font-family: ns-b;
 }
+
+/* 공지사항 상세 */
+.notice-view-wrap {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.notice-view-title {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+}
+.notice-view-info {
+  text-align: right;
+  height: 50px;
+}
+.notice-view-info > :last-child {
+  float: right;
+}
+.notice-view-file {
+  clear: both;
+  text-align: center;
+  margin: 20px 0;
+}
+.notice-view-detail {
+  text-align: center;
+  min-height: 300px;
+}

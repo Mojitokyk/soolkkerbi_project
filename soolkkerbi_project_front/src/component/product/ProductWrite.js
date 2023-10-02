@@ -51,7 +51,12 @@ const ProductWrite = () => {
         })
         .then((res) => {
           if (res.data > 0) {
-            navigate("/product/write");
+            Swal.fire({
+              icon: "success",
+              title: "등록 성공",
+              text: "상품 등록을 완료했습니다.",
+            });
+            navigate("/");
           }
         })
         .catch((res) => {
@@ -66,7 +71,7 @@ const ProductWrite = () => {
     }
   };
   return (
-    <div className="product-all-wrap">
+    <div className="product-insert-all-wrap">
       <div className="product-title">상품 등록</div>
       <ProductFrm
         productName={productName}

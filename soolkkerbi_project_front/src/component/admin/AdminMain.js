@@ -5,6 +5,8 @@ import MyInfo from "../mypage/MyInfo";
 import ReadAllMember from "./ReadAllMember";
 import ManageStock from "./ManageStock";
 import CancelPay from "./CancelPay";
+import ProductWrite from "../product/ProductWrite";
+import CancelReservation from "./CancelReservation";
 
 const AdminMain = () => {
   const [menus, setMenus] = useState([
@@ -26,10 +28,12 @@ const AdminMain = () => {
         <AdminSideMenu menus={menus} setMenus={setMenus} />
         <div className="admin-menu-content">
           <Routes>
+            <Route path="insertProduct" element={<ProductWrite />}></Route>
             <Route path="info" element={<MyInfo />} />
             <Route path="readAllMember" element={<ReadAllMember />} />
             <Route path="manageStock" element={<ManageStock />} />
             <Route path="cancelPay" element={<CancelPay />} />
+            <Route path="cancelReservation" element={<CancelReservation />} />
           </Routes>
         </div>
       </div>
