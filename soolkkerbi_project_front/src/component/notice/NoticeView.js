@@ -13,6 +13,11 @@ const NoticeView = (props) => {
   const [member, setMember] = useState(null); //상세보기 - 삭제, 수정: 사용자 정보 조회를 위한 state
   const navigate = useNavigate();
 
+  /*목록으로 돌아가는 함수*/
+  const toList = () => {
+    return navigate("notice");
+  };
+
   console.log(
     "NoticeView - location.state.noticeNo: " + location.state.noticeNo
   );
@@ -81,27 +86,28 @@ const NoticeView = (props) => {
   };
 
   return (
-    <div className="notice-view-wrap">
-      <div className="notice-view-title">{notice.noticeTitle}</div>
-      <div className="notice-view-info">
-        <div>{notice.memberName}</div>
-        <div>{notice.noticeDate}</div>
-      </div>
-      <div className="notice-view-file">
-        {notice.fileList
-          ? notice.fileList.map((file, index) => {
-              return <FileItem key={"file" + index} file={file} />;
-            })
-          : "테스트"}
-      </div>
+    <>
+      <div className="notice-view-wrap">
+        <div className="notice-view-title">{notice.noticeTitle}</div>
+        <div className="notice-view-info">
+          <div>{notice.memberName}</div>
+          <div>{notice.noticeDate}</div>
+        </div>
+        <div className="notice-view-file">
+          {notice.fileList
+            ? notice.fileList.map((file, index) => {
+                return <FileItem key={"file" + index} file={file} />;
+              })
+            : "테스트"}
+        </div>
 
-      <div
-        className="notice-view-detail"
-        dangerouslySetInnerHTML={{ __html: notice.noticeContent }} //텍스트 에디터를 사용할 경우
-      >
-        {/* {board.boardDetail} //텍스트 에디터를 사용하지 않을 경우*/}
-      </div>
-      {/* <div className="notice-view-btn-zone">
+        <div
+          className="notice-view-detail"
+          dangerouslySetInnerHTML={{ __html: notice.noticeContent }} //텍스트 에디터를 사용할 경우
+        >
+          {/* {board.boardDetail} //텍스트 에디터를 사용하지 않을 경우*/}
+        </div>
+        {/* <div className="notice-view-btn-zone">
         //이중 삼항연산 
         {isLogin ? (
           member && member.memberNo === notice.noticeMemberNo ? (
@@ -121,7 +127,11 @@ const NoticeView = (props) => {
           ""
         )}
       </div> */}
-    </div>
+      </div>
+      <div className="notice-write-btn">
+        <Button1 text="목록으로" clickEvent={toList} />
+      </div>
+    </>
   );
 };
 
@@ -177,4 +187,5 @@ const FileItem = (props) => {
     </div>
   );
 };
+
 export default NoticeView;
