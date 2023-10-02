@@ -122,6 +122,7 @@
 }
 .notice-view-info {
   text-align: right;
+  height: 50px;
 }
 .notice-view-info > :last-child {
   float: right;
