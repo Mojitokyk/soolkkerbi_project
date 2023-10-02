@@ -25,6 +25,7 @@
   width: calc(100% / 4);
   padding: 30px;
   cursor: pointer;
+  position: relative;
 }
 .product-item-img {
   border-radius: 10px;
@@ -40,6 +41,15 @@
 .product-item-img > img:hover {
   transform: scale(1.02);
   transition-duration: 0.5s;
+}
+.like-zone {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+}
+.like-zone > span {
+  color: #ff6289;
+  font-size: 22px;
 }
 .product-item-info {
   margin-top: 10px;

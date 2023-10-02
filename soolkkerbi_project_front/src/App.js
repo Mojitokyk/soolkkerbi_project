@@ -40,7 +40,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
           <Route path="/admin/*" element={<AdminMain />} />
-          <Route path="/product/*" element={<ProductMain />} />
+          <Route
+            path="/product/*"
+            element={<ProductMain isLogin={isLogin} />}
+          />
         </Routes>
       </div>
       <Footer />
