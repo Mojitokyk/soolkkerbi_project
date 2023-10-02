@@ -21,4 +21,88 @@
 	  	insert into product values (product_seq.nextval,#{productCase},#{productName},#{productAlc},#{productLiter},
 	  								#{productInfo},#{productPrice},#{productStock},0,#{productFilepath})
 	</insert>
+	
+	<select id="selectTakjuList" resultType="product">
+	SELECT * FROM
+	    (SELECT ROWNUM AS RNUM, P.* FROM 
+	        (SELECT
+	            PRODUCT_NO,
+	            PRODUCT_CASE,
+	            PRODUCT_NAME,
+	            PRODUCT_ALC,
+	            PRODUCT_LITER,
+	            PRODUCT_INFO,
+	            PRODUCT_PRICE,
+	            PRODUCT_STOCK,
+	            PRODUCT_DISCOUNT,
+	            PRODUCT_FILEPATH,
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	        FROM PRODUCT
+	        WHERE PRODUCT_CASE = 1
+	        ORDER BY 1 DESC)P)
+	WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectYakjuList" resultType="product">
+	SELECT * FROM
+	    (SELECT ROWNUM AS RNUM, P.* FROM 
+	        (SELECT
+	            PRODUCT_NO,
+	            PRODUCT_CASE,
+	            PRODUCT_NAME,
+	            PRODUCT_ALC,
+	            PRODUCT_LITER,
+	            PRODUCT_INFO,
+	            PRODUCT_PRICE,
+	            PRODUCT_STOCK,
+	            PRODUCT_DISCOUNT,
+	            PRODUCT_FILEPATH,
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	        FROM PRODUCT
+	        WHERE PRODUCT_CASE = 2
+	        ORDER BY 1 DESC)P)
+	WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectFruitList" resultType="product">
+	SELECT * FROM
+	    (SELECT ROWNUM AS RNUM, P.* FROM 
+	        (SELECT
+	            PRODUCT_NO,
+	            PRODUCT_CASE,
+	            PRODUCT_NAME,
+	            PRODUCT_ALC,
+	            PRODUCT_LITER,
+	            PRODUCT_INFO,
+	            PRODUCT_PRICE,
+	            PRODUCT_STOCK,
+	            PRODUCT_DISCOUNT,
+	            PRODUCT_FILEPATH,
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	        FROM PRODUCT
+	        WHERE PRODUCT_CASE = 3
+	        ORDER BY 1 DESC)P)
+	WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectSpiritsList" resultType="product">
+	SELECT * FROM
+	    (SELECT ROWNUM AS RNUM, P.* FROM 
+	        (SELECT
+	            PRODUCT_NO,
+	            PRODUCT_CASE,
+	            PRODUCT_NAME,
+	            PRODUCT_ALC,
+	            PRODUCT_LITER,
+	            PRODUCT_INFO,
+	            PRODUCT_PRICE,
+	            PRODUCT_STOCK,
+	            PRODUCT_DISCOUNT,
+	            PRODUCT_FILEPATH,
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	        FROM PRODUCT
+	        WHERE PRODUCT_CASE = 4
+	        ORDER BY 1 DESC)P)
+	WHERE RNUM BETWEEN #{start} AND #{end}
+	</select>
 </mapper>

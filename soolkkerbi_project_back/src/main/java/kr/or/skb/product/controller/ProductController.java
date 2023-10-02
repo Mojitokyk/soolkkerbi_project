@@ -43,12 +43,41 @@ public class ProductController {
 		return result;
 	}
 	
+	//상품 등록 에디터 내 이미지 업로드
 	@PostMapping(value="/contentImg")
 	public String contentImg(@ModelAttribute MultipartFile image) {
 		String savepath = root+"product/editor/";
 		String filename = image.getOriginalFilename();
 		String filepath = fileUtil.getFilepath(savepath, filename, image);
 		return "/product/editor/"+filepath;
+	}
+	
+	//탁주 리스트 조회
+	@GetMapping(value="/takju/{reqPage}")
+	public Map takjuList(@PathVariable int reqPage) {
+		Map map = productService.takjuList(reqPage);
+		return map;
+	}
+	
+	//약,청주 리스트 조회
+	@GetMapping(value="/yakju/{reqPage}")
+	public Map yakjuList(@PathVariable int reqPage) {
+		Map map = productService.yakjuList(reqPage);
+		return map;
+	}
+	
+	//과실주 리스트 조회
+	@GetMapping(value="/fruit/{reqPage}")
+	public Map fruitList(@PathVariable int reqPage) {
+		Map map = productService.fruitList(reqPage);
+		return map;
+	}
+	
+	//증류주 리스트 조회
+	@GetMapping(value="/spirits/{reqPage}")
+	public Map spiritsList(@PathVariable int reqPage) {
+		Map map = productService.spiritsList(reqPage);
+		return map;
 	}
 	
 	@GetMapping(value = "/readAllProduct/{reqPage}")

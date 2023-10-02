@@ -3,6 +3,7 @@
   width: 1200px;
   margin: 50px auto;
 }
+/*상품등록 전체 wrap*/
 .product-insert-all-wrap {
   width: 900px;
   margin: 30px auto;
@@ -55,6 +56,11 @@
   color: black;
 }
 .product-item-price {
+  font-weight: bold;
+  font-size: 17px;
+  color: black;
+}
+.product-item-price > span {
   font-weight: bold;
   font-size: 17px;
   color: black;

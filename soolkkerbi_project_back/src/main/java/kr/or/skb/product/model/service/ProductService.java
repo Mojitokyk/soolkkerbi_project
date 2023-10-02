@@ -41,4 +41,52 @@ public class ProductService {
 	public int insertProduct(Product p) {
 		return productDao.insertProduct(p);
 	}
+
+	public Map takjuList(int reqPage) {
+		int numPerPage = 12;
+		int pageNaviSize = 5;	
+		int totalCount = productDao.totalCount();
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List takjuList = productDao.selectTakjuList(pi);
+		HashMap<String, Object> map = new HashMap <String, Object>();
+		map.put("takjuList", takjuList);
+		map.put("pi", pi);
+		return map;
+	}
+
+	public Map yakjuList(int reqPage) {
+		int numPerPage = 12;
+		int pageNaviSize = 5;	
+		int totalCount = productDao.totalCount();
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List yakjuList = productDao.selectYakjuList(pi);
+		HashMap<String, Object> map = new HashMap <String, Object>();
+		map.put("yakjuList", yakjuList);
+		map.put("pi", pi);
+		return map;
+	}
+
+	public Map fruitList(int reqPage) {
+		int numPerPage = 12;
+		int pageNaviSize = 5;	
+		int totalCount = productDao.totalCount();
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List fruitList = productDao.selectFruitList(pi);
+		HashMap<String, Object> map = new HashMap <String, Object>();
+		map.put("fruitList", fruitList);
+		map.put("pi", pi);
+		return map;
+	}
+
+	public Map spiritsList(int reqPage) {
+		int numPerPage = 12;
+		int pageNaviSize = 5;	
+		int totalCount = productDao.totalCount();
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List spiritsList = productDao.selectSpiritsList(pi);
+		HashMap<String, Object> map = new HashMap <String, Object>();
+		map.put("spiritsList", spiritsList);
+		map.put("pi", pi);
+		return map;
+	}
 }

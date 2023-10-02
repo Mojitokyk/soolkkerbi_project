@@ -17,5 +17,13 @@ public interface ProductDao {
 	int updateStock(Product p);
 
 	int insertProduct(Product p);
+
+	List selectTakjuList(PageInfo pi);
+
+	List selectYakjuList(PageInfo pi);
+
+	List selectFruitList(PageInfo pi);
+
+	List selectSpiritsList(PageInfo pi);
 	
 }
