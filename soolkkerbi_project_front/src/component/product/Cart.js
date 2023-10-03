@@ -74,6 +74,10 @@ const Cart = () => {
           </tbody>
         </table>
       </div>
+      <div className="cart-btn">
+        <Button1 text="전체상품 삭제" />
+        <Button1 text="선택상품 삭제" />
+      </div>
     </div>
   );
 };

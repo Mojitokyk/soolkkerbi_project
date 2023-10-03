@@ -67,4 +67,9 @@
 .cart-btn > button {
   width: 150px;
   margin-top: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+.material-icons {
+  cursor: pointer;
 }
