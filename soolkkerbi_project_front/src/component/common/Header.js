@@ -67,7 +67,7 @@ const HeaderMember = () => {
   return (
     <div className="member-group">
       <span className="cart">
-        <Link to="#">술주머니</Link>
+        <Link to="/cart">술주머니</Link>
       </span>
       <span className="login">
         <Link to="/login">로그인</Link>

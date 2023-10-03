@@ -1,0 +1,70 @@
+.cart-all-wrap {
+  width: 1200px;
+  margin: 50px auto;
+}
+.cart-title {
+  font-size: 22px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  color: black;
+  align-items: center;
+  display: flex;
+}
+.cart-title > .material-icons {
+  font-size: 22px;
+  color: black;
+}
+.cart-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.cart-tbl td {
+  text-align: center;
+  padding: 10px 5px;
+}
+.cart-tbl td.info-td {
+  text-align: left;
+}
+.cart-tbl tbody > tr > td.info-td > .material-icons {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+}
+.cart-tbl tbody > tr > td.info-td {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+.cart-tbl td.info-td > .product-img {
+  width: 40%;
+}
+.cart-tbl td.info-td > .product-img > img {
+  width: 150px;
+  height: 150px;
+}
+.cart-tbl td.info-td > .product-name {
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cart-tbl td > .product-quantity {
+  display: flex;
+  justify-content: center;
+}
+.cart-tbl > table > thead td {
+  border-bottom: 2px solid #4f4f4f;
+  border-top: 2px solid #4f4f4f;
+  color: #4f4f4f;
+  font-family: ns-b;
+}
+.cart-tbl > table > tbody td {
+  border-bottom: 1px solid #f0f0f0;
+}
+.cart-tbl > table > tbody > tr:last-child > td {
+  border-bottom: 2px solid #4f4f4f;
+}
+.cart-btn > button {
+  width: 150px;
+  margin-top: 10px;
+}
