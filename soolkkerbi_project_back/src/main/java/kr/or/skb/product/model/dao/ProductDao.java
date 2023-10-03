@@ -25,5 +25,9 @@ public interface ProductDao {
 	List selectFruitList(PageInfo pi);
 
 	List selectSpiritsList(PageInfo pi);
+
+	int insertLike(Product p);
+
+	int deleteLike(Product p);
 	
 }

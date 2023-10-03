@@ -4,7 +4,8 @@ import axios from "axios";
 import Pagination from "../common/Pagination";
 import ProductItem from "./ProductItem";
 
-const FruitList = () => {
+const FruitList = (props) => {
+  const isLogin = props.isLogin;
   const [fruitList, setFruitList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
@@ -25,7 +26,13 @@ const FruitList = () => {
       <div className="product-title">과실주</div>
       <div className="product-list-wrap">
         {fruitList.map((product, index) => {
-          return <ProductItem key={"fruit" + index} product={product} />;
+          return (
+            <ProductItem
+              key={"fruit" + index}
+              product={product}
+              isLogin={isLogin}
+            />
+          );
         })}
       </div>
       <div className="product-page">

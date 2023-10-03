@@ -89,4 +89,14 @@ public class ProductService {
 		map.put("pi", pi);
 		return map;
 	}
+	
+	@Transactional
+	public int insertLike(Product p) {
+		return productDao.insertLike(p);
+	}
+	
+	@Transactional
+	public int deleteLike(Product p) {
+		return productDao.deleteLike(p);
+	}
 }

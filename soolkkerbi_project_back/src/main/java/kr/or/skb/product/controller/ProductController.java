@@ -80,6 +80,20 @@ public class ProductController {
 		return map;
 	}
 	
+	//상품리스트 좋아요 등록
+	@PostMapping(value="/like")
+	public int insertLike(@RequestBody Product p, @RequestAttribute String memberId) {
+		p.setMemberId(memberId);
+		return productService.insertLike(p);
+	}
+	
+	//상품리스트 좋아요 취소
+	@PostMapping(value="/dislike")
+	public int deleteLike(@RequestBody Product p, @RequestAttribute String memberId) {
+		p.setMemberId(memberId);
+		return productService.deleteLike(p);
+	}
+	
 	@GetMapping(value = "/readAllProduct/{reqPage}")
 	public Map readAllProduct(@PathVariable int reqPage) {
 		return productService.readAllProduct(reqPage);

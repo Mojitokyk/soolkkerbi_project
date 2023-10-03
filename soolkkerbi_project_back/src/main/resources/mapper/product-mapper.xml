@@ -105,4 +105,12 @@
 	        ORDER BY 1 DESC)P)
 	WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>
+	
+	<insert id="insertLike">
+	insert into favorite values(favorite_seq.nextval, select member_no from member where member_id=#{memberId}, #{productNo})
+	</insert>
+	
+	<delete id="deleteLike">
+	delete from favorite where favorite_member_no=(select member_no from member where member_id=#{memberId}) and favorite_product_no=#{productNo}
+	</delete>
 </mapper>

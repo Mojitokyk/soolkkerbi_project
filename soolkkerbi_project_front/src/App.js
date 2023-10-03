@@ -12,6 +12,7 @@ import AdminMain from "./component/admin/AdminMain";
 import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
+import Cart from "./component/product/Cart";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -40,7 +41,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
           <Route path="/admin/*" element={<AdminMain />} />
-          <Route path="/product/*" element={<ProductMain />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/product/*"
+            element={<ProductMain isLogin={isLogin} />}
+          />
         </Routes>
       </div>
       <Footer />
