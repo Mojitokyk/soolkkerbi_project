@@ -31,9 +31,20 @@ export default function FindPw() {
   const [memberId, setMemberId] = React.useState("");
   const [memberEmail, setMemberEmail] = React.useState("");
   const [result , setResult] = React.useState(false);
+
+  const [memberPw, setMemberPw] = React.useState("");
+  const [memberPwRe, setMemberPwRe] = React.useState("");
+  const [CheckPwMsg, setCheckPWMsg] = React.useState("");
 const back =()=>{
     navigate("/login");
 }
+const pwCheck = () => {
+  if (memberPw !== memberPwRe) {
+    setCheckPWMsg("비밀번호입력 재확인 해주세욥!");//비번도 정규표현식 완료해얗
+  } else {
+    setCheckPWMsg("");
+  }
+};
 
   const find=(props)=>{
     const member = { memberId, memberEmail};
@@ -45,8 +56,8 @@ const back =()=>{
        .then((res) => {
         if(res.data != ""){
             console.log(res.data);
-            setMemberId(memberId);
-            setResult(true);
+            // setMemberId(memberId);
+            // setResult(true);
 
             
 
@@ -119,28 +130,71 @@ const back =()=>{
                 </div> */}
           </Typography>
         </Box>
-        : //아이디를 조회한 경우
-        <div>
-                <h4> 아이디 찾기 </h4>
+        : //비번을 조회한 경우
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          비밀번호 찾기
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        
+                <h4> 비밀번호번 재설정 </h4>
 
-                <div className='Search_id_result'>
-                  <p> 아래의 회원 정보를 찾았습니다. </p>
-
-                  <div className='Search_id_result_div'>
-                    <div>
-                      <h5> 아이디 </h5>
-                      {memberId}
-                    </div>
-                  </div>
+                <JoinInputWrap
+        data={memberPw}
+        setData={setMemberPw}
+        type="passWord"
+        content="memberPw"
+        label="비밀번호"
+      />
+      <JoinInputWrap
+        data={memberPwRe}
+        setData={setMemberPwRe}
+        type="passWord"
+        content="memberPwRe"
+        label="비밀번호확인"
+        CheckMsg={CheckPwMsg}
+        blurEvent={pwCheck}
+      />
 
                   <div>
                     <Button2 text="돌아가기" clickEvent={back}/>
                     {/* <input type='button' value='돌아가기' name='search_id_back'/> */}
                   </div>
-                </div>
-              </div>
+                </Typography>
+             </Box>
             }
       </Modal>
     </div>
+    
   );
+  
 }
+const JoinInputWrap = (props) => {
+  const data = props.data;
+  const setData = props.setData;
+  const type = props.type;
+  const content = props.content;
+  const label = props.label;
+  const blurEvent = props.blurEvent;
+  const CheckMsg = props.CheckMsg;
+
+  return (
+    <div className="join-input-wrap">
+      <div>
+        <div className="label">
+          <label htmlFor={content}>{label}</label>
+        </div>
+        <div className="input">
+          <Input
+            type={type}
+            data={data}
+            setData={setData}
+            content={content}
+            blurEvent={blurEvent}
+          />
+        </div>
+      </div>
+      <div className="check-msg">{CheckMsg}</div>
+    </div>
+  );
+};
