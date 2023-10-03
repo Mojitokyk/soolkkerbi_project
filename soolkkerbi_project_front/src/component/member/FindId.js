@@ -107,8 +107,11 @@ const back =()=>{
           </Typography>
         </Box>
         : //아이디를 조회한 경우
-        <div>
-                <h4> 아이디 찾기 </h4>
+        <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          아이디 찾기
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
 
                 <div className='Search_id_result'>
                   <p> 아래의 회원 정보를 찾았습니다. </p>
@@ -125,8 +128,11 @@ const back =()=>{
                     {/* <input type='button' value='돌아가기' name='search_id_back'/> */}
                   </div>
                 </div>
-              </div>
-            }
+
+            
+        </Typography>
+       </Box>
+}
       </Modal>
     </div>
   );
