@@ -2,25 +2,43 @@ import { useLocation } from "react-router-dom";
 import "./productDetail.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button1, Button2, Button3, Button4 } from "../util/Buttons";
+import { Button1, Button2, Button3, Button4, Button5 } from "../util/Buttons";
 const ProductDetail = (props) => {
-  //const isLogin = props.isLogin;
+  const isLogin = props.isLogin;
   const location = useLocation();
   const productNo = location.state.productNo;
   const [product, setProduct] = useState([]);
   //사용자를 알기위한 state생성
   //const [member, setMember] = useState(null);
+
+  //상세페이지에 필요한 데이터 가져오기
   useEffect(() => {
     axios
       .get("/product/view/" + productNo)
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setProduct(res.data);
       })
       .catch((res) => {
         console.log(res.reponse.status);
       });
   }, []);
+  //갯수와 총 금액 state만들기
+  const price = product.productPrice;
+  const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState(price);
+  //props로 useState에 초기값으로 할당하게 되면 App컴포넌트의 parentState가 변경되더라도 totalState는 변함이 없음 -> useState는 한번만 호출되기 때문
+  //초기값으로 할당하려면 useEffect를 사용해야함
+  useEffect(() => {
+    setTotal(price);
+  }, [price]);
+
+  //버튼 클릭시 이벤트 작동
+  const ClickCount = (num) => {
+    setQuantity((prev) => prev + num);
+    setTotal((prev) => prev + price * num);
+    //console.log(quantity, total);
+  };
   return (
     <div className="product-view-wrap">
       <div className="product-return-page"></div>
@@ -57,14 +75,62 @@ const ProductDetail = (props) => {
         </div>
         <div className="product-price-box">
           <div>수량</div>
+          <div className="option-btn-tool">
+            <QuantityInput
+              quantity={quantity}
+              stock={product.productStock}
+              onClick={ClickCount}
+            />
+            <div>{total}원</div>
+          </div>
+          <div className="product-total-price">
+            <span>총 상품 금액({quantity}개)</span>
+            <span>{total}원</span>
+          </div>
         </div>
         <div className="product-order-box">
           <Button2 text="구매하기" />
           <Button3 text="장바구니" />
+          <button className="productDetail-like-btn">
+            <span className="material-icons">favorite</span>
+          </button>
         </div>
       </div>
     </div>
   );
 };
-
+//수량 버튼 컴포넌트
+const QuantityInput = (props) => {
+  const onClick = props.onClick;
+  const stock = props.stock;
+  const quantity = props.quantity;
+  return (
+    <div className="option-input-tool">
+      <button
+        className="amount-btn"
+        type="button"
+        disabled={quantity === 1}
+        onClick={() => onClick(-1)}
+      >
+        -
+      </button>
+      <input
+        className="amount-input"
+        type="number"
+        min={1}
+        value={quantity}
+        max={stock}
+        readOnly
+      />
+      <button
+        className="amount-btn"
+        type="button"
+        disabled={stock < 1 || stock === quantity}
+        onClick={() => onClick(1)}
+      >
+        +
+      </button>
+    </div>
+  );
+};
 export default ProductDetail;
