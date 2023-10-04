@@ -23,6 +23,7 @@ const Login = (props) => {
         } else {
           window.localStorage.setItem("token", res.data);
           {
+            setIsLogin(true);
             /*선생님께서 이 부분에서 isLogin을 바꾸어줘야 한다고 하심 */
           }
           navigate("/");

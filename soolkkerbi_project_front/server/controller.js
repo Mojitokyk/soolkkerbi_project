@@ -6,8 +6,8 @@ const nodeMailer = require('nodemailer');
 const mailPoster = nodeMailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'dldbsk123012301230@gmail.com',
-    pass: '8740sass(^^)'
+    user: '#@gmail.com',
+    pass: '#'
   }
 });
 
