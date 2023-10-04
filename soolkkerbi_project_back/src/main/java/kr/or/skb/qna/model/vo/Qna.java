@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Alias(value="qna")
-public class QnaVO {
+public class Qna {
 	private int qnaNo;
 	private int qnaMemberNo;
 	private String qnaTitle;

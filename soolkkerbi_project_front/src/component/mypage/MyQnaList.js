@@ -69,7 +69,7 @@ const QnaItem = (props) => {
   const navigate = useNavigate();
   const qnaView = () => {
     console.log("qnaItem - qnaNo: " + qna.qnaNo);
-    navigate("/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
+    navigate("/mypage/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
   };
   return (
     <tr className="qna-item" onClick={qnaView}>
