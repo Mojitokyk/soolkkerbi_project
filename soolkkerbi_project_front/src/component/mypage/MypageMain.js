@@ -5,7 +5,7 @@ import MyOrder from "./MyOrder";
 import MyReservation from "./MyReservation";
 import MyWishList from "./MyWishList";
 import MyReivew from "./MyReview";
-import MyQna from "./MyQua";
+import MyQna from "./MyQna";
 import MyInfo from "./MyInfo";
 import Quit from "./Quit";
 
@@ -30,7 +30,7 @@ const MypageMain = () => {
             <Route path="reservation" element={<MyReservation />} />
             <Route path="wish" element={<MyWishList />} />
             <Route path="review" element={<MyReivew />} />
-            <Route path="qna" element={<MyQna />} />
+            <Route path="qna/*" element={<MyQna />} />
             <Route path="info" element={<MyInfo />} />
             <Route path="quit" element={<Quit />} />
           </Routes>

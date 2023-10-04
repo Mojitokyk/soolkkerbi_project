@@ -36,7 +36,7 @@
  		insert into notice_file values(notice_file_seq.nextval, #{noticeNo}, #{noticeFileName}, #{noticeFilePath})
  	</insert>
  	
- 	 	<!-- 게시글 상세보기 -->
+ 	 <!-- 게시글 상세보기 -->
  	<select id="selectOneNotice" resultMap="getNotice">
  		select notice_no, notice_title, member_name, notice_content, to_char(notice_date, 'yyyy-mm-dd') as notice_date from notice JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) where notice_no=#{noticeNo}
  	</select>

@@ -69,14 +69,16 @@ const QnaItem = (props) => {
   const navigate = useNavigate();
   const qnaView = () => {
     console.log("qnaItem - qnaNo: " + qna.qnaNo);
-    navigate("/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
+    navigate("/mypage/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
   };
   return (
     <tr className="qna-item" onClick={qnaView}>
       <td className="qna-item-no">{qna.qnaNo}</td>
       <td className="qna-item-title">{qna.qnaTitle}</td>
       <td className="qna-item-date">{qna.qnaDate}</td>
-      <td className="qna-item-status">{qna.qnaStatus}</td>
+      <td className="qna-item-status">
+        {qna.qnaStatus === 1 ? "답변 대기" : "답변 완료"}
+      </td>
     </tr>
   );
 };

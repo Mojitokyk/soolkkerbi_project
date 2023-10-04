@@ -25,7 +25,7 @@ public class PayController {
 	}
 	
 	@PostMapping(value="/updatePayStatus")
-	public int updatePayStatus(@RequestBody Pay p) {
-		return payService.updatePayStatus(p);
+	public int updatePayStatus(@RequestBody Pay pay) {
+		return payService.updatePayStatus(pay);
 	}
 }
