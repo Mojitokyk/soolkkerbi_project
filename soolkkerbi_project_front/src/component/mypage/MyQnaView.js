@@ -5,7 +5,7 @@ import axios from "axios";
 import { Button1 } from "../util/Buttons";
 import Swal from "sweetalert2";
 
-const MyQnaView = () => {
+const MyQnaView = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
   const qnaNo = location.state.qnaNo;
@@ -25,7 +25,7 @@ const MyQnaView = () => {
       .get("/qna/view/" + qnaNo)
       .then((res) => {
         console.log(res.data);
-        setNotice(res.data);
+        setQna(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
