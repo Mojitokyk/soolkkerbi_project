@@ -53,6 +53,47 @@
   font-family: ns-b;
 }
 
+/*공지사항 등록*/
+.qna-frm-wrap {
+  width: 800px;
+}
+.qna-info-tbl {
+  width: 100%;
+}
+.qna-info-tbl > tbody > tr > td > input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+.qna-content-box {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.quill {
+  width: 100%;
+}
+.quill > .ql-toolbar {
+  border: none;
+  background-color: #ccc;
+}
+.quill > .ql-container {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  min-height: 300px;
+  font-size: 1em;
+}
+
+.qna-frm-wrap > .qna-btn-box {
+  text-align: right;
+}
+.qna-btn-box > button {
+  width: 100px;
+  font-family: ns-b;
+}
+
 /* 공지사항 상세 */
 .qna-view-title {
   border-bottom: 1px solid #ccc;
