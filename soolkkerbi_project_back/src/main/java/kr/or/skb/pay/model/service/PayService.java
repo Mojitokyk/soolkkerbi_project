@@ -12,6 +12,7 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.pay.model.vo.Pay;
+import kr.or.skb.product.model.dao.ProductDao;
 
 @Service
 public class PayService {
@@ -19,6 +20,8 @@ public class PayService {
 	private PayDao payDao;
 	@Autowired
 	private Pagination pagination;
+	@Autowired
+	private ProductDao productDao;
 	
 	public Map readAllCancelPay(int reqPage) {
 		int totalCount = payDao.totalCount();
@@ -34,7 +37,10 @@ public class PayService {
 
 	@Transactional
 	public int updatePayStatus(Pay pay) {
-		return payDao.updatePayStatus(pay);
+		int result1 = payDao.updatePayStatus(pay);
+		int result2 = productDao.updateStock(pay);
+		int result = result1 + result2;
+		return result;
 	}
 	
 	
