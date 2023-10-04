@@ -53,7 +53,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/mypage/*" element={<MypageMain />} />
           <Route path="/admin/*" element={<AdminMain />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart isLogin={isLogin} />} />
           <Route
             path="/product/*"
             element={<ProductMain isLogin={isLogin} />}
