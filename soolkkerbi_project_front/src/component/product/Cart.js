@@ -1,9 +1,30 @@
 import { Link } from "react-router-dom";
 import { Button1 } from "../util/Buttons";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./cart.css";
 
-const Cart = () => {
+const Cart = (props) => {
+  const isLogin = props.isLogin;
+  const token = window.localStorage.getItem("token");
+  const [cart, setCart] = useState([]);
+  /*
+  useEffect(() => {
+    axios
+      .post("/cart/selectCart", null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setCart(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, []);*/
   return (
     <div className="cart-all-wrap">
       <div className="cart-title">

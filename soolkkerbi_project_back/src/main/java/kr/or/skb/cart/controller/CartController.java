@@ -21,6 +21,11 @@ public class CartController {
 	@PostMapping(value="/addCart")
 	public int addCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
 		cart.setMemberId(memberId);
-		return cartService.addCart(cart);
+		Cart c = cartService.selectCart(cart);
+		if(c == null) {
+			return cartService.addCart(cart);
+		}else {
+			return cartService.updateCart(cart);
+		}
 	}
 }

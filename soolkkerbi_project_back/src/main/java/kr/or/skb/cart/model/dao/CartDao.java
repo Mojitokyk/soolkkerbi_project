@@ -9,4 +9,8 @@ public interface CartDao {
 
 	int addCart(Cart cart);
 
+	Cart selectCart(Cart cart);
+
+	int updateCart(Cart cart);
+
 }

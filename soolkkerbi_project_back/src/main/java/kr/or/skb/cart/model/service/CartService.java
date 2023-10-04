@@ -16,4 +16,15 @@ public class CartService {
 	public int addCart(Cart cart) {
 		return cartDao.addCart(cart);
 	}
+
+	public Cart selectCart(Cart cart) {
+		return cartDao.selectCart(cart);
+		
+	}
+	
+	@Transactional
+	public int updateCart(Cart cart) {
+		return cartDao.updateCart(cart);
+	}
+
 }
