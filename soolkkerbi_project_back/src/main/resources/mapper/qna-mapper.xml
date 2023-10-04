@@ -36,4 +36,9 @@
 		<result column="qna_title" property="qnaTitle"/>
 		<result column="qna_content" property="qnaContent"/>
 	</resultMap>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteQna">
+		delete from qna where qna_no=#{qnaNo}
+	</delete>
 </mapper>

@@ -52,11 +52,11 @@ const MyQnaView = (props) => {
     }).then((res) => {
       if (res.isConfirmed) {
         axios
-          .get("/qna/QnaDelete/" + qna.qnaNo) //boardNo를 같이 보냄
+          .get("/qna/delete/" + qna.qnaNo) //boardNo를 같이 보냄
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
-              navigate("/qna");
+              navigate("/mypage/qna");
             }
           })
           .catch((res) => {

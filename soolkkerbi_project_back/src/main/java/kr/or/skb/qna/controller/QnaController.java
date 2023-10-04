@@ -1,6 +1,8 @@
 package kr.or.skb.qna.controller;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +62,18 @@ public class QnaController {
 	public Qna view(@PathVariable int qnaNo) {
 		System.out.println(qnaNo);
 		return qnaService.selectOneQna(qnaNo);
+	}
+	
+	//게시글 삭제
+	@GetMapping(value="/delete/{qnaNo}")
+	public int deleteQna(@PathVariable int qnaNo) {		
+		System.out.println("qnaController - qnaNo: "+qnaNo);
+		int result = qnaService.delete(qnaNo);
+		System.out.println(result);
+		if(result > 0) {
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 }

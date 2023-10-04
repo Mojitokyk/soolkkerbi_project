@@ -68,4 +68,12 @@ public class QnaService {
 		Qna q = qnaDao.selectOneQna(qnaNo);
 		return q;
 	}
+	
+	//게시글 삭제
+	@Transactional
+	public int delete(int qnaNo) {
+		System.out.println("qnaService - qnaNo: "+qnaNo);
+		return qnaDao.deleteQna(qnaNo);
+		
+	}
 }
