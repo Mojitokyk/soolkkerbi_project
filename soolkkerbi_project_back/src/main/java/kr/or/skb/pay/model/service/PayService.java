@@ -38,8 +38,9 @@ public class PayService {
 	@Transactional
 	public int updatePayStatus(Pay pay) {
 		int result1 = payDao.updatePayStatus(pay);
-		int result2 = productDao.updateStock(pay);
+		int result2 = productDao.updatePayStock(pay);
 		int result = result1 + result2;
+		System.out.println(result);
 		return result;
 	}
 	
