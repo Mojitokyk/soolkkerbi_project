@@ -135,4 +135,18 @@
 .notice-view-detail {
   text-align: center;
   min-height: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.notice-view-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.notice-view-btn > :first-child,
+.notice-view-btn > :nth-child(2) {
+  margin-right: 10px;
+}
+.notice-view-btn > button {
+  width: 100px;
+  font-family: ns-b;
 }

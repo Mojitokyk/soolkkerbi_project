@@ -90,5 +90,18 @@ public class NoticeService {
 		// TODO Auto-generated method stub
 		return noticeDao.getNoticeFile(noticeFileNo);
 	}
+	
+	//게시글 삭제
+	@Transactional
+	public List<NoticeFile> delete(int noticeNo) {
+		//1. 게시글 조회
+		List<NoticeFile> list = noticeDao.selectNoticeFileList(noticeNo);
+		//2. 게시글 삭제
+		int result = noticeDao.deleteNotice(noticeNo);
+		if(result > 0) {
+			return list;
+		}
+		return null;
+	}
 
 }

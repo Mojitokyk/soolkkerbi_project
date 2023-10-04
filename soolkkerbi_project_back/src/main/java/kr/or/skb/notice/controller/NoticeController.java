@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,31 +93,48 @@ public class NoticeController {
 		return noticeService.selectOneNotice(noticeNo);
 	}
 	//게시글 파일 다운로드
-		//ResponseEntity<Resource>: 파일 다운로드용 반환타입
-		@GetMapping(value="/filedown/{noticeFileNo}")
-		public ResponseEntity<Resource> filedown(@PathVariable int noticeFileNo) throws FileNotFoundException, UnsupportedEncodingException{
-			NoticeFile noticeFile = noticeService.getNoticeFile(noticeFileNo);
-			System.out.println(noticeFile);
-			String  savepath = root+"notice/";
-			File file = new File(savepath + noticeFile.getNoticeFilePath());
-			Resource resource = new InputStreamResource(new FileInputStream(file));
-			String encodeFile = URLEncoder.encode(noticeFile.getNoticeFileName(), "UTF-8");
-			
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Disposition", "attachment; filename=\""+encodeFile+"\"");
-			header.add("Cache-Control", "no-cache, no-store, must-revalidate");
-			header.add("Pragma", "no-cache");
-			header.add("Expires", "0");
-			
-			return ResponseEntity.status(HttpStatus.OK).headers(header).contentLength(file.length()).contentType(MediaType.APPLICATION_OCTET_STREAM).body(resource);
-		}
+	//ResponseEntity<Resource>: 파일 다운로드용 반환타입
+	@GetMapping(value="/filedown/{noticeFileNo}")
+	public ResponseEntity<Resource> filedown(@PathVariable int noticeFileNo) throws FileNotFoundException, UnsupportedEncodingException{
+		NoticeFile noticeFile = noticeService.getNoticeFile(noticeFileNo);
+		System.out.println(noticeFile);
+		String  savepath = root+"notice/";
+		File file = new File(savepath + noticeFile.getNoticeFilePath());
+		Resource resource = new InputStreamResource(new FileInputStream(file));
+		String encodeFile = URLEncoder.encode(noticeFile.getNoticeFileName(), "UTF-8");
 		
-		//텍스트 에디터 파일 업로드
-		@PostMapping(value="/contentImg")
-		public String contentImg(@ModelAttribute MultipartFile image) {
-			String savepath = root+"notice/editor/";
-			String filename = image.getOriginalFilename();
-			String filepath = fileUtil.getFilepath(savepath, filename, image);
-			return "/notice/editor/"+filepath; //실제 파일이 해당경로에 업로드 됨	
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Disposition", "attachment; filename=\""+encodeFile+"\"");
+		header.add("Cache-Control", "no-cache, no-store, must-revalidate");
+		header.add("Pragma", "no-cache");
+		header.add("Expires", "0");
+		
+		return ResponseEntity.status(HttpStatus.OK).headers(header).contentLength(file.length()).contentType(MediaType.APPLICATION_OCTET_STREAM).body(resource);
+	}
+	
+	//텍스트 에디터 파일 업로드
+	@PostMapping(value="/contentImg")
+	public String contentImg(@ModelAttribute MultipartFile image) {
+		String savepath = root+"notice/editor/";
+		String filename = image.getOriginalFilename();
+		String filepath = fileUtil.getFilepath(savepath, filename, image);
+		return "/notice/editor/"+filepath; //실제 파일이 해당경로에 업로드 됨	
+	}
+	
+	//게시글 삭제
+	@GetMapping(value="/delete/{noticeNo}")
+	public int deleteNotice(@PathVariable int noticeNo) {
+		//해당 게시글의 첨부파일 삭제를 위해 파일 목록 결과물을 받음
+		List<NoticeFile> fileList = noticeService.delete(noticeNo);//첨부파일을 지우기 위해 List<BoardFile>로 받음
+		if(fileList != null) {
+			String savepath = root+"board/";
+			for(NoticeFile noticeFile : fileList) {
+				File file = new File(savepath + noticeFile.getNoticeFilePath());
+				file.delete();
+			}
+			return 1;
+		}else {
+			return 0;
 		}
+	}
 }

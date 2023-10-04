@@ -58,4 +58,19 @@
 			ofType="noticeFile"
 		/>
 	</resultMap>
+	
+	<!-- 게시글 파일 다운로드 -->
+	<select id="getNoticeFile" resultType="NoticeFile">
+		select * from notice_file where notice_file_no=#{noticeFileNo}
+	</select>
+	
+	<!-- 게시글 삭제 - 조회 -->
+	<select id="selectNoticeFileList" resultType="noticeFile">
+		select * from notice_file where notice_no=#{noticeNo}
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteNotice">
+		delete from notice where notice_no=#{noticeNo}
+	</delete>
 </mapper>
