@@ -8,6 +8,7 @@ const CancelPay = () => {
   const [payList, setPayList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
+  const [changeStatus, setChangeStatus] = useState(true);
 
   useEffect(() => {
     axios
@@ -19,7 +20,7 @@ const CancelPay = () => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, [reqPage]);
+  }, [reqPage, changeStatus]);
 
   return (
     <div className="admin-content-wrap">
@@ -38,7 +39,14 @@ const CancelPay = () => {
           </thead>
           <tbody>
             {payList.map((pay, index) => {
-              return <PayItem key={"cancelPay" + index} pay={pay} />;
+              return (
+                <PayItem
+                  key={"cancelPay" + index}
+                  pay={pay}
+                  changeStatus={changeStatus}
+                  setChangeStatus={setChangeStatus}
+                />
+              );
             })}
           </tbody>
         </table>
@@ -58,6 +66,8 @@ const PayItem = (props) => {
   const pay = props.pay;
   const payStock = pay.payStock;
   const payPrice = pay.payPrice;
+  const changeStatus = props.changeStatus;
+  const setChangeStatus = props.setChangeStatus;
 
   const totalPrice = (payStock * payPrice)
     .toString()
@@ -68,7 +78,9 @@ const PayItem = (props) => {
       .post("/pay/updatePayStatus", pay)
       .then((res) => {
         if (res.data === 2) {
-          Swal.fire("결제취소가 완료되었습니다.");
+          Swal.fire("결제취소가 완료되었습니다.").then(() => {
+            setChangeStatus(!changeStatus);
+          });
         }
       })
       .catch((res) => {

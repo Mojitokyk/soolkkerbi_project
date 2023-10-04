@@ -8,6 +8,7 @@ const CancelReservation = () => {
   const [reservationList, setReservationList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
+  const [changeStatus, setChangeStatus] = useState(true);
 
   useEffect(() => {
     axios
@@ -19,7 +20,7 @@ const CancelReservation = () => {
       .catch((res) => {
         console.log(res.reponse.status);
       });
-  }, [reqPage]);
+  }, [reqPage, changeStatus]);
 
   return (
     <div className="admin-content-wrap">
@@ -41,6 +42,8 @@ const CancelReservation = () => {
                 <ReservationItem
                   key={"cancelReservation" + index}
                   reservation={reservation}
+                  changeStatus={changeStatus}
+                  setChangeStatus={setChangeStatus}
                 />
               );
             })}
@@ -60,13 +63,17 @@ const CancelReservation = () => {
 
 const ReservationItem = (props) => {
   const reservation = props.reservation;
+  const changeStatus = props.changeStatus;
+  const setChangeStatus = props.setChangeStatus;
 
   const updateReservationStatus = () => {
     axios
       .post("/reservation/updateReservationStatus", reservation)
       .then((res) => {
         if (res.data === 1) {
-          Swal.fire("예약취소가 완료되었습니다.");
+          Swal.fire("예약취소가 완료되었습니다.").then(() => {
+            setChangeStatus(!changeStatus);
+          });
         }
       })
       .catch((res) => {
