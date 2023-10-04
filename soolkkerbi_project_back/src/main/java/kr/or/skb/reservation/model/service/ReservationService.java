@@ -1,4 +1,4 @@
-package kr.or.skb.pay.model.service;
+package kr.or.skb.reservation.model.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,31 +10,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
-import kr.or.skb.pay.model.dao.PayDao;
-import kr.or.skb.pay.model.vo.Pay;
+import kr.or.skb.reservation.model.dao.ReservationDao;
+import kr.or.skb.reservation.model.vo.Reservation;
 
 @Service
-public class PayService {
+public class ReservationService {
 	@Autowired
-	private PayDao payDao;
+	private ReservationDao reservationDao;
 	@Autowired
 	private Pagination pagination;
-	
-	public Map readAllCancelPay(int reqPage) {
-		int totalCount = payDao.totalCount();
+
+	public Map readAllCancelReservation(int reqPage) {
+		int totalCount = reservationDao.totalCount();
 		int numPerPage = 10;
 		int pageNaviSize = 5;
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List payList = payDao.selectAllPay(pi);
+		List reservationList = reservationDao.selectAllReservation(pi);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("list", payList);
-		map.put("pi", pi);
+		map.put("list",reservationList);
+		map.put("pi",pi);
 		return map;
 	}
 
 	@Transactional
-	public int updatePayStatus(Pay pay) {
-		return payDao.updatePayStatus(pay);
+	public int updateReservationStatus(Reservation reservation) {
+		return reservationDao.updateReservationStatus(reservation);
 	}
 	
 	

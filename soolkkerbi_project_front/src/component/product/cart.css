@@ -47,10 +47,20 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: bold;
 }
-.cart-tbl td > .product-quantity {
+.cart-tbl td > .product-quantity-wrap {
   display: flex;
   justify-content: center;
+}
+.cart-tbl td > .product-quantity-wrap > span {
+  margin-left: 10px;
+}
+.product-quantity {
+  font-weight: bold;
+}
+.product-price {
+  font-weight: bold;
 }
 .cart-tbl > table > thead td {
   border-bottom: 2px solid #4f4f4f;
@@ -64,12 +74,70 @@
 .cart-tbl > table > tbody > tr:last-child > td {
   border-bottom: 2px solid #4f4f4f;
 }
+.cart-btn {
+  margin-top: 5px;
+}
 .cart-btn > button {
+  width: 100px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 0;
+}
+.delete-btn {
+  margin-top: 20px;
+}
+.delete-btn > button {
   width: 150px;
-  margin-top: 10px;
   margin-left: 10px;
   font-size: 15px;
 }
 .material-icons {
   cursor: pointer;
+  font-size: 20px;
+}
+.cart-price-tbl {
+  margin-top: 50px;
+}
+.cart-price-tbl > table {
+  width: 100%;
+  border-spacing: 0;
+}
+.cart-price-tbl > table > thead td {
+  text-align: left;
+  padding: 10px 5px;
+  border-bottom: 2px solid #4f4f4f;
+  border-top: 2px solid #4f4f4f;
+  color: #4f4f4f;
+}
+.cart-price-tbl > table > thead td > span {
+  font-family: ns-b;
+}
+.cart-price-tbl > table > tbody td {
+  text-align: center;
+  padding: 30px 5px;
+  border-bottom: 2px solid #4f4f4f;
+}
+.cart-price {
+  font-size: 24px;
+  font-weight: bold;
+}
+.cart-price-tbl > .pay-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+.cart-price-tbl > .pay-btn > button {
+  width: 150px;
+  font-size: 15px;
+}
+.cart-price-tbl > .more-shopping {
+  text-align: center;
+}
+.more-shopping {
+  margin-top: 10px;
+}
+.more-shopping > a {
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
 }

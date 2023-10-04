@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../common/Pagination";
+import axios from "axios";
+import { Button4 } from "../util/Buttons";
+import Swal from "sweetalert2";
 
 const CancelReservation = () => {
-  const [payList, setPayList] = useState([]);
+  const [reservationList, setReservationList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
+
+  useEffect(() => {
+    axios
+      .get("/reservation/readAllCancelReservation/" + reqPage)
+      .then((res) => {
+        setReservationList(res.data.list);
+        setPageInfo(res.data.pi);
+      })
+      .catch((res) => {
+        console.log(res.reponse.status);
+      });
+  }, [reqPage]);
 
   return (
     <div className="admin-content-wrap">
@@ -16,11 +31,20 @@ const CancelReservation = () => {
               <td width={"20%"}>예약일</td>
               <td width={"20%"}>예약번호</td>
               <td width={"15%"}>예약자</td>
-              <td width={"30%"}>시음회명</td>
-              <td width={"15%"}>취소확정</td>
+              <td width={"35%"}>시음회명</td>
+              <td width={"10%"}>취소확정</td>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {reservationList.map((reservation, index) => {
+              return (
+                <ReservationItem
+                  key={"cancelReservation" + index}
+                  reservation={reservation}
+                />
+              );
+            })}
+          </tbody>
         </table>
       </div>
       <div className="admin-paging-wrap">
@@ -31,6 +55,37 @@ const CancelReservation = () => {
         />
       </div>
     </div>
+  );
+};
+
+const ReservationItem = (props) => {
+  const reservation = props.reservation;
+
+  const updateReservationStatus = () => {
+    axios
+      .post("/reservation/updateReservationStatus", reservation)
+      .then((res) => {
+        if (res.data === 1) {
+          Swal.fire("예약취소가 완료되었습니다.");
+        }
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
+
+  return (
+    <tr>
+      <td>{reservation.reservationDate}</td>
+      <td>{reservation.reservationStringNo}</td>
+      <td>{reservation.reservationMemberId}</td>
+      <td>{reservation.reservationTasteTitle}</td>
+      <td>
+        <div className="admin-change-btn-box">
+          <Button4 text="취소" clickEvent={updateReservationStatus} />
+        </div>
+      </td>
+    </tr>
   );
 };
 
