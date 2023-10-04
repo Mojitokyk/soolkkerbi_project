@@ -59,6 +59,12 @@ const MainList = () => {
 };
 
 const ProductRecommend = () => {
+  //상품의 평가 중 5점인 상품을 리스트로 가져와서 출력(최대 9개)
+  /*
+  product.starRate == 5
+  객체 배열
+  Object[] recomends;
+  */
   return (
     <>
       <div className="productR-item">
