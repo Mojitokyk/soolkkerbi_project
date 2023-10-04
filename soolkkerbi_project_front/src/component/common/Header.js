@@ -1,7 +1,9 @@
 import "./default.css";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+  const isLogin = props.isLogin;
+  const setIsLogin = props.setIsLogin;
   return (
     <header>
       <div className="main-logo">
@@ -12,7 +14,7 @@ const Header = () => {
       <div className="header-navi">
         <Notice />
         <Category />
-        <HeaderMember />
+        <HeaderMember isLogin={isLogin} setIsLogin={setIsLogin} />
       </div>
     </header>
   );
@@ -63,20 +65,87 @@ const Category = () => {
   );
 };
 
-const HeaderMember = () => {
+const HeaderMember = (props) => {
+  const isLogin = props.isLogin;
+  const setIsLogin = props.setIsLogin;
+
+  /*로그아웃 함수*/
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    setIsLogin(false);
+  };
+
   return (
     <div className="member-group">
-      <span className="cart">
-        <Link to="/cart">술주머니</Link>
-      </span>
-      <span className="login">
-        <Link to="/login">로그인</Link>
-      </span>
-      <span className="join">
-        <Link to="/join">회원가입</Link>
-      </span>
+      {isLogin === true ? (
+        <>
+          <span className="cart">
+            <Link to="/cart">술주머니</Link>
+          </span>
+          <span className="mypage">
+            <Link to="/mypage">마이페이지</Link>
+          </span>
+          <span className="logout">
+            <Link to="#" title="로그아웃" onClick={logout}>
+              로그아웃
+            </Link>
+          </span>
+        </>
+      ) : (
+        <>
+          <span className="login">
+            <Link to="/login">로그인</Link>
+          </span>
+          <span className="join">
+            <Link to="/join">회원가입</Link>
+          </span>
+        </>
+      )}
     </div>
   );
 };
 
+{
+  /*
+    <div className="member-group">
+      {isLogin === true ? (
+        memberLevel === 1 ? (
+          <>
+            <span className="adminpage">
+              <Link to="/adminpage">관리자페이지</Link>
+            </span>
+            <span className="logout">
+              <Link to="#" title="로그아웃" onClick={logout}>
+                로그아웃
+              </Link>
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="cart">
+              <Link to="/cart">술주머니</Link>
+            </span>
+            <span className="mypage">
+              <Link to="/mypage">마이페이지</Link>
+            </span>
+            <span className="logout">
+              <Link to="#" title="로그아웃" onClick={logout}>
+                로그아웃
+              </Link>
+            </span>
+          </>
+        )
+      ) : (
+        <>
+          <span className="login">
+            <Link to="/login">로그인</Link>
+          </span>
+          <span className="join">
+            <Link to="/join">회원가입</Link>
+          </span>
+        </>
+      )}
+    </div>
+     */
+}
 export default Header;
