@@ -68,4 +68,20 @@ public class QnaService {
 		Qna q = qnaDao.selectOneQna(qnaNo);
 		return q;
 	}
+	
+	//게시글 삭제
+	@Transactional
+	public int delete(int qnaNo) {
+		System.out.println("qnaService - qnaNo: "+qnaNo);
+		return qnaDao.deleteQna(qnaNo);
+	}
+	
+	//게시물 수정
+	@Transactional
+	public int modify(Qna q) {
+		System.out.println("qnaService: "+q.getQnaNo());
+		System.out.println("qnaService: "+q.getQnaTitle());
+		System.out.println("qnaService: "+q.getQnaContent());
+		return qnaDao.updateQna(q);
+	}
 }

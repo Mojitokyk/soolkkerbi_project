@@ -23,4 +23,9 @@ public interface QnaDao {
 	//게시글 상세보기
 	Qna selectOneQna(int qnaNo);
 	
+	//게시글 삭제
+	int deleteQna(int qnaNo);
+	
+	//게시물 수정 - board테이블 변경
+	int updateQna(Qna q);
 }

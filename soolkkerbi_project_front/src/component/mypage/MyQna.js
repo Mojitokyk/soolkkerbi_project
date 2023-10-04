@@ -3,6 +3,7 @@ import "./myQna.css";
 import MyQnaWrite from "./MyQnaWrite";
 import MyQnaView from "./MyQnaView";
 import MyQnaList from "./MyQnaList";
+import MyQnaModify from "./MyQnaModify";
 
 const MyQna = () => {
   return (
@@ -11,6 +12,7 @@ const MyQna = () => {
       <Routes>
         <Route path="qnaWrite" element={<MyQnaWrite />} />
         <Route path="qnaView" element={<MyQnaView />} />
+        <Route path="qnaModify" element={<MyQnaModify />} />
         <Route path="*" element={<MyQnaList />} />
       </Routes>
     </div>

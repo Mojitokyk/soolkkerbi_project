@@ -8,10 +8,7 @@ import Swal from "sweetalert2";
 import FindId from "./FindId";
 import FindPw from "./FindPw";
 
-
-
 const Login = (props) => {
-
   const setIsLogin = props.setIsLogin;
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
@@ -25,6 +22,9 @@ const Login = (props) => {
           Swal.fire("아이디/비번 확인");
         } else {
           window.localStorage.setItem("token", res.data);
+          {
+            /*선생님께서 이 부분에서 isLogin을 바꾸어줘야 한다고 하심 */
+          }
           navigate("/");
         }
       })
@@ -32,7 +32,7 @@ const Login = (props) => {
         console.log(res.data);
       });
   };
-    return (
+  return (
     <div className="login-wrap">
       <div className="login-title">로그인</div>
       <div className="input-wrap">
@@ -54,18 +54,17 @@ const Login = (props) => {
         ></Input>
       </div>
 
-     
       <div className="search-box">
-        <FindId className="find"/>
-         <span className="material-icons">horizontal_rule</span>
-        <FindPw className="find"/>
+        <FindId className="find" />
+        <span className="material-icons">horizontal_rule</span>
+        <FindPw className="find" />
         <span className="material-icons">horizontal_rule</span>
         <Link to="/join">회원가입</Link>
       </div>
       <div className="login-btn-box">
         <Button1 text="로그인" clickEvent={login}></Button1>
       </div>
-      
+
       {/* <div className="search-box">
         <Link to="#">아이디 찾기</Link> 
          <span className="material-icons">horizontal_rule</span>
@@ -79,8 +78,6 @@ const Login = (props) => {
 </div> */}
     </div>
   );
-
 };
 
- export default Login;
-
+export default Login;

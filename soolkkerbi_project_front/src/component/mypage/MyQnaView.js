@@ -37,7 +37,7 @@ const MyQnaView = (props) => {
   //수정 버튼 함수
   const modifyQna = () => {
     console.log("수정 이벤트");
-    navigate("/qna/qnaModify", { state: { qna: qna } });
+    navigate("/mypage/qna/qnaModify", { state: { qna: qna } });
   };
 
   //삭제 버튼 함수
@@ -52,11 +52,11 @@ const MyQnaView = (props) => {
     }).then((res) => {
       if (res.isConfirmed) {
         axios
-          .get("/qna/QnaDelete/" + qna.qnaNo) //boardNo를 같이 보냄
+          .get("/qna/delete/" + qna.qnaNo) //boardNo를 같이 보냄
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
-              navigate("/qna");
+              navigate("/mypage/qna");
             }
           })
           .catch((res) => {

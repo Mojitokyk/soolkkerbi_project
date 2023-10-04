@@ -13,18 +13,30 @@ import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
+import axios from "axios";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-  const [num, setNum] = useState(0);
   useEffect(() => {
     const token = window.localStorage.getItem("token");
+
     if (token === null) {
       setIsLogin(false);
     } else {
+      console.log("로그인 성공");
+      console.log(token);
+      axios
+        .post("/member/selectOneMember")
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
       setIsLogin(true);
     }
-  }, [num]);
+  }, []);
+
   return (
     <div className="wrap">
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />

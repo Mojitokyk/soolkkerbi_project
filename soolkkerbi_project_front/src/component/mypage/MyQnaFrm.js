@@ -8,8 +8,8 @@ const MyQnaFrm = (props) => {
   const setQnaTitle = props.setQnaTitle;
   const qnaContent = props.qnaContent;
   const setQnaContent = props.setQnaContent;
-  console.log(qnaContent);
-  console.log(setQnaContent);
+  //   console.log(qnaContent);
+  //   console.log(setQnaContent);
   const buttonEvent = props.buttonEvent;
   const type = props.type;
 
