@@ -113,4 +113,8 @@
 	<delete id="deleteLike">
 	delete from favorite where favorite_member_no=(select member_no from member where member_id=#{memberId}) and favorite_product_no=#{productNo}
 	</delete>
+	
+	<select id="selectOneProduct" resultType="product">
+		select * from product where product_no=#{productNo}
+	</select>
 </mapper>

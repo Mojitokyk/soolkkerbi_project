@@ -29,5 +29,7 @@ public interface ProductDao {
 	int insertLike(Product p);
 
 	int deleteLike(Product p);
+
+	Product selectOneProduct(int productNo);
 	
 }

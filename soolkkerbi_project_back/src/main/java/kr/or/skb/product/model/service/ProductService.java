@@ -99,4 +99,8 @@ public class ProductService {
 	public int deleteLike(Product p) {
 		return productDao.deleteLike(p);
 	}
+
+	public Product selectOneProduct(int productNo) {
+		return productDao.selectOneProduct(productNo);
+	}
 }
