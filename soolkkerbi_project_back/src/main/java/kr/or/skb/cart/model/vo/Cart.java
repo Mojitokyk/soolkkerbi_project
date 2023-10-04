@@ -16,4 +16,5 @@ public class Cart {
 	int cartProductNo;
 	int cartStock;
 	int cartPrice;
+	String memberId;
 }

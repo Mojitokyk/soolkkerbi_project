@@ -103,3 +103,6 @@
   font-size: 20px;
   color: black;
 }
+.product-item-cart > .soldout {
+  color: #ccc;
+}
