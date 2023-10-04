@@ -59,6 +59,10 @@ const Join = () => {
       setCheckIdMsg("");
     }
   };
+  // const emailReg = new RegExp('[a-zA-Z0-9.-]\\.[a-zA-Z]{2,6}$');
+  // const passwordReg = new RegExp(
+  //   '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])(?=.*[0-9])[A-Za-z\\d$@$!%*?&]{8,45}'
+  // );
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("비밀번호입력 재확인 해주세욥!");//비번도 정규표현식 완료해얗
