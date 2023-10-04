@@ -37,7 +37,7 @@ const MyQnaView = (props) => {
   //수정 버튼 함수
   const modifyQna = () => {
     console.log("수정 이벤트");
-    navigate("/qna/qnaModify", { state: { qna: qna } });
+    navigate("/mypage/qna/qnaModify", { state: { qna: qna } });
   };
 
   //삭제 버튼 함수
