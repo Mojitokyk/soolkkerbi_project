@@ -7,8 +7,11 @@ import ManageStock from "./ManageStock";
 import CancelPay from "./CancelPay";
 import ProductWrite from "../product/ProductWrite";
 import CancelReservation from "./CancelReservation";
+import ReadIncome from "./ReadIncome";
 
 const AdminMain = () => {
+  const [member, setMember] = useState({});
+
   const [menus, setMenus] = useState([
     { url: "info", text: "회원정보 수정", active: true },
     { url: "readAllMember", text: "전체회원 조회", active: false },
@@ -29,11 +32,15 @@ const AdminMain = () => {
         <div className="admin-menu-content">
           <Routes>
             <Route path="insertProduct" element={<ProductWrite />}></Route>
-            <Route path="info" element={<MyInfo />} />
+            <Route
+              path="info"
+              element={<MyInfo member={member} setMember={setMember} />}
+            />
             <Route path="readAllMember" element={<ReadAllMember />} />
             <Route path="manageStock" element={<ManageStock />} />
             <Route path="cancelPay" element={<CancelPay />} />
             <Route path="cancelReservation" element={<CancelReservation />} />
+            <Route path="readIncome" element={<ReadIncome />} />
           </Routes>
         </div>
       </div>

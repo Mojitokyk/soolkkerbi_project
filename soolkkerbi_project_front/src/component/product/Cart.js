@@ -1,15 +1,33 @@
 import { Link } from "react-router-dom";
 import { Button1 } from "../util/Buttons";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "./cart.css";
 
-const Cart = () => {
+const Cart = (props) => {
+  const isLogin = props.isLogin;
+  const token = window.localStorage.getItem("token");
+  const [cartList, setCartList] = useState([]);
+  const [totalCount, setTotalCount] = useState([]);
+  useEffect(() => {
+    axios
+      .post("/cart/selectCart", null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setCartList(res.data.cartList);
+        setTotalCount(res.data.totalCount);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, []);
   return (
     <div className="cart-all-wrap">
-      <div className="cart-title">
-        장바구니
-        <span className="material-icons">looks_two</span>
-      </div>
+      <div className="cart-title">장바구니</div>
       <div className="cart-tbl">
         <table>
           <thead>
@@ -25,8 +43,9 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
-            <CartProduct />
-            <CartProduct />
+            {cartList.map((cart, index) => {
+              return <CartProduct key={"cart" + index} cart={cart} />;
+            })}
           </tbody>
         </table>
       </div>
@@ -34,12 +53,13 @@ const Cart = () => {
         <Button1 text="전체상품 삭제" />
         <Button1 text="선택상품 삭제" />
       </div>
-      <CartPrice />
+      <CartPrice totalCount={totalCount} />
     </div>
   );
 };
 
-const CartProduct = () => {
+const CartProduct = (props) => {
+  const cart = props.cart;
   return (
     <tr>
       <td>
@@ -47,20 +67,24 @@ const CartProduct = () => {
       </td>
       <td className="info-td">
         <div className="product-img">
-          <img src="/image/product_img/takju1.jpg" />
+          {cart.productFilepath === null ? (
+            <img src="/image/product_img/no_image.png" />
+          ) : (
+            <img src={"/product/" + cart.productFilepath} />
+          )}
         </div>
-        <div className="product-name">양(陽) 막걸리</div>
+        <div className="product-name">{cart.productName}</div>
         <span className="material-icons">close</span>
       </td>
       <td>
         <div className="product-quantity-wrap">
           <span className="material-icons">add</span>
-          <span className="product-quantity">1</span>
+          <span className="product-quantity">{cart.cartStock}</span>
           <span className="material-icons">remove</span>
         </div>
       </td>
       <td>
-        <span className="product-price">33000원</span>
+        <span className="product-price">{cart.cartPrice}원</span>
         <div className="cart-btn">
           <Button1 text="바로 구매" />
         </div>
@@ -71,6 +95,7 @@ const CartProduct = () => {
 
 const CartPrice = (props) => {
   const cart = props.cart;
+  const totalCount = props.totalCount;
   const navigate = useNavigate();
   const allPay = () => {
     navigate("/product/pay");
@@ -81,8 +106,8 @@ const CartPrice = (props) => {
         <thead>
           <tr>
             <td>
-              <span>총 주문 상품 </span>
-              <span>2개</span>
+              <span>총 주문 상품 : </span>
+              <span>{totalCount.productNumber}개</span>
             </td>
           </tr>
         </thead>
@@ -90,7 +115,7 @@ const CartPrice = (props) => {
           <tr>
             <td>
               <p>총 주문금액</p>
-              <p className="cart-price">66000원</p>
+              <p className="cart-price">{totalCount.totalPrice}원</p>
             </td>
           </tr>
         </tbody>

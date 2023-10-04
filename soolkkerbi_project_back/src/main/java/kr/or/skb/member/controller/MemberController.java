@@ -56,4 +56,8 @@ public class MemberController {
 		return memberService.readAllMember(reqPage);
 	}
 	
+//	@PostMapping(value="/selectOneMember")
+//	public Member selectOneMember() {
+//		
+//	}
 }
