@@ -76,7 +76,9 @@ const QnaItem = (props) => {
       <td className="qna-item-no">{qna.qnaNo}</td>
       <td className="qna-item-title">{qna.qnaTitle}</td>
       <td className="qna-item-date">{qna.qnaDate}</td>
-      <td className="qna-item-status">{qna.qnaStatus}</td>
+      <td className="qna-item-status">
+        {qna.qnaStatus === 1 ? "답변 대기" : "답변 완료"}
+      </td>
     </tr>
   );
 };
