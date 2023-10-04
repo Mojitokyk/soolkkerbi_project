@@ -8,5 +8,6 @@
 
 23.09.29  npm install react-awesome-modal => x
           npm i react-modal => x
-          npm install nodemailer
+          npm install nodemailer =>x 
+          아직설치하지마세욥!
 
