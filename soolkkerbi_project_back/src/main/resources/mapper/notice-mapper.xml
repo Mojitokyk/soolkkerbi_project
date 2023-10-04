@@ -22,7 +22,7 @@
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
  	
- 	<!-- 게시글 작성 --> <!-- 임시회원번호1 /#{noticeMemberNo} -->
+ 	<!-- 게시글 작성 --> <!-- 임시회원번호: 1 /#{noticeMemberNo} -->
  	<insert id="insertNotice">
  		insert into notice values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, sysdate)
  

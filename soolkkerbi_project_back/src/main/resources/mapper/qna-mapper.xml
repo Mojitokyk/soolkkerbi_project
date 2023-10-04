@@ -22,6 +22,10 @@
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
  	
+ 	<!-- 게시글 작성 --> <!-- 임시회원번호: 1 /#{noticeMemberNo} -->
+ 	<insert id="insertQna">
+ 		insert into qna values(qna_seq.nextval, 1, #{qnaTitle}, #{qnaContent}, sysdate, 1)
+ 	</insert>
  	
  	<!-- 게시글 상세보기 -->
  	<select id="selectOneQna" resultMap="getQna">
@@ -32,4 +36,9 @@
 		<result column="qna_title" property="qnaTitle"/>
 		<result column="qna_content" property="qnaContent"/>
 	</resultMap>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteQna">
+		delete from qna where qna_no=#{qnaNo}
+	</delete>
 </mapper>

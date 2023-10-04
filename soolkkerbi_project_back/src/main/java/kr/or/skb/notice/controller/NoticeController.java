@@ -127,7 +127,7 @@ public class NoticeController {
 		//해당 게시글의 첨부파일 삭제를 위해 파일 목록 결과물을 받음
 		List<NoticeFile> fileList = noticeService.delete(noticeNo);//첨부파일을 지우기 위해 List<BoardFile>로 받음
 		if(fileList != null) {
-			String savepath = root+"board/";
+			String savepath = root+"notice/";
 			for(NoticeFile noticeFile : fileList) {
 				File file = new File(savepath + noticeFile.getNoticeFilePath());
 				file.delete();
