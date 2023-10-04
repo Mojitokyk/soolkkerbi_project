@@ -5,7 +5,7 @@
 		insert into cart values(cart_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, 1, #{cartPrice})
 	</insert>
 	
-	<select id="selectCart">
+	<select id="cartCheck" resultType="cart">
 		select * from cart where cart_member_no=(select member_no from member where member_id=#{memberId}) and cart_product_no=#{cartProductNo}
 	</select>
 	
@@ -13,4 +13,22 @@
 		update cart set cart_stock = cart_stock + 1, cart_price = cart_price * 2 
 		where cart_member_no=(select member_no from member where member_id=#{memberId}) and cart_product_no=#{cartProductNo}
 	</update>
+	
+	<select id="selectCart" resultType="cart">
+		select 
+			cart_product_no,
+			product_name,
+			product_filepath,
+			cart_stock,
+			cart_price
+		from cart join product on cart_product_no = product_no 
+		where cart_member_no=(select member_no from member where member_id=#{memberId})
+	</select>
+	
+	<select id="totalPrice" resultType="String">
+		select 
+			sum(cart_price) as total_price
+		from cart join product on cart_product_no = product_no 
+		where cart_member_no=(select member_no from member where member_id=#{memberId})
+	</select>
 </mapper>

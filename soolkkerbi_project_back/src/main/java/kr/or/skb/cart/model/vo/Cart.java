@@ -16,6 +16,7 @@ public class Cart {
 	int cartProductNo;
 	int cartStock;
 	int cartPrice;
-	int totalPrice;
 	String memberId;
+	String productName;
+	String productFilepath;
 }
