@@ -84,6 +84,7 @@ public class ProductController {
 	@PostMapping(value="/like")
 	public int insertLike(@RequestBody Product p, @RequestAttribute String memberId) {
 		p.setMemberId(memberId);
+		System.out.println(p);
 		return productService.insertLike(p);
 	}
 	
