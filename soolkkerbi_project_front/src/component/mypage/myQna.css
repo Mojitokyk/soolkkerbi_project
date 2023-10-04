@@ -1,0 +1,79 @@
+/*공지사항 메인(리스트)*/
+
+.qna-list {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.qna-list tr {
+  height: 40px;
+}
+.qna-list > tbody > tr {
+  border-bottom: 1px solid #ccc;
+}
+.qna-list .qna-list > thead > tr > :first-child {
+  width: 10%;
+}
+.qna-list > thead > tr > :nth-child(2) {
+  width: 60%;
+}
+.qna-list > thead > tr > :nth-child(3) {
+  width: 15%;
+}
+.qna-list > thead > tr > :last-child {
+  width: 15%;
+}
+.qna-list > tbody > tr > :first-child,
+.qna-list > tbody > tr > :nth-child(2),
+.qna-list > tbody > tr > :nth-child(3),
+.qna-list > tbody > tr > :last-child {
+  text-align: center;
+}
+
+.qna-list > thead > tr {
+  background-color: #4f4f4f;
+}
+.qna-list > thead > tr th {
+  color: #fff;
+}
+.qna-list > tbody > tr {
+  border-bottom: 1px solid #ccc;
+}
+.qna-list > tbody > tr:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.qna-write-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.qna-write-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}
+
+/* 공지사항 상세 */
+.qna-view-title {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+}
+.qna-view-detail {
+  padding: 20px 10px;
+  min-height: 100px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.qna-view-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.qna-view-btn > :first-child,
+.qna-view-btn > :nth-child(2) {
+  margin-right: 10px;
+}
+.qna-view-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}

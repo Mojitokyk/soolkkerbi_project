@@ -1,4 +1,5 @@
 import FruitList from "./FruitList";
+import ProductDetail from "./ProductDetail";
 import ProductWrite from "./ProductWrite";
 import SpiritsList from "./SpiritsList";
 import TakjuList from "./TakjuList";
@@ -13,6 +14,7 @@ const ProductMain = (props) => {
       <Route path="yakju" element={<YakjuList isLogin={isLogin} />}></Route>
       <Route path="fruit" element={<FruitList isLogin={isLogin} />}></Route>
       <Route path="spirits" element={<SpiritsList isLogin={isLogin} />}></Route>
+      <Route path="view" element={<ProductDetail isLogin={isLogin} />} />
     </Routes>
   );
 };

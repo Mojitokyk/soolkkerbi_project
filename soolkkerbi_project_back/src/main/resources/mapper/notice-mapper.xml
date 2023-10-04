@@ -36,7 +36,7 @@
  		insert into notice_file values(notice_file_seq.nextval, #{noticeNo}, #{noticeFileName}, #{noticeFilePath})
  	</insert>
  	
- 	 	<!-- 게시글 상세보기 -->
+ 	 <!-- 게시글 상세보기 -->
  	<select id="selectOneNotice" resultMap="getNotice">
  		select notice_no, notice_title, member_name, notice_content, to_char(notice_date, 'yyyy-mm-dd') as notice_date from notice JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) where notice_no=#{noticeNo}
  	</select>
@@ -58,4 +58,40 @@
 			ofType="noticeFile"
 		/>
 	</resultMap>
+	
+	<!-- 게시글 파일 다운로드 -->
+	<select id="getNoticeFile" resultType="NoticeFile">
+		select * from notice_file where notice_file_no=#{noticeFileNo}
+	</select>
+	
+	<!-- 게시글 삭제 - 조회 -->
+	<select id="selectNoticeFileList" resultType="noticeFile">
+		select * from notice_file where notice_no=#{noticeNo}
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteNotice">
+		delete from notice where notice_no=#{noticeNo}
+	</delete>
+	
+	<!-- 게시물 수정 - 조회 -->
+	<select id="selectNoticeFile" resultType="NoticeFile">
+		select * from notice_file where notice_file_no in 
+		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
+			#{fileNo}
+		</foreach>
+	</select>
+	
+	<!-- 게시물 수정 - 파일 삭제 -->
+	<delete id="deleteNoticeFile">
+		delete from notice_file where notice_file_no in
+		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
+			#{fileNo}
+		</foreach>
+	</delete>
+	
+	<!-- 게시물 수정 - board테이블 변경 -->
+	<update id="updateNotice">
+		update notice set notice_title=#{noticeTitle}, notice_content=#{noticeContent} where notice_no=#{noticeNo}
+	</update>
 </mapper>

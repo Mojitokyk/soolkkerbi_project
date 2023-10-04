@@ -20,5 +20,6 @@ public class Pay {
 	private String payPickup;
 	private String payMemberId;
 	private String payProductName;
-	private int payProductPrice;
+	private int payStock;
+	private int payPrice;
 }
