@@ -11,7 +11,7 @@ const NoticeModify = () => {
   //변수명과 안 맞춘 것 - 첨부파일(배열, 객체로 받음)
   const [noticeTitle, setNoticeTitle] = useState(notice.noticeTitle);
   const [thumbnail, setThumbnail] = useState({});
-  const [noticeContent, setNoticeContent] = useState(notice.noticeDetail);
+  const [noticeContent, setNoticeContent] = useState(notice.noticeContent);
   const [noticeFile, setNoticeFile] = useState([]);
 
   const [fileList, setFileList] = useState(notice.fileList);
