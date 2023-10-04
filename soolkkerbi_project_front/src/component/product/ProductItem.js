@@ -65,7 +65,46 @@ const ProductItem = (props) => {
       navigate("/login");
     }
   };
-
+  const addCart = () => {
+    if (isLogin) {
+      axios
+        .post(
+          "/cart/addCart",
+          { cartProductNo: product.productNo, cartPrice: product.productPrice },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          if (res.data === 1) {
+            Swal.fire({
+              icon: "success",
+              title: "담기 완료",
+              text: "술주머니로 이동하시겠습니까?",
+              showCancelButton: true,
+              confirmButtonText: "술주머니",
+              cancelButtonText: "계속 쇼핑",
+            }).then((res) => {
+              if (res.isConfirmed) {
+                navigate("/cart");
+              }
+            });
+          }
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요한 서비스입니다.",
+      });
+      navigate("/login");
+    }
+  };
   return (
     <div className="product-item">
       <div className="product-item-img" onClick={productView}>
@@ -89,8 +128,15 @@ const ProductItem = (props) => {
             <span className="material-icons">star</span>
             <span className="star-rate">{product.starRate}</span>
           </div>
+
           <div className="product-item-cart">
-            <span className="material-icons">shopping_cart</span>
+            {product.productStock === 0 ? (
+              <span className="material-icons soldout">shopping_cart</span>
+            ) : (
+              <span className="material-icons" onClick={addCart}>
+                shopping_cart
+              </span>
+            )}
           </div>
         </div>
       </div>
