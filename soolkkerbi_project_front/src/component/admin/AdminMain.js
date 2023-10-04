@@ -7,6 +7,7 @@ import ManageStock from "./ManageStock";
 import CancelPay from "./CancelPay";
 import ProductWrite from "../product/ProductWrite";
 import CancelReservation from "./CancelReservation";
+import ReadIncome from "./ReadIncome";
 
 const AdminMain = () => {
   const [member, setMember] = useState({});
@@ -39,6 +40,7 @@ const AdminMain = () => {
             <Route path="manageStock" element={<ManageStock />} />
             <Route path="cancelPay" element={<CancelPay />} />
             <Route path="cancelReservation" element={<CancelReservation />} />
+            <Route path="readIncome" element={<ReadIncome />} />
           </Routes>
         </div>
       </div>

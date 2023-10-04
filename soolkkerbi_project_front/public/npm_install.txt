@@ -6,10 +6,11 @@
           npm install @mui/material @emotion/react @emotion/styled
           npm install swiper@6.8.4
 
-23.09.29  npm install react-awesome-modal => x
+23.09.29:  npm install react-awesome-modal => x
           npm i react-modal => x
           npm install nodemailer =>x 
           아직설치하지마세욥!
 
-23.10.04  npm install recharts
+          
+23.10.04: npm install recharts
 
