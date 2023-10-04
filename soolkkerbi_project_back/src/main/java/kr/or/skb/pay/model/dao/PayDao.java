@@ -14,6 +14,6 @@ public interface PayDao {
 
 	List selectAllPay(PageInfo pi);
 
-	int updatePayStatus(Pay p);
+	int updatePayStatus(Pay pay);
 
 }
