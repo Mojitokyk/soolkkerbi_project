@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes ,Switch} from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "./component/common/Header";
 import MypageMain from "./component/mypage/MypageMain";
@@ -13,6 +13,7 @@ import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
+
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);

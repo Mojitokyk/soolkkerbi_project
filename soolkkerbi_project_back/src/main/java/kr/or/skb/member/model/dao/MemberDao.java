@@ -19,5 +19,7 @@ public interface MemberDao {
 
 	List selectAllMember(PageInfo pi);
 
+	Member selectMemberId(Member member);
+
 
 }

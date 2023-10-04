@@ -69,4 +69,9 @@ public class MemberService {
 		return map;
 	}
 
+	public Member selectMemberId(Member member) {
+		
+		return memberDao.selectMemberId(member);
+	}
+
 }

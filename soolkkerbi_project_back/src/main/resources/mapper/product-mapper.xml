@@ -107,7 +107,7 @@
 	</select>
 	
 	<insert id="insertLike">
-	insert into favorite values(favorite_seq.nextval, select member_no from member where member_id=#{memberId}, #{productNo})
+	insert into favorite values(favorite_seq.nextval, (select member_no from member where member_id=#{memberId}), #{productNo})
 	</insert>
 	
 	<delete id="deleteLike">

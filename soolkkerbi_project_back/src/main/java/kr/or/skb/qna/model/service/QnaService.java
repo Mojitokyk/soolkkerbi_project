@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
+import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.qna.model.dao.QnaDao;
+import kr.or.skb.qna.model.vo.Qna;
 
 @Service
 public class QnaService {
@@ -38,5 +40,12 @@ public class QnaService {
 		map.put("pi", pi);
 		
 		return map;
+	}
+	
+	
+	//게시글 상세보기
+	public Qna selectOneQna(int qnaNo) {
+		Qna q = qnaDao.selectOneQna(qnaNo);
+		return q;
 	}
 }

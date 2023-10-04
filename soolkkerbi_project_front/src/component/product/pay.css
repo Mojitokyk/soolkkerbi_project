@@ -1,0 +1,21 @@
+.pay-all-wrap {
+  background-color: #f0f0f0;
+}
+.pay-wrap {
+  width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.pay-title {
+  font-size: 22px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  color: black;
+}
+.pay-product-info {
+  background-color: #fff;
+}
+.pay-product-img > img {
+  width: 80px;
+  height: 80px;
+}

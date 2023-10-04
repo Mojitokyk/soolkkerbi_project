@@ -22,4 +22,14 @@
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
  	
+ 	
+ 	<!-- 게시글 상세보기 -->
+ 	<select id="selectOneQna" resultMap="getQna">
+ 		select qna_no, qna_title, qna_content from qna where qna_no=#{qnaNo}
+ 	</select>
+ 	<resultMap type="qna" id="getQna">
+		<result column="qna_no" property="qnaNo"/>
+		<result column="qna_title" property="qnaTitle"/>
+		<result column="qna_content" property="qnaContent"/>
+	</resultMap>
 </mapper>

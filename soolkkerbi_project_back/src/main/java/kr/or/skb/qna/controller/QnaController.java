@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.skb.qna.model.service.QnaService;
+import kr.or.skb.qna.model.vo.Qna;
 
 @RestController
 @RequestMapping(value="/qna")
@@ -21,5 +22,13 @@ public class QnaController {
 	public Map list(@PathVariable int reqPage) {
 		Map map = qnaService.qnaList(reqPage);
 		return map;
+	}
+	
+	
+	//게시글 상세
+	@GetMapping(value="/view/{qnaNo}")
+	public Qna view(@PathVariable int qnaNo) {
+		System.out.println(qnaNo);
+		return qnaService.selectOneQna(qnaNo);
 	}
 }

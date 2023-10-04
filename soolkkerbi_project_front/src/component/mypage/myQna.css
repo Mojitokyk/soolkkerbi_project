@@ -1,14 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 /*공지사항 메인(리스트)*/
-.qna-all-wrap {
-  width: 800px;
-  margin: 0 auto;
-  margin-bottom: 50px;
-}
 
 .qna-list {
   border-collapse: collapse;
@@ -59,6 +49,31 @@
   margin-bottom: 5px;
 }
 .qna-write-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}
+
+/* 공지사항 상세 */
+.qna-view-title {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+}
+.qna-view-detail {
+  padding: 20px 10px;
+  min-height: 100px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.qna-view-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.qna-view-btn > :first-child,
+.qna-view-btn > :nth-child(2) {
+  margin-right: 10px;
+}
+.qna-view-btn > button {
   width: 100px;
   font-family: ns-b;
 }

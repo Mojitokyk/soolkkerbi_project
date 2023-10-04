@@ -38,7 +38,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	@Autowired
-	private FileUtil fileUtil;
+	private FileUtil  fileUtil;
 	@Value("${file.root}")
 	private String root;
 	
