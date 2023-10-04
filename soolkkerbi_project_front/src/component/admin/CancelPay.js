@@ -32,7 +32,7 @@ const CancelPay = () => {
               <td width={"20%"}>주문번호</td>
               <td width={"15%"}>구매자</td>
               <td width={"20%"}>상품명</td>
-              <td width={"15%"}>상품가격</td>
+              <td width={"15%"}>결제금액</td>
               <td width={"10%"}>취소확정</td>
             </tr>
           </thead>
@@ -56,8 +56,10 @@ const CancelPay = () => {
 
 const PayItem = (props) => {
   const pay = props.pay;
+  const payStock = pay.payStock;
+  const payPrice = pay.payPrice;
 
-  const payPrice = pay.payPrice
+  const totalPrice = (payStock * payPrice)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -65,7 +67,7 @@ const PayItem = (props) => {
     axios
       .post("/pay/updatePayStatus", pay)
       .then((res) => {
-        if (res.data === 1) {
+        if (res.data === 2) {
           Swal.fire("결제취소가 완료되었습니다.");
         }
       })
@@ -81,7 +83,7 @@ const PayItem = (props) => {
       <td>{pay.payMemberId}</td>
       <td>{pay.payProductName}</td>
       <td>
-        {payPrice}
+        {totalPrice}
         <span> 원</span>
       </td>
       <td>

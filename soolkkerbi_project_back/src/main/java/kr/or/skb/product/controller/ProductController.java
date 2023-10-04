@@ -1,6 +1,7 @@
 package kr.or.skb.product.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,5 +103,11 @@ public class ProductController {
 	@PostMapping(value = "/updateStock")
 	public int updateStock(@RequestBody Product p) {
 		return productService.updateStock(p);
+	}
+	
+	//상품 상세보기
+	@GetMapping(value="/view/{productNo}")
+	public Product selectOneProduct(@PathVariable int productNo) {
+		return productService.selectOneProduct(productNo);
 	}
 }
