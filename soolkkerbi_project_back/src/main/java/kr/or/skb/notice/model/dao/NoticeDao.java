@@ -37,4 +37,13 @@ public interface NoticeDao {
 	
 	//게시글 삭제
 	int deleteNotice(int noticeNo);
+	
+	//게시물 수정 - 조회
+	List<NoticeFile> selectNoticeFile(String[] delFileNo);
+
+	//게시물 수정 - 파일 삭제
+	int deleteNoticeFile(String[] delFileNo);
+
+	//게시물 수정 - board테이블 변경
+	int updateNotice(Notice n);
 }

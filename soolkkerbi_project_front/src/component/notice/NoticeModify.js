@@ -62,7 +62,6 @@ const NoticeModify = () => {
 
   return (
     <div>
-      <div className="notice-frm-title">공지사항 수정</div>
       <NoticeFrm
         noticeTitle={noticeTitle}
         setNoticeTitle={setNoticeTitle}

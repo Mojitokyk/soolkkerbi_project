@@ -137,4 +137,50 @@ public class NoticeController {
 			return 0;
 		}
 	}
+	
+	//게시글 수정
+	@PostMapping(value="/modify")
+	public int modify(@ModelAttribute Notice n, @ModelAttribute MultipartFile thumbnail, @ModelAttribute MultipartFile[] noticeFile) {
+		System.out.println(n.getNoticeTitle());
+		System.out.println(n.getNoticeContent());
+		System.out.println(n.getDelFileNo());
+		System.out.println(thumbnail);
+		
+		//Board table 업데이트
+		//썸네일이 들어오면 -> 썸네일 교체, 섬네일이 없으면 기존 썸네일로 덮어쓰기
+		//Board_file 테이블 업데이트 -> 삭제한 것이 있으면 삭제, 추가한 것이 있으면 insert
+		//삭제한 파일 있으며 파일 물리적 삭제
+		String savepath = root + "notice/"; //새로운 썸네일 저장 경로
+		if(thumbnail != null) {
+			System.out.println(thumbnail.getOriginalFilename());
+			
+			String filepath = fileUtil.getFilepath(savepath, thumbnail.getOriginalFilename(), thumbnail);
+		}
+		System.out.println(noticeFile);
+		ArrayList<NoticeFile> fileList = new ArrayList<NoticeFile>();
+		if(noticeFile != null) {
+			for(MultipartFile file : noticeFile) {
+				System.out.println(file.getOriginalFilename());
+				
+				String filename = file.getOriginalFilename();
+				String filepath = fileUtil.getFilepath(savepath, filename, file);
+				NoticeFile nf = new NoticeFile();
+				nf.setNoticeNo(n.getNoticeNo());
+				nf.setNoticeFileName(filename);
+				nf.setNoticeFilePath(filepath);
+				fileList.add(nf);
+			}
+		}
+		//DB에서 삭제한 파일이 있으면, 실재 파일도 삭제하기 위해서 
+		List<NoticeFile> delFileList = noticeService.modify(n, fileList);
+		if(delFileList != null) {
+			for(NoticeFile nf : delFileList) {
+				File delFile = new File(savepath+nf.getNoticeFilePath());
+				delFile.delete();
+			}
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 }

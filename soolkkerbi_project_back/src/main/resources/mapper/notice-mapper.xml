@@ -73,4 +73,25 @@
 	<delete id="deleteNotice">
 		delete from notice where notice_no=#{noticeNo}
 	</delete>
+	
+	<!-- 게시물 수정 - 조회 -->
+	<select id="selectNoticeFile" resultType="NoticeFile">
+		select * from notice_file where notice_file_no in 
+		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
+			#{fileNo}
+		</foreach>
+	</select>
+	
+	<!-- 게시물 수정 - 파일 삭제 -->
+	<delete id="deleteNoticeFile">
+		delete from notice_file where notice_file_no in
+		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
+			#{fileNo}
+		</foreach>
+	</delete>
+	
+	<!-- 게시물 수정 - board테이블 변경 -->
+	<update id="updateNotice">
+		update notice set notice_title=#{noticeTitle}, notice_content=#{noticeContent} where notice_no=#{noticeNo}
+	</update>
 </mapper>
