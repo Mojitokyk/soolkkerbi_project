@@ -90,5 +90,46 @@ public class NoticeService {
 		// TODO Auto-generated method stub
 		return noticeDao.getNoticeFile(noticeFileNo);
 	}
+	
+	//게시글 삭제
+	@Transactional
+	public List<NoticeFile> delete(int noticeNo) {
+		//1. 게시글 조회
+		List<NoticeFile> list = noticeDao.selectNoticeFileList(noticeNo);
+		//2. 게시글 삭제
+		int result = noticeDao.deleteNotice(noticeNo);
+		if(result > 0) {
+			return list;
+		}
+		return null;
+	}
+	
+	//게시물 수정
+	@Transactional
+	public List<NoticeFile> modify(Notice n, ArrayList<NoticeFile> fileList) {
+		List<NoticeFile> delFileList = new ArrayList<NoticeFile>();
+		String [] delFileNo = {};
+		int result = 0;
+		if(!n.getDelFileNo().equals("")) {
+			delFileNo = n.getDelFileNo().split("/");
+			//1. 삭제한 파일이 있으면 조회
+			delFileList = noticeDao.selectNoticeFile(delFileNo);			
+			//2. 삭제할 파일 삭제
+			result += noticeDao.deleteNoticeFile(delFileNo);
+		}
+		//3. 추가할 파일 있으면 추가
+		for(NoticeFile nf : fileList) {
+			result += noticeDao.insertNoticeFile(nf);
+		}
+		//4. board테이블 변경
+		result += noticeDao.updateNotice(n);
+		
+		//board테이블 update + 새로추가한 파일개수 +  파일 삭제한 것
+		if(result == 1+fileList.size()+delFileNo.length) {
+			return delFileList;
+		}else {			
+			return null;
+		}
+	}
 
 }
