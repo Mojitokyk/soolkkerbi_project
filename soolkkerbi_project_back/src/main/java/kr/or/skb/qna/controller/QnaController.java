@@ -76,4 +76,20 @@ public class QnaController {
 			return 0;
 		}
 	}
+	
+	//게시글 수정
+	@PostMapping(value="/modify")
+	public int modify(@ModelAttribute Qna q) {
+		System.out.println(q.getQnaNo());
+		System.out.println(q.getQnaTitle());
+		System.out.println(q.getQnaContent());
+		
+		//Board table 업데이트
+		int result = qnaService.modify(q);
+		if(result > 0) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
 }
