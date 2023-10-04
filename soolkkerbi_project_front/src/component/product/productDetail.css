@@ -35,7 +35,65 @@
   font-family: ns-b;
   padding: 10px 0;
 }
-
+.product-price-box {
+  padding: 0 30px;
+  background-color: rgba(42, 42, 42, 0.03);
+}
+.product-price-box > div {
+  padding: 20px 0;
+}
+.product-price-box > div:first-child {
+  border-bottom: 1px dashed #ccc;
+}
+.option-btn-tool {
+  display: flex;
+  justify-content: space-between;
+}
+.option-btn-tool > div {
+  font-size: 19px;
+}
+.option-input-tool {
+  display: flex;
+}
+.amount-btn {
+  background-color: #fff;
+  width: 30px;
+  font-size: 20px;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+.amount-input {
+  width: 60px;
+  font-size: 18px;
+  border: 1px solid #eee;
+  text-align: center;
+  padding-left: 10px;
+  outline: none;
+}
+.amount-btn:disabled {
+  background-color: #eee;
+}
+.product-total-price {
+  display: flex;
+  justify-content: space-between;
+}
+.product-total-price > span:first-child {
+  font-size: 20px;
+  font-weight: bold;
+}
+.product-total-price > span:last-child {
+  font-size: 26px;
+  font-family: ns-b;
+}
 .product-order-box {
   display: flex;
+  padding-top: 50px;
+}
+.product-order-box > button {
+  margin: 0 5px;
+}
+.productDetail-like-btn {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #eee;
 }
