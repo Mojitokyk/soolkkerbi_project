@@ -31,6 +31,9 @@ public interface ProductDao {
 
 	int deleteLike(Product p);
 
+
 	int updatePayStock(Pay pay);
+
+	Product selectOneProduct(int productNo);
 	
 }
