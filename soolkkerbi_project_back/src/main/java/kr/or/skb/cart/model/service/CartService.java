@@ -33,10 +33,10 @@ public class CartService {
 
 	public Map selectCart(Cart cart) {
 		List cartList = cartDao.selectCart(cart);
-		String totalPrice = cartDao.totalPrice(cart);
+		Cart totalCount = cartDao.totalCount(cart);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("cartList", cartList);
-		map.put("totalPrice", totalPrice);
+		map.put("totalCount", totalCount);
 		return map;
 	}
 

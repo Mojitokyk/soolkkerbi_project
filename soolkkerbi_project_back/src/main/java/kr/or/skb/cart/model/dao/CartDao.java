@@ -17,6 +17,6 @@ public interface CartDao {
 
 	List selectCart(Cart cart);
 
-	String totalPrice(Cart cart);
+	Cart totalCount(Cart cart);
 
 }

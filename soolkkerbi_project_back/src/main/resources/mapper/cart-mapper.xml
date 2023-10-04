@@ -25,9 +25,9 @@
 		where cart_member_no=(select member_no from member where member_id=#{memberId})
 	</select>
 	
-	<select id="totalPrice" resultType="String">
+	<select id="totalCount" resultType="cart">
 		select 
-			sum(cart_price) as total_price
+			sum(cart_price) as total_price, count(*) as product_number
 		from cart join product on cart_product_no = product_no 
 		where cart_member_no=(select member_no from member where member_id=#{memberId})
 	</select>

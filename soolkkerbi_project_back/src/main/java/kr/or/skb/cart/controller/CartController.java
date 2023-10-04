@@ -32,7 +32,7 @@ public class CartController {
 		}
 	}
 	
-	//장바구니 조회
+	//장바구니 리스트 조회 및 장바구니 내 합계 금액, 상품 건수 조회
 	@PostMapping(value="/selectCart")
 	public Map selectCart(@RequestAttribute String memberId) {
 		Cart cart = new Cart();

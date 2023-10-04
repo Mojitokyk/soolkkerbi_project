@@ -9,7 +9,7 @@ const Cart = (props) => {
   const isLogin = props.isLogin;
   const token = window.localStorage.getItem("token");
   const [cartList, setCartList] = useState([]);
-  const [totalPrice, setTotalPrice] = useState("");
+  const [totalCount, setTotalCount] = useState([]);
   useEffect(() => {
     axios
       .post("/cart/selectCart", null, {
@@ -19,7 +19,7 @@ const Cart = (props) => {
       })
       .then((res) => {
         setCartList(res.data.cartList);
-        setTotalPrice(res.data.totalPrice);
+        setTotalCount(res.data.totalCount);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -27,10 +27,7 @@ const Cart = (props) => {
   }, []);
   return (
     <div className="cart-all-wrap">
-      <div className="cart-title">
-        장바구니
-        <span className="material-icons">looks_two</span>
-      </div>
+      <div className="cart-title">장바구니</div>
       <div className="cart-tbl">
         <table>
           <thead>
@@ -56,7 +53,7 @@ const Cart = (props) => {
         <Button1 text="전체상품 삭제" />
         <Button1 text="선택상품 삭제" />
       </div>
-      <CartPrice totalPrice={totalPrice} />
+      <CartPrice totalCount={totalCount} />
     </div>
   );
 };
@@ -98,7 +95,7 @@ const CartProduct = (props) => {
 
 const CartPrice = (props) => {
   const cart = props.cart;
-  const totalPrice = props.totalPrice;
+  const totalCount = props.totalCount;
   const navigate = useNavigate();
   const allPay = () => {
     navigate("/product/pay");
@@ -109,8 +106,8 @@ const CartPrice = (props) => {
         <thead>
           <tr>
             <td>
-              <span>총 주문 상품 </span>
-              <span>2개</span>
+              <span>총 주문 상품 : </span>
+              <span>{totalCount.productNumber}개</span>
             </td>
           </tr>
         </thead>
@@ -118,7 +115,7 @@ const CartPrice = (props) => {
           <tr>
             <td>
               <p>총 주문금액</p>
-              <p className="cart-price">{totalPrice}원</p>
+              <p className="cart-price">{totalCount.totalPrice}원</p>
             </td>
           </tr>
         </tbody>
