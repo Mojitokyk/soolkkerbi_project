@@ -98,7 +98,7 @@
 .quill > .ql-container {
   border: none;
   border-bottom: 1px solid #ccc;
-  /* height: 300px; */
+  min-height: 300px;
   font-size: 1em;
 }
 
