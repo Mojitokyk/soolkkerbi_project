@@ -16,44 +16,53 @@ const ProductItem = (props) => {
   const [like, setLike] = useState(false);
   const token = window.localStorage.getItem("token");
   const changeLike = () => {
-    if (!like) {
-      axios
-        .post(
-          "/product/like",
-          { productNo: product.productNo },
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        )
-        .then((res) => {
-          if (res.data === 1) {
-            setLike(true);
-          }
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
+    if (isLogin) {
+      if (!like) {
+        axios
+          .post(
+            "/product/like",
+            { productNo: product.productNo },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              setLike(true);
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      } else {
+        axios
+          .post(
+            "/product/dislike",
+            { productNo: product.productNo },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              setLike(false);
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
     } else {
-      axios
-        .post(
-          "/product/dislike",
-          { productNo: product.productNo },
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        )
-        .then((res) => {
-          if (res.data === 1) {
-            setLike(false);
-          }
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요한 서비스입니다.",
+      });
+      navigate("/login");
     }
   };
 

@@ -40,7 +40,6 @@ public class PayService {
 		int result1 = payDao.updatePayStatus(pay);
 		int result2 = productDao.updatePayStock(pay);
 		int result = result1 + result2;
-		System.out.println(result);
 		return result;
 	}
 	

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button1 } from "../util/Buttons";
+import { useNavigate } from "react-router-dom";
 import "./cart.css";
 
 const Cart = () => {
@@ -33,32 +34,7 @@ const Cart = () => {
         <Button1 text="전체상품 삭제" />
         <Button1 text="선택상품 삭제" />
       </div>
-      <div className="cart-price-tbl">
-        <table>
-          <thead>
-            <tr>
-              <td>
-                <span>총 주문 상품 </span>
-                <span>1개</span>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <p>총 주문금액</p>
-                <p className="cart-price">66000원</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="pay-btn">
-          <Button1 text="주문하기" />
-        </div>
-        <div className="more-shopping">
-          <Link to="/">계속 쇼핑하기</Link>
-        </div>
-      </div>
+      <CartPrice />
     </div>
   );
 };
@@ -90,6 +66,42 @@ const CartProduct = () => {
         </div>
       </td>
     </tr>
+  );
+};
+
+const CartPrice = (props) => {
+  const cart = props.cart;
+  const navigate = useNavigate();
+  const allPay = () => {
+    navigate("/product/pay");
+  };
+  return (
+    <div className="cart-price-tbl">
+      <table>
+        <thead>
+          <tr>
+            <td>
+              <span>총 주문 상품 </span>
+              <span>2개</span>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p>총 주문금액</p>
+              <p className="cart-price">66000원</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div className="pay-btn">
+        <Button1 text="주문하기" clickEvent={allPay} />
+      </div>
+      <div className="more-shopping">
+        <Link to="/">계속 쇼핑하기</Link>
+      </div>
+    </div>
   );
 };
 
