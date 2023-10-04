@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import "./productDetail.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button1, Button2, Button3, Button4, Button5 } from "../util/Buttons";
+import { Button2, Button3 } from "../util/Buttons";
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
@@ -39,66 +39,80 @@ const ProductDetail = (props) => {
     setTotal((prev) => prev + price * num);
     //console.log(quantity, total);
   };
+  //결제창로 이동
+  const order = () => {};
+  //장바구니로 이동
+  const cart = () => {};
   return (
-    <div className="product-view-wrap">
-      <div className="product-return-page"></div>
-      <div className="product-view-thumbnail">
-        {product.productFilepath === null ? (
-          <img src="/image/product_img/no_image.png" />
-        ) : product.productStock === 0 ? (
-          <img src="/image/product_img/sold_out.png" />
-        ) : (
-          <img src={"/product/" + product.productFilepath} />
-        )}
+    <div className="product-view-all-wrap">
+      <div className="product-view-wrap">
+        <div className="product-return-page"></div>
+        <div className="product-view-thumbnail">
+          {product.productFilepath === null ? (
+            <img src="/image/product_img/no_image.png" />
+          ) : product.productStock === 0 ? (
+            <img src="/image/product_img/sold_out.png" />
+          ) : (
+            <img src={"/product/" + product.productFilepath} />
+          )}
+        </div>
+        <div className="product-view-info">
+          <div className="info-title">
+            <div>{product.productName}</div>
+            <div>{product.productPrice}원</div>
+          </div>
+          <div className="info-content">
+            <ul>
+              <li>
+                용량 : <span>{product.productLiter}ml</span>
+              </li>
+              <li>
+                도수 : <span>{product.productAlc}%</span>
+              </li>
+              <li>
+                배송 방법 : <span>방문수령 위치확인</span>
+              </li>
+              <li>
+                배송 안내 :{" "}
+                <span>방문수령만 가능한 상품입니다. (택배 불가 상품) </span>
+              </li>
+            </ul>
+          </div>
+          <div className="product-price-box">
+            <div>수량</div>
+            <div className="option-btn-tool">
+              <QuantityInput
+                quantity={quantity}
+                stock={product.productStock}
+                onClick={ClickCount}
+              />
+              <div>{total}원</div>
+            </div>
+            <div className="product-total-price">
+              <span>총 상품 금액({quantity}개)</span>
+              <span>{total}원</span>
+            </div>
+          </div>
+          <div className="product-order-box">
+            <Button2 text="구매하기" clickEvent={order} />
+            <Button3 text="장바구니" clickEvent={cart} />
+            <button className="productDetail-like-btn">
+              <span className="material-icons">favorite_border</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="product-view-info">
-        <div className="info-title">
-          <div>{product.productName}</div>
-          <div>{product.productPrice}원</div>
-        </div>
-        <div className="info-content">
-          <ul>
-            <li>
-              용량 : <span>{product.productLiter}ml</span>
-            </li>
-            <li>
-              도수 : <span>{product.productAlc}%</span>
-            </li>
-            <li>
-              배송 방법 : <span>방문수령 위치확인</span>
-            </li>
-            <li>
-              배송 안내 :{" "}
-              <span>방문수령만 가능한 상품입니다. (택배 불가 상품) </span>
-            </li>
-          </ul>
-        </div>
-        <div className="product-price-box">
-          <div>수량</div>
-          <div className="option-btn-tool">
-            <QuantityInput
-              quantity={quantity}
-              stock={product.productStock}
-              onClick={ClickCount}
-            />
-            <div>{total}원</div>
-          </div>
-          <div className="product-total-price">
-            <span>총 상품 금액({quantity}개)</span>
-            <span>{total}원</span>
-          </div>
-        </div>
-        <div className="product-order-box">
-          <Button2 text="구매하기" />
-          <Button3 text="장바구니" />
-          <button className="productDetail-like-btn">
-            <span className="material-icons">favorite</span>
-          </button>
-        </div>
+      <div className="product-detail-tab">
+        <ul>
+          <li>상품 설명</li>
+          <li>수령 안내</li>
+          <li>상품 후기</li>
+        </ul>
       </div>
     </div>
   );
 };
+
 //수량 버튼 컴포넌트
 const QuantityInput = (props) => {
   const onClick = props.onClick;

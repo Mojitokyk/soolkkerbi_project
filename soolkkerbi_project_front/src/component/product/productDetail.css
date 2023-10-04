@@ -97,3 +97,6 @@
   background-color: #fff;
   border: 1px solid #eee;
 }
+.productDetail-like-btn > span {
+  font-size: 22px;
+}
