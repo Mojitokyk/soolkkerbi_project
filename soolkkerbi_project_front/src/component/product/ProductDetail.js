@@ -1,8 +1,9 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./productDetail.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Button2, Button3 } from "../util/Buttons";
+import Tab1 from "./Tab1";
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
@@ -41,12 +42,37 @@ const ProductDetail = (props) => {
   };
   //결제창로 이동
   const order = () => {};
-  //장바구니로 이동
+  //장바구니에 인서트
   const cart = () => {};
+
+  const navigate = useNavigate();
+  //메인으로 이동
+  const backHome = () => {
+    navigate("/");
+  };
+  //이전페이지로 이동
+  const backPage = () => {
+    navigate(-1);
+  };
   return (
     <div className="product-view-all-wrap">
       <div className="product-view-wrap">
-        <div className="product-return-page"></div>
+        <div className="product-return-page">
+          <ul>
+            <li onClick={backHome}>
+              술꺼비<span className="material-icons">navigate_next</span>
+            </li>
+            <li onClick={backPage} className="active-backPage">
+              {product.productCase === 1
+                ? "탁주"
+                : product.productCase === 2
+                ? "약주/청주"
+                : product.productCase === 3
+                ? "과실주"
+                : "증류수"}
+            </li>
+          </ul>
+        </div>
         <div className="product-view-thumbnail">
           {product.productFilepath === null ? (
             <img src="/image/product_img/no_image.png" />
@@ -103,11 +129,7 @@ const ProductDetail = (props) => {
         </div>
       </div>
       <div className="product-detail-tab">
-        <ul>
-          <li>상품 설명</li>
-          <li>수령 안내</li>
-          <li>상품 후기</li>
-        </ul>
+        <Tab1 product={product} />
       </div>
     </div>
   );
