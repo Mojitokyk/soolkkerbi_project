@@ -10,6 +10,9 @@ const Cart = (props) => {
   const token = window.localStorage.getItem("token");
   const [cartList, setCartList] = useState([]);
   const [totalCount, setTotalCount] = useState([]);
+  const [checkList, setCheckList] = useState([]);
+  //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
+  console.log(checkList);
   useEffect(() => {
     axios
       .post("/cart/selectCart", null, {
@@ -25,6 +28,23 @@ const Cart = (props) => {
         console.log(res.response.status);
       });
   }, []);
+  const changeSingleBox = (checked, id) => {
+    if (checked) {
+      setCheckList([...checkList, id]);
+    } else {
+      setCheckList(checkList.filter((el) => el !== id));
+    }
+  };
+  const changeAllBox = (checked) => {
+    if (checked) {
+      const allCheckBox = [];
+      cartList.forEach((el, index) => allCheckBox.push(cartList[index].cartNo));
+      setCheckList(allCheckBox);
+    } else {
+      setCheckList([]);
+    }
+  };
+
   return (
     <div className="cart-all-wrap">
       <div className="cart-title">장바구니</div>
@@ -33,7 +53,13 @@ const Cart = (props) => {
           <thead>
             <tr>
               <td width={"10%"}>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onChange={(event) => changeAllBox(event.target.checked)}
+                  checked={
+                    checkList.length === totalCount.productNumber ? true : false
+                  }
+                />
               </td>
               <td width={"50%"} className="info-td">
                 상품 정보
@@ -44,7 +70,15 @@ const Cart = (props) => {
           </thead>
           <tbody>
             {cartList.map((cart, index) => {
-              return <CartProduct key={"cart" + index} cart={cart} />;
+              return (
+                <CartProduct
+                  key={"cart" + index}
+                  cart={cart}
+                  checkList={checkList}
+                  index={index}
+                  changeSingleBox={changeSingleBox}
+                />
+              );
             })}
           </tbody>
         </table>
@@ -60,10 +94,19 @@ const Cart = (props) => {
 
 const CartProduct = (props) => {
   const cart = props.cart;
+  const checkList = props.checkList;
+  const index = props.index;
+  const changeSingleBox = props.changeSingleBox;
   return (
     <tr>
       <td>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          onChange={(event) =>
+            changeSingleBox(event.target.checked, cart.cartNo)
+          }
+          checked={checkList.includes(cart.cartNo) ? true : false}
+        />
       </td>
       <td className="info-td">
         <div className="product-img">
@@ -94,7 +137,6 @@ const CartProduct = (props) => {
 };
 
 const CartPrice = (props) => {
-  const cart = props.cart;
   const totalCount = props.totalCount;
   const navigate = useNavigate();
   const allPay = () => {

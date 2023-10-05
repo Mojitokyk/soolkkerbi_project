@@ -24,15 +24,18 @@ public class CartController {
 	@PostMapping(value="/addCart")
 	public int addCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
 		cart.setMemberId(memberId);
+		//장바구니 중복 품목 조회
 		Cart c = cartService.cartCheck(cart);
+		//장바구니 중복 없는 경우 -> insert
 		if(c == null) {
 			return cartService.addCart(cart);
+		//장바구니 중복 있는 경우 -> update
 		}else {
 			return cartService.updateCart(cart);
 		}
 	}
 	
-	//장바구니 리스트 조회 및 장바구니 내 합계 금액, 상품 건수 조회
+	//1.장바구니 리스트 조회 2.장바구니 내 합계 금액, 품목 개수 조회
 	@PostMapping(value="/selectCart")
 	public Map selectCart(@RequestAttribute String memberId) {
 		Cart cart = new Cart();
