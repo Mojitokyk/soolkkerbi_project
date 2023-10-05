@@ -43,4 +43,23 @@ public class CartController {
 		Map map = cartService.selectCart(cart);
 		return map;
 	}
+	
+	//선택한 상품 장바구니 삭제
+	@PostMapping(value="/deleteCart")
+	public Map deleteCart(@RequestBody List<Integer> checkList, @RequestAttribute String memberId) {
+		Cart cart = new Cart();
+		cart.setMemberId(memberId);
+		int result = cartService.deleteCart(checkList);
+		Map map = cartService.selectCart(cart);
+		return map;
+	}
+	
+	//개별 상품 장바구니 삭제
+	@PostMapping(value="/deleteOneCart")
+	public Map deleteOneCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+		cart.setMemberId(memberId);
+		int result = cartService.deleteOneCart(cart.getCartNo());
+		Map map = cartService.selectCart(cart);
+		return map;
+	}
 }

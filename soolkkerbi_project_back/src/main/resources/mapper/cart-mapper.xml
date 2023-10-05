@@ -32,4 +32,8 @@
 		from cart join product on cart_product_no = product_no 
 		where cart_member_no=(select member_no from member where member_id=#{memberId})
 	</select>
+	
+	<delete id="deleteCart">
+		delete from cart where cart_no=#{cartNo}
+	</delete>
 </mapper>
