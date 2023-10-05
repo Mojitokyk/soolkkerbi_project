@@ -189,8 +189,12 @@ const CartProduct = (props) => {
   const deleteOneCart = props.deleteOneCart;
   const plusCart = props.plusCart;
   const removeCart = props.removeCart;
+  const navigate = useNavigate();
+  const productView = () => {
+    navigate("/product/view", { state: { productNo: cart.cartProductNo } });
+  };
   return (
-    <tr id="cartList">
+    <tr>
       <td>
         <input
           type="checkbox"
@@ -200,7 +204,7 @@ const CartProduct = (props) => {
           checked={checkList.includes(cart.cartNo) ? true : false}
         />
       </td>
-      <td className="info-td">
+      <td className="info-td" onClick={productView}>
         <div className="product-img">
           {cart.productFilepath === null ? (
             <img src="/image/product_img/no_image.png" />

@@ -37,6 +37,7 @@
   align-items: center;
   display: flex;
   position: relative;
+  cursor: pointer;
 }
 .cart-tbl td.info-td > .product-img {
   width: 40%;
