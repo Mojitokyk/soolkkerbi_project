@@ -3,12 +3,14 @@
   margin: 100px auto;
   overflow: hidden;
 }
+/*썸네일 조절*/
 .product-view-thumbnail {
   float: left;
 }
 .product-view-thumbnail > img {
   width: 500px;
 }
+/*전통주 info*/
 .product-view-info {
   float: right;
   width: 50%;
@@ -35,6 +37,7 @@
   font-family: ns-b;
   padding: 10px 0;
 }
+/*수량&버튼*/
 .product-price-box {
   padding: 0 30px;
   background-color: rgba(42, 42, 42, 0.03);
@@ -73,6 +76,7 @@
 .amount-btn:disabled {
   background-color: #eee;
 }
+/*총 합계*/
 .product-total-price {
   display: flex;
   justify-content: space-between;
@@ -85,6 +89,7 @@
   font-size: 26px;
   font-family: ns-b;
 }
+/*버튼들*/
 .product-order-box {
   display: flex;
   padding-top: 50px;
@@ -99,4 +104,8 @@
 }
 .productDetail-like-btn > span {
   font-size: 22px;
+}
+.product-detail-tab {
+  width: 1200px;
+  margin: 20px auto;
 }

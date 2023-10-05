@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import "./productDetail.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Button2, Button3 } from "../util/Buttons";
+import Tab1 from "./Tab1";
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
@@ -41,8 +42,9 @@ const ProductDetail = (props) => {
   };
   //결제창로 이동
   const order = () => {};
-  //장바구니로 이동
+  //장바구니에 인서트
   const cart = () => {};
+
   return (
     <div className="product-view-all-wrap">
       <div className="product-view-wrap">
@@ -103,11 +105,7 @@ const ProductDetail = (props) => {
         </div>
       </div>
       <div className="product-detail-tab">
-        <ul>
-          <li>상품 설명</li>
-          <li>수령 안내</li>
-          <li>상품 후기</li>
-        </ul>
+        <Tab1 product={product} />
       </div>
     </div>
   );
