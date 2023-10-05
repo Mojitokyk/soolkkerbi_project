@@ -19,6 +19,6 @@ public class Cart {
 	String memberId;
 	String productName;
 	String productFilepath;
-	int productNumber;
-	int totalPrice;
+	int productNumber;//장바구니 품목 수
+	int totalPrice;//장바구니 합계 금액
 }

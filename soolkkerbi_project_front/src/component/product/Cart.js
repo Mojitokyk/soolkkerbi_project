@@ -10,6 +10,8 @@ const Cart = (props) => {
   const token = window.localStorage.getItem("token");
   const [cartList, setCartList] = useState([]);
   const [totalCount, setTotalCount] = useState([]);
+  const [checkList, setCheckList] = useState([]);
+  //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
   useEffect(() => {
     axios
       .post("/cart/selectCart", null, {
@@ -25,15 +27,80 @@ const Cart = (props) => {
         console.log(res.response.status);
       });
   }, []);
+  //개별 상품 체크 박스
+  const changeSingleBox = (checked, id) => {
+    if (checked) {
+      setCheckList([...checkList, id]);
+    } else {
+      setCheckList(checkList.filter((el) => el !== id));
+    }
+  };
+  //전체 선택 체크 박스
+  const changeAllBox = (checked) => {
+    if (checked) {
+      const allCheckBox = [];
+      cartList.forEach((el, index) => allCheckBox.push(cartList[index].cartNo));
+      setCheckList(allCheckBox);
+    } else {
+      setCheckList([]);
+    }
+  };
+  //선택 상품 삭제
+  const deleteCart = () => {
+    axios
+      .post("/cart/deleteCart", checkList, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setCartList(res.data.cartList);
+        setTotalCount(res.data.totalCount);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
+  // X 클릭 시 개별 상품 삭제
+  const deleteOneCart = (cartNo) => {
+    axios
+      .post(
+        "/cart/deleteOneCart",
+        { cartNo: cartNo },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        setCartList(res.data.cartList);
+        setTotalCount(res.data.totalCount);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
   return (
     <div className="cart-all-wrap">
-      <div className="cart-title">장바구니</div>
+      <div className="cart-title">
+        장바구니
+        <span className="cart-number">
+          <em>{totalCount.productNumber}</em>
+        </span>
+      </div>
       <div className="cart-tbl">
         <table>
           <thead>
             <tr>
               <td width={"10%"}>
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onChange={(event) => changeAllBox(event.target.checked)}
+                  checked={
+                    checkList.length === totalCount.productNumber ? true : false
+                  }
+                />
               </td>
               <td width={"50%"} className="info-td">
                 상품 정보
@@ -44,14 +111,21 @@ const Cart = (props) => {
           </thead>
           <tbody>
             {cartList.map((cart, index) => {
-              return <CartProduct key={"cart" + index} cart={cart} />;
+              return (
+                <CartProduct
+                  key={"cart" + index}
+                  cart={cart}
+                  checkList={checkList}
+                  changeSingleBox={changeSingleBox}
+                  deleteOneCart={deleteOneCart}
+                />
+              );
             })}
           </tbody>
         </table>
       </div>
       <div className="delete-btn">
-        <Button1 text="전체상품 삭제" />
-        <Button1 text="선택상품 삭제" />
+        <Button1 text="선택상품 삭제" clickEvent={deleteCart} />
       </div>
       <CartPrice totalCount={totalCount} />
     </div>
@@ -60,10 +134,19 @@ const Cart = (props) => {
 
 const CartProduct = (props) => {
   const cart = props.cart;
+  const checkList = props.checkList;
+  const changeSingleBox = props.changeSingleBox;
+  const deleteOneCart = props.deleteOneCart;
   return (
-    <tr>
+    <tr id="cartList">
       <td>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          onChange={(event) =>
+            changeSingleBox(event.target.checked, cart.cartNo)
+          }
+          checked={checkList.includes(cart.cartNo) ? true : false}
+        />
       </td>
       <td className="info-td">
         <div className="product-img">
@@ -74,7 +157,14 @@ const CartProduct = (props) => {
           )}
         </div>
         <div className="product-name">{cart.productName}</div>
-        <span className="material-icons">close</span>
+        <span
+          className="material-icons"
+          onClick={() => {
+            deleteOneCart(cart.cartNo);
+          }}
+        >
+          close
+        </span>
       </td>
       <td>
         <div className="product-quantity-wrap">
@@ -94,7 +184,6 @@ const CartProduct = (props) => {
 };
 
 const CartPrice = (props) => {
-  const cart = props.cart;
   const totalCount = props.totalCount;
   const navigate = useNavigate();
   const allPay = () => {

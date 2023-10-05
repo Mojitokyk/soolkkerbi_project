@@ -19,4 +19,6 @@ public interface CartDao {
 
 	Cart totalCount(Cart cart);
 
+	int deleteCart(int cartNo);
+
 }
