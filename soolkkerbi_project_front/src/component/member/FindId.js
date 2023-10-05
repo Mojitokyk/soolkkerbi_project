@@ -33,23 +33,25 @@ export default function FindId() {
   const [memberEmail, setMemberEmail] = React.useState("");
   const [memberId , setMemberId] = React.useState("");
   const [result , setResult] = React.useState(false);
+  const member = {memberName,memberEmail};
 const back =()=>{
-    navigate("/login");
+    //navigate("/login");
+    setOpen(false);
 }
 
-  const find=(props)=>{
-    const memberName=props.memberName;
-    const memberEmail=props.memberEmail;
-    const member = { memberName, memberEmail};
-    const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-   if(member != ""&& emailCheck.test(memberEmail)){
-
+  const find=()=>{
+    
+    console.log(member);
+   // const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/
+  // if(member != ""&& emailCheck.test(memberEmail)){
+    if(member != ""){
        axios
        .post("/member/findId", member)
        .then((res) => {
         if(res.data != ""){
             console.log(res.data);
-            setMemberId(memberId);
+            setMemberId(res.data);
+            console.log(memberId)
             setResult(true);
 
             
@@ -89,8 +91,8 @@ const back =()=>{
         <Input
           setData={setMemberName}
           data={memberName}
-          type="type"
-          id="memberName"
+          type="text"
+          content="memberName"
         ></Input>
       </div>
       <div className="input-wrap">
@@ -98,8 +100,8 @@ const back =()=>{
         <Input
           setData={setMemberEmail}
           data={memberEmail}
-          type="type"
-          id="memberEmail"
+          type="text"
+          content="memberEmail"
         ></Input>
       </div>
       <div style={{marginTop: "30px"}}> <Button1 text="조회하기" clickEvent={find}/></div>
@@ -119,8 +121,7 @@ const back =()=>{
 
                   <div className='Search_id_result_div'>
                     <div>
-                      <h5> 아이디 </h5>
-                      {memberId}
+                      <h5>아이디 <br/> {memberId}</h5> 
                     </div>
                   </div>
 

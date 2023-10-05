@@ -21,5 +21,7 @@ public interface MemberDao {
 
 	Member selectMemberId(Member member);
 
+	Member selectMemberPw(Member member);
+
 
 }
