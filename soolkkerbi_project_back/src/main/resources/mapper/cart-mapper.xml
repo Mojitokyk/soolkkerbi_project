@@ -10,7 +10,7 @@
 	</select>
 	
 	<update id="updateCart">
-		update cart set cart_stock = cart_stock + 1, cart_price = cart_price * 2 
+		update cart set cart_stock = cart_stock + 1, cart_price = (cart_stock + 1) * (select product_price from product where product_no = cart_product_no)
 		where cart_member_no=(select member_no from member where member_id=#{memberId}) and cart_product_no=#{cartProductNo}
 	</update>
 	
@@ -20,6 +20,7 @@
 			cart_product_no,
 			product_name,
 			product_filepath,
+			product_stock,
 			cart_stock,
 			cart_price
 		from cart join product on cart_product_no = product_no 
@@ -36,4 +37,14 @@
 	<delete id="deleteCart">
 		delete from cart where cart_no=#{cartNo}
 	</delete>
+	
+	<update id="plusCart">
+		update cart set cart_stock = cart_stock + 1, cart_price = (cart_stock + 1) * (select product_price from product where product_no = cart_product_no)
+		where cart_no = #{cartNo}
+	</update>
+	
+	<update id="removeCart">
+		update cart set cart_stock = cart_stock - 1, cart_price = (cart_stock - 1) * (select product_price from product where product_no = cart_product_no)
+		where cart_no=#{cartNo}
+	</update>
 </mapper>

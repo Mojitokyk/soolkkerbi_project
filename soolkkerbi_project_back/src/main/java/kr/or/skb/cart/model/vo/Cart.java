@@ -14,11 +14,12 @@ public class Cart {
 	int cartNo;
 	int cartMemberNo;
 	int cartProductNo;
-	int cartStock;
+	int cartStock;//장바구니 구매 수량
 	int cartPrice;
 	String memberId;
 	String productName;
 	String productFilepath;
 	int productNumber;//장바구니 품목 수
 	int totalPrice;//장바구니 합계 금액
+	int productStock;//상품 재고 수량
 }

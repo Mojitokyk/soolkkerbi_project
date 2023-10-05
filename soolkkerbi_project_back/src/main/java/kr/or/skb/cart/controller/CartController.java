@@ -62,4 +62,22 @@ public class CartController {
 		Map map = cartService.selectCart(cart);
 		return map;
 	}
+	
+	//장바구니 수량 +1 업데이트
+	@PostMapping(value="/plusCart")
+	public Map plusCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+		cart.setMemberId(memberId);
+		int result = cartService.plusCart(cart.getCartNo());
+		Map map = cartService.selectCart(cart);
+		return map;
+	}
+	
+	//장바구니 수량 -1 업데이트
+	@PostMapping(value="/removeCart")
+	public Map removeCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+		cart.setMemberId(memberId);
+		int result = cartService.removeCart(cart.getCartNo());
+		Map map = cartService.selectCart(cart);
+		return map;
+	}
 }

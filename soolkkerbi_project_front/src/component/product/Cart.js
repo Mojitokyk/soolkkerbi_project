@@ -8,8 +8,12 @@ import "./cart.css";
 const Cart = (props) => {
   const isLogin = props.isLogin;
   const token = window.localStorage.getItem("token");
+  //장바구니 리스트
   const [cartList, setCartList] = useState([]);
+  //totalCount.productNumber : 장바구니 품목 건수
+  //totalCount.totalPrice : 장바구니 총 합계 금액
   const [totalCount, setTotalCount] = useState([]);
+  //체크 박스 체크 시 cartNo 넣어줌
   const [checkList, setCheckList] = useState([]);
   //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
   useEffect(() => {
@@ -81,6 +85,50 @@ const Cart = (props) => {
         console.log(res.response.status);
       });
   };
+  //수량 +버튼 클릭 시
+  const plusCart = (cartNo, cartStock, productStock) => {
+    if (cartStock < productStock) {
+      axios
+        .post(
+          "/cart/plusCart",
+          { cartNo: cartNo },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          setCartList(res.data.cartList);
+          setTotalCount(res.data.totalCount);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    }
+  };
+  //수량 -버튼 클릭 시
+  const removeCart = (cartNo, cartStock) => {
+    if (cartStock > 1) {
+      axios
+        .post(
+          "/cart/removeCart",
+          { cartNo: cartNo },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          setCartList(res.data.cartList);
+          setTotalCount(res.data.totalCount);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    }
+  };
   return (
     <div className="cart-all-wrap">
       <div className="cart-title">
@@ -118,6 +166,8 @@ const Cart = (props) => {
                   checkList={checkList}
                   changeSingleBox={changeSingleBox}
                   deleteOneCart={deleteOneCart}
+                  plusCart={plusCart}
+                  removeCart={removeCart}
                 />
               );
             })}
@@ -137,6 +187,8 @@ const CartProduct = (props) => {
   const checkList = props.checkList;
   const changeSingleBox = props.changeSingleBox;
   const deleteOneCart = props.deleteOneCart;
+  const plusCart = props.plusCart;
+  const removeCart = props.removeCart;
   return (
     <tr id="cartList">
       <td>
@@ -168,9 +220,23 @@ const CartProduct = (props) => {
       </td>
       <td>
         <div className="product-quantity-wrap">
-          <span className="material-icons">add</span>
+          <span
+            className="material-icons"
+            onClick={() => {
+              plusCart(cart.cartNo, cart.cartStock, cart.productStock);
+            }}
+          >
+            add
+          </span>
           <span className="product-quantity">{cart.cartStock}</span>
-          <span className="material-icons">remove</span>
+          <span
+            className="material-icons"
+            onClick={() => {
+              removeCart(cart.cartNo, cart.cartStock);
+            }}
+          >
+            remove
+          </span>
         </div>
       </td>
       <td>
