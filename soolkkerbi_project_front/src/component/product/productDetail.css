@@ -94,16 +94,20 @@
   display: flex;
   padding-top: 50px;
 }
-.product-order-box > button {
+.product-order-box > * {
   margin: 0 5px;
 }
 .productDetail-like-btn {
   width: 100%;
   background-color: #fff;
   border: 1px solid #eee;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
 }
 .productDetail-like-btn > span {
-  font-size: 22px;
+  font-size: 28px;
+  line-height: 40px;
 }
 .product-detail-tab {
   width: 1200px;

@@ -8,10 +8,7 @@ const ProductItem = (props) => {
   const product = props.product;
   const isLogin = props.isLogin;
   const navigate = useNavigate();
-  //상품 상세페이지로 이동하는 함수(productNo 전달)
-  const productView = () => {
-    navigate("/product/view", { state: { productNo: product.productNo } });
-  };
+
   //좋아요 함수
   const [like, setLike] = useState(false);
   const token = window.localStorage.getItem("token");
@@ -64,6 +61,12 @@ const ProductItem = (props) => {
       });
       navigate("/login");
     }
+  };
+  //상품 상세페이지로 이동하는 함수(productNo 전달)
+  const productView = () => {
+    navigate("/product/view", {
+      state: { productNo: product.productNo, like: like },
+    });
   };
   const addCart = () => {
     if (isLogin) {
