@@ -60,8 +60,14 @@ function App() {
             element={<NoticeMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route path="/join" element={<Join />} />
-          <Route path="/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin}/>} />
-          <Route path="/mypage/*" element={<MypageMain />} />
+          <Route
+            path="/login"
+            element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
+          <Route
+            path="/mypage/*"
+            element={<MypageMain isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
           <Route path="/admin/*" element={<AdminMain />} />
           <Route path="/cart" element={<Cart isLogin={isLogin} />} />
           <Route

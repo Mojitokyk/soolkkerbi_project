@@ -1,9 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./productDetail.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button2, Button3 } from "../util/Buttons";
 import Tab1 from "./Tab1";
+import Swal from "sweetalert2";
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
@@ -53,6 +54,61 @@ const ProductDetail = (props) => {
   //이전페이지로 이동
   const backPage = () => {
     navigate(-1);
+  };
+  const prevLike = location.state.like;
+  //console.log(prevLike);
+  //좋아요 함수
+  const [like, setLike] = useState(false);
+  const token = window.localStorage.getItem("token");
+  const changeLike = () => {
+    if (isLogin) {
+      if (!like) {
+        axios
+          .post(
+            "/product/like",
+            { productNo: product.productNo },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              setLike(true);
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      } else {
+        axios
+          .post(
+            "/product/dislike",
+            { productNo: product.productNo },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              setLike(false);
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요한 서비스입니다.",
+      });
+      navigate("/login");
+    }
   };
   return (
     <div className="product-view-all-wrap">
@@ -122,9 +178,13 @@ const ProductDetail = (props) => {
           <div className="product-order-box">
             <Button2 text="구매하기" clickEvent={order} />
             <Button3 text="장바구니" clickEvent={cart} />
-            <button className="productDetail-like-btn">
-              <span className="material-icons">favorite_border</span>
-            </button>
+            <div className="productDetail-like-btn" onClick={changeLike}>
+              {like ? (
+                <span className="material-icons">favorite</span>
+              ) : (
+                <span className="material-icons">favorite_border</span>
+              )}
+            </div>
           </div>
         </div>
       </div>

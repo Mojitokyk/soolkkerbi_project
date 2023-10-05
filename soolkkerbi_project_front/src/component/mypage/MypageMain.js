@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./mypageMain.css";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import MyOrder from "./MyOrder";
 import MyReservation from "./MyReservation";
 import MyWishList from "./MyWishList";
@@ -8,8 +8,48 @@ import MyReivew from "./MyReview";
 import MyQna from "./MyQna";
 import MyInfo from "./MyInfo";
 import Quit from "./Quit";
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const MypageMain = () => {
+const MypageMain = (props) => {
+  const isLogin = props.isLogin;
+  const setIsLogin = props.setIsLogin;
+  //회원 불러오기
+  const [member, setMember] = useState({});
+  const navigate = useNavigate();
+  /*
+  const token = window.localStorage.getItem("token");
+  useEffect(() => {
+    axios
+      .post("/member/getMember", null, {
+        header: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setMember(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+        if (res.response.status === 403) {
+          Swal.fire("로그인이 필요합니다.").then(() => {
+            navigate("/login");
+          });
+        }
+      });
+  }, []);
+*/
+  if (!isLogin) {
+    Swal.fire({
+      title: "로그인이 필요한 서비스 입니다.",
+      text: "로그인 페이지로 이동합니다.",
+      icon: "info",
+    }).then(() => {
+      navigate("/login");
+    });
+  }
+
   const [menus, setMenus] = useState([
     { url: "order", text: "주문 내역", active: false },
     { url: "reservation", text: "예약 내역", active: false },
