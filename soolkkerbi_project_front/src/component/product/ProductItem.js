@@ -108,6 +108,12 @@ const ProductItem = (props) => {
       navigate("/login");
     }
   };
+
+  // 천원단위 콤마붙인 가격
+  const commaPrice = product.productPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   return (
     <div className="product-item">
       <div className="product-item-img" onClick={productView}>
@@ -123,7 +129,7 @@ const ProductItem = (props) => {
       <div className="product-item-info">
         <div className="product-item-name">{product.productName}</div>
         <div className="product-item-price">
-          {product.productPrice}
+          {commaPrice}
           <span> 원</span>
         </div>
         <div className="product-item-more">

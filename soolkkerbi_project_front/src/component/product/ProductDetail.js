@@ -5,6 +5,7 @@ import axios from "axios";
 import { Button2, Button3 } from "../util/Buttons";
 import Tab1 from "./Tab1";
 import Swal from "sweetalert2";
+
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
@@ -25,8 +26,13 @@ const ProductDetail = (props) => {
         console.log(res.reponse.status);
       });
   }, []);
+
   //갯수와 총 금액 state만들기
-  const price = product.productPrice;
+  const price = Number(product.productPrice);
+
+  // comma붙인 상품가격
+  const commmaPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(price);
   //props로 useState에 초기값으로 할당하게 되면 App컴포넌트의 parentState가 변경되더라도 totalState는 변함이 없음 -> useState는 한번만 호출되기 때문
@@ -41,6 +47,10 @@ const ProductDetail = (props) => {
     setTotal((prev) => prev + price * num);
     //console.log(quantity, total);
   };
+
+  // comma붙인 total가격
+  const commaTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
   //결제창로 이동
   const order = () => {};
   //장바구니에 인서트
@@ -141,7 +151,7 @@ const ProductDetail = (props) => {
         <div className="product-view-info">
           <div className="info-title">
             <div>{product.productName}</div>
-            <div>{product.productPrice}원</div>
+            <div>{commmaPrice}원</div>
           </div>
           <div className="info-content">
             <ul>
@@ -168,11 +178,11 @@ const ProductDetail = (props) => {
                 stock={product.productStock}
                 onClick={ClickCount}
               />
-              <div>{total}원</div>
+              <div>{commaTotal}원</div>
             </div>
             <div className="product-total-price">
               <span>총 상품 금액({quantity}개)</span>
-              <span>{total}원</span>
+              <span>{commaTotal}원</span>
             </div>
           </div>
           <div className="product-order-box">
