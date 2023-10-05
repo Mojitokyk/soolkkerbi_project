@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -11,75 +13,80 @@ import {
 } from "recharts";
 
 const ReadIncome = () => {
+  const [incomeList, setIncomeList] = useState([]);
+
   const data = [
     {
       name: "23-10-01",
-      탁주: 4000,
-      약청주: 2400,
-      과실주: 1200,
-      증류주: 600,
-      amt: 2400,
+      탁주: 150000,
+      약청주: 240000,
+      과실주: 120000,
+      증류주: 40000,
     },
     {
       name: "23-10-02",
-      탁주: 3000,
-      약청주: 1398,
-      과실주: 1200,
-      증류주: 600,
-      amt: 2210,
+      탁주: 300000,
+      약청주: 139800,
+      과실주: 120000,
+      증류주: 65000,
     },
     {
       name: "23-10-03",
-      탁주: 2000,
-      약청주: 9800,
-      과실주: 1200,
-      증류주: 600,
-      amt: 2290,
+      탁주: 200000,
+      약청주: 980000,
+      과실주: 210000,
+      증류주: 600000,
     },
     {
       name: "23-10-04",
-      탁주: 2780,
-      약청주: 3908,
-      과실주: 1200,
-      증류주: 600,
-      amt: 2000,
+      탁주: 278000,
+      약청주: 390800,
+      과실주: 150000,
+      증류주: 960000,
     },
     {
       name: "23-10-05",
-      탁주: 1890,
-      약청주: 4800,
-      과실주: 1200,
-      증류주: 600,
-      amt: 2181,
+      탁주: 189000,
+      약청주: 480000,
+      과실주: 890000,
+      증류주: 500000,
     },
   ];
+
+  useEffect(() => {
+    axios
+      .post("/pay/readAllIncome", null)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, []);
 
   return (
     <div className="admin-content-wrap">
       <div className="admin-content-title">매출현황조회</div>
-      <div></div>
+      <div>날짜조회버튼</div>
       <div>
-        <ResponsiveContainer width={"100%"} height={500}>
+        <ResponsiveContainer width={"100%"} height={600}>
           <BarChart
-            width={500}
-            height={300}
             data={data}
             margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
+              top: 20,
+              right: 10,
+              left: 10,
             }}
           >
-            <CartesianGrid strokeDasharray="10 10" />
+            <CartesianGrid vertical={false} />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="탁주" fill="#FF6289" />
-            <Bar dataKey="약청주" fill="#FF4289" />
-            <Bar dataKey="과실주" fill="#FF2289" />
-            <Bar dataKey="증류주" fill="#ED0289" />
+            <Bar dataKey="탁주" stackId="a" fill="#241468" barSize={50} />
+            <Bar dataKey="약청주" stackId="a" fill="#9F0D7F" barSize={50} />
+            <Bar dataKey="과실주" stackId="a" fill="#EA1179" barSize={50} />
+            <Bar dataKey="증류주" stackId="a" fill="#F79BD3" barSize={50} />
           </BarChart>
         </ResponsiveContainer>
       </div>

@@ -1,5 +1,6 @@
 package kr.or.skb.pay.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,20 @@ public class PayController {
 	@PostMapping(value="/updatePayStatus")
 	public int updatePayStatus(@RequestBody Pay pay) {
 		return payService.updatePayStatus(pay);
+	}
+		
+	@GetMapping(value="/readAllSuccessPay/{reqPage}")
+	public Map readAllSuccessPay(@PathVariable int reqPage) {
+		return payService.readAllSuccessPay(reqPage);
+	}
+	
+	@PostMapping(value="/confirmIncome")
+	public int confirmIncome(@RequestBody Pay pay) {
+		return payService.confirmIncome(pay);
+	}
+	
+	@PostMapping(value="/readAllIncome")
+	public List readAllIncome() {
+		return null;
 	}
 }
