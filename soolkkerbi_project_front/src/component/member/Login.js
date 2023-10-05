@@ -39,7 +39,7 @@ const Login = (props) => {
   return (
     <div className="login-wrap">
       <div className="login-title">로그인</div>
-      <div className="input-wrap">
+      <div className="input-wrap login">
         <label htmlFor="memberId">아이디</label>
         <Input
           setData={setMemberId}
@@ -48,7 +48,7 @@ const Login = (props) => {
           content="memberId"
         ></Input>
       </div>
-      <div className="input-wrap">
+      <div className="input-wrap login">
         <label htmlFor="memberId">비밀번호</label>
         <Input
           setData={setMemberPw}

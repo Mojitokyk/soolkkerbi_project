@@ -44,8 +44,20 @@ public class MemberController {
 	}
 	@PostMapping(value = "/findId")
 	public String findId(@RequestBody Member member) {
+		System.out.println(member);
 		Member m = memberService.selectMemberId(member);
 		if (m != null) {
+			System.out.println(member);
+			return m.getMemberId();
+		}
+		return null;
+	}
+	@PostMapping(value = "/findPw")
+	public String findPw(@RequestBody Member member) {
+		System.out.println(member);
+		Member m = memberService.selectMemberPw(member);
+		if (m != null) {
+			System.out.println(member);
 			return m.getMemberId();
 		}
 		return null;

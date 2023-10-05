@@ -26,5 +26,9 @@
 	 <select id="selectMemberId" resultType="member">
 	 select * from member where member_name=#{memberName} and member_email=#{memberEmail}
 	 </select>
+	 
+	 <select id="selectMemberPw" resultType="member">
+	  select * from member where member_id=#{memberId} and member_email=#{memberEmail}
+	 </select>
  
 </mapper>

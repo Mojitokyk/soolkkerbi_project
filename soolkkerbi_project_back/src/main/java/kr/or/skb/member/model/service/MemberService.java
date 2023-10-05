@@ -74,4 +74,8 @@ public class MemberService {
 		return memberDao.selectMemberId(member);
 	}
 
+	public Member selectMemberPw(Member member) {
+		return memberDao.selectMemberPw(member);
+	}
+
 }
