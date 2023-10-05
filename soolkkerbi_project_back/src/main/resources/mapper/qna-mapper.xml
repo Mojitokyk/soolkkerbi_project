@@ -46,4 +46,14 @@
 	<update id="updateQna">
 		update qna set qna_title=#{qnaTitle}, qna_content=#{qnaContent} where qna_no=#{qnaNo}
 	</update>
+	
+	<!-- 댓글 작성 -->
+	<insert id="insertComment">
+		insert into answer values(answer_seq.nextval, #{answerQnaNo}, 62, #{answerContent}, sysdate)
+	</insert>
+	
+	<!-- 댓글 출력 -->
+	<select id="selectOneAnswer" resultType="String">
+		select answer_content from answer where answer_qna_no=#{answerQnaNo}
+	</select>
 </mapper>

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import kr.or.skb.FileUtil;
 import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.notice.model.vo.NoticeFile;
 import kr.or.skb.qna.model.service.QnaService;
+import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
 
 @RestController
@@ -60,7 +62,7 @@ public class QnaController {
 	//게시글 상세
 	@GetMapping(value="/view/{qnaNo}")
 	public Qna view(@PathVariable int qnaNo) {
-		System.out.println(qnaNo);
+		System.out.println("view: "+qnaNo);
 		return qnaService.selectOneQna(qnaNo);
 	}
 	
@@ -80,9 +82,9 @@ public class QnaController {
 	//게시글 수정
 	@PostMapping(value="/modify")
 	public int modify(@ModelAttribute Qna q) {
-		System.out.println(q.getQnaNo());
-		System.out.println(q.getQnaTitle());
-		System.out.println(q.getQnaContent());
+		System.out.println("modify: "+q.getQnaNo());
+		System.out.println("modify: "+q.getQnaTitle());
+		System.out.println("modify: "+q.getQnaContent());
 		
 		//Board table 업데이트
 		int result = qnaService.modify(q);
@@ -91,5 +93,22 @@ public class QnaController {
 		}else {
 			return 0;
 		}
+	}
+	
+	//댓글 작성
+	@PostMapping(value="/insertComment")
+	public int insertComment(@ModelAttribute Answer a) {
+		System.out.println("insertComment - answerQnaNo: "+a.getAnswerQnaNo());
+		System.out.println("insertComment - answerContent: "+a.getAnswerContent());
+		int result = qnaService.insertComment(a);
+		return result;
+	}
+	
+	//댓글 출력
+	@GetMapping(value="/selectOneAnswer/{answerQnaNo}")
+	public String selectOneAnswer(@PathVariable int answerQnaNo) {
+		System.out.println("answerQnaNo: "+answerQnaNo);
+		String answerContent = qnaService.selectOneAnswer(answerQnaNo);
+		return answerContent;
 	}
 }

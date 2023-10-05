@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.notice.model.vo.Notice;
+import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
 
 @Mapper
@@ -28,4 +29,10 @@ public interface QnaDao {
 	
 	//게시물 수정 - board테이블 변경
 	int updateQna(Qna q);
+
+	//댓글 작성
+	int insertComment(Answer a);
+
+	//댓글 출력
+	String selectOneAnswer(int answerQnaNo);
 }

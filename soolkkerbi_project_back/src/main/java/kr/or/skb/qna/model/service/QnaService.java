@@ -14,6 +14,7 @@ import kr.or.skb.Pagination;
 import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.notice.model.vo.NoticeFile;
 import kr.or.skb.qna.model.dao.QnaDao;
+import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
 
 @Service
@@ -83,5 +84,15 @@ public class QnaService {
 		System.out.println("qnaService: "+q.getQnaTitle());
 		System.out.println("qnaService: "+q.getQnaContent());
 		return qnaDao.updateQna(q);
+	}
+
+	//댓글 작성
+	public int insertComment(Answer a) {
+		return qnaDao.insertComment(a);
+	}
+
+	//댓글 출력
+	public String selectOneAnswer(int answerQnaNo) {
+		return qnaDao.selectOneAnswer(answerQnaNo);
 	}
 }

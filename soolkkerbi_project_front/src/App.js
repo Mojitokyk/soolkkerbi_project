@@ -25,15 +25,15 @@ function App() {
     } else {
       console.log("로그인 성공");
       console.log(token);
-      axios
-        .post("/member/selectOneMember")
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
-      setIsLogin(true);
+      // axios
+      //   .post("/member/selectOneMember")
+      //   .then((res) => {
+      //     console.log(res.data);
+      //   })
+      //   .catch((res) => {
+      //     console.log(res.response.status);
+      //   });
+      // setIsLogin(true);
     }
   }, []);
 
