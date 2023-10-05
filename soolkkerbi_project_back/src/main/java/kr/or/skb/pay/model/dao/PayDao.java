@@ -12,8 +12,14 @@ public interface PayDao {
 
 	int totalCount();
 
-	List selectAllPay(PageInfo pi);
+	List selectAllCancelPay(PageInfo pi);
 
 	int updatePayStatus(Pay pay);
+
+	List selectAllSuccessPay(PageInfo pi);
+
+	int totalCount2();
+
+	int confirmIncome(Pay pay);
 
 }

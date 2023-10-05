@@ -3,11 +3,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button1, Button2 } from '../util/Buttons';
+import { Button1, Button2, Button3 } from '../util/Buttons';
 import Input from "../util/InputForm";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import "./modal.css";
+
 
 const style = {
   position: 'absolute',
@@ -19,6 +21,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
 
 
 
@@ -35,9 +38,9 @@ export default function FindPw() {
   const [memberPw, setMemberPw] = React.useState("");
   const [memberPwRe, setMemberPwRe] = React.useState("");
   const [CheckPwMsg, setCheckPWMsg] = React.useState("");
-const back =()=>{
-    navigate("/login");
-}
+
+  const [auth, setAuth]=React.useState("");
+
 const pwCheck = () => {
   if (memberPw !== memberPwRe) {
     setCheckPWMsg("비밀번호입력 재확인 해주세욥!");//비번도 정규표현식 완료해얗
@@ -57,13 +60,15 @@ const pwCheck = () => {
         if(res.data != ""){
             console.log(res.data);
             // setMemberId(memberId);
-            // setResult(true);
+             setResult(true);
+             
 
             
 
         }else{
             
             Swal.fire("존재하지않은 회원정보입니다!")
+            navigate("/login")
         }
           
 
@@ -75,6 +80,8 @@ const pwCheck = () => {
     Swal.fire("입력값 확인해주세요!")
    }
 }
+
+
 
   return (
     <div>
@@ -108,8 +115,10 @@ const pwCheck = () => {
           type="type"
           content="memberEmail"
         ></Input>
+        
       </div>
       <div style={{marginTop: "30px"}}> <Button1 text="조회하기" clickEvent={find}/></div>
+      {/* <div className='emailAuth'><Button3 text="이메일인증" clickEvent={emailAuth}/></div> */}
      
                 {/* <div>  
                   <h5> 이름 </h5>
@@ -133,33 +142,22 @@ const pwCheck = () => {
         : //비번을 조회한 경우
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-          비밀번호 찾기
+          이메일인증하기
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        
-                <h4> 비밀번호번 재설정 </h4>
-
-                <JoinInputWrap
-        data={memberPw}
-        setData={setMemberPw}
-        type="passWord"
-        content="memberPw"
-        label="비밀번호"
-      />
-      <JoinInputWrap
-        data={memberPwRe}
-        setData={setMemberPwRe}
-        type="passWord"
-        content="memberPwRe"
-        label="비밀번호확인"
-        CheckMsg={CheckPwMsg}
-        blurEvent={pwCheck}
-      />
-
-                  <div>
-                    <Button2 text="돌아가기" clickEvent={back}/>
-                    {/* <input type='button' value='돌아가기' name='search_id_back'/> */}
-                  </div>
+        <div className='authButton'>
+          <Button3 text="인증번호받기" onClick={this.sendEmail} />
+        </div>
+               <div className='emailauthinput'>
+               <Input
+                 setData={setAuth}
+                 data={auth}
+                 type="type"
+                 content="auth"
+               ></Input>
+               </div>
+               <div className='authclear'><Button1 text="인증하기"  /></div>
+                 
                 </Typography>
              </Box>
             }
@@ -169,32 +167,54 @@ const pwCheck = () => {
   );
   
 }
-const JoinInputWrap = (props) => {
-  const data = props.data;
-  const setData = props.setData;
-  const type = props.type;
-  const content = props.content;
-  const label = props.label;
-  const blurEvent = props.blurEvent;
-  const CheckMsg = props.CheckMsg;
+class Signup_page extends React.Component {
 
-  return (
-    <div className="join-input-wrap">
-      <div>
-        <div className="label">
-          <label htmlFor={content}>{label}</label>
-        </div>
-        <div className="input">
-          <Input
-            type={type}
-            data={data}
-            setData={setData}
-            content={content}
-            blurEvent={blurEvent}
-          />
-        </div>
-      </div>
-      <div className="check-msg">{CheckMsg}</div>
-    </div>
-  );
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+        email: '',
+        //usingemail: false, // 인증번호가 맞아서 가입가능한가??
+
+        number: '',      //보내진 인증번호
+        inputnumber: '', //내가 입력한 인증번호
+                         // 이 두개가 똑같아야 한다
+    }
+
+  }
+
+
+sendEmail(e){
+    e.preventDefault();
+    console.log(this.state.email);
+    const data = {
+        email: this.state.email           //입력한 email state값
+    }
+
+    fetch('http://localhost:3001/sendEmail',{
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(json => {
+        this.setState({
+            number: json.number,       //number이름의 state값에 생성한 인증번호를 받아왔따
+        })
+
+        console.log(this.state.number);
+    })
+    
+  }
+  async onSubmit(e) {
+    e.preventDefault();
+  
+    if(this.state.number == this.state.inputnumber){ // 인증번호가 맞는지 검사 현재 number는 스트링 값
+        this.setState({
+            usingemail : true
+        })
+        
+     console.log("인증번호 맞다");
+        
+  }
+  }
+}

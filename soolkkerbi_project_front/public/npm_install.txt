@@ -10,6 +10,7 @@
           npm i react-modal => x
           npm install nodemailer =>x 
           아직설치하지마세욥!
+          npm install --save nodemailer @types/nodemailer
 
           
 23.10.04: npm install recharts

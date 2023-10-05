@@ -5,7 +5,7 @@
 		select count(*) from pay where pay_status = 3
 	</select>
 	
-	<select id="selectAllPay" resultType="pay">
+	<select id="selectAllCancelPay" resultType="pay">
 		select * from
 		    (select rownum as rnum, p.* from
 		        (select pay_no, pay_member_no, pay_product_no, member_id as pay_member_id, product_name as pay_product_name, pay_stock, product_price as pay_price, pay_date, pay_string_no, pay_status, pay_pickup 
@@ -17,5 +17,23 @@
 	
 	<update id="updatePayStatus">
 		update pay set pay_status = 4 where pay_no = #{payNo}
+	</update>
+	
+	<select id="totalCount2" resultType="int">
+		select count(*) from pay where pay_status = 1
+	</select>
+	
+	<select id="selectAllSuccessPay" resultType="pay">
+		select * from
+		    (select rownum as rnum, p.* from
+		        (select pay_no, pay_member_no, pay_product_no, member_id as pay_member_id, product_name as pay_product_name, pay_stock, product_price as pay_price, pay_date, pay_string_no, pay_status, pay_pickup 
+		        from pay join member on (pay_member_no = member_no) join product on (pay_product_no = product_no) 
+		        where pay_status = 1 order by pay_no) p
+		    )
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<update id="confirmIncome">
+		update pay set pay_status = 2 where pay_no = #{payNo}
 	</update>
 </mapper>
