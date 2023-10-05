@@ -8,6 +8,7 @@ import Input from "../util/InputForm";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import "./modal.css";
 
 
 const style = {
