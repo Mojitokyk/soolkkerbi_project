@@ -42,10 +42,14 @@ public class MemberController {
 		String result=memberService.login(member);
 		return result;
 	}
+
+	
 	@PostMapping(value = "/findId")
 	public String findId(@RequestBody Member member) {
+		System.out.println(111111111);
 		Member m = memberService.selectMemberId(member);
 		if (m != null) {
+			System.out.println(m.getMemberId());
 			return m.getMemberId();
 		}
 		return null;

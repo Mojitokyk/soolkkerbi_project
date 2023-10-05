@@ -50,7 +50,7 @@ public class MemberService {
 		Member m = memberDao.selectOneMember(member.getMemberId());
 		if (m != null && bCryptPasswordEncoder.matches(member.getMemberPw(), m.getMemberPw())) {
 
-			return jwtUtil.createToken(member.getMemberId(), secretKey, expiredMs);
+			return jwtUtil.createToken(member.getMemberId(),member.getMemberLevel(), secretKey, expiredMs);
 		} else {
 			return "실패";
 		}

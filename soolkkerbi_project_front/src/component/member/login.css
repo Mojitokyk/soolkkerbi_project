@@ -10,11 +10,16 @@
     font-size: 30px;
     padding: 50px;
   }
+  .input-wrap {
+   margin: 0 auto;
+  }
+
   .input-wrap > label {
     display: block;
     padding: 10px 0px;
     color: #071952;
     font-family: ns-b;
+   
   }
   .search-box {
     display: flex;

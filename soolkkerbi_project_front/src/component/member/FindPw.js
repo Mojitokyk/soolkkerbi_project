@@ -8,6 +8,7 @@ import Input from "../util/InputForm";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import "./modal.css";
 
 
 const style = {
@@ -116,7 +117,7 @@ const pwCheck = () => {
         ></Input>
         
       </div>
-      <div style={{marginTop: "30px"}}> <Button1 text="조회하기" clickEvent={find}/></div>
+      <div className='btn-box'style={{marginTop: "30px"}}> <Button1 text="조회하기" clickEvent={find}/></div>
       {/* <div className='emailAuth'><Button3 text="이메일인증" clickEvent={emailAuth}/></div> */}
      
                 {/* <div>  
@@ -155,7 +156,7 @@ const pwCheck = () => {
                  content="auth"
                ></Input>
                </div>
-               <div className='authclear'><Button1 text="인증하기"  /></div>
+               <div className='btn-box'><Button1 text="인증하기"  /></div>
                  
                 </Typography>
              </Box>

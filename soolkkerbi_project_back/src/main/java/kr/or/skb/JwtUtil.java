@@ -10,6 +10,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import kr.or.skb.member.model.vo.Member;
 
 @Component
 public class JwtUtil {
@@ -44,4 +45,15 @@ public class JwtUtil {
     			.parseClaimsJws(token)
     			.getBody().get("memberId",String.class);//토큰이랑 암호화키 정보줄테니까 인증정보가져와서 아이디로 꺼내줘
     }
+	public String createToken(String memberId, int memberLevel, String secretKey, long expiredMs) {
+		Claims claims = Jwts.claims(); //생성하는 토큰을 통해서 얻을 수있는 값을 저장하는 객체
+    	claims.put("memberId", memberId);
+    	SecretKey key= Keys.hmacShaKeyFor(secretKey.getBytes());//우리가 저장한 문자열을 이용해서 암호화코드 생성
+    	return Jwts.builder()
+    			.setClaims(claims)
+    			.setIssuedAt(new Date(System.currentTimeMillis())) //인증시작시간
+    			.setExpiration(new Date(System.currentTimeMillis()+expiredMs)) //인증만료시간
+    			.signWith(key,SignatureAlgorithm.HS256)        //암호화시 사용할 키
+    			.compact();
+	}
 }
