@@ -8,6 +8,7 @@ import CancelPay from "./CancelPay";
 import ProductWrite from "../product/ProductWrite";
 import CancelReservation from "./CancelReservation";
 import ReadIncome from "./ReadIncome";
+import ManageReceive from "./ManageReceive";
 
 const AdminMain = () => {
   const [member, setMember] = useState({});
@@ -17,6 +18,7 @@ const AdminMain = () => {
     { url: "readAllMember", text: "전체회원 조회", active: false },
     { url: "insertProduct", text: "상품 등록", active: false },
     { url: "manageStock", text: "상품재고 관리", active: false },
+    { url: "manageReceive", text: "상품수령 관리", active: false },
     { url: "cancelPay", text: "결제취소 관리", active: false },
     { url: "cancelReservation", text: "예약취소 관리", active: false },
     { url: "manageQna", text: "1:1문의 관리", active: false },
@@ -31,13 +33,14 @@ const AdminMain = () => {
         <AdminSideMenu menus={menus} setMenus={setMenus} />
         <div className="admin-menu-content">
           <Routes>
-            <Route path="insertProduct" element={<ProductWrite />}></Route>
             <Route
               path="info"
               element={<MyInfo member={member} setMember={setMember} />}
             />
             <Route path="readAllMember" element={<ReadAllMember />} />
+            <Route path="insertProduct" element={<ProductWrite />}></Route>
             <Route path="manageStock" element={<ManageStock />} />
+            <Route path="manageReceive" element={<ManageReceive />} />
             <Route path="cancelPay" element={<CancelPay />} />
             <Route path="cancelReservation" element={<CancelReservation />} />
             <Route path="readIncome" element={<ReadIncome />} />

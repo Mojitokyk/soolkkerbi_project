@@ -8,6 +8,7 @@ import Input from "../util/InputForm";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import "./modal.css";
 
 const style = {
   position: 'absolute',
@@ -32,23 +33,25 @@ export default function FindId() {
   const [memberEmail, setMemberEmail] = React.useState("");
   const [memberId , setMemberId] = React.useState("");
   const [result , setResult] = React.useState(false);
+  const member = {memberName,memberEmail};
 const back =()=>{
-    navigate("/login");
+    //navigate("/login");
+    setOpen(false);
 }
 
-  const find=(props)=>{
-    const memberName=props.memberName;
-    const memberEmail=props.memberEmail;
-    const member = { memberName, memberEmail};
-    const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-   if(member != ""&& emailCheck.test(memberEmail)){
-
+  const find=()=>{
+    
+    console.log(member);
+   // const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/
+  // if(member != ""&& emailCheck.test(memberEmail)){
+    if(member != ""){
        axios
        .post("/member/findId", member)
        .then((res) => {
         if(res.data != ""){
             console.log(res.data);
-            setMemberId(memberId);
+            setMemberId(res.data);
+            console.log(memberId)
             setResult(true);
 
             
@@ -79,17 +82,17 @@ const back =()=>{
       >
         {!result ?
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <div id="modal-modal-title" variant="h6" component="h2">
             아이디 찾기
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </div>
+          <div id="modal-modal-description" sx={{ mt: 2 }}>
           <div className="input-wrap">
         <label htmlFor="memberId">이름입력</label>
         <Input
           setData={setMemberName}
           data={memberName}
-          type="type"
-          id="memberName"
+          type="text"
+          content="memberName"
         ></Input>
       </div>
       <div className="input-wrap">
@@ -97,29 +100,28 @@ const back =()=>{
         <Input
           setData={setMemberEmail}
           data={memberEmail}
-          type="type"
-          id="memberEmail"
+          type="text"
+          content="memberEmail"
         ></Input>
       </div>
       <div style={{marginTop: "30px"}}> <Button1 text="조회하기" clickEvent={find}/></div>
                 {/*  이메일 mui뒷부분 선택폼 ?*/}
 
-          </Typography>
+          </div>
         </Box>
         : //아이디를 조회한 경우
         <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <div id="modal-modal-title" variant="h6" component="h2">
           아이디 찾기
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        </div>
+        <div id="modal-modal-description" sx={{ mt: 2 }}>
 
                 <div className='Search_id_result'>
                   <p> 아래의 회원 정보를 찾았습니다. </p>
 
                   <div className='Search_id_result_div'>
                     <div>
-                      <h5> 아이디 </h5>
-                      {memberId}
+                      <h5>아이디 <br/> {memberId}</h5> 
                     </div>
                   </div>
 
@@ -130,7 +132,7 @@ const back =()=>{
                 </div>
 
             
-        </Typography>
+        </div>
        </Box>
 }
       </Modal>

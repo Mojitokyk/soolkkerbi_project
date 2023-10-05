@@ -39,5 +39,28 @@ public class CartService {
 		map.put("totalCount", totalCount);
 		return map;
 	}
+	
+	@Transactional
+	public int deleteCart(List<Integer> checkList) {
+		int result = 0;
+		for(int cartNo : checkList) {
+			result += cartDao.deleteCart(cartNo);
+		}
+		return result;
+	}
+	
+	@Transactional
+	public int deleteOneCart(int cartNo) {
+		return cartDao.deleteCart(cartNo);
+	}
+	
+	@Transactional
+	public int plusCart(int cartNo) {
+		return cartDao.plusCart(cartNo);
+	}
+
+	public int removeCart(int cartNo) {
+		return cartDao.removeCart(cartNo);
+	}
 
 }

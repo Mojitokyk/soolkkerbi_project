@@ -70,8 +70,12 @@ public class MemberService {
 	}
 
 	public Member selectMemberId(Member member) {
-		
+		System.out.println(member);
 		return memberDao.selectMemberId(member);
+	}
+
+	public Member selectMemberPw(Member member) {
+		return memberDao.selectMemberPw(member);
 	}
 
 }

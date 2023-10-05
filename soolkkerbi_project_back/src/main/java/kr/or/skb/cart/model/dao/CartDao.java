@@ -19,4 +19,10 @@ public interface CartDao {
 
 	Cart totalCount(Cart cart);
 
+	int deleteCart(int cartNo);
+
+	int plusCart(int cartNo);
+
+	int removeCart(int cartNo);
+
 }

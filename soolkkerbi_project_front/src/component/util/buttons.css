@@ -1,10 +1,3 @@
-/*
-메인색상
-#071952 rgb(7, 25, 82)
-#088395 rgb(8, 131, 149)
-#35A29F rgb(53, 162, 159)
-#F2F7A1 rgb(242, 247, 161)
-*/
 .btn {
   width: 100%;
   padding: 0.7rem;
@@ -25,7 +18,7 @@
   border: 1px solid #eee;
 }
 .st4 {
-  background-color: #4f4f4f;
+  background-color: #ff6289;
   font-family: ns-b;
 }
 .st5 {

@@ -28,7 +28,7 @@ public class PayService {
 		int numPerPage = 10;
 		int pageNaviSize = 5;
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List payList = payDao.selectAllPay(pi);
+		List payList = payDao.selectAllCancelPay(pi);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", payList);
 		map.put("pi", pi);
@@ -41,6 +41,23 @@ public class PayService {
 		int result2 = productDao.updatePayStock(pay);
 		int result = result1 + result2;
 		return result;
+	}
+
+	public Map readAllSuccessPay(int reqPage) {
+		int totalCount = payDao.totalCount2();
+		int numPerPage = 10;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List payList = payDao.selectAllSuccessPay(pi);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", payList);
+		map.put("pi", pi);
+		return map;
+	}
+
+	@Transactional
+	public int confirmIncome(Pay pay) {
+		return payDao.confirmIncome(pay);
 	}
 	
 	

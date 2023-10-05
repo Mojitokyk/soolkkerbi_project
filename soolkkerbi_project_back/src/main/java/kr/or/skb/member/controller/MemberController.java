@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,8 +45,20 @@ public class MemberController {
 	}
 	@PostMapping(value = "/findId")
 	public String findId(@RequestBody Member member) {
+		System.out.println(member);
 		Member m = memberService.selectMemberId(member);
 		if (m != null) {
+			System.out.println(member);
+			return m.getMemberId();
+		}
+		return null;
+	}
+	@PostMapping(value = "/findPw")
+	public String findPw(@RequestBody Member member) {
+		System.out.println(member);
+		Member m = memberService.selectMemberPw(member);
+		if (m != null) {
+			System.out.println(member);
 			return m.getMemberId();
 		}
 		return null;
@@ -56,8 +69,13 @@ public class MemberController {
 		return memberService.readAllMember(reqPage);
 	}
 	
-	@PostMapping(value="/selectOneMember")
-	public Member selectOneMember() {
-		return null;
+//	@PostMapping(value="/selectOneMember")
+//	public Member selectOneMember() {
+//		
+//	}
+	@PostMapping(value="/getMember")
+	public Member mypage(@RequestAttribute String memberId) {
+		System.out.println(memberId);
+		return memberService.selectOneMember(memberId);
 	}
 }

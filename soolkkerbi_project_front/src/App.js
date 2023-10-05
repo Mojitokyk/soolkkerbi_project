@@ -17,25 +17,35 @@ import axios from "axios";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
+  const [num, setNum] = useState(0);
   useEffect(() => {
     const token = window.localStorage.getItem("token");
-
     if (token === null) {
       setIsLogin(false);
     } else {
-      console.log("로그인 성공");
-      console.log(token);
-      // axios
-      //   .post("/member/selectOneMember")
-      //   .then((res) => {
-      //     console.log(res.data);
-      //   })
-      //   .catch((res) => {
-      //     console.log(res.response.status);
-      //   });
-      // setIsLogin(true);
+      setIsLogin(true);
+      //setMemberLevel(memberLevel);
     }
-  }, []);
+  }, [num]);
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem("token");
+  //   if (token === null) {
+  //     setIsLogin(false);
+  //   } else {
+  //     console.log("로그인 성공");
+  //     console.log(token);
+  //     axios
+  //       .post("/member/selectOneMember")
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         setMemberLevel(memberLevel);
+  //       })
+  //       .catch((res) => {
+  //         console.log(res.response.status);
+  //       });
+  //     setIsLogin(true);
+  //   }
+  // }, [num]);
 
   return (
     <div className="wrap">
@@ -50,8 +60,14 @@ function App() {
             element={<NoticeMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route path="/join" element={<Join />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/mypage/*" element={<MypageMain />} />
+          <Route
+            path="/login"
+            element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
+          <Route
+            path="/mypage/*"
+            element={<MypageMain isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
           <Route path="/admin/*" element={<AdminMain />} />
           <Route path="/cart" element={<Cart isLogin={isLogin} />} />
           <Route

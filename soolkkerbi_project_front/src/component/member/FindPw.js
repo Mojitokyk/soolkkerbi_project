@@ -8,6 +8,7 @@ import Input from "../util/InputForm";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import "./modal.css";
 
 
 const style = {
@@ -39,6 +40,7 @@ export default function FindPw() {
   const [CheckPwMsg, setCheckPWMsg] = React.useState("");
 
   const [auth, setAuth]=React.useState("");
+  const member = { memberId, memberEmail};
 
 const pwCheck = () => {
   if (memberPw !== memberPwRe) {
@@ -48,19 +50,20 @@ const pwCheck = () => {
   }
 };
 
-  const find=(props)=>{
-    const member = { memberId, memberEmail};
-    const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-   if(member != ""&& emailCheck.test(memberEmail)){
+  const find=()=>{
+  
+    //const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+  // if(member != ""&& emailCheck.test(memberEmail)){
+    if(member != ""){
 
        axios
-       .post("/member/findpw", member)
+       .post("/member/findPw", member)
        .then((res) => {
         if(res.data != ""){
             console.log(res.data);
             // setMemberId(memberId);
              setResult(true);
-             
+            
 
             
 
@@ -93,10 +96,10 @@ const pwCheck = () => {
       >
         {!result ?
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <div id="modal-modal-title" variant="h6" component="h2">
           비밀번호 찾기
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </div>
+          <div id="modal-modal-description" sx={{ mt: 2 }}>
           <div className="input-wrap">
         <label htmlFor="memberId">아이디 입력</label>
         <Input
@@ -136,14 +139,15 @@ const pwCheck = () => {
                 {/* <div>
                   <input type='button' value='조회하기' name='search_id_submit'/> 
                 </div> */}
-          </Typography>
+          </div>
         </Box>
         : //비번을 조회한 경우
+        
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <div id="modal-modal-title" variant="h6" component="h2">
           이메일인증하기
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </div>
+          <div id="modal-modal-description" sx={{ mt: 2 }}>
         <div className='authButton'>
           <Button3 text="인증번호받기" onClick={this.sendEmail} />
         </div>
@@ -157,7 +161,7 @@ const pwCheck = () => {
                </div>
                <div className='authclear'><Button1 text="인증하기"  /></div>
                  
-                </Typography>
+                </div>
              </Box>
             }
       </Modal>
@@ -166,54 +170,54 @@ const pwCheck = () => {
   );
   
 }
-class Signup_page extends React.Component {
+// class Signup_page extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-        email: '',
-        //usingemail: false, // 인증번호가 맞아서 가입가능한가??
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//         email: '',
+//         //usingemail: false, // 인증번호가 맞아서 가입가능한가??
 
-        number: '',      //보내진 인증번호
-        inputnumber: '', //내가 입력한 인증번호
-                         // 이 두개가 똑같아야 한다
-    }
+//         number: '',      //보내진 인증번호
+//         inputnumber: '', //내가 입력한 인증번호
+//                          // 이 두개가 똑같아야 한다
+//     }
 
-  }
+//   }
 
 
-sendEmail(e){
-    e.preventDefault();
-    console.log(this.state.email);
-    const data = {
-        email: this.state.email           //입력한 email state값
-    }
+// sendEmail(e){
+//     e.preventDefault();
+//     console.log(this.state.email);
+//     const data = {
+//         email: this.state.email           //입력한 email state값
+//     }
 
-    fetch('http://localhost:3001/sendEmail',{
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-    })
-    .then(res => res.json())
-    .then(json => {
-        this.setState({
-            number: json.number,       //number이름의 state값에 생성한 인증번호를 받아왔따
-        })
+//     fetch('http://localhost:3001/sendEmail',{
+//         method: "post",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(data),
+//     })
+//     .then(res => res.json())
+//     .then(json => {
+//         this.setState({
+//             number: json.number,       //number이름의 state값에 생성한 인증번호를 받아왔따
+//         })
 
-        console.log(this.state.number);
-    })
+//         console.log(this.state.number);
+//     })
     
-  }
-  async onSubmit(e) {
-    e.preventDefault();
+//   }
+//   async onSubmit(e) {
+//     e.preventDefault();
   
-    if(this.state.number == this.state.inputnumber){ // 인증번호가 맞는지 검사 현재 number는 스트링 값
-        this.setState({
-            usingemail : true
-        })
+//     if(this.state.number == this.state.inputnumber){ // 인증번호가 맞는지 검사 현재 number는 스트링 값
+//         this.setState({
+//             usingemail : true
+//         })
         
-     console.log("인증번호 맞다");
+//      console.log("인증번호 맞다");
         
-  }
-  }
-}
+//   }
+//   }
+// }

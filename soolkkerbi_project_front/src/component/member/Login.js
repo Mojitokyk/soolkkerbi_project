@@ -8,24 +8,27 @@ import Swal from "sweetalert2";
 import FindId from "./FindId";
 import FindPw from "./FindPw";
 
+
 const Login = (props) => {
   const setIsLogin = props.setIsLogin;
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
+  const [memberLevel , setMemberLevel] = useState("");
   const navigate = useNavigate();
   const login = () => {
     const member = { memberId, memberPw };
     axios
       .post("/member/login", member)
       .then((res) => {
+        
         if (res.data === "실패") {
           Swal.fire("아이디/비번 확인");
         } else {
+          console.log(res.data);
           window.localStorage.setItem("token", res.data);
-          {
-            setIsLogin(true);
-            /*선생님께서 이 부분에서 isLogin을 바꾸어줘야 한다고 하심 */
-          }
+          setIsLogin(true);
+          //setMemberLevel(res.response.memberLevel);
+          //setMemberLevel(memberLevel)
           navigate("/");
         }
       })
@@ -36,7 +39,7 @@ const Login = (props) => {
   return (
     <div className="login-wrap">
       <div className="login-title">로그인</div>
-      <div className="input-wrap">
+      <div className="input-wrap login">
         <label htmlFor="memberId">아이디</label>
         <Input
           setData={setMemberId}
@@ -45,7 +48,7 @@ const Login = (props) => {
           content="memberId"
         ></Input>
       </div>
-      <div className="input-wrap">
+      <div className="input-wrap login">
         <label htmlFor="memberId">비밀번호</label>
         <Input
           setData={setMemberPw}

@@ -14,6 +14,9 @@
   font-size: 22px;
   color: black;
 }
+.cart-number {
+  margin-left: 5px;
+}
 .cart-tbl > table {
   width: 100%;
   border-spacing: 0;
@@ -34,6 +37,7 @@
   align-items: center;
   display: flex;
   position: relative;
+  cursor: pointer;
 }
 .cart-tbl td.info-td > .product-img {
   width: 40%;
