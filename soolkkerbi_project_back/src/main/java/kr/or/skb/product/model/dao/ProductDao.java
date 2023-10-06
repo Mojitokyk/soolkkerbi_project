@@ -35,5 +35,7 @@ public interface ProductDao {
 	int updatePayStock(Pay pay);
 
 	Product selectOneProduct(int productNo);
+
+	int selectLike(Product p);
 	
 }
