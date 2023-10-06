@@ -8,19 +8,20 @@ import Swal from "sweetalert2";
 import FindId from "./FindId";
 import FindPw from "./FindPw";
 
-
 const Login = (props) => {
   const setIsLogin = props.setIsLogin;
+
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
-  const [memberLevel , setMemberLevel] = useState("");
+  const [memberLevel, setMemberLevel] = useState("");
+
   const navigate = useNavigate();
+
   const login = () => {
     const member = { memberId, memberPw };
     axios
       .post("/member/login", member)
       .then((res) => {
-        
         if (res.data === "실패") {
           Swal.fire("아이디/비번 확인");
         } else {
@@ -49,11 +50,11 @@ const Login = (props) => {
         ></Input>
       </div>
       <div className="input-wrap login">
-        <label htmlFor="memberId">비밀번호</label>
+        <label htmlFor="memberPw">비밀번호</label>
         <Input
           setData={setMemberPw}
           data={memberPw}
-          type="passWord"
+          type="password"
           content="memberPw"
         ></Input>
       </div>
