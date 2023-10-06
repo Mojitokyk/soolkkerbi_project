@@ -39,3 +39,22 @@
   font-family: ns-b;
   font-size: 22px;
 }
+.myProfile-box {
+  background-color: #fafafa;
+  max-width: 250vh;
+  display: flex;
+  align-items: center;
+}
+.profile-img {
+  padding: 20px;
+}
+.profile-img > img {
+  width: 150px;
+}
+.myProfile-box > .profile-content > div:first-child {
+  font-family: ns-b;
+  font-size: 26px;
+}
+.current-content > div:first-child {
+  margin: 50px 0;
+}

@@ -40,16 +40,17 @@ span.swiper-pagination-bullet-active /*불릿 활성화 기호*/ {
 .productR-item-img {
   border-radius: 10px;
   overflow: hidden;
+  height: 445px;
 }
 .productR-item-img > img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  /* object-fit: contain; */
   border-radius: 10px;
+  transition-duration: 0.5s;
 }
 .productR-item-img > img:hover {
   transform: scale(1.02);
-  transition-duration: 0.5s;
 }
 .productR-item-info {
   text-align: center;

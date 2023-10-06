@@ -22,7 +22,7 @@ public class CartController {
 	
 	//상품리스트 -> 장바구니 담기
 	@PostMapping(value="/addCart")
-	public int addCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+	public int addCart(@RequestBody Cart cart, @RequestAttribute(required=false) String memberId) {
 		cart.setMemberId(memberId);
 		//장바구니 중복 품목 조회
 		Cart c = cartService.cartCheck(cart);
@@ -37,7 +37,7 @@ public class CartController {
 	
 	//1.장바구니 리스트 조회 2.장바구니 내 합계 금액, 품목 개수 조회
 	@PostMapping(value="/selectCart")
-	public Map selectCart(@RequestAttribute String memberId) {
+	public Map selectCart(@RequestAttribute(required=false) String memberId) {
 		Cart cart = new Cart();
 		cart.setMemberId(memberId);
 		Map map = cartService.selectCart(cart);
@@ -46,7 +46,7 @@ public class CartController {
 	
 	//선택한 상품 장바구니 삭제
 	@PostMapping(value="/deleteCart")
-	public Map deleteCart(@RequestBody List<Integer> checkList, @RequestAttribute String memberId) {
+	public Map deleteCart(@RequestBody List<Integer> checkList, @RequestAttribute(required=false) String memberId) {
 		Cart cart = new Cart();
 		cart.setMemberId(memberId);
 		int result = cartService.deleteCart(checkList);
@@ -56,7 +56,7 @@ public class CartController {
 	
 	//개별 상품 장바구니 삭제
 	@PostMapping(value="/deleteOneCart")
-	public Map deleteOneCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+	public Map deleteOneCart(@RequestBody Cart cart, @RequestAttribute(required=false) String memberId) {
 		cart.setMemberId(memberId);
 		int result = cartService.deleteOneCart(cart.getCartNo());
 		Map map = cartService.selectCart(cart);
@@ -65,7 +65,7 @@ public class CartController {
 	
 	//장바구니 수량 +1 업데이트
 	@PostMapping(value="/plusCart")
-	public Map plusCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+	public Map plusCart(@RequestBody Cart cart, @RequestAttribute(required=false) String memberId) {
 		cart.setMemberId(memberId);
 		int result = cartService.plusCart(cart.getCartNo());
 		Map map = cartService.selectCart(cart);
@@ -74,7 +74,7 @@ public class CartController {
 	
 	//장바구니 수량 -1 업데이트
 	@PostMapping(value="/removeCart")
-	public Map removeCart(@RequestBody Cart cart, @RequestAttribute String memberId) {
+	public Map removeCart(@RequestBody Cart cart, @RequestAttribute(required=false) String memberId) {
 		cart.setMemberId(memberId);
 		int result = cartService.removeCart(cart.getCartNo());
 		Map map = cartService.selectCart(cart);

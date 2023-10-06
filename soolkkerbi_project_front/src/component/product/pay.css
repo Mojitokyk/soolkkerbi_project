@@ -5,6 +5,7 @@
   width: 1200px;
   margin: 0 auto;
   padding-top: 50px;
+  overflow: hidden;
 }
 .pay-title {
   font-size: 22px;
@@ -12,10 +13,64 @@
   font-weight: bold;
   color: black;
 }
-.pay-product-info {
+.left-wrap {
+  width: 500px;
+}
+.left-wrap > div {
+  margin-bottom: 20px;
+}
+.right-wrap {
+  width: 400px;
+}
+.right-wrap > div {
+  margin-bottom: 20px;
+}
+.pay-product-info-wrap,
+.pay-member-info-wrap,
+.pay-pickup-info-wrap {
   background-color: #fff;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+.pay-product-info-wrap > h3,
+.pay-member-info-wrap > h3,
+.pay-pickup-info-wrap > h3 {
+  padding: 10px 0px;
+}
+.pay-product-info {
+  display: flex;
+  padding: 10px 0px;
+}
+.pay-product-img {
+  width: 30%;
 }
 .pay-product-img > img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
+}
+.pay-product-info-detail {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.product-detail-name,
+.product-detail-price {
+  font-weight: bold;
+}
+.product-detail-quantity {
+  font-size: 14px;
+}
+.pay-member-info {
+  padding: 10px 0px;
+}
+.pay-member-info > input,
+.pay-pickup-info-wrap > input {
+  width: 95%;
+  margin-top: 10px;
+  padding: 0.5rem;
+  padding-left: 10px;
+}
+.pay-pickup-info {
+  font-size: 14px;
 }

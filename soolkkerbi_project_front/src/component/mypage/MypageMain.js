@@ -99,8 +99,14 @@ const MypageMain = (props) => {
 const FirstPage = (props) => {
   const member = props.member;
   return (
-    <div>
-      <div>{member.memberName}님 안녕하세요</div>
+    <div className="myProfile-box">
+      <div className="profile-img">
+        <img src="/image/profile_img/default_profile.png" />
+      </div>
+      <div className="profile-content">
+        <div>{member.memberName}님 안녕하세요</div>
+        <div>누적금액 0원</div>
+      </div>
     </div>
   );
 };

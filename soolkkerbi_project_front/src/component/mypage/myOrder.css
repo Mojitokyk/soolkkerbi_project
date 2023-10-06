@@ -6,3 +6,29 @@
   text-align: center;
   padding: 5px;
 }
+.my-order-tbl > table > thead td {
+  font-family: ns-b;
+  border-bottom: 1px solid #4f4f4f;
+}
+.my-order-tbl > table > tbody > tr > td > img {
+  width: 80px;
+}
+.my-order-tbl > table > tbody td {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+  font-family: ns-r;
+}
+.my-order-tbl > table > tbody td:nth-child(4) {
+  text-align: left;
+  padding-left: 20px;
+}
+.my-order-tbl > table > tbody td:last-child {
+  padding-left: 20px;
+}
+.order-status-btn-box {
+  width: 100px;
+}
+.emptyOrder {
+  height: 500px;
+}
