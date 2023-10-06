@@ -59,6 +59,17 @@ public class PayService {
 	public int confirmIncome(Pay pay) {
 		return payDao.confirmIncome(pay);
 	}
+
+	//마이페이지 주문내역 전부 조회하기
+	public Map readOrderList(int reqPage, String memberId) {
+		int totalCount = payDao.totalCount3(memberId);
+		System.out.println("totalCount" + totalCount);
+		int numPerPage = 10;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List orderList = payDao.selectMyOrderList(pi);
+		return null;
+	}
 	
 	
 }

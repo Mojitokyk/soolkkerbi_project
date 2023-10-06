@@ -267,7 +267,6 @@ const CartPrice = (props) => {
   const commaPrice = totalCount.totalPrice
     ? totalCount.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     : "";
-  console.log(commaPrice);
   return (
     <div className="cart-price-tbl">
       <table>

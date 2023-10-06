@@ -9,18 +9,24 @@ const TakjuList = (props) => {
   const [takjuList, setTakjuList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
+  const [member, setMember] = useState({});
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("/product/takju/" + reqPage)
+      .post("/product/takju/" + reqPage, null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setTakjuList(res.data.takjuList);
         setPageInfo(res.data.pi);
+        setMember(res.data.member);
       })
       .catch((res) => {
         console.log(res.response.status);
       });
   }, [reqPage]);
-
   return (
     <div className="product-all-wrap">
       <div className="product-title">탁주</div>
@@ -31,6 +37,7 @@ const TakjuList = (props) => {
               key={"takju" + index}
               product={product}
               isLogin={isLogin}
+              member={member}
             />
           );
         })}

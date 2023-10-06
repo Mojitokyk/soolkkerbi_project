@@ -9,12 +9,19 @@ const YakjuList = (props) => {
   const [yakjuList, setYakjuList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
+  const [member, setMember] = useState({});
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("/product/yakju/" + reqPage)
+      .post("/product/yakju/" + reqPage, null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setYakjuList(res.data.yakjuList);
         setPageInfo(res.data.pi);
+        setMember(res.data.member);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -31,6 +38,7 @@ const YakjuList = (props) => {
               key={"yakju" + index}
               product={product}
               isLogin={isLogin}
+              member={member}
             />
           );
         })}

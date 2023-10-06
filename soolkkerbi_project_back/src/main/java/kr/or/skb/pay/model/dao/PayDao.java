@@ -22,4 +22,8 @@ public interface PayDao {
 
 	int confirmIncome(Pay pay);
 
+	int totalCount3(String memberId);
+
+	List selectMyOrderList(PageInfo pi);
+
 }
