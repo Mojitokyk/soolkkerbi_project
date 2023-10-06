@@ -66,6 +66,7 @@ const MypageMain = (props) => {
       <div className="mypage-content">
         <MySideMenu menus={menus} setMenus={setMenus} />
         <div className="current-content">
+          <FirstPage member={member} />
           <Routes>
             <Route
               path="order"
@@ -77,13 +78,23 @@ const MypageMain = (props) => {
             <Route path="qna/*" element={<MyQna />} />
             <Route path="info" element={<MyInfo />} />
             <Route path="quit" element={<Quit />} />
-            <Route path="/changepw" element={<MemberChangePw />}/>
+            <Route path="/changepw" element={<MemberChangePw />} />
           </Routes>
         </div>
       </div>
     </div>
   );
 };
+//마이페이지 들어오면 첫 화면
+const FirstPage = (props) => {
+  const member = props.member;
+  return (
+    <div>
+      <div>{member.memberName}님 안녕하세요</div>
+    </div>
+  );
+};
+//왼쪽메뉴탭
 const MySideMenu = (props) => {
   const menus = props.menus;
   const setMenus = props.setMenus;
