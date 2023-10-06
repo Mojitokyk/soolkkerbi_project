@@ -12,7 +12,7 @@ const Cart = (props) => {
   const [cartList, setCartList] = useState([]);
   //totalCount.productNumber : 장바구니 품목 건수
   //totalCount.totalPrice : 장바구니 총 합계 금액
-  const [totalCount, setTotalCount] = useState([]);
+  const [totalCount, setTotalCount] = useState({});
   //체크 박스 체크 시 cartNo 넣어줌
   const [checkList, setCheckList] = useState([]);
   //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
@@ -265,8 +265,9 @@ const CartPrice = (props) => {
   };
   // 천원단위 콤마붙인 가격
   const commaPrice = totalCount.totalPrice
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    ? totalCount.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : "";
+  console.log(commaPrice);
   return (
     <div className="cart-price-tbl">
       <table>
