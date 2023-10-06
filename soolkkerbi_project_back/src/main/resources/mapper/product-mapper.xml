@@ -121,5 +121,9 @@
 	<select id="selectOneProduct" resultType="product">
 		select * from product where product_no=#{productNo}
 	</select>
+	
+	<select id="selectLike" resultType="int">
+		select count(*) from favorite where favorite_product_no=#{productNo} and favorite_member_no=(select member_no from member where member_id=#{memberId})
+	</select>
 
 </mapper>

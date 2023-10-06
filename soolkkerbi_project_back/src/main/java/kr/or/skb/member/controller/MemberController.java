@@ -76,7 +76,6 @@ public class MemberController {
 //	}
 	@PostMapping(value="/getMember")
 	public Member mypage(@RequestAttribute String memberId) {
-		System.out.println(memberId);
 		return memberService.selectOneMember(memberId);
 	}
 	@PostMapping(value = "/changePhone")

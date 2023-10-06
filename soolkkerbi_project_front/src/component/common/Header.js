@@ -114,7 +114,7 @@ const HeaderMember = (props) => {
   
   return (
     <div className="member-group">
-      {isLogin === true ? (
+      {isLogin ? (
         <>
           <span className="cart">
             <Link to="/cart">술주머니</Link>

@@ -15,24 +15,23 @@ import MemberChangePw from "./MemberChangePw";
 const MypageMain = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
+  const token = window.localStorage.getItem("token");
+
   //회원 불러오기
   const [member, setMember] = useState({});
   const navigate = useNavigate();
-  /*
-  const token = window.localStorage.getItem("token");
+
   useEffect(() => {
     axios
       .post("/member/getMember", null, {
-        header: {
+        headers: {
           Authorization: "Bearer " + token,
         },
       })
       .then((res) => {
-        console.log(res.data);
         setMember(res.data);
       })
       .catch((res) => {
-        console.log(res.response.status);
         if (res.response.status === 403) {
           Swal.fire("로그인이 필요합니다.").then(() => {
             navigate("/login");
@@ -40,7 +39,7 @@ const MypageMain = (props) => {
         }
       });
   }, []);
-*/
+
   if (!isLogin) {
     Swal.fire({
       title: "로그인이 필요한 서비스 입니다.",

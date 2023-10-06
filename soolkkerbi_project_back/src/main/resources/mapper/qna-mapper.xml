@@ -48,7 +48,7 @@
 	</update>
 	
 	<!-- 댓글 작성 -->
-	<insert id="insertComment">
+	<insert id="registAnswer">
 		insert into answer values(answer_seq.nextval, #{answerQnaNo}, 62, #{answerContent}, sysdate)
 	</insert>
 	
