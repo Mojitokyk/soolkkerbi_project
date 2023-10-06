@@ -1,9 +1,14 @@
+import axios from "axios";
 import "./default.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 const Header = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
+  const [member, setMember] = useState({});
+  //const [memberLevel , setMemberLevel] =useState("");
   return (
     <header>
       <div className="main-logo">
@@ -29,6 +34,8 @@ const Notice = () => {
     </div>
   );
 };
+
+
 
 const Category = () => {
   return (
@@ -68,6 +75,35 @@ const Category = () => {
 const HeaderMember = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
+  const token = window.localStorage.getItem("token");
+  // axios
+  //   .post("/member/getMember", null, {
+  //     headers: {
+  //       Authorization: "Bearer " + token,
+  //     },
+  //   })
+  //   .then((res)=>{
+  //     console.log(res.data);
+  //     if (res.data && res.data.memberLevel === 1) {
+  //       // const adminMenu = {
+  //       //   url: "/admin",
+  //       //   text: "관리자 페이지",
+  //       //   active: false,
+  //       // };
+  //       // setMenus([...menus, adminMenu]);
+        
+  //      // setMemberLevel(1);
+
+  //     }
+  
+  //   }).catch((res)=>{
+  //     console.log(res.data);
+  //     Swal.fire({
+  //       icon : "warning",
+  //       title : "관리자로 로그인!",
+  //     });
+  //   })
+ 
 
   /*로그아웃 함수*/
   const logout = () => {
@@ -75,6 +111,7 @@ const HeaderMember = (props) => {
     setIsLogin(false);
   };
 
+  
   return (
     <div className="member-group">
       {isLogin === true ? (

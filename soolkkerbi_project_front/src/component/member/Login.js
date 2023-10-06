@@ -36,6 +36,20 @@ const Login = (props) => {
         console.log(res.data);
       });
   };
+  // const handleOnClick = () => {
+  //   login();
+  // };
+  // // 버튼에 적용할 클릭 이벤트 함수
+  
+  
+  // const handleOnKeyPress = e => {
+  //   if (e.key === 'Enter') {
+  //     handleOnClick(); // Enter 입력이 되면 클릭 이벤트 실행
+  //   }
+  // };
+  // // 인풋에 적용할 Enter 키 입력 함수
+  
+
   return (
     <div className="login-wrap">
       <div className="login-title">로그인</div>
@@ -66,7 +80,8 @@ const Login = (props) => {
         <Link to="/join">회원가입</Link>
       </div>
       <div className="login-btn-box">
-        <Button1 text="로그인" clickEvent={login}></Button1>
+        <Button1 text="로그인" clickEvent={login} ></Button1>
+        {/* 엔터클릭이벤트추가 */}
       </div>
 
       {/* <div className="search-box">

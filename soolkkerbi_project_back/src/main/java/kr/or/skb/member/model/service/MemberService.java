@@ -78,4 +78,9 @@ public class MemberService {
 		return memberDao.selectMemberPw(member);
 	}
 
+	public int changePhone(Member member) {
+		
+		return memberDao.changePhone(member);
+	}
+
 }

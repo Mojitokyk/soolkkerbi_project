@@ -30,5 +30,10 @@
 	 <select id="selectMemberPw" resultType="member">
 	  select * from member where member_id=#{memberId} and member_email=#{memberEmail}
 	 </select>
+	 
+	 <update id="changePhone">
+       update member_tbl set member_phone = #{memberPhone} where member_no=#{memberNo}
+     </update>
+
  
 </mapper>

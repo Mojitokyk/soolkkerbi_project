@@ -10,6 +10,7 @@ import MyInfo from "./MyInfo";
 import Quit from "./Quit";
 import axios from "axios";
 import Swal from "sweetalert2";
+import MemberChangePw from "./MemberChangePw";
 
 const MypageMain = (props) => {
   const isLogin = props.isLogin;
@@ -73,6 +74,7 @@ const MypageMain = (props) => {
             <Route path="qna/*" element={<MyQna />} />
             <Route path="info" element={<MyInfo />} />
             <Route path="quit" element={<Quit />} />
+            <Route path="/changepw" element={<MemberChangePw />}/>
           </Routes>
         </div>
       </div>

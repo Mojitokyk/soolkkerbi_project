@@ -23,5 +23,8 @@ public interface MemberDao {
 
 	Member selectMemberPw(Member member);
 
+	int changePhone(Member member);
+	
+
 
 }
