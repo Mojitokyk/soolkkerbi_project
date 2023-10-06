@@ -46,10 +46,10 @@ public class PayController {
 		return null;
 	}
 	//마이페이지 주문내역 조회하기
-	@PostMapping(value="/readOrderList")
-	public Map readOrderList(@RequestAttribute int reqPage, @RequestAttribute int memberNo ) {
-		System.out.println(memberNo);
+	@GetMapping(value="/readOrderList/{reqPage}")
+	public Map readOrderList(@PathVariable int reqPage, @RequestAttribute String memberId ) {
+		System.out.println(memberId);
 		System.out.println(reqPage);
-		return payService.readOrderList(reqPage, memberNo);
+		return payService.readOrderList(reqPage, memberId);
 	}
 }
