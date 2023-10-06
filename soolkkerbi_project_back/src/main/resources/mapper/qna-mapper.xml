@@ -53,7 +53,7 @@
 	</insert>
 	
 	<!-- 댓글 출력 -->
-	<select id="selectOneAnswer" resultType="String">
-		select answer_content from answer where answer_qna_no=#{answerQnaNo}
+	<select id="selectOneAnswer" resultType="answer">
+		select answer_date, answer_content from answer where answer_qna_no=#{answerQnaNo}
 	</select>
 </mapper>

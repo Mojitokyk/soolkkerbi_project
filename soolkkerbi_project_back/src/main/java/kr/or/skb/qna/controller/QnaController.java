@@ -106,9 +106,9 @@ public class QnaController {
 	
 	//댓글 출력
 	@GetMapping(value="/selectOneAnswer/{answerQnaNo}")
-	public String selectOneAnswer(@PathVariable int answerQnaNo) {
+	public List selectOneAnswer(@PathVariable int answerQnaNo) {
 		System.out.println("answerQnaNo: "+answerQnaNo);
-		String answerContent = qnaService.selectOneAnswer(answerQnaNo);
+		List answerContent = qnaService.selectOneAnswer(answerQnaNo);
 		return answerContent;
 	}
 }

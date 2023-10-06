@@ -92,7 +92,7 @@ public class QnaService {
 	}
 
 	//댓글 출력
-	public String selectOneAnswer(int answerQnaNo) {
+	public List selectOneAnswer(int answerQnaNo) {
 		return qnaDao.selectOneAnswer(answerQnaNo);
 	}
 }
