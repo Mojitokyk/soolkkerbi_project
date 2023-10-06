@@ -31,8 +31,11 @@ public interface QnaDao {
 	int updateQna(Qna q);
 
 	//댓글 작성
-	int insertComment(Answer a);
+	int registAnswer(Answer a);
 
 	//댓글 출력
-	String selectOneAnswer(int answerQnaNo);
+	List printAnswer(int answerQnaNo);
+
+	//댓글 삭제
+	int deleteAnswer(int answerNo);
 }

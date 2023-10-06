@@ -10,6 +10,7 @@ import MyInfo from "./MyInfo";
 import Quit from "./Quit";
 import axios from "axios";
 import Swal from "sweetalert2";
+import MemberChangePw from "./MemberChangePw";
 
 const MypageMain = (props) => {
   const isLogin = props.isLogin;
@@ -28,6 +29,7 @@ const MypageMain = (props) => {
         },
       })
       .then((res) => {
+        //console.log(res.data);
         setMember(res.data);
       })
       .catch((res) => {
@@ -65,13 +67,17 @@ const MypageMain = (props) => {
         <MySideMenu menus={menus} setMenus={setMenus} />
         <div className="current-content">
           <Routes>
-            <Route path="order" element={<MyOrder />} />
+            <Route
+              path="order"
+              element={<MyOrder member={member} isLogin={isLogin} />}
+            />
             <Route path="reservation" element={<MyReservation />} />
             <Route path="wish" element={<MyWishList />} />
             <Route path="review" element={<MyReivew />} />
             <Route path="qna/*" element={<MyQna />} />
             <Route path="info" element={<MyInfo />} />
             <Route path="quit" element={<Quit />} />
+            <Route path="/changepw" element={<MemberChangePw />}/>
           </Routes>
         </div>
       </div>
