@@ -12,6 +12,7 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.pay.model.vo.Pay;
+import kr.or.skb.pay.model.vo.PayListData;
 import kr.or.skb.product.model.dao.ProductDao;
 
 @Service
@@ -58,6 +59,23 @@ public class PayService {
 	@Transactional
 	public int confirmIncome(Pay pay) {
 		return payDao.confirmIncome(pay);
+	}
+
+	//마이페이지 주문내역 전부 조회하기
+	public Map readOrderList(int reqPage, String memberId) {
+		int totalCount = payDao.totalCount3(memberId);
+		System.out.println("totalCount : " + totalCount);
+		int numPerPage = 5;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		PayListData pld = new PayListData(start, end, memberId);
+		List orderList = payDao.selectMyOrderList(pld);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list",orderList);
+		map.put("pi", pi);
+		return map;
 	}
 	
 	

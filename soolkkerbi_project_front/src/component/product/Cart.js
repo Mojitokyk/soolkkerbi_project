@@ -177,7 +177,7 @@ const Cart = (props) => {
       <div className="delete-btn">
         <Button1 text="선택상품 삭제" clickEvent={deleteCart} />
       </div>
-      <CartPrice totalCount={totalCount} />
+      <CartPrice totalCount={totalCount} cartList={cartList} />
     </div>
   );
 };
@@ -197,6 +197,12 @@ const CartProduct = (props) => {
   const commaPrice = cart.cartPrice
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  //바로 구매 버튼 클릭 시 결제페이지 이동
+  const partialPay = () => {
+    navigate("/product/pay", {
+      state: { cartList: cart },
+    });
+  };
   return (
     <tr>
       <td>
@@ -208,8 +214,8 @@ const CartProduct = (props) => {
           checked={checkList.includes(cart.cartNo) ? true : false}
         />
       </td>
-      <td className="info-td" onClick={productView}>
-        <div className="product-img">
+      <td className="info-td">
+        <div className="product-img" onClick={productView}>
           {cart.productFilepath === null ? (
             <img src="/image/product_img/no_image.png" />
           ) : (
@@ -250,7 +256,7 @@ const CartProduct = (props) => {
       <td>
         <span className="product-price">{commaPrice}원</span>
         <div className="cart-btn">
-          <Button1 text="바로 구매" />
+          <Button1 text="바로 구매" clickEvent={partialPay} />
         </div>
       </td>
     </tr>
@@ -259,15 +265,17 @@ const CartProduct = (props) => {
 
 const CartPrice = (props) => {
   const totalCount = props.totalCount;
+  const cartList = props.cartList;
   const navigate = useNavigate();
   const allPay = () => {
-    navigate("/product/pay");
+    navigate("/product/pay", {
+      state: { cartList: cartList },
+    });
   };
   // 천원단위 콤마붙인 가격
   const commaPrice = totalCount.totalPrice
     ? totalCount.totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     : "";
-  console.log(commaPrice);
   return (
     <div className="cart-price-tbl">
       <table>

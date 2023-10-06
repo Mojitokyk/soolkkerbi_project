@@ -36,7 +36,8 @@
 	            PRODUCT_STOCK,
 	            PRODUCT_DISCOUNT,
 	            PRODUCT_FILEPATH,
-	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE,
+	            (SELECT COUNT(*) FROM FAVORITE WHERE FAVORITE_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_ID=#{memberId}) and FAVORITE_PRODUCT_NO = PRODUCT_NO) AS IS_LIKE
 	        FROM PRODUCT
 	        WHERE PRODUCT_CASE = 1
 	        ORDER BY 1 DESC)P)
@@ -57,7 +58,8 @@
 	            PRODUCT_STOCK,
 	            PRODUCT_DISCOUNT,
 	            PRODUCT_FILEPATH,
-	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE,
+	            (SELECT COUNT(*) FROM FAVORITE WHERE FAVORITE_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_ID=#{memberId}) and FAVORITE_PRODUCT_NO = PRODUCT_NO) AS IS_LIKE
 	        FROM PRODUCT
 	        WHERE PRODUCT_CASE = 2
 	        ORDER BY 1 DESC)P)
@@ -78,7 +80,8 @@
 	            PRODUCT_STOCK,
 	            PRODUCT_DISCOUNT,
 	            PRODUCT_FILEPATH,
-	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE,
+	            (SELECT COUNT(*) FROM FAVORITE WHERE FAVORITE_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_ID=#{memberId}) and FAVORITE_PRODUCT_NO = PRODUCT_NO) AS IS_LIKE
 	        FROM PRODUCT
 	        WHERE PRODUCT_CASE = 3
 	        ORDER BY 1 DESC)P)
@@ -99,7 +102,8 @@
 	            PRODUCT_STOCK,
 	            PRODUCT_DISCOUNT,
 	            PRODUCT_FILEPATH,
-	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE
+	            (SELECT AVG(REVIEW_RATE) FROM REVIEW WHERE REVIEW_PRODUCT_NO=PRODUCT_NO) AS STAR_RATE,
+	            (SELECT COUNT(*) FROM FAVORITE WHERE FAVORITE_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_ID=#{memberId}) and FAVORITE_PRODUCT_NO = PRODUCT_NO) AS IS_LIKE
 	        FROM PRODUCT
 	        WHERE PRODUCT_CASE = 4
 	        ORDER BY 1 DESC)P)
@@ -121,9 +125,14 @@
 	<select id="selectOneProduct" resultType="product">
 		select * from product where product_no=#{productNo}
 	</select>
-	
+	<!-- 
+	select l.*,
+		    (select count(*) from favorite where favorite_member_no=(select member_no from member where member_id=#{memberId}) and favorite_product_no=product_no)as is_like
+		from (select * from product where product_no=#{productNo})l
+	 -->
+	<!-- 
 	<select id="selectLike" resultType="int">
 		select count(*) from favorite where favorite_product_no=#{productNo} and favorite_member_no=(select member_no from member where member_id=#{memberId})
 	</select>
-
+	 -->
 </mapper>

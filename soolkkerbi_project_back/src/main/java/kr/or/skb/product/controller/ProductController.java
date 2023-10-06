@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.skb.FileUtil;
+import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.product.model.service.ProductService;
 import kr.or.skb.product.model.vo.Product;
 
@@ -54,42 +55,46 @@ public class ProductController {
 	}
 	
 	//탁주 리스트 조회
-	@GetMapping(value="/takju/{reqPage}")
-	public Map takjuList(@PathVariable int reqPage) {
-		Map map = productService.takjuList(reqPage);
+	@PostMapping(value="/takju/{reqPage}")
+	public Map takjuList(@PathVariable int reqPage, @RequestAttribute(required=false) String memberId) {
+		Map map = productService.takjuList(reqPage, memberId);
 		return map;
 	}
 	
 	//약,청주 리스트 조회
-	@GetMapping(value="/yakju/{reqPage}")
-	public Map yakjuList(@PathVariable int reqPage) {
-		Map map = productService.yakjuList(reqPage);
+	@PostMapping(value="/yakju/{reqPage}")
+	public Map yakjuList(@PathVariable int reqPage, @RequestAttribute(required=false) String memberId) {
+		Map map = productService.yakjuList(reqPage, memberId);
 		return map;
 	}
 	
 	//과실주 리스트 조회
-	@GetMapping(value="/fruit/{reqPage}")
-	public Map fruitList(@PathVariable int reqPage) {
-		Map map = productService.fruitList(reqPage);
+	@PostMapping(value="/fruit/{reqPage}")
+	public Map fruitList(@PathVariable int reqPage, @RequestAttribute(required=false) String memberId) {
+		Map map = productService.fruitList(reqPage, memberId);
 		return map;
 	}
 	
 	//증류주 리스트 조회
-	@GetMapping(value="/spirits/{reqPage}")
-	public Map spiritsList(@PathVariable int reqPage) {
-		Map map = productService.spiritsList(reqPage);
+	@PostMapping(value="/spirits/{reqPage}")
+	public Map spiritsList(@PathVariable int reqPage, @RequestAttribute(required=false) String memberId) {
+		Map map = productService.spiritsList(reqPage, memberId);
 		return map;
 	}
 	
 	//상품리스트 좋아요
 	@PostMapping(value="/like")
-	public int Like(@RequestBody Product p, @RequestAttribute String memberId) {
+	public int insertLike(@RequestBody Product p, @RequestAttribute String memberId) {
 		p.setMemberId(memberId);
-		int result=0;
-		result = productService.selectLike(p);
-		return result;
+		return productService.insertLike(p);
 	}
 	
+	//상품리스트 좋아요 취소
+	@PostMapping(value="/disLike")
+	public int deleteLike(@RequestBody Product p, @RequestAttribute String memberId) {
+		p.setMemberId(memberId);
+		return productService.deleteLike(p);
+	}
 	
 	@GetMapping(value = "/readAllProduct/{reqPage}")
 	public Map readAllProduct(@PathVariable int reqPage) {

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import kr.or.skb.PageInfo;
 import kr.or.skb.pay.model.vo.Pay;
 import kr.or.skb.product.model.vo.Product;
+import kr.or.skb.product.model.vo.ProductListData;
 
 @Mapper
 public interface ProductDao {
@@ -19,23 +20,24 @@ public interface ProductDao {
 
 	int insertProduct(Product p);
 
-	List selectTakjuList(PageInfo pi);
+	List selectTakjuList(ProductListData pld);
 
-	List selectYakjuList(PageInfo pi);
+	List selectYakjuList(ProductListData pld);
 
-	List selectFruitList(PageInfo pi);
+	List selectFruitList(ProductListData pld);
 
-	List selectSpiritsList(PageInfo pi);
+	List selectSpiritsList(ProductListData pld);
 
 	int insertLike(Product p);
 
 	int deleteLike(Product p);
-
 
 	int updatePayStock(Pay pay);
 
 	Product selectOneProduct(int productNo);
 
 	int selectLike(Product p);
+
+	//Product selectOneProduct(Product p);
 	
 }

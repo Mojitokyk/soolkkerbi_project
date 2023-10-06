@@ -7,14 +7,15 @@ import Swal from "sweetalert2";
 const ProductItem = (props) => {
   const product = props.product;
   const isLogin = props.isLogin;
+  const member = props.member;
   const navigate = useNavigate();
 
   //좋아요 함수
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(product.isLike);
   const token = window.localStorage.getItem("token");
   const changeLike = () => {
     if (isLogin) {
-      if (!like) {
+      if (like === 0) {
         axios
           .post(
             "/product/like",
@@ -27,9 +28,26 @@ const ProductItem = (props) => {
           )
           .then((res) => {
             if (res.data === 1) {
-              setLike(true);
-            } else if (res.data === 2) {
-              setLike(false);
+              setLike(1);
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      } else {
+        axios
+          .post(
+            "/product/disLike",
+            { productNo: product.productNo },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              setLike(0);
             }
           })
           .catch((res) => {
@@ -48,7 +66,7 @@ const ProductItem = (props) => {
   //상품 상세페이지로 이동하는 함수(productNo 전달)
   const productView = () => {
     navigate("/product/view", {
-      state: { productNo: product.productNo, like: like },
+      state: { productNo: product.productNo, like: like, member: member },
     });
   };
   const addCart = () => {
@@ -108,7 +126,11 @@ const ProductItem = (props) => {
           <img src={"/product/" + product.productFilepath} />
         )}
       </div>
-      <Likes like={like} changeLike={changeLike} />
+      {!member || (member && member.memberLevel !== 1) ? (
+        <Likes like={like} changeLike={changeLike} />
+      ) : (
+        ""
+      )}
       <div className="product-item-info">
         <div className="product-item-name">{product.productName}</div>
         <div className="product-item-price">
@@ -122,12 +144,16 @@ const ProductItem = (props) => {
           </div>
 
           <div className="product-item-cart">
-            {product.productStock === 0 ? (
-              <span className="material-icons soldout">shopping_cart</span>
+            {!member || (member && member.memberLevel !== 1) ? (
+              product.productStock === 0 ? (
+                <span className="material-icons soldout">shopping_cart</span>
+              ) : (
+                <span className="material-icons" onClick={addCart}>
+                  shopping_cart
+                </span>
+              )
             ) : (
-              <span className="material-icons" onClick={addCart}>
-                shopping_cart
-              </span>
+              ""
             )}
           </div>
         </div>

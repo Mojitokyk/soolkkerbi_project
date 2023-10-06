@@ -29,6 +29,7 @@ const MypageMain = (props) => {
         },
       })
       .then((res) => {
+        //console.log(res.data);
         setMember(res.data);
       })
       .catch((res) => {
@@ -51,7 +52,7 @@ const MypageMain = (props) => {
   }
 
   const [menus, setMenus] = useState([
-    { url: "order", text: "주문 내역", active: false },
+    { url: "order", text: "주문 내역", active: true },
     { url: "reservation", text: "예약 내역", active: false },
     { url: "wish", text: "관심 상품", active: false },
     { url: "review", text: "작성한 후기", active: false },
@@ -59,29 +60,65 @@ const MypageMain = (props) => {
     { url: "info", text: "정보 수정", active: false },
     { url: "quit", text: "회원 탈퇴", active: false },
   ]);
+
   return (
     <div className="mypage-wrap">
       <div className="mypage-title">마이페이지</div>
       <div className="mypage-content">
         <MySideMenu menus={menus} setMenus={setMenus} />
         <div className="current-content">
+          <FirstPage member={member} />
           <Routes>
-            <Route path="order" element={<MyOrder />} />
+            <Route
+              path="order"
+              element={<MyOrder member={member} isLogin={isLogin} />}
+            />
             <Route path="reservation" element={<MyReservation />} />
             <Route path="wish" element={<MyWishList />} />
             <Route path="review" element={<MyReivew />} />
             <Route path="qna/*" element={<MyQna />} />
-            <Route path="info" element={<MyInfo isLogin={isLogin} setMember={setMember}
+
+            {/* <Route path="info" element={<MyInfo isLogin={isLogin} setMember={setMember}
                   setIsLogin={setIsLogin} member={member}/>} />
             <Route path="quit" element={<Quit />} />
             <Route path="changepw" element={<MemberChangePw isLogin={isLogin} setMember={setMember}
-                  setIsLogin={setIsLogin} member={member}/>}/>
+                  setIsLogin={setIsLogin} member={member}/>}/> */}
+
+            <Route
+              path="info"
+              element={
+                <MyInfo
+                  member={member}
+                  setMember={setMember}
+                  setIsLogin={setIsLogin}
+                />
+              }
+            />
+            <Route path="quit" element={<Quit />} />
+            <Route path="/changepw" element={<MemberChangePw />} />
+
           </Routes>
         </div>
       </div>
     </div>
   );
 };
+//마이페이지 들어오면 첫 화면
+const FirstPage = (props) => {
+  const member = props.member;
+  return (
+    <div className="myProfile-box">
+      <div className="profile-img">
+        <img src="/image/profile_img/default_profile.png" />
+      </div>
+      <div className="profile-content">
+        <div>{member.memberName}님 안녕하세요</div>
+        <div>누적금액 0원</div>
+      </div>
+    </div>
+  );
+};
+//왼쪽메뉴탭
 const MySideMenu = (props) => {
   const menus = props.menus;
   const setMenus = props.setMenus;

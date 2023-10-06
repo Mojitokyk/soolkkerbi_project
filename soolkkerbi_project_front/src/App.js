@@ -15,8 +15,7 @@ import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [num, setNum] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
@@ -24,29 +23,8 @@ function App() {
       setIsLogin(false);
     } else {
       setIsLogin(true);
-      //setMemberLevel(memberLevel);
     }
-  }, [num]);
-
-  // useEffect(() => {
-  //   const token = window.localStorage.getItem("token");
-  //   if (token === null) {
-  //     setIsLogin(false);
-  //   } else {
-  //     console.log("로그인 성공");
-  //     console.log(token);
-  //     axios
-  //       .post("/member/selectOneMember")
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         setMemberLevel(memberLevel);
-  //       })
-  //       .catch((res) => {
-  //         console.log(res.response.status);
-  //       });
-  //     setIsLogin(true);
-  //   }
-  // }, [num]);
+  });
 
   return (
     <div className="wrap">
@@ -69,7 +47,10 @@ function App() {
             path="/mypage/*"
             element={<MypageMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
-          <Route path="/admin/*" element={<AdminMain />} />
+          <Route
+            path="/admin/*"
+            element={<AdminMain isLogin={isLogin} setIsLogin={setIsLogin} />}
+          />
           <Route path="/cart" element={<Cart isLogin={isLogin} />} />
           <Route
             path="/product/*"

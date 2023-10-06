@@ -50,10 +50,22 @@
 	<!-- 댓글 작성 -->
 	<insert id="registAnswer">
 		insert into answer values(answer_seq.nextval, #{answerQnaNo}, 62, #{answerContent}, sysdate)
+		<selectKey resultType="int" order="AFTER" keyProperty="answerNo"><!-- order: 위 쿼리를 수행한 후 수행 / selectKey를 통해 나온 결과물이 'board'의 'boardNo'에 들어간다. key:value -->
+			select max(answer_no) from answer <!-- board_no 중 제일 큰 숫자 / 방금 넣은 board_no -->
+		</selectKey>
 	</insert>
+	<!-- 댓글 작성 후 가장 최근의 댓글을 조회 -->
+	<select id="printRecentAnswer" resultType="answer">
+		select answer_no, answer_date, answer_content from answer where answer_no=#{answerNo}
+	</select>
 	
 	<!-- 댓글 출력 -->
-	<select id="selectOneAnswer" resultType="String">
-		select answer_content from answer where answer_qna_no=#{answerQnaNo}
+	<select id="printAnswer" resultType="answer">
+		select answer_no, answer_date, answer_content from answer where answer_qna_no=#{answerQnaNo}
 	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteAnswer">
+		delete from answer where answer_no=#{answerNo}
+	</delete>
 </mapper>

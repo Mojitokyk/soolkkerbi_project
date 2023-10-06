@@ -36,4 +36,30 @@
 	<update id="confirmIncome">
 		update pay set pay_status = 2 where pay_no = #{payNo}
 	</update>
+	
+	<select id="totalCount3" resultType="int">
+		select count(*) from 
+		(select * from pay join member on (pay_member_no = member_no) where member_id = #{memberId})
+	</select>
+	
+	<select id="selectMyOrderList" resultType="pay">
+		select * from
+		    (select rownum as rnum, o.* from(
+		        (select 
+		            pay_member_no,
+		            member_id as pay_member_id,
+		            to_char(pay_date,'yyyy.mm.dd') as pay_date,
+		            pay_string_no,
+		            product_name as pay_product_name,
+		            pay_stock,
+		            product_price as pay_price,
+		            pay_status,
+		            product_filepath as pay_product_filepath
+		        from pay
+		        join product on (pay_product_no = product_no)
+		        join member on (pay_member_no = member_no)
+		        order by pay_date desc )o )
+		        where pay_member_id=#{memberId})
+		where rnum between #{start} and #{end}
+	</select>
 </mapper>
