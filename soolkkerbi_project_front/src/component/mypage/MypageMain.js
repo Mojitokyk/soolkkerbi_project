@@ -28,6 +28,7 @@ const MypageMain = (props) => {
         },
       })
       .then((res) => {
+        //console.log(res.data);
         setMember(res.data);
       })
       .catch((res) => {
@@ -65,7 +66,10 @@ const MypageMain = (props) => {
         <MySideMenu menus={menus} setMenus={setMenus} />
         <div className="current-content">
           <Routes>
-            <Route path="order" element={<MyOrder />} />
+            <Route
+              path="order"
+              element={<MyOrder member={member} isLogin={isLogin} />}
+            />
             <Route path="reservation" element={<MyReservation />} />
             <Route path="wish" element={<MyWishList />} />
             <Route path="review" element={<MyReivew />} />
