@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button1 } from "../util/Buttons";
 import Swal from "sweetalert2";
+import MyQnaAnswer from "./MyQnaAnswer";
 
 const MyQnaView = (props) => {
   const isLogin = props.isLogin;
@@ -87,7 +88,7 @@ const MyQnaView = (props) => {
         */}
         {/* <RegistQnaComment />
         <PrintQnaComment /> */}
-        <QnaAnswer />
+        <MyQnaAnswer qnaNo={qnaNo} />
         <div className="qna-view-btn">
           <Button1 text="목록으로" clickEvent={toList} />
           <Button1 text="수정" clickEvent={modifyQna} />
