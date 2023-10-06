@@ -48,18 +48,32 @@ const MyOrder = (props) => {
             </tr>
           </thead>
           <tbody>
-            {orderList.map((order, index) => {
-              return <OrderList key={"order" + index} order={order} />;
-            })}
+            {orderList.length > 0 ? (
+              orderList.map((order, index) => {
+                return <OrderList key={"order" + index} order={order} />;
+              })
+            ) : (
+              <>
+                <tr>
+                  <td colSpan={8} className="emptyOrder">
+                    주문내역이 없습니다
+                  </td>
+                </tr>
+              </>
+            )}
           </tbody>
         </table>
       </div>
       <div>
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-        />
+        {orderList.length > 0 ? (
+          <Pagination
+            reqPage={reqPage}
+            setReqPage={setReqPage}
+            pageInfo={pageInfo}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

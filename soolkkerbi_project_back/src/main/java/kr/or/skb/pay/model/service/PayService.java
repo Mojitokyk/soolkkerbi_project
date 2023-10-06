@@ -12,6 +12,7 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.pay.model.vo.Pay;
+import kr.or.skb.pay.model.vo.PayListData;
 import kr.or.skb.product.model.dao.ProductDao;
 
 @Service
@@ -67,7 +68,10 @@ public class PayService {
 		int numPerPage = 5;
 		int pageNaviSize = 5;
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List orderList = payDao.selectMyOrderList(pi);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		PayListData pld = new PayListData(start, end, memberId);
+		List orderList = payDao.selectMyOrderList(pld);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list",orderList);
 		map.put("pi", pi);
