@@ -4,14 +4,18 @@ import axios from "axios";
 const MyOrder = (props) => {
   const isLogin = props.isLogin;
   const member = props.member;
+
   const [orderList, setOrderList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
+
   const token = window.localStorage.getItem("token");
+
   console.log(member.memberNo);
+
   useEffect(() => {
     axios
-      .post("/pay/readOrderList", reqPage, {
+      .get("/pay/readOrderList/" + reqPage, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -25,6 +29,7 @@ const MyOrder = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage]);
+
   return (
     <div className="mypage-content-wrap">
       <div className="mypage-content-title">주문내역</div>

@@ -61,8 +61,8 @@ public class PayService {
 	}
 
 	//마이페이지 주문내역 전부 조회하기
-	public Map readOrderList(int reqPage, int memberNo) {
-		int totalCount = payDao.totalCount3(memberNo);
+	public Map readOrderList(int reqPage, String memberId) {
+		int totalCount = payDao.totalCount3(memberId);
 		System.out.println("totalCount" + totalCount);
 		int numPerPage = 10;
 		int pageNaviSize = 5;

@@ -38,7 +38,8 @@
 	</update>
 	
 	<select id="totalCount3" resultType="int">
-		select count(*) from pay where pay_member_no=#{memberNo}
+		select count(*) from 
+		(select * from pay join member on (pay_member_no = member_no) where member_id = #{memberId})
 	</select>
 	
 	<select id="selectMyOrderList" resultType="pay">
@@ -57,6 +58,6 @@
 		        join product on (pay_product_no = product_no)
 		        join member on (pay_member_no = member_no)
 		        order by pay_date desc )o ))
-		where rnum between #{start} and #{end};
+		where rnum between #{start} and #{end}
 	</select>
 </mapper>
