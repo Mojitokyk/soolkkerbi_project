@@ -34,5 +34,8 @@ public interface QnaDao {
 	int registAnswer(Answer a);
 
 	//댓글 출력
-	List selectOneAnswer(int answerQnaNo);
+	List printAnswer(int answerQnaNo);
+
+	//댓글 삭제
+	int deleteAnswer(int answerNo);
 }

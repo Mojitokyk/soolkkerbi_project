@@ -3,6 +3,7 @@ import { Button1 } from "../util/Buttons";
 import "./myQna.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MyQnaAnswer = (props) => {
   const answerQnaNo = props.qnaNo; //현재 문의사항 번호
@@ -33,7 +34,7 @@ const RegistAnswer = (props) => {
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
 
-  //answerContent 입력후 DB연동
+  //answerContent 입력후 DB연동 - memberNo를 보내지 않는 문제가 남아있음
   const registAnswer = () => {
     // if (qnaComment !== "" && memberLevel === 1) {
     if (answerContent !== "") {
@@ -105,7 +106,7 @@ const PrintAnswer = (props) => {
 
   useEffect(() => {
     axios
-      .get("/qna/selectOneAnswer/" + answerQnaNo)
+      .get("/qna/printAnswer/" + answerQnaNo)
       .then((res) => {
         console.log(res.data);
         setAnswerList(res.data);
@@ -114,6 +115,32 @@ const PrintAnswer = (props) => {
         console.log(res.response.status);
       });
   }, []);
+
+  //답변 수정 함수
+  const modifyAnswer = (answerNo) => {
+    console.log("답변 수정 함수 클릭");
+    console.log(answerNo);
+  };
+
+  //답변 삭제 함수
+  const deleteAnswer = (answerNo, index) => {
+    console.log("답변 삭제 함수 클릭");
+    console.log(answerNo);
+    console.log(index);
+
+    axios
+      .get("/qna/deleteAnswer/" + answerNo)
+      .then((res) => {
+        console.log(res.data);
+
+        const newArr = [...answerList];
+        newArr.splice(index, 1);
+        setAnswerList(newArr);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
 
   return (
     <div className="qnaAnswer-list">
@@ -131,10 +158,20 @@ const PrintAnswer = (props) => {
                     {answer.answerContent}
                   </p>
                   <p className="qnaComment-link">
-                    <a>수정</a>
-                    {/* <a clickEvent={modifyQnaComment}>수정</a> */}
-                    <a>삭제</a>
-                    {/* <a clickEvent={deleteQnaComment}>삭제</a> */}
+                    <span
+                      onClick={() => {
+                        modifyAnswer(answer.answerNo);
+                      }}
+                    >
+                      수정
+                    </span>
+                    <span
+                      onClick={() => {
+                        deleteAnswer(answer.answerNo, index);
+                      }}
+                    >
+                      삭제
+                    </span>
                   </p>
                 </li>
               </ul>
