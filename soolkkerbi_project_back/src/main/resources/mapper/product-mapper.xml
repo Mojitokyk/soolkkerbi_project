@@ -125,9 +125,14 @@
 	<select id="selectOneProduct" resultType="product">
 		select * from product where product_no=#{productNo}
 	</select>
-	
+	<!-- 
+	select l.*,
+		    (select count(*) from favorite where favorite_member_no=(select member_no from member where member_id=#{memberId}) and favorite_product_no=product_no)as is_like
+		from (select * from product where product_no=#{productNo})l
+	 -->
+	<!-- 
 	<select id="selectLike" resultType="int">
 		select count(*) from favorite where favorite_product_no=#{productNo} and favorite_member_no=(select member_no from member where member_id=#{memberId})
 	</select>
-
+	 -->
 </mapper>

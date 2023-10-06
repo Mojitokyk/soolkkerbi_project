@@ -66,7 +66,7 @@ const ProductItem = (props) => {
   //상품 상세페이지로 이동하는 함수(productNo 전달)
   const productView = () => {
     navigate("/product/view", {
-      state: { productNo: product.productNo, like: like },
+      state: { productNo: product.productNo, like: like, member: member },
     });
   };
   const addCart = () => {

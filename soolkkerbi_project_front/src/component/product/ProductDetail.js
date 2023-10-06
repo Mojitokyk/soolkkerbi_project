@@ -10,16 +10,22 @@ const ProductDetail = (props) => {
   const isLogin = props.isLogin;
   const location = useLocation();
   const productNo = location.state.productNo;
+  const likes = location.state.like;
+  console.log(likes);
+  const member = location.state.member;
+  console.log(member);
   const [product, setProduct] = useState([]);
-  //사용자를 알기위한 state생성
-  //const [member, setMember] = useState(null);
 
   //상세페이지에 필요한 데이터 가져오기
   useEffect(() => {
     axios
-      .get("/product/view/" + productNo)
+      .get("/product/view/" + productNo, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
-        //console.log(res.data);
+        console.log(res.data);
         setProduct(res.data);
       })
       .catch((res) => {
@@ -65,14 +71,13 @@ const ProductDetail = (props) => {
   const backPage = () => {
     navigate(-1);
   };
-  const prevLike = location.state.like;
-  //console.log(prevLike);
+
   //좋아요 함수
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(product.isLike);
   const token = window.localStorage.getItem("token");
   const changeLike = () => {
     if (isLogin) {
-      if (!like) {
+      if (like === 0) {
         axios
           .post(
             "/product/like",
@@ -85,7 +90,7 @@ const ProductDetail = (props) => {
           )
           .then((res) => {
             if (res.data === 1) {
-              setLike(true);
+              setLike(1);
             }
           })
           .catch((res) => {
@@ -104,7 +109,7 @@ const ProductDetail = (props) => {
           )
           .then((res) => {
             if (res.data === 1) {
-              setLike(false);
+              setLike(0);
             }
           })
           .catch((res) => {
@@ -188,19 +193,26 @@ const ProductDetail = (props) => {
           <div className="product-order-box">
             <Button2 text="구매하기" clickEvent={order} />
             <Button3 text="장바구니" clickEvent={cart} />
-            <div className="productDetail-like-btn" onClick={changeLike}>
-              {like ? (
-                <span className="material-icons">favorite</span>
-              ) : (
-                <span className="material-icons">favorite_border</span>
-              )}
-            </div>
+            <Likes like={likes} changeLike={changeLike} />
           </div>
         </div>
       </div>
       <div className="product-detail-tab">
         <Tab1 product={product} />
       </div>
+    </div>
+  );
+};
+
+const Likes = (props) => {
+  const like = props.like;
+  const changeLike = props.changeLike;
+  console.log(like);
+  return (
+    <div className="productDetail-like-btn" onClick={changeLike}>
+      <span className="material-icons">
+        {like ? "favorite" : "favorite_border"}
+      </span>
     </div>
   );
 };
