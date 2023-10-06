@@ -193,6 +193,10 @@ const CartProduct = (props) => {
   const productView = () => {
     navigate("/product/view", { state: { productNo: cart.cartProductNo } });
   };
+  // 천원단위 콤마붙인 가격
+  const commaPrice = cart.cartPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <tr>
       <td>
@@ -244,7 +248,7 @@ const CartProduct = (props) => {
         </div>
       </td>
       <td>
-        <span className="product-price">{cart.cartPrice}원</span>
+        <span className="product-price">{commaPrice}원</span>
         <div className="cart-btn">
           <Button1 text="바로 구매" />
         </div>
@@ -259,6 +263,10 @@ const CartPrice = (props) => {
   const allPay = () => {
     navigate("/product/pay");
   };
+  // 천원단위 콤마붙인 가격
+  const commaPrice = totalCount.totalPrice
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <div className="cart-price-tbl">
       <table>
@@ -274,7 +282,7 @@ const CartPrice = (props) => {
           <tr>
             <td>
               <p>총 주문금액</p>
-              <p className="cart-price">{totalCount.totalPrice}원</p>
+              <p className="cart-price">{commaPrice}원</p>
             </td>
           </tr>
         </tbody>
