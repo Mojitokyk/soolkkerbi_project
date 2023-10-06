@@ -13,11 +13,11 @@ import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
-import axios from "axios";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
   const [num, setNum] = useState(0);
+
   useEffect(() => {
     const token = window.localStorage.getItem("token");
     if (token === null) {
@@ -27,6 +27,7 @@ function App() {
       //setMemberLevel(memberLevel);
     }
   }, [num]);
+
   // useEffect(() => {
   //   const token = window.localStorage.getItem("token");
   //   if (token === null) {
