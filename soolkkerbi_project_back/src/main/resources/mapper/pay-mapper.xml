@@ -48,12 +48,13 @@
 		        (select 
 		            pay_member_no,
 		            member_id as pay_member_id,
-		            pay_date,
+		            to_char(pay_date,'yyyy.mm.dd') as pay_date,
 		            pay_string_no,
-		            product_name,
+		            product_name as pay_product_name,
 		            pay_stock,
 		            product_price as pay_price,
-		            pay_status
+		            pay_status,
+		            product_filepath as pay_product_filepath
 		        from pay
 		        join product on (pay_product_no = product_no)
 		        join member on (pay_member_no = member_no)

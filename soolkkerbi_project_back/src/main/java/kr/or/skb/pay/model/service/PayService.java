@@ -63,12 +63,15 @@ public class PayService {
 	//마이페이지 주문내역 전부 조회하기
 	public Map readOrderList(int reqPage, String memberId) {
 		int totalCount = payDao.totalCount3(memberId);
-		System.out.println("totalCount" + totalCount);
-		int numPerPage = 10;
+		System.out.println("totalCount : " + totalCount);
+		int numPerPage = 5;
 		int pageNaviSize = 5;
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		List orderList = payDao.selectMyOrderList(pi);
-		return null;
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list",orderList);
+		map.put("pi", pi);
+		return map;
 	}
 	
 	
