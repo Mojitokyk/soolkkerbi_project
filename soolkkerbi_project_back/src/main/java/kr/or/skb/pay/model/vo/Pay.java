@@ -22,4 +22,5 @@ public class Pay {
 	private String payProductName;
 	private int payStock;
 	private int payPrice;
+	private String payProductFilepath;
 }
