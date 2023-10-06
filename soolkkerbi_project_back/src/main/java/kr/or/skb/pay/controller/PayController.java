@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,5 +44,12 @@ public class PayController {
 	@PostMapping(value="/readAllIncome")
 	public List readAllIncome() {
 		return null;
+	}
+	//마이페이지 주문내역 조회하기
+	@PostMapping(value="/readOrderList")
+	public Map readOrderList(@RequestAttribute int reqPage, @RequestAttribute int memberNo ) {
+		System.out.println(memberNo);
+		System.out.println(reqPage);
+		return payService.readOrderList(reqPage, memberNo);
 	}
 }
