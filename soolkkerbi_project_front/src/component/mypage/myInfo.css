@@ -1,0 +1,34 @@
+.mypage-info-tbl {
+    width: 100%;
+    border-spacing: 0;
+    padding: 10px;
+  }
+  .mypage-info-tbl > tbody > tr > td:first-child {
+    width: 30%;
+  }
+  .mypage-info-tbl > tbody > tr > td {
+    padding: 20px 10px;
+  }
+  #member-phone {
+    padding: 0;
+  }
+  #member-phone > div {
+    display: flex;
+    justify-content: space-between;
+  }
+  #member-phone > div > input {
+    width: 60%;
+  }
+  #member-phone > div > button {
+    width: 30%;
+  }
+  .changepw-btn{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  .changepw-btn >button{
+   width: 50%;
+   box-sizing: content-box;
+   
+  }

@@ -7,12 +7,10 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 
 const MemberChangePw = (props) => {
-  const [IsPwauth, setIsPwauth] = useState(false); //비번 인증이 완료되었는지 확인하기위한
+  const [IsPwauth, setIsPwauth] = useState(false); 
   const [currPw, setCurrPw] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
-  //const [CheckPwMsg, setCheckPWMsg] = useState("");
-  //const member = props.member;
   const token = window.localStorage.getItem("token");
   const pwCheck = () => {
     axios
@@ -55,7 +53,7 @@ const MemberChangePw = (props) => {
             setIsPwauth(false);
             setCurrPw("");
             setMemberPw("");
-            setMemberPwRe(""); //성공시 처음 상태로 초기화
+            setMemberPwRe("");
           } else {
             Swal.fire({
               icon: "warning",
@@ -102,7 +100,7 @@ const MemberChangePw = (props) => {
               </div>
             </div>
             <div className="change-btn-box">
-              <Button1 text="변경하기" clickEvent={changePw} />
+              <Button2 text="변경하기" clickEvent={changePw} />
             </div>
           </>
         ) : (
@@ -115,7 +113,7 @@ const MemberChangePw = (props) => {
                 setData={setCurrPw}
                 content="currPw"
               />
-              <Button1 text="입력" clickEvent={pwCheck} />
+              <Button2 text="입력" clickEvent={pwCheck} />
             </div>
           </div>
         )}

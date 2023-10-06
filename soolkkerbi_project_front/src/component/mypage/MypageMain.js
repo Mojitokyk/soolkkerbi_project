@@ -71,9 +71,11 @@ const MypageMain = (props) => {
             <Route path="wish" element={<MyWishList />} />
             <Route path="review" element={<MyReivew />} />
             <Route path="qna/*" element={<MyQna />} />
-            <Route path="info" element={<MyInfo />} />
+            <Route path="info" element={<MyInfo isLogin={isLogin} setMember={setMember}
+                  setIsLogin={setIsLogin} member={member}/>} />
             <Route path="quit" element={<Quit />} />
-            <Route path="/changepw" element={<MemberChangePw />}/>
+            <Route path="changepw" element={<MemberChangePw isLogin={isLogin} setMember={setMember}
+                  setIsLogin={setIsLogin} member={member}/>}/>
           </Routes>
         </div>
       </div>

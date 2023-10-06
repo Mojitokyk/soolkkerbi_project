@@ -32,8 +32,11 @@
 	 </select>
 	 
 	 <update id="changePhone">
-       update member_tbl set member_phone = #{memberPhone} where member_no=#{memberNo}
+       update member set member_phone = #{memberPhone} where member_no=#{memberNo}
      </update>
 
+    <update id="changePw">
+     update member set member_pw = #{memberPw} where member_id=#{memberId}
+    </update>
  
 </mapper>

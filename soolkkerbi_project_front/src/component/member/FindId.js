@@ -50,6 +50,8 @@ export default function FindId() {
             setMemberId(res.data);
             console.log(memberId);
             setResult(true);
+            setMemberName("");
+            setMemberEmail("");
           } else {
             Swal.fire("존재하지않은 회원정보입니다!");
           }

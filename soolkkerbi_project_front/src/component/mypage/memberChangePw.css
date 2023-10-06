@@ -1,14 +1,5 @@
-/*
-메인색상
-#071952 rgb(7, 25, 82)
-#088395 rgb(8, 131, 149)
-#35A29F rgb(53, 162, 159)
-#F2F7A1 rgb(242, 247, 161)
-*/
 
 .new-pw-input-wrap {
-  border-top: 2px solid #071952;
-  border-bottom: 2px solid #071952;
   padding: 20px 0px;
 }
 .pw-input-wrap > div {
@@ -31,5 +22,11 @@
   width: 20%;
 }
 .change-btn-box {
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
   margin-top: 30px;
+}
+.change-btn-box>button {
+  width: 51%;
 }
