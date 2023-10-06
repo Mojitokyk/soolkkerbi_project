@@ -12,6 +12,7 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.product.model.dao.ProductDao;
 import kr.or.skb.product.model.vo.Product;
+import kr.or.skb.product.model.vo.ProductListData;
 
 @Service
 public class ProductService {
@@ -42,48 +43,60 @@ public class ProductService {
 		return productDao.insertProduct(p);
 	}
 
-	public Map takjuList(int reqPage) {
+	public Map takjuList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
 		int totalCount = productDao.totalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List takjuList = productDao.selectTakjuList(pi);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		ProductListData pld = new ProductListData(memberId, start, end);
+		List takjuList = productDao.selectTakjuList(pld);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("takjuList", takjuList);
 		map.put("pi", pi);
 		return map;
 	}
-
-	public Map yakjuList(int reqPage) {
+	
+	public Map yakjuList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
 		int totalCount = productDao.totalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List yakjuList = productDao.selectYakjuList(pi);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		ProductListData pld = new ProductListData(memberId, start, end);
+		List yakjuList = productDao.selectYakjuList(pld);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("yakjuList", yakjuList);
 		map.put("pi", pi);
 		return map;
 	}
 
-	public Map fruitList(int reqPage) {
+	public Map fruitList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
 		int totalCount = productDao.totalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List fruitList = productDao.selectFruitList(pi);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		ProductListData pld = new ProductListData(memberId, start, end);
+		List fruitList = productDao.selectFruitList(pld);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("fruitList", fruitList);
 		map.put("pi", pi);
 		return map;
 	}
 
-	public Map spiritsList(int reqPage) {
+	public Map spiritsList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
 		int totalCount = productDao.totalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-		List spiritsList = productDao.selectSpiritsList(pi);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		ProductListData pld = new ProductListData(memberId, start, end);
+		List spiritsList = productDao.selectSpiritsList(pld);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("spiritsList", spiritsList);
 		map.put("pi", pi);
@@ -103,7 +116,7 @@ public class ProductService {
 	public Product selectOneProduct(int productNo) {
 		return productDao.selectOneProduct(productNo);
 	}
-
+	/*
 	@Transactional
 	public int selectLike(Product p) {
 		//저장했는지 조회
@@ -123,4 +136,5 @@ public class ProductService {
 		}
 		return 0;
 	}
+	*/
 }

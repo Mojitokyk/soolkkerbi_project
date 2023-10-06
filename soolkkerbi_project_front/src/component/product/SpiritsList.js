@@ -9,9 +9,14 @@ const SpiritsList = (props) => {
   const [spiritsList, setSpiritsList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("/product/spirits/" + reqPage)
+      .post("/product/spirits/" + reqPage, null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setSpiritsList(res.data.spiritsList);
         setPageInfo(res.data.pi);
