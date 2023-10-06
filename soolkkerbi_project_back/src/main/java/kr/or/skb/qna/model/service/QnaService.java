@@ -92,7 +92,13 @@ public class QnaService {
 	}
 
 	//댓글 출력
-	public String selectOneAnswer(int answerQnaNo) {
-		return qnaDao.selectOneAnswer(answerQnaNo);
+	public List printAnswer(int answerQnaNo) {
+		return qnaDao.printAnswer(answerQnaNo);
+	}
+
+	//댓글 삭제
+	@Transactional
+	public int deleteAnswer(int answerNo) {
+		return qnaDao.deleteAnswer(answerNo);
 	}
 }

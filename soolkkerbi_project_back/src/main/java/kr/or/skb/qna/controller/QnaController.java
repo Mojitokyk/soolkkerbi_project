@@ -105,10 +105,17 @@ public class QnaController {
 	}
 	
 	//댓글 출력
-	@GetMapping(value="/selectOneAnswer/{answerQnaNo}")
-	public String selectOneAnswer(@PathVariable int answerQnaNo) {
+	@GetMapping(value="/printAnswer/{answerQnaNo}")
+	public List printAnswer(@PathVariable int answerQnaNo) {
 		System.out.println("answerQnaNo: "+answerQnaNo);
-		String answerContent = qnaService.selectOneAnswer(answerQnaNo);
+		List answerContent = qnaService.printAnswer(answerQnaNo);
 		return answerContent;
+	}
+	
+	//댓글 삭제
+	@GetMapping(value="/deleteAnswer/{answerNo}")
+	public int deleteAnswer(@PathVariable int answerNo) {
+		System.out.println("answerNo: "+answerNo);
+		return qnaService.deleteAnswer(answerNo);
 	}
 }
