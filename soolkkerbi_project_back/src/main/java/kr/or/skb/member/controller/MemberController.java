@@ -43,6 +43,7 @@ public class MemberController {
 		String result=memberService.login(member);
 		return result;
 	}
+
 	@PostMapping(value = "/findId")
 	public String findId(@RequestBody Member member) {
 		System.out.println(member);
@@ -76,5 +77,9 @@ public class MemberController {
 	@PostMapping(value="/getMember")
 	public Member mypage(@RequestAttribute String memberId) {
 		return memberService.selectOneMember(memberId);
+	}
+	@PostMapping(value = "/changePhone")
+	public int changePhone(@RequestBody Member member) {
+		return memberService.changePhone(member);
 	}
 }

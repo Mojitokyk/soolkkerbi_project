@@ -1,7 +1,89 @@
-const MyInfo = () => {
+import axios from "axios";
+import { Button2, Button3 } from "../util/Buttons";
+import Input from "../util/InputForm";
+import "./myInfo.css";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import MemberChangePw from "./MemberChangePw";
+
+const MyInfo = (props) => {
+  const navigate = useNavigate();
+  const member = props.member;
+  const setMember = props.setMember;
+  const setIsLogin = props.setIsLogin;
+  const setMemnerPhone = (data) => {
+    member.memberPhone = data; 
+    setMember({ ...member });
+  };
+  const updateMemberPhone = () => {
+    const token = window.localStorage.getItem("token"); 
+    axios
+      .post("/member/changePhone", member, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "전화번호가 수정되었습니다.",
+        });
+      })
+      .catch((res) => {
+        if (res.response.status === 403) {
+          window.localStorage.removeItem("token");
+          setIsLogin(false); 
+        }
+      });
+  };
+
+  const changePw=()=>{
+    // <Routes>
+    //   <Route path="/changepw" element={<MemberChangePw />}/>
+    // </Routes>
+    navigate("/changepw")
+  }
   return (
-    <div className="mypage-content-wrap">
-      <div className="mypage-content-title">정보수정</div>
+    <div className="mypage-content-warp">
+      <div className="mypage-content-title">내 정보</div>
+      <table className="mypage-info-tbl">
+        <tbody>
+          <tr>
+            <td>회원번호</td>
+            <td>{member.memberNo}</td>
+          </tr>
+          <tr>
+            <td>아이디</td>
+            <td>{member.memberId}</td>
+          </tr>
+          <tr>
+            <td>이름</td>
+            <td>{member.memberName}</td>
+          </tr>
+          <tr>
+            <td>전화번호</td>
+            <td id="member-phone">
+              <div>
+                <Input
+                  type="text"
+                  data={member.memberPhone}
+                  setData={setMemnerPhone}
+                  content="memberPhone"
+                />
+                <Button2 text="변경하기" clickEvent={updateMemberPhone} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className="비밀번호 변경하기" >
+                <Button2 text="비밀번호 변경" clickEvent={changePw}/>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
     </div>
   );
 };
