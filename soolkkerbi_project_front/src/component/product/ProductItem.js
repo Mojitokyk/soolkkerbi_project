@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const ProductItem = (props) => {
   const product = props.product;
   const isLogin = props.isLogin;
+  const member = props.member;
   const navigate = useNavigate();
 
   //좋아요 함수
@@ -125,7 +126,11 @@ const ProductItem = (props) => {
           <img src={"/product/" + product.productFilepath} />
         )}
       </div>
-      <Likes like={like} changeLike={changeLike} />
+      {!member || (member && member.memberLevel !== 1) ? (
+        <Likes like={like} changeLike={changeLike} />
+      ) : (
+        ""
+      )}
       <div className="product-item-info">
         <div className="product-item-name">{product.productName}</div>
         <div className="product-item-price">
@@ -139,12 +144,16 @@ const ProductItem = (props) => {
           </div>
 
           <div className="product-item-cart">
-            {product.productStock === 0 ? (
-              <span className="material-icons soldout">shopping_cart</span>
+            {!member || (member && member.memberLevel !== 1) ? (
+              product.productStock === 0 ? (
+                <span className="material-icons soldout">shopping_cart</span>
+              ) : (
+                <span className="material-icons" onClick={addCart}>
+                  shopping_cart
+                </span>
+              )
             ) : (
-              <span className="material-icons" onClick={addCart}>
-                shopping_cart
-              </span>
+              ""
             )}
           </div>
         </div>

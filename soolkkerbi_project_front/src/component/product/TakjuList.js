@@ -9,6 +9,7 @@ const TakjuList = (props) => {
   const [takjuList, setTakjuList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
+  const [member, setMember] = useState({});
   const token = window.localStorage.getItem("token");
   useEffect(() => {
     axios
@@ -20,6 +21,7 @@ const TakjuList = (props) => {
       .then((res) => {
         setTakjuList(res.data.takjuList);
         setPageInfo(res.data.pi);
+        setMember(res.data.member);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -35,6 +37,7 @@ const TakjuList = (props) => {
               key={"takju" + index}
               product={product}
               isLogin={isLogin}
+              member={member}
             />
           );
         })}

@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
+import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.product.model.dao.ProductDao;
 import kr.or.skb.product.model.vo.Product;
 import kr.or.skb.product.model.vo.ProductListData;
@@ -18,6 +20,8 @@ import kr.or.skb.product.model.vo.ProductListData;
 public class ProductService {
 	@Autowired
 	private ProductDao productDao;
+	@Autowired
+	private MemberDao memberDao;
 	@Autowired
 	private Pagination pagination;
 
@@ -52,9 +56,11 @@ public class ProductService {
 		int end = pi.getEnd();
 		ProductListData pld = new ProductListData(memberId, start, end);
 		List takjuList = productDao.selectTakjuList(pld);
+		Member member = memberDao.selectOneMember(memberId);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("takjuList", takjuList);
 		map.put("pi", pi);
+		map.put("member", member);
 		return map;
 	}
 	
@@ -67,9 +73,11 @@ public class ProductService {
 		int end = pi.getEnd();
 		ProductListData pld = new ProductListData(memberId, start, end);
 		List yakjuList = productDao.selectYakjuList(pld);
+		Member member = memberDao.selectOneMember(memberId);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("yakjuList", yakjuList);
 		map.put("pi", pi);
+		map.put("member", member);
 		return map;
 	}
 
@@ -82,9 +90,11 @@ public class ProductService {
 		int end = pi.getEnd();
 		ProductListData pld = new ProductListData(memberId, start, end);
 		List fruitList = productDao.selectFruitList(pld);
+		Member member = memberDao.selectOneMember(memberId);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("fruitList", fruitList);
 		map.put("pi", pi);
+		map.put("member", member);
 		return map;
 	}
 
@@ -97,9 +107,11 @@ public class ProductService {
 		int end = pi.getEnd();
 		ProductListData pld = new ProductListData(memberId, start, end);
 		List spiritsList = productDao.selectSpiritsList(pld);
+		Member member = memberDao.selectOneMember(memberId);
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("spiritsList", spiritsList);
 		map.put("pi", pi);
+		map.put("member", member);
 		return map;
 	}
 	
