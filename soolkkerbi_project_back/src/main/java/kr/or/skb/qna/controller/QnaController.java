@@ -96,11 +96,11 @@ public class QnaController {
 	}
 	
 	//댓글 작성
-	@PostMapping(value="/insertComment")
+	@PostMapping(value="/registAnswer")
 	public int insertComment(@ModelAttribute Answer a) {
-		System.out.println("insertComment - answerQnaNo: "+a.getAnswerQnaNo());
-		System.out.println("insertComment - answerContent: "+a.getAnswerContent());
-		int result = qnaService.insertComment(a);
+		System.out.println("registAnswer - answerQnaNo: "+a.getAnswerQnaNo());
+		System.out.println("registAnswer - answerContent: "+a.getAnswerContent());
+		int result = qnaService.registAnswer(a);
 		return result;
 	}
 	

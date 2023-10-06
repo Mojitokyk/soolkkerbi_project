@@ -87,8 +87,8 @@ public class QnaService {
 	}
 
 	//댓글 작성
-	public int insertComment(Answer a) {
-		return qnaDao.insertComment(a);
+	public int registAnswer(Answer a) {
+		return qnaDao.registAnswer(a);
 	}
 
 	//댓글 출력

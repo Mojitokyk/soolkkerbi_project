@@ -7,6 +7,13 @@ import axios from "axios";
 const MyQnaAnswer = (props) => {
   const answerQnaNo = props.qnaNo; //현재 문의사항 번호
   console.log(answerQnaNo);
+
+  return <RegistAnswer answerQnaNo={answerQnaNo} />;
+};
+
+const RegistAnswer = (props) => {
+  const answerQnaNo = props.answerQnaNo; //현재 문의사항 번호
+  console.log(answerQnaNo);
   const [answerList, setAnswerList] = useState([]);
   const [answerContent, setAnswerContent] = useState("");
 
@@ -19,7 +26,7 @@ const MyQnaAnswer = (props) => {
       form.append("answerQnaNo", answerQnaNo);
       // form.append("memberId", memberId); - memberId -> qnaMemberNo 임시로 DB의 관리자 번호(62)를 넣음
       axios
-        .post("/qna/insertComment", form)
+        .post("/qna/registAnswer", form)
         .then((res) => {
           console.log(res.data);
           setAnswerContent("");
@@ -51,7 +58,6 @@ const MyQnaAnswer = (props) => {
       registAnswer();
     }
   };
-
   return (
     <div className="qnaAnswer-wrap">
       <div className="write-answer-frm">
