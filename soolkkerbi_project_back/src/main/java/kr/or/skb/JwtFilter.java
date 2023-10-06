@@ -3,7 +3,6 @@ package kr.or.skb;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,12 +16,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import lombok.AllArgsConstructor;
+
 //인터셉터 대신!
 @AllArgsConstructor
-
 public class JwtFilter extends OncePerRequestFilter{
-	private String SecretKey;
+	private String secretKey;
 	private JwtUtil jwtUtil;
+	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -39,14 +39,14 @@ public class JwtFilter extends OncePerRequestFilter{
 		String token = auth.split(" ")[1];//배열로자른것중에 1번인덱스
 		System.out.println("token:"+token);
 		//2. 인증토큰이 정상이나 만료된경우
-		if(jwtUtil.isExpired(token, SecretKey)) {
+		if(jwtUtil.isExpired(token, secretKey)) {
 			System.out.println("인증시간만료");
 			filterChain.doFilter(request, response);
 			return;//함수종료
 		}
 		//여기까지오면 정상적인 사용자!
 		//3. 아이디를 꺼내서 컨드롤러에 전달
-		String memberId = jwtUtil.getMemberId(token, SecretKey);
+		String memberId = jwtUtil.getMemberId(token, secretKey);
 		System.out.println("memberId : "+ memberId);
 		request.setAttribute("memberId", memberId);
 		//인증 허가 코드
