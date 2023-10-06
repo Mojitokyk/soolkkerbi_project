@@ -48,12 +48,12 @@ const RegistAnswer = (props) => {
           console.log(res.data);
           setAnswerContent("");
 
-          const insertAnswer = {
-            answerQnaNo: answerQnaNo,
-            answerContent: answerContent,
-          };
+          // const insertAnswer = {
+          //   answerQnaNo: answerQnaNo,
+          //   answerContent: answerContent,
+          // };
           const newArr = [...answerList];
-          newArr.push(insertAnswer);
+          newArr.push(res.data); //newArr.push(insertAnswer);
           setAnswerList(newArr);
         })
         .catch((res) => {
@@ -103,6 +103,7 @@ const PrintAnswer = (props) => {
   console.log(answerQnaNo);
   const answerList = props.answerList;
   const setAnswerList = props.setAnswerList;
+  const [answerContent, setAnswerContent] = useState("");
 
   useEffect(() => {
     axios
@@ -115,12 +116,6 @@ const PrintAnswer = (props) => {
         console.log(res.response.status);
       });
   }, []);
-
-  //답변 수정 함수
-  const modifyAnswer = (answerNo) => {
-    console.log("답변 수정 함수 클릭");
-    console.log(answerNo);
-  };
 
   //답변 삭제 함수
   const deleteAnswer = (answerNo, index) => {
@@ -142,42 +137,58 @@ const PrintAnswer = (props) => {
       });
   };
 
+  //답변 수정 함수
+  const modifyAnswer = (answerNo, index) => {
+    console.log("답변 수정 함수 클릭");
+    console.log(answerNo);
+    console.log(index);
+
+    axios
+      .get("/qna/modifyAnswer/" + answerNo)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
+
   return (
     <div className="qnaAnswer-list">
-      {answerList &&
-        answerList.map((answer, index) => {
-          return (
-            <div className="print-qnaComment-wrap" key={index}>
-              <ul>
-                <li>
-                  <span>관리자</span>
-                </li>
-                <li>
-                  <p className="qnaComment-content">
-                    {answer.answerDate}
-                    {answer.answerContent}
-                  </p>
-                  <p className="qnaComment-link">
-                    <span
-                      onClick={() => {
-                        modifyAnswer(answer.answerNo);
-                      }}
-                    >
-                      수정
-                    </span>
-                    <span
-                      onClick={() => {
-                        deleteAnswer(answer.answerNo, index);
-                      }}
-                    >
-                      삭제
-                    </span>
-                  </p>
-                </li>
-              </ul>
-            </div>
-          );
-        })}
+      {answerList.map((answer, index) => {
+        return (
+          <div className="print-qnaComment-wrap" key={index}>
+            <ul>
+              <li>
+                <span>관리자</span>
+              </li>
+              <li>
+                <p className="qnaComment-content">
+                  {answer.answerNo}
+                  {answer.answerDate}
+                  {answer.answerContent}
+                </p>
+                <p className="qnaComment-link">
+                  <span
+                    onClick={() => {
+                      modifyAnswer(answer.answerNo, index);
+                    }}
+                  >
+                    수정
+                  </span>
+                  <span
+                    onClick={() => {
+                      deleteAnswer(answer.answerNo, index);
+                    }}
+                  >
+                    삭제
+                  </span>
+                </p>
+              </li>
+            </ul>
+          </div>
+        );
+      })}
     </div>
   );
 };
