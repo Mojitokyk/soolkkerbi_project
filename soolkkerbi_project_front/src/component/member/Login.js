@@ -13,7 +13,6 @@ const Login = (props) => {
 
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
-  const [memberLevel, setMemberLevel] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,11 +24,8 @@ const Login = (props) => {
         if (res.data === "실패") {
           Swal.fire("아이디/비번 확인");
         } else {
-          console.log(res.data);
           window.localStorage.setItem("token", res.data);
           setIsLogin(true);
-          //setMemberLevel(res.response.memberLevel);
-          //setMemberLevel(memberLevel)
           navigate("/");
         }
       })
@@ -41,15 +37,13 @@ const Login = (props) => {
   //   login();
   // };
   // // 버튼에 적용할 클릭 이벤트 함수
-  
-  
+
   // const handleOnKeyPress = e => {
   //   if (e.key === 'Enter') {
   //     handleOnClick(); // Enter 입력이 되면 클릭 이벤트 실행
   //   }
   // };
   // // 인풋에 적용할 Enter 키 입력 함수
-  
 
   return (
     <div className="login-wrap">
@@ -81,21 +75,9 @@ const Login = (props) => {
         <Link to="/join">회원가입</Link>
       </div>
       <div className="login-btn-box">
-        <Button1 text="로그인" clickEvent={login} ></Button1>
+        <Button1 text="로그인" clickEvent={login}></Button1>
         {/* 엔터클릭이벤트추가 */}
       </div>
-
-      {/* <div className="search-box">
-        <Link to="#">아이디 찾기</Link> 
-         <span className="material-icons">horizontal_rule</span>
-        <Link to="#">비밀번호찾기</Link>
-        <span className="material-icons">horizontal_rule</span>
-        <Link to="/join">회원가입</Link>
-      </div> */}
-      {/* <div className='search_user_info_div'>
-   <div> <b style={{ 'marginLeft' : '15px' }}> 아이디 찾기 </b> </div>
-   <div> <b> 비밀번호 찾기 </b> </div>
-</div> */}
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./adminMain.css";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import MyInfo from "../mypage/MyInfo";
 import ReadAllMember from "./ReadAllMember";
 import ManageStock from "./ManageStock";
@@ -9,9 +9,46 @@ import ProductWrite from "../product/ProductWrite";
 import CancelReservation from "./CancelReservation";
 import ReadIncome from "./ReadIncome";
 import ManageReceive from "./ManageReceive";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-const AdminMain = () => {
+const AdminMain = (props) => {
+  const isLogin = props.isLogin;
+  const setIsLogin = props.setIsLogin;
+  const token = window.localStorage.getItem("token");
+
   const [member, setMember] = useState({});
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios
+      .post("/member/getMember", null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setMember(res.data);
+      })
+      .catch((res) => {
+        if (res.response.status === 403) {
+          Swal.fire("로그인이 필요합니다.").then(() => {
+            navigate("/login");
+          });
+        }
+      });
+  }, []);
+
+  if (!isLogin) {
+    Swal.fire({
+      title: "로그인이 필요한 서비스 입니다.",
+      text: "로그인 페이지로 이동합니다.",
+      icon: "info",
+    }).then(() => {
+      navigate("/login");
+    });
+  }
 
   const [menus, setMenus] = useState([
     { url: "info", text: "회원정보 수정", active: true },
@@ -35,7 +72,13 @@ const AdminMain = () => {
           <Routes>
             <Route
               path="info"
-              element={<MyInfo member={member} setMember={setMember} />}
+              element={
+                <MyInfo
+                  member={member}
+                  setMember={setMember}
+                  setIsLogin={setIsLogin}
+                />
+              }
             />
             <Route path="readAllMember" element={<ReadAllMember />} />
             <Route path="insertProduct" element={<ProductWrite />}></Route>
