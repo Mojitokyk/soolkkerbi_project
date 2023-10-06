@@ -10,11 +10,11 @@ const ProductItem = (props) => {
   const navigate = useNavigate();
 
   //좋아요 함수
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(product.isLike);
   const token = window.localStorage.getItem("token");
   const changeLike = () => {
     if (isLogin) {
-      if (!like) {
+      if (like === 0) {
         axios
           .post(
             "/product/like",
@@ -27,9 +27,26 @@ const ProductItem = (props) => {
           )
           .then((res) => {
             if (res.data === 1) {
-              setLike(true);
-            } else if (res.data === 2) {
-              setLike(false);
+              setLike(1);
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      } else {
+        axios
+          .post(
+            "/product/disLike",
+            { productNo: product.productNo },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              setLike(0);
             }
           })
           .catch((res) => {

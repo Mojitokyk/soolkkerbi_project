@@ -23,4 +23,5 @@ public class Product {
 	private String productFilepath;
 	private double starRate;
 	private String memberId;
+	private int isLike;
 }

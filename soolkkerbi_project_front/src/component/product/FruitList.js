@@ -9,9 +9,14 @@ const FruitList = (props) => {
   const [fruitList, setFruitList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     axios
-      .get("/product/fruit/" + reqPage)
+      .post("/product/fruit/" + reqPage, null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         setFruitList(res.data.fruitList);
         setPageInfo(res.data.pi);
