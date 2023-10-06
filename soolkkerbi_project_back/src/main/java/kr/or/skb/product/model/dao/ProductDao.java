@@ -37,5 +37,7 @@ public interface ProductDao {
 	Product selectOneProduct(int productNo);
 
 	int selectLike(Product p);
+
+	//Product selectOneProduct(Product p);
 	
 }
