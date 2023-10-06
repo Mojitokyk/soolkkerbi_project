@@ -16,18 +16,30 @@
 .left-wrap {
   width: 500px;
 }
+.left-wrap > div {
+  margin-bottom: 20px;
+}
 .right-wrap {
   width: 400px;
 }
-.pay-product-info-wrap {
+.right-wrap > div {
+  margin-bottom: 20px;
+}
+.pay-product-info-wrap,
+.pay-member-info-wrap,
+.pay-pickup-info-wrap {
   background-color: #fff;
   padding-left: 20px;
+  padding-bottom: 10px;
 }
-.pay-product-info-wrap > h3 {
+.pay-product-info-wrap > h3,
+.pay-member-info-wrap > h3,
+.pay-pickup-info-wrap > h3 {
   padding: 10px 0px;
 }
 .pay-product-info {
   display: flex;
+  padding: 10px 0px;
 }
 .pay-product-img {
   width: 30%;
@@ -38,7 +50,27 @@
 }
 .pay-product-info-detail {
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
-.pay-pickup1-info {
-  background-color: #fff;
+.product-detail-name,
+.product-detail-price {
+  font-weight: bold;
+}
+.product-detail-quantity {
+  font-size: 14px;
+}
+.pay-member-info {
+  padding: 10px 0px;
+}
+.pay-member-info > input,
+.pay-pickup-info-wrap > input {
+  width: 95%;
+  margin-top: 10px;
+  padding: 0.5rem;
+  padding-left: 10px;
+}
+.pay-pickup-info {
+  font-size: 14px;
 }

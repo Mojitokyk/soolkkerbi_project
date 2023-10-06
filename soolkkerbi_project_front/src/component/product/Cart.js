@@ -214,8 +214,8 @@ const CartProduct = (props) => {
           checked={checkList.includes(cart.cartNo) ? true : false}
         />
       </td>
-      <td className="info-td" onClick={productView}>
-        <div className="product-img">
+      <td className="info-td">
+        <div className="product-img" onClick={productView}>
           {cart.productFilepath === null ? (
             <img src="/image/product_img/no_image.png" />
           ) : (
