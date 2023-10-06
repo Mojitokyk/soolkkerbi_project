@@ -13,12 +13,9 @@ import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
-import axios from "axios";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [num, setNum] = useState(0);
-  const [member, setMember] = useState({});
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
@@ -26,25 +23,12 @@ function App() {
       setIsLogin(false);
     } else {
       setIsLogin(true);
-
-      axios
-        .post("/member/getMember", null, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => {
-          setMember(res.data);
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
     }
-  }, [num]);
+  });
 
   return (
     <div className="wrap">
-      <Header isLogin={isLogin} setIsLogin={setIsLogin} member={member} />
+      <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <div className="content">
         <Routes>
           <Route path="/" element={<Main />} />

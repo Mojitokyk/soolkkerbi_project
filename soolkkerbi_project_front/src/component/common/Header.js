@@ -1,12 +1,12 @@
 import "./default.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Header = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
-  const member = props.member;
 
   return (
     <header>
@@ -18,11 +18,7 @@ const Header = (props) => {
       <div className="header-navi">
         <Notice />
         <Category />
-        <HeaderMember
-          isLogin={isLogin}
-          setIsLogin={setIsLogin}
-          member={member}
-        />
+        <HeaderMember isLogin={isLogin} setIsLogin={setIsLogin} />
       </div>
     </header>
   );
@@ -76,8 +72,10 @@ const Category = () => {
 const HeaderMember = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
-  const member = props.member;
-  const [page, setPage] = useState([]);
+
+  const navigate = useNavigate();
+
+  const [member, setMember] = useState({});
 
   /*로그아웃 함수*/
   const logout = () => {
@@ -85,47 +83,42 @@ const HeaderMember = (props) => {
     setIsLogin(false);
   };
 
+  useEffect(() => {
+    const token = window.localStorage.getItem("token");
+    if (isLogin) {
+      axios
+        .post("/member/getMember", null, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          setMember(res.data);
+        })
+        .catch((res) => {
+          if (res.response.status === 403) {
+            Swal.fire("로그인이 필요합니다.").then(() => {
+              navigate("/login");
+            });
+          }
+        });
+    }
+  }, [isLogin]);
+
   return (
     <div className="member-group">
-      {isLogin ? (
-        member.memberLevel === 1 ? (
-          <>
-            <span className="adminpage">
-              <Link to="/admin">관리자페이지</Link>
-            </span>
-            <span className="logout">
-              <Link to="#" title="로그아웃" onClick={logout}>
-                로그아웃
-              </Link>
-            </span>
-          </>
-        ) : (
-          <>
-            <span className="cart">
-              <Link to="/cart">술주머니</Link>
-            </span>
-            <span className="mypage">
-              <Link to="/mypage">마이페이지</Link>
-            </span>
-            <span className="logout">
-              <Link to="#" title="로그아웃" onClick={logout}>
-                로그아웃
-              </Link>
-            </span>
-          </>
-        )
-      ) : (
+      {isLogin && member.memberLevel === 1 ? (
         <>
-          <span className="login">
-            <Link to="/login">로그인</Link>
+          <span className="adminpage">
+            <Link to="/admin">관리자페이지</Link>
           </span>
-          <span className="join">
-            <Link to="/join">회원가입</Link>
+          <span className="logout">
+            <Link to="#" title="로그아웃" onClick={logout}>
+              로그아웃
+            </Link>
           </span>
         </>
-      )}
-
-      {/* {isLogin ? (
+      ) : isLogin && member.memberLevel === 2 ? (
         <>
           <span className="cart">
             <Link to="/cart">술주머니</Link>
@@ -148,52 +141,9 @@ const HeaderMember = (props) => {
             <Link to="/join">회원가입</Link>
           </span>
         </>
-      )} */}
+      )}
     </div>
   );
 };
 
-{
-  /*
-    <div className="member-group">
-      {isLogin === true ? (
-        memberLevel === 1 ? (
-          <>
-            <span className="adminpage">
-              <Link to="/adminpage">관리자페이지</Link>
-            </span>
-            <span className="logout">
-              <Link to="#" title="로그아웃" onClick={logout}>
-                로그아웃
-              </Link>
-            </span>
-          </>
-        ) : (
-          <>
-            <span className="cart">
-              <Link to="/cart">술주머니</Link>
-            </span>
-            <span className="mypage">
-              <Link to="/mypage">마이페이지</Link>
-            </span>
-            <span className="logout">
-              <Link to="#" title="로그아웃" onClick={logout}>
-                로그아웃
-              </Link>
-            </span>
-          </>
-        )
-      ) : (
-        <>
-          <span className="login">
-            <Link to="/login">로그인</Link>
-          </span>
-          <span className="join">
-            <Link to="/join">회원가입</Link>
-          </span>
-        </>
-      )}
-    </div>
-     */
-}
 export default Header;
