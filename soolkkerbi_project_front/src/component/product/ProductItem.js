@@ -28,24 +28,7 @@ const ProductItem = (props) => {
           .then((res) => {
             if (res.data === 1) {
               setLike(true);
-            }
-          })
-          .catch((res) => {
-            console.log(res.response.status);
-          });
-      } else {
-        axios
-          .post(
-            "/product/dislike",
-            { productNo: product.productNo },
-            {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            }
-          )
-          .then((res) => {
-            if (res.data === 1) {
+            } else if (res.data === 2) {
               setLike(false);
             }
           })

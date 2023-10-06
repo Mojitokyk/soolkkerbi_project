@@ -103,4 +103,24 @@ public class ProductService {
 	public Product selectOneProduct(int productNo) {
 		return productDao.selectOneProduct(productNo);
 	}
+
+	@Transactional
+	public int selectLike(Product p) {
+		//저장했는지 조회
+		int save = productDao.selectLike(p);
+		if(save == 0) {
+			//저장내역이 없으면 insert
+			int result = productDao.insertLike(p);
+			if(result>0) {
+				return 1;				
+			}
+		}else if(save == 1){
+			//저장내역이 있으면 delete
+			int result = productDao.deleteLike(p);
+			if(result>0) {
+				return 2;				
+			}
+		}
+		return 0;
+	}
 }
