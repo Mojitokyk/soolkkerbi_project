@@ -9,6 +9,7 @@ const FruitList = (props) => {
   const [fruitList, setFruitList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
+  const [member, setMember] = useState({});
   const token = window.localStorage.getItem("token");
   useEffect(() => {
     axios
@@ -20,6 +21,7 @@ const FruitList = (props) => {
       .then((res) => {
         setFruitList(res.data.fruitList);
         setPageInfo(res.data.pi);
+        setMember(res.data.member);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -36,6 +38,7 @@ const FruitList = (props) => {
               key={"fruit" + index}
               product={product}
               isLogin={isLogin}
+              member={member}
             />
           );
         })}

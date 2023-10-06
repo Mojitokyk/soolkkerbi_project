@@ -1,6 +1,11 @@
 import "./pay.css";
+import { useLocation } from "react-router-dom";
 
-const Pay = () => {
+const Pay = (props) => {
+  const isLogin = props.isLogin;
+  const location = useLocation();
+  const cartList = location.state.cartList;
+  console.log(cartList);
   return (
     <div className="pay-all-wrap">
       <div className="pay-wrap">

@@ -87,9 +87,14 @@ public class QnaService {
 	}
 
 	//댓글 작성
-	public int registAnswer(Answer a) {
-		return qnaDao.registAnswer(a);
+	public Answer registAnswer(Answer a) {
+		int result = qnaDao.registAnswer(a);
+		//제일 최신 번호를 조회 -> selectKey 사용
+		System.out.println("answerNo: "+a.getAnswerNo());
+		Answer answer = qnaDao.printRecentAnswer(a.getAnswerNo());
+		return answer;
 	}
+
 
 	//댓글 출력
 	public List printAnswer(int answerQnaNo) {
@@ -101,4 +106,7 @@ public class QnaService {
 	public int deleteAnswer(int answerNo) {
 		return qnaDao.deleteAnswer(answerNo);
 	}
+
+
+	
 }

@@ -1,5 +1,6 @@
 package kr.or.skb.qna.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -32,10 +33,18 @@ public interface QnaDao {
 
 	//댓글 작성
 	int registAnswer(Answer a);
-
+	//댓글 작성 후 가장 최근의 댓글을 조회
+	Answer printRecentAnswer(int answerNo);
+	
+	//작성한 댓글 조회
+	List<Answer> registPrintAnswer(int answerQnaNo);	
+	
 	//댓글 출력
 	List printAnswer(int answerQnaNo);
 
 	//댓글 삭제
 	int deleteAnswer(int answerNo);
+
+	
+
 }
