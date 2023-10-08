@@ -4,12 +4,15 @@
 .pay-wrap {
   width: 1200px;
   margin: 0 auto;
-  padding-top: 50px;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-evenly;
 }
 .pay-title {
-  font-size: 22px;
+  width: 1000px;
+  margin: 0 auto;
+  padding-top: 50px;
   padding-bottom: 20px;
+  font-size: 22px;
   font-weight: bold;
   color: black;
 }
@@ -20,21 +23,26 @@
   margin-bottom: 20px;
 }
 .right-wrap {
-  width: 400px;
+  width: 430px;
+  position: sticky;
 }
 .right-wrap > div {
   margin-bottom: 20px;
 }
 .pay-product-info-wrap,
 .pay-member-info-wrap,
-.pay-pickup-info-wrap {
+.pay-pickup-info-wrap,
+.pay-summary-wrap,
+.pay-info-wrap {
   background-color: #fff;
   padding-left: 20px;
   padding-bottom: 10px;
 }
 .pay-product-info-wrap > h3,
 .pay-member-info-wrap > h3,
-.pay-pickup-info-wrap > h3 {
+.pay-pickup-info-wrap > h3,
+.pay-summary-wrap > h3,
+.pay-info-wrap > h3 {
   padding: 10px 0px;
 }
 .pay-product-info {
@@ -57,6 +65,10 @@
 .product-detail-name,
 .product-detail-price {
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
 }
 .product-detail-quantity {
   font-size: 14px;
@@ -73,4 +85,45 @@
 }
 .pay-pickup-info {
   font-size: 14px;
+}
+.pay-summary-wrap,
+.pay-info-wrap {
+  padding-right: 20px;
+}
+.pay-summary {
+  padding-bottom: 10px;
+}
+.pay-summary > div,
+.pay-info > div,
+.refund-info > div {
+  margin-top: 10px;
+}
+.total-price-wrap {
+  border-top: 1px solid #4f4f4f;
+  padding-top: 10px;
+}
+.product-price-wrap,
+.delivery-price-wrap,
+.total-price-wrap,
+.payment-method {
+  display: flex;
+  justify-content: space-between;
+}
+.product-price-wrap > span:last-child,
+.delivery-price-wrap > span:last-child {
+  font-weight: bold;
+}
+.total-price-wrap {
+  font-size: 17px;
+}
+.total-price-wrap > span,
+.payment-method {
+  font-weight: bold;
+}
+.refund-info > div:first-child {
+  font-weight: bold;
+}
+.pay-info > button {
+  margin: 10px 0px;
+  font-size: 16px;
 }

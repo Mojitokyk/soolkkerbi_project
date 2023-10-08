@@ -200,7 +200,7 @@ const CartProduct = (props) => {
   //바로 구매 버튼 클릭 시 결제페이지 이동
   const partialPay = () => {
     navigate("/product/pay", {
-      state: { cartList: cart },
+      state: { cart: cart },
     });
   };
   return (
