@@ -11,8 +11,9 @@ const ProductDetail = (props) => {
   const location = useLocation();
   const productNo = location.state.productNo;
   const likes = location.state.like;
-  console.log(likes);
   const member = location.state.member;
+  console.log(likes);
+  console.log(productNo);
   console.log(member);
   const [product, setProduct] = useState([]);
 
@@ -140,7 +141,7 @@ const ProductDetail = (props) => {
                 ? "약주/청주"
                 : product.productCase === 3
                 ? "과실주"
-                : "증류수"}
+                : "증류주"}
             </li>
           </ul>
         </div>
@@ -156,7 +157,7 @@ const ProductDetail = (props) => {
         <div className="product-view-info">
           <div className="info-title">
             <div>{product.productName}</div>
-            <div>{commmaPrice}원</div>
+            <div>{commmaPrice} 원</div>
           </div>
           <div className="info-content">
             <ul>
@@ -183,11 +184,11 @@ const ProductDetail = (props) => {
                 stock={product.productStock}
                 onClick={ClickCount}
               />
-              <div>{commaTotal}원</div>
+              <div>{commaTotal} 원</div>
             </div>
             <div className="product-total-price">
               <span>총 상품 금액({quantity}개)</span>
-              <span>{commaTotal}원</span>
+              <span>{commaTotal} 원</span>
             </div>
           </div>
           <div className="product-order-box">
