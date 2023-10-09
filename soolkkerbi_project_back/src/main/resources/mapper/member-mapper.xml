@@ -38,5 +38,9 @@
     <update id="changePw">
      update member set member_pw = #{memberPw} where member_id=#{memberId}
     </update>
+    
+    <delete id="deleteMember">
+     delete from member where member_id=#{memberId}
+    </delete>
  
 </mapper>

@@ -27,6 +27,8 @@ public interface MemberDao {
 
 	int changePw(Member member);
 	
+	int deleteMember(String memberId);
+	
 
 
 }

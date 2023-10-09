@@ -96,4 +96,9 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.changePw(member);
 	}
+	@Transactional
+	public int deleteMember(String memberId) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteMember(memberId);
+	}
 }

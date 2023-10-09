@@ -88,4 +88,8 @@ public class MemberController {
 		member.setMemberId(memberId); 
 		return memberService.changePwMember(member);
 	}
+	@PostMapping(value = "/deleteMember")
+	public int deleteMember(@RequestAttribute String memberId) {
+		return memberService.deleteMember(memberId);
+	}
 }
