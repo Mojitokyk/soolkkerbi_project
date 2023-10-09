@@ -125,8 +125,8 @@ public class ProductService {
 		return productDao.deleteLike(p);
 	}
 
-	public Product selectOneProduct(int productNo) {
-		return productDao.selectOneProduct(productNo);
+	public Product selectOneProduct(Product p) {
+		return productDao.selectOneProduct(p);
 	}
 	/*
 	@Transactional
