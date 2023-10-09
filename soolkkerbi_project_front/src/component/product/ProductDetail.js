@@ -12,27 +12,29 @@ const ProductDetail = (props) => {
   const productNo = location.state.productNo;
   const likes = location.state.like;
   const member = location.state.member;
-  console.log(likes);
-  console.log(productNo);
-  console.log(member);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState({});
 
   //상세페이지에 필요한 데이터 가져오기
   useEffect(() => {
+    const token = window.localStorage.getItem("token");
+
     axios
-      .get("/product/view/" + productNo, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
+      .post(
+        "/product/view",
+        { productNo: productNo },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
       .then((res) => {
-        console.log(res.data);
         setProduct(res.data);
       })
       .catch((res) => {
         console.log(res.reponse.status);
       });
-  }, []);
+  }, [likes]);
 
   //갯수와 총 금액 state만들기
   const price = Number(product.productPrice);
@@ -49,7 +51,7 @@ const ProductDetail = (props) => {
   }, [price]);
 
   //버튼 클릭시 이벤트 작동
-  const ClickCount = (num) => {
+  const clickCount = (num) => {
     setQuantity((prev) => prev + num);
     setTotal((prev) => prev + price * num);
     //console.log(quantity, total);
@@ -126,6 +128,7 @@ const ProductDetail = (props) => {
       navigate("/login");
     }
   };
+
   return (
     <div className="product-view-all-wrap">
       <div className="product-view-wrap">
@@ -182,12 +185,12 @@ const ProductDetail = (props) => {
               <QuantityInput
                 quantity={quantity}
                 stock={product.productStock}
-                onClick={ClickCount}
+                onClick={clickCount}
               />
               <div>{commaTotal} 원</div>
             </div>
             <div className="product-total-price">
-              <span>총 상품 금액({quantity}개)</span>
+              <span>총 상품 금액 ({quantity}개)</span>
               <span>{commaTotal} 원</span>
             </div>
           </div>
@@ -208,7 +211,6 @@ const ProductDetail = (props) => {
 const Likes = (props) => {
   const like = props.like;
   const changeLike = props.changeLike;
-  console.log(like);
   return (
     <div className="productDetail-like-btn" onClick={changeLike}>
       <span className="material-icons">

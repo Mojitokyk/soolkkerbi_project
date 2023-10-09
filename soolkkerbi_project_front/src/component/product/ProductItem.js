@@ -37,7 +37,7 @@ const ProductItem = (props) => {
       } else {
         axios
           .post(
-            "/product/disLike",
+            "/product/dislike",
             { productNo: product.productNo },
             {
               headers: {
