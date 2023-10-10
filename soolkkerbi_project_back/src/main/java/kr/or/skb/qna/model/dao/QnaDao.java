@@ -45,6 +45,9 @@ public interface QnaDao {
 	//댓글 삭제
 	int deleteAnswer(int answerNo);
 
+	//댓글 수정
+	int modifyAnswer(Answer a);
+
 	
 
 }

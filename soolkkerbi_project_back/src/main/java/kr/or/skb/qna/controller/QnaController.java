@@ -120,9 +120,11 @@ public class QnaController {
 	}
 	
 	//댓글 수정
-	@GetMapping(value="/modifyAnswer/{answerNo}")
-	public int modifyAnswer(@PathVariable int answerNo) {
-		System.out.println("answerNo: "+answerNo);
-		return 0;
+	@PostMapping(value="/modifyAnswer")
+	public int modifyAnswer(@ModelAttribute Answer a) {
+		System.out.println("answerNo: "+a.getAnswerNo());
+		System.out.println("answerContent: "+a.getAnswerContent());
+		System.out.println(a);
+		return qnaService.modifyAnswer(a);
 	}
 }

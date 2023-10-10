@@ -207,8 +207,9 @@ const PrintAnswer = (props) => {
 
     setModifyFrm(true);
   };
-  const modifyAnswer = (props) => {
-    const answerNo = props.answerNo;
+  const modifyAnswer = (answerNo) => {
+    // const answerNo = props.answerNo;
+    console.log(answerNo);
 
     // if (qnaComment !== "" && memberLevel === 1) {
     if (answerContent !== "") {
@@ -217,7 +218,7 @@ const PrintAnswer = (props) => {
       form.append("answerNo", answerNo);
       // form.append("memberId", memberId); - memberId -> qnaMemberNo 임시로 DB의 관리자 번호(62)를 넣음
       axios
-        .get("/qna/modifyAnswer/" + answerNo)
+        .post("/qna/modifyAnswer", form)
         .then((res) => {
           console.log(res.data);
           setAnswerContent("");
@@ -225,6 +226,7 @@ const PrintAnswer = (props) => {
           const newArr = [...answerList];
           newArr.push(res.data);
           setAnswerList(newArr);
+          setModifyFrm(false);
         })
         .catch((res) => {
           console.log(res.response.status);
@@ -236,8 +238,10 @@ const PrintAnswer = (props) => {
 
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
+    console.log("content-change");
     const inputValue = e.currentTarget.value;
     setAnswerContent(inputValue);
+    console.log(answerContent);
   };
   //Enter로 '등록'을 수행하는 함수
   const enterCheck = (e) => {
@@ -297,11 +301,13 @@ const PrintAnswer = (props) => {
                     <input type="text" value={answer.answerNo} />
                   </li>
                   <li>
-                    <Button1
-                      text="수정완료"
-                      clickEvent={modifyAnswer}
-                      answerNo={answer.answerNo}
-                    />
+                    <button
+                      onClick={() => {
+                        modifyAnswer(answer.answerNo);
+                      }}
+                    >
+                      수정완료
+                    </button>
                   </li>
                 </ul>
               </div>
