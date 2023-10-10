@@ -68,4 +68,9 @@
 	<delete id="deleteAnswer">
 		delete from answer where answer_no=#{answerNo}
 	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="modifyAnswer">
+		update answer set answer_content=#{answerContent} where answer_no=#{answerNo}
+	</update>
 </mapper>
