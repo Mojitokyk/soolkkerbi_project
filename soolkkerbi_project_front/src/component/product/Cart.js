@@ -3,6 +3,7 @@ import { Button1 } from "../util/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./cart.css";
 
 const Cart = (props) => {
@@ -13,8 +14,10 @@ const Cart = (props) => {
   //totalCount.productNumber : 장바구니 품목 건수
   //totalCount.totalPrice : 장바구니 총 합계 금액
   const [totalCount, setTotalCount] = useState({});
+  const [member, setMember] = useState({});
   //체크 박스 체크 시 cartNo 넣어줌
   const [checkList, setCheckList] = useState([]);
+  const navigate = useNavigate();
   //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
   useEffect(() => {
     axios
@@ -26,11 +29,12 @@ const Cart = (props) => {
       .then((res) => {
         setCartList(res.data.cartList);
         setTotalCount(res.data.totalCount);
+        setMember(res.data.member);
       })
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, []);
+  }, [isLogin]);
   //개별 상품 체크 박스
   const changeSingleBox = (checked, id) => {
     if (checked) {
@@ -168,6 +172,7 @@ const Cart = (props) => {
                   deleteOneCart={deleteOneCart}
                   plusCart={plusCart}
                   removeCart={removeCart}
+                  member={member}
                 />
               );
             })}
@@ -177,7 +182,7 @@ const Cart = (props) => {
       <div className="delete-btn">
         <Button1 text="선택상품 삭제" clickEvent={deleteCart} />
       </div>
-      <CartPrice totalCount={totalCount} cartList={cartList} />
+      <CartPrice totalCount={totalCount} cartList={cartList} member={member} />
     </div>
   );
 };
@@ -189,6 +194,7 @@ const CartProduct = (props) => {
   const deleteOneCart = props.deleteOneCart;
   const plusCart = props.plusCart;
   const removeCart = props.removeCart;
+  const member = props.member;
   const navigate = useNavigate();
   const productView = () => {
     navigate("/product/view", { state: { productNo: cart.cartProductNo } });
@@ -200,7 +206,7 @@ const CartProduct = (props) => {
   //바로 구매 버튼 클릭 시 결제페이지 이동
   const partialPay = () => {
     navigate("/product/pay", {
-      state: { cart: cart },
+      state: { cart: cart, member: member },
     });
   };
   return (
@@ -266,10 +272,15 @@ const CartProduct = (props) => {
 const CartPrice = (props) => {
   const totalCount = props.totalCount;
   const cartList = props.cartList;
+  const member = props.member;
   const navigate = useNavigate();
   const allPay = () => {
     navigate("/product/pay", {
-      state: { cartList: cartList },
+      state: {
+        cartList: cartList,
+        totalPrice: totalCount.totalPrice,
+        member: member,
+      },
     });
   };
   // 천원단위 콤마붙인 가격

@@ -7,15 +7,24 @@ import axios from "axios";
 
 const MyQnaList = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const [qnaList, setQnaList] = useState([]);
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
+
+  console.log(member.memberLevel);
+
+  const token = window.localStorage.getItem("token");
 
   //useEffect: 최초에 1회 수행후, [ ]배열 값이 달라지면 값에 따라 한 번 더 수행
   useEffect(() => {
     //로그인 체크 후 조회시: post
     axios
-      .get("/qna/list/" + reqPage) //get메서드 사용
+      .get("/qna/list/" + reqPage, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }) //get메서드 사용
       .then((res) => {
         console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setQnaList(res.data.qnaList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
@@ -48,11 +57,13 @@ const MyQnaList = (props) => {
           })}
         </tbody>
       </table>
-
-      <div className="qna-write-btn">
-        <Button1 text="작성하기" clickEvent={write} />
-      </div>
-
+      {member.memberLevel === 2 ? (
+        <div className="qna-write-btn">
+          <Button1 text="작성하기" clickEvent={write} />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="qna-pagination">
         <Pagination
           reqPage={reqPage}

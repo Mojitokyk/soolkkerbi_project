@@ -31,6 +31,7 @@ const MypageMain = (props) => {
       .then((res) => {
         //console.log(res.data);
         setMember(res.data);
+        document.querySelectorAll(".my-side a")[0].click();
       })
       .catch((res) => {
         if (res.response.status === 403) {
@@ -74,9 +75,18 @@ const MypageMain = (props) => {
               element={<MyOrder member={member} isLogin={isLogin} />}
             />
             <Route path="reservation" element={<MyReservation />} />
-            <Route path="wish" element={<MyWishList />} />
+            <Route path="wish" element={<MyWishList isLogin={isLogin} />} />
             <Route path="review" element={<MyReivew />} />
-            <Route path="qna/*" element={<MyQna />} />
+            <Route
+              path="qna/*"
+              element={
+                <MyQna
+                  member={member}
+                  isLogin={isLogin}
+                  setIsLogin={setIsLogin}
+                />
+              }
+            />
 
             {/* <Route path="info" element={<MyInfo isLogin={isLogin} setMember={setMember}
                   setIsLogin={setIsLogin} member={member}/>} />
@@ -94,9 +104,8 @@ const MypageMain = (props) => {
                 />
               }
             />
-            <Route path="quit" element={<Quit setIsLogin={setIsLogin}/>} />
+            <Route path="quit" element={<Quit setIsLogin={setIsLogin} />} />
             <Route path="/changepw" element={<MemberChangePw />} />
-
           </Routes>
         </div>
       </div>

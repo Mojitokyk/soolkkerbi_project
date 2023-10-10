@@ -41,6 +41,35 @@
   font-size: 22px;
 }
 
+.searchDate-btnBox-wrap {
+  width: 100%;
+}
+
+.searchDate-btnBox-title {
+  font-family: ns-b;
+  margin-left: 295px;
+}
+.searchDate-btnBox {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchDate-calendar {
+  width: 30%;
+  margin: 10px;
+}
+.searchDate-calendar > .css-bkzwk2-MuiStack-root {
+  align-items: center;
+  padding: 0;
+}
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root
+  > .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0.5rem;
+}
+
 .admin-content-tbl > table {
   width: 100%;
   border-spacing: 0;

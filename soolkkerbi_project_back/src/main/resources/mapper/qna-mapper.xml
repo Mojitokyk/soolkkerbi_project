@@ -4,7 +4,8 @@
 
   	<!-- 전체 게시물 수(공개된 게시물) -->
 	<select id="totalCount" resultType="int">
-		select count(*) from qna
+		select count(*) from 
+		(select * from qna join member on (qna_member_no = member_no) where member_id = #{memberId})
 	</select>
 	
 	<!-- 페이지 네비게이션 및 게시물 개수 조회 --> 
@@ -18,13 +19,14 @@
 		            QNA_STATUS
 		        FROM QNA
 		        JOIN MEMBER ON (QNA_MEMBER_NO = MEMBER_NO) 
+		        WHERE MEMBER_ID=#{memberId}
 		        ORDER BY 1 DESC)B)
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
  	
  	<!-- 게시글 작성 --> <!-- 임시회원번호: 1 /#{noticeMemberNo} -->
  	<insert id="insertQna">
- 		insert into qna values(qna_seq.nextval, 1, #{qnaTitle}, #{qnaContent}, sysdate, 1)
+ 		insert into qna values(qna_seq.nextval, #{qnaMemberNo}, #{qnaTitle}, #{qnaContent}, sysdate, 1)
  	</insert>
  	
  	<!-- 게시글 상세보기 -->
@@ -54,6 +56,10 @@
 			select max(answer_no) from answer <!-- board_no 중 제일 큰 숫자 / 방금 넣은 board_no -->
 		</selectKey>
 	</insert>
+	<!-- 문의사항의 답변상태 변경1 -->	
+	<update id="updateQnaStatus1">
+		update qna set qna_status=2 where qna_no=#{answerQnaNo}
+	</update>
 	<!-- 댓글 작성 후 가장 최근의 댓글을 조회 -->
 	<select id="printRecentAnswer" resultType="answer">
 		select answer_no, answer_date, answer_content from answer where answer_no=#{answerNo}
@@ -68,4 +74,13 @@
 	<delete id="deleteAnswer">
 		delete from answer where answer_no=#{answerNo}
 	</delete>
+	<!-- 문의사항의 답변상태 변경2 -->	
+	<update id="updateQnaStatus2">
+		update qna set qna_status=1 where qna_no=#{answerQnaNo}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="modifyAnswer">
+		update answer set answer_content=#{answerContent} where answer_no=#{answerNo}
+	</update>
 </mapper>

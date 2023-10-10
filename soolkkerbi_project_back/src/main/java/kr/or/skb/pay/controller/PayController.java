@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.skb.SelectDate;
+import kr.or.skb.cart.model.vo.Cart;
 import kr.or.skb.pay.model.service.PayService;
 import kr.or.skb.pay.model.vo.Pay;
 
@@ -42,8 +45,9 @@ public class PayController {
 	}
 	
 	@PostMapping(value="/readAllIncome")
-	public List readAllIncome() {
-		return null;
+	public Map readAllIncome(@RequestBody SelectDate selectDate) {
+		System.out.println(selectDate);
+		return payService.readAllIncome(selectDate);
 	}
 	
 	//마이페이지 주문내역 조회하기
@@ -52,5 +56,18 @@ public class PayController {
 		//System.out.println(memberId);
 		//System.out.println(reqPage);
 		return payService.readOrderList(reqPage, memberId);
+	}
+	
+	//주문 테이블 insert : 한개
+	@PostMapping(value="/insertOnePay")
+	public int insertOnePay(@RequestBody Cart cart, @RequestAttribute(required=false) String memberId) {
+		cart.setMemberId(memberId);
+		return payService.insertOnePay(cart);
+	}
+	
+	//주문 테이블 insert : 여러개
+	@PostMapping(value="/insertPayList")
+	public int insertPayList(@RequestBody List<Cart> cartList, @RequestAttribute(required=false) String memberId) {
+		return payService.insertPayList(cartList,memberId);
 	}
 }

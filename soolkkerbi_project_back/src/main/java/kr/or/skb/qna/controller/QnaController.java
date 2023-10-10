@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,18 +36,18 @@ public class QnaController {
 	
 	//게시물 조회
 	@GetMapping(value="/list/{reqPage}")
-	public Map list(@PathVariable int reqPage) {
-		Map map = qnaService.qnaList(reqPage);
+	public Map list(@PathVariable int reqPage, @RequestAttribute String memberId) {
+		Map map = qnaService.qnaList(reqPage, memberId);
 		return map;
 	}
 	
 	//게시글 작성
 	//Board b: boardTitle, boardDetail
 	@PostMapping(value="/insert")
-	public int insertQna(@ModelAttribute Qna q) {// @RequestAttribute String memberId
+	public int insertQna(@ModelAttribute Qna q, @RequestAttribute String memberId) {// @RequestAttribute String memberId
 		System.out.println("qnaController: "+q);
-//		System.out.println(memberId);
-//		q.setMemberId(memberId);
+		System.out.println("memberId: "+memberId);
+		q.setMemberId(memberId);
 		int result = qnaService.insertQna(q);
 		return result;
 	}
@@ -113,16 +114,19 @@ public class QnaController {
 	}
 	
 	//댓글 삭제
-	@GetMapping(value="/deleteAnswer/{answerNo}")
-	public int deleteAnswer(@PathVariable int answerNo) {
-		System.out.println("answerNo: "+answerNo);
-		return qnaService.deleteAnswer(answerNo);
+	@PostMapping(value="/deleteAnswer")
+	public int deleteAnswer(@ModelAttribute Answer a) {
+		System.out.println(a);
+		int result = qnaService.deleteAnswer(a);
+		return result;
 	}
 	
 	//댓글 수정
-	@GetMapping(value="/modifyAnswer/{answerNo}")
-	public int modifyAnswer(@PathVariable int answerNo) {
-		System.out.println("answerNo: "+answerNo);
-		return 0;
+	@PostMapping(value="/modifyAnswer")
+	public int modifyAnswer(@ModelAttribute Answer a) {
+		System.out.println("answerNo: "+a.getAnswerNo());
+		System.out.println("answerContent: "+a.getAnswerContent());
+		System.out.println(a);
+		return qnaService.modifyAnswer(a);
 	}
 }

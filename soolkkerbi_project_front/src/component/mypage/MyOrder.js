@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import "./myOrder.css";
 import axios from "axios";
 import Pagination from "../common/Pagination";
-import { Button1, Button2, Button4, Button5 } from "../util/Buttons";
+import { Button4, Button5 } from "../util/Buttons";
 import { useNavigate } from "react-router";
+import * as React from "react";
+import ReviewModal from "./ReviewModal";
+
 const MyOrder = (props) => {
   const isLogin = props.isLogin;
 
@@ -21,7 +24,7 @@ const MyOrder = (props) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setOrderList(res.data.list);
         setPageInfo(res.data.pi);
       })
@@ -88,6 +91,7 @@ const OrderList = (props) => {
   const commaPrice = totalPrice
     ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     : "";
+
   return (
     <tr>
       <td>{order.payDate}</td>
@@ -123,7 +127,7 @@ const OrderList = (props) => {
         ) : order.payStatus === 2 ? (
           <>
             <div className="order-status-btn-box">
-              <Button5 text="리뷰쓰기" className="hoverEffect2" />
+              <ReviewModal order={order} />
             </div>
           </>
         ) : (
@@ -133,4 +137,5 @@ const OrderList = (props) => {
     </tr>
   );
 };
+
 export default MyOrder;

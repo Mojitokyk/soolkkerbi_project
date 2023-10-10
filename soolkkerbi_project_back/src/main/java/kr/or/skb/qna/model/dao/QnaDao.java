@@ -9,15 +9,16 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
+import kr.or.skb.qna.model.vo.QnaListData;
 
 @Mapper
 public interface QnaDao {
 
 	//전체 게시물 수
-	int totalCount();
+	int totalCount(String memberId);
 	
 	//페이지 네비게이션 및 게시물 개수 조회
-	List selectQnaList(PageInfo pi);
+	List selectQnaList(QnaListData qld);
 	
 	//게시글 작성
 	int insertQna(Qna q);
@@ -33,6 +34,8 @@ public interface QnaDao {
 
 	//댓글 작성
 	int registAnswer(Answer a);
+	//문의사항의 답변상태 변경1
+	int updateQnaStatus1(int answerQnaNo);
 	//댓글 작성 후 가장 최근의 댓글을 조회
 	Answer printRecentAnswer(int answerNo);
 	
@@ -43,7 +46,14 @@ public interface QnaDao {
 	List printAnswer(int answerQnaNo);
 
 	//댓글 삭제
-	int deleteAnswer(int answerNo);
+	int deleteAnswer(Answer a);
+	//문의사항의 답변상태 변경2
+	int updateQnaStatus2(Answer a);
+
+	//댓글 수정
+	int modifyAnswer(Answer a);
+
+
 
 	
 

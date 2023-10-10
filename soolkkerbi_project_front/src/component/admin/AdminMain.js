@@ -11,6 +11,7 @@ import ReadIncome from "./ReadIncome";
 import ManageReceive from "./ManageReceive";
 import Swal from "sweetalert2";
 import axios from "axios";
+import ManageQna from "./ManageQna";
 
 const AdminMain = (props) => {
   const isLogin = props.isLogin;
@@ -40,15 +41,15 @@ const AdminMain = (props) => {
       });
   }, []);
 
-  if (!isLogin) {
-    Swal.fire({
-      title: "로그인이 필요한 서비스 입니다.",
-      text: "로그인 페이지로 이동합니다.",
-      icon: "info",
-    }).then(() => {
-      navigate("/login");
-    });
-  }
+  // if (!isLogin) {
+  //   Swal.fire({
+  //     title: "로그인이 필요한 서비스 입니다.",
+  //     text: "로그인 페이지로 이동합니다.",
+  //     icon: "info",
+  //   }).then(() => {
+  //     navigate("/login");
+  //   });
+  // }
 
   const [menus, setMenus] = useState([
     { url: "info", text: "회원정보 수정", active: true },
@@ -86,6 +87,7 @@ const AdminMain = (props) => {
             <Route path="manageReceive" element={<ManageReceive />} />
             <Route path="cancelPay" element={<CancelPay />} />
             <Route path="cancelReservation" element={<CancelReservation />} />
+            <Route path="manageQna" element={<ManageQna />} />
             <Route path="readIncome" element={<ReadIncome />} />
           </Routes>
         </div>

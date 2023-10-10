@@ -23,14 +23,11 @@ const MyQnaWrite = () => {
       form.append("qnaTitle", qnaTitle);
       form.append("qnaContent", qnaContnet);
 
-      //   const token = window.localStorage.getItem("token");
+      const token = window.localStorage.getItem("token");
       axios
         .post("/qna/insert", form, {
           headers: {
-            //processData, contentType: 문자열만 전송하는 것이 아닌, 파일 타입도 있다는 것을 인지시킴
-            processData: false,
-            contentType: "multipart/form-data",
-            // Authorization: "Bearer " + token,
+            Authorization: "Bearer " + token,
           },
         })
         .then((res) => {

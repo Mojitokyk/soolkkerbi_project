@@ -1,6 +1,5 @@
 package kr.or.skb.qna.model.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,30 +10,37 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
-import kr.or.skb.notice.model.vo.Notice;
-import kr.or.skb.notice.model.vo.NoticeFile;
+import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.qna.model.dao.QnaDao;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
+import kr.or.skb.qna.model.vo.QnaListData;
 
 @Service
 public class QnaService {
 	@Autowired
 	private QnaDao qnaDao;
 	@Autowired
+	private MemberDao memberDao;
+	@Autowired
 	private Pagination pagination;
 	
 	//게시물 조회
-	public Map qnaList(int reqPage) {
+	public Map qnaList(int reqPage, String memberId) {
 		//게시물 조회, 페이징에 필요한 데이터를 취합
 		int numPerPage = 10; //한 페이지당 게시물 수
 		int pageNaviSize = 5; //페이지 네비게이션에 표시되는 개수(길이)
-		int totalCount = qnaDao.totalCount(); //전체 게시물 수
+		int totalCount = qnaDao.totalCount(memberId); //전체 게시물 수
 		
 		//페이징 조회 및 페이지네비 제작에 필요한 데이터를 객체로 받아옴
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		
-		List qnaList = qnaDao.selectQnaList(pi); //pi로 start, end값을 mybatis로 넘김
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		QnaListData qld = new QnaListData(start, end, memberId);
+		
+		List qnaList = qnaDao.selectQnaList(qld); //pi로 start, end값을 mybatis로 넘김
 		
 		//pi와 boardList를 반환해야하나, 1개만 	반환할 수 있다.
 		//방법1. VO 제작
@@ -56,10 +62,10 @@ public class QnaService {
 		//작성자 정보를 현재 아이디만 알고있다. -> Board테이블에는 회원번호가 외래키로 설정되어있다.
 		//아이디를 이용하여 회원번호를 구해온다(회원정보를 조회하여 회원 정보 중 회원번호를 사용한다)
 
-//		Member member = memberDao.selectOneMember(n.getMemberId());
-//		System.out.println("memberNo: "+member.getMemberNo());
-//		n.setNoticeMemberNo(member.getMemberNo());
-//		System.out.println("noticeMemberNo: "+n.getNoticeMemberNo());
+		Member member = memberDao.selectOneMember(q.getMemberId());
+		System.out.println("memberNo: "+member.getMemberNo());
+		q.setQnaMemberNo(member.getMemberNo());
+		System.out.println("qnaMemberNo: "+q.getQnaMemberNo());
 		int result = qnaDao.insertQna(q);
 			return result;
 	}
@@ -89,6 +95,8 @@ public class QnaService {
 	//댓글 작성
 	public Answer registAnswer(Answer a) {
 		int result = qnaDao.registAnswer(a);
+		//문의사항의 답변상태 변경1
+		int resultStatus = qnaDao.updateQnaStatus1(a.getAnswerQnaNo());
 		//제일 최신 번호를 조회 -> selectKey 사용
 		System.out.println("answerNo: "+a.getAnswerNo());
 		Answer answer = qnaDao.printRecentAnswer(a.getAnswerNo());
@@ -103,8 +111,20 @@ public class QnaService {
 
 	//댓글 삭제
 	@Transactional
-	public int deleteAnswer(int answerNo) {
-		return qnaDao.deleteAnswer(answerNo);
+	public int deleteAnswer(Answer a) {
+		int result = qnaDao.deleteAnswer(a);
+		//문의사항의 답변상태 변경2
+		int resultStatus = qnaDao.updateQnaStatus2(a);
+		int resultDelete = 0;
+		if(result==1 && resultStatus==1) {
+			resultDelete = 1;
+		}
+		return resultDelete;
+	}
+
+	//댓글 수정
+	public int modifyAnswer(Answer a) {
+		return qnaDao.modifyAnswer(a);
 	}
 
 

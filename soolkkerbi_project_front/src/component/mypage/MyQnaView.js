@@ -8,12 +8,13 @@ import MyQnaAnswer from "./MyQnaAnswer";
 
 const MyQnaView = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const location = useLocation();
   const qnaNo = location.state.qnaNo;
   const [qna, setQna] = useState({});
-  const [member, setMember] = useState(null); //상세보기 - 삭제, 수정: 사용자 정보 조회를 위한 state
   const navigate = useNavigate();
 
+  console.log(member.memberLevel);
   console.log("QnaView - location.state.qnaNo: " + location.state.qnaNo);
 
   useEffect(() => {
@@ -74,23 +75,20 @@ const MyQnaView = (props) => {
           className="qna-view-detail"
           dangerouslySetInnerHTML={{ __html: qna.qnaContent }} //텍스트 에디터를 사용할 경우
         ></div>
-        {/*
+
         <div className="qna-comment-wrap">
-          {memberLevel === 1 ? (
-            <>
-              <MyQnaAnswer qnaNo={qnaNo} /> 
-            </>
-          ) : (
-            ""
-          )}
+          <MyQnaAnswer member={member} qnaNo={qnaNo} />
         </div>
-        */}
-        <MyQnaAnswer qnaNo={qnaNo} />
-        <div className="qna-view-btn">
-          <Button1 text="목록으로" clickEvent={toList} />
-          <Button1 text="수정" clickEvent={modifyQna} />
-          <Button1 text="삭제" clickEvent={deleteQna} />
-        </div>
+
+        {member.memberLevel === 2 ? (
+          <div className="qna-view-btn">
+            <Button1 text="목록으로" clickEvent={toList} />
+            <Button1 text="수정" clickEvent={modifyQna} />
+            <Button1 text="삭제" clickEvent={deleteQna} />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
