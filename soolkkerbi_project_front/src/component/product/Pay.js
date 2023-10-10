@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Input from "../util/InputForm";
 import { useState } from "react";
 import { Button2 } from "../util/Buttons";
+import Swal from "sweetalert2";
 
 const Pay = (props) => {
   const isLogin = props.isLogin;
@@ -15,6 +16,59 @@ const Pay = (props) => {
   const [memberPhone, setMemberPhone] = useState(member.memberPhone);
   const [memberEmail, setMemberEmail] = useState(member.memberEmail);
   const [pickupDate, setPickupDate] = useState("");
+  const pay = () => {
+    if (
+      memberName === "" ||
+      memberPhone === "" ||
+      memberEmail === "" ||
+      pickupDate === ""
+    ) {
+      Swal.fire({
+        icon: "warning",
+        title: "입력값 확인",
+        text: "주문자 정보 혹은 방문일자를 확인해주세요.",
+      });
+    } else {
+      const { IMP } = window;
+      const price = totalPrice ? totalPrice : cart.cartPrice;
+      const productName = cartList
+        ? cartList[0].productName + " 외 " + cartList.length + "건"
+        : cart.productName;
+      const d = new Date();
+      const date =
+        d.getFullYear() +
+        "" +
+        (d.getMonth() + 1) +
+        "" +
+        d.getDate() +
+        "" +
+        d.getHours() +
+        "" +
+        d.getMinutes() +
+        "" +
+        d.getSeconds();
+      IMP.init("imp83034442");
+      IMP.request_pay(
+        {
+          pg: "html5_inicis",
+          pay_method: "card",
+          merchant_uid: "주문번호_" + date,
+          name: productName,
+          amount: 100,
+          buyer_email: memberEmail,
+          buyer_name: memberName,
+          buyer_tel: memberPhone,
+        },
+        function (rsp) {
+          if (rsp.success) {
+            alert("결제성공");
+          } else {
+            alert("결제실패");
+          }
+        }
+      );
+    }
+  };
   return (
     <div className="pay-all-wrap">
       <div className="pay-title">결제하기</div>
@@ -86,7 +140,7 @@ const Pay = (props) => {
                   <p>결제 대행사에서 직접 고객님의 계좌로 환불처리됩니다.</p>
                 </div>
               </div>
-              <Button2 text="결제하기" />
+              <Button2 text="결제하기" clickEvent={pay} />
             </div>
           </div>
         </div>
