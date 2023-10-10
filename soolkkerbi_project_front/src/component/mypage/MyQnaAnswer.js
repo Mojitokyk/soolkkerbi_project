@@ -51,6 +51,8 @@ const RegistAnswer = (props) => {
           const newArr = [...answerList];
           newArr.push(res.data);
           setAnswerList(newArr);
+          document.getElementsByClassName("write-answer-frm")[0].style.display =
+            "none";
         })
         .catch((res) => {
           console.log(res);
@@ -116,32 +118,33 @@ const PrintAnswer = (props) => {
   // const [rePrintModify, setRePrintModify] = useState(true);
 
   useEffect(() => {
-    //등록된 답변 존재시, 등록 창을 숨김
-    const answerFrm = document.getElementsByClassName("write-answer-frm")[0];
-    console.log(answerList.length);
-    if (answerList.length === 0) {
-      answerFrm.style.display = "block";
-    } else {
-      answerFrm.style.display = "none";
-    }
-
     //DB를 통하여 등록된 답변을 출력
     axios
       .get("/qna/printAnswer/" + answerQnaNo)
       .then((res) => {
         console.log(res.data);
         setAnswerList(res.data);
+
+        //등록된 답변 존재시, 등록 창을 숨김
+        const answerFrm =
+          document.getElementsByClassName("write-answer-frm")[0];
+        if (res.data.length === 0) {
+          answerFrm.style.display = "block";
+        } else {
+          answerFrm.style.display = "none";
+        }
       })
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, [answerList]); //answerList가 변경되면 랜더링
+  }, []);
 
   //답변 삭제 함수
   const deleteAnswer = (answerNo, index) => {
     console.log("답변 삭제 함수 클릭");
     console.log(answerNo);
     console.log(index);
+    console.log(answerQnaNo);
 
     axios
       .get("/qna/deleteAnswer/" + answerNo)
@@ -151,6 +154,8 @@ const PrintAnswer = (props) => {
         const newArr = [...answerList];
         newArr.splice(index, 1);
         setAnswerList(newArr);
+        document.getElementsByClassName("write-answer-frm")[0].style.display =
+          "block";
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -244,7 +249,7 @@ const PrintAnswer = (props) => {
                     </span>
                     <span
                       onClick={() => {
-                        deleteAnswer(answer.answerNo, index);
+                        deleteAnswer(answer.answerNo, index, answerQnaNo);
                       }}
                     >
                       삭제

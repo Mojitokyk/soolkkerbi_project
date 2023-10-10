@@ -33,6 +33,8 @@ public interface QnaDao {
 
 	//댓글 작성
 	int registAnswer(Answer a);
+	//문의사항의 답변상태 변경1
+	int updateQnaStatus1(int answerQnaNo);
 	//댓글 작성 후 가장 최근의 댓글을 조회
 	Answer printRecentAnswer(int answerNo);
 	
@@ -44,9 +46,13 @@ public interface QnaDao {
 
 	//댓글 삭제
 	int deleteAnswer(int answerNo);
+	//문의사항의 답변상태 변경2
+//	int updateQnaStatus2(int answerQnaNo);
 
 	//댓글 수정
 	int modifyAnswer(Answer a);
+
+
 
 	
 

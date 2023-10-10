@@ -116,6 +116,7 @@ public class QnaController {
 	@GetMapping(value="/deleteAnswer/{answerNo}")
 	public int deleteAnswer(@PathVariable int answerNo) {
 		System.out.println("answerNo: "+answerNo);
+//		System.out.println("answerQnaNo: "+answerQnaNo);
 		return qnaService.deleteAnswer(answerNo);
 	}
 	
