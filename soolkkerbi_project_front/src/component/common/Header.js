@@ -62,7 +62,7 @@ const Category = () => {
           </ul>
         </li>
         <li>
-          <Link to="#">시음회</Link>
+          <Link to="/tasting/partylist">시음회</Link>
         </li>
       </ul>
     </div>

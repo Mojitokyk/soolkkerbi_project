@@ -90,7 +90,7 @@ public class ProductController {
 	}
 	
 	//상품리스트 좋아요 취소
-	@PostMapping(value="/disLike")
+	@PostMapping(value="/dislike")
 	public int deleteLike(@RequestBody Product p, @RequestAttribute String memberId) {
 		p.setMemberId(memberId);
 		return productService.deleteLike(p);
@@ -107,8 +107,8 @@ public class ProductController {
 	}
 	
 	//상품 상세보기
-	@GetMapping(value="/view/{productNo}")
-	public Product selectOneProduct(@PathVariable int productNo) {
-		return productService.selectOneProduct(productNo);
+	@PostMapping(value="/view")
+	public Product selectOneProduct(@RequestBody Product p) {
+		return productService.selectOneProduct(p);
 	}
 }

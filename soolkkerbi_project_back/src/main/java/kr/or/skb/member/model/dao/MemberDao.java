@@ -24,6 +24,10 @@ public interface MemberDao {
 	Member selectMemberPw(Member member);
 
 	int changePhone(Member member);
+
+	int changePw(Member member);
+	
+	int deleteMember(String memberId);
 	
 
 

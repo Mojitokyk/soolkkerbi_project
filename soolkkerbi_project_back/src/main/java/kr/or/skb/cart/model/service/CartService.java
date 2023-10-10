@@ -10,11 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.cart.model.dao.CartDao;
 import kr.or.skb.cart.model.vo.Cart;
+import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
 
 @Service
 public class CartService {
 	@Autowired
 	private CartDao cartDao;
+	@Autowired
+	private MemberDao memberDao;
 	
 	@Transactional
 	public int addCart(Cart cart) {
@@ -34,9 +38,11 @@ public class CartService {
 	public Map selectCart(Cart cart) {
 		List cartList = cartDao.selectCart(cart);
 		Cart totalCount = cartDao.totalCount(cart);
+		Member member = memberDao.selectOneMember(cart.getMemberId());
 		HashMap<String, Object> map = new HashMap <String, Object>();
 		map.put("cartList", cartList);
 		map.put("totalCount", totalCount);
+		map.put("member", member);
 		return map;
 	}
 	

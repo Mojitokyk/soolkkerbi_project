@@ -82,5 +82,23 @@ public class MemberService {
 		
 		return memberDao.changePhone(member);
 	}
+	public int pwCheck(Member member) {
+		Member m = memberDao.selectOneMember(member.getMemberId());
+		if (m != null && bCryptPasswordEncoder.matches(member.getMemberPw(), m.getMemberPw())) {
 
+			return 1;
+		}
+
+		return 0;
+	}
+	@Transactional
+	public int changePwMember(Member member) {
+		// TODO Auto-generated method stub
+		return memberDao.changePw(member);
+	}
+	@Transactional
+	public int deleteMember(String memberId) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteMember(memberId);
+	}
 }

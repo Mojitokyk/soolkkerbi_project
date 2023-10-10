@@ -70,10 +70,6 @@ public class MemberController {
 		return memberService.readAllMember(reqPage);
 	}
 	
-//	@PostMapping(value="/selectOneMember")
-//	public Member selectOneMember() {
-//		
-//	}
 	@PostMapping(value="/getMember")
 	public Member mypage(@RequestAttribute String memberId) {
 		return memberService.selectOneMember(memberId);
@@ -81,5 +77,19 @@ public class MemberController {
 	@PostMapping(value = "/changePhone")
 	public int changePhone(@RequestBody Member member) {
 		return memberService.changePhone(member);
+	}
+	@PostMapping(value = "pwCheck")
+	public int pwCheck(@RequestBody Member member, @RequestAttribute String memberId) {
+		member.setMemberId(memberId);
+		return memberService.pwCheck(member);
+	}
+	@PostMapping(value = "/changePw")
+	public int changePw(@RequestBody Member member,@RequestAttribute String memberId) {
+		member.setMemberId(memberId); 
+		return memberService.changePwMember(member);
+	}
+	@PostMapping(value = "/deleteMember")
+	public int deleteMember(@RequestAttribute String memberId) {
+		return memberService.deleteMember(memberId);
 	}
 }

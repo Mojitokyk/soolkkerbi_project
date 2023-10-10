@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Button2, Button3 } from "../util/Buttons";
+import { Button1, Button2, Button3 } from "../util/Buttons";
 import Input from "../util/InputForm";
 import "./myInfo.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -38,10 +38,7 @@ const MyInfo = (props) => {
   };
 
   const changePw=()=>{
-    // <Routes>
-    //   <Route path="/changepw" element={<MemberChangePw />}/>
-    // </Routes>
-    navigate("/changepw")
+    navigate("/mypage/changepw");
   }
   return (
     <div className="mypage-content-warp">
@@ -74,15 +71,13 @@ const MyInfo = (props) => {
               </div>
             </td>
           </tr>
-          <tr>
-            <td>
-              <div className="비밀번호 변경하기" >
-                <Button2 text="비밀번호 변경" clickEvent={changePw}/>
-              </div>
-            </td>
-          </tr>
         </tbody>
       </table>
+      
+      <div className="changepw-btn" >
+                <Button2 text="비밀번호 변경하러가기" clickEvent={changePw} setMember={setMember}
+                  setIsLogin={setIsLogin} member={member}/>
+              </div>
     
     </div>
   );
