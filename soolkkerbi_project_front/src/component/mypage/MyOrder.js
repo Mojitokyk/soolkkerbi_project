@@ -4,6 +4,9 @@ import axios from "axios";
 import Pagination from "../common/Pagination";
 import { Button4, Button5 } from "../util/Buttons";
 import { useNavigate } from "react-router";
+import * as React from "react";
+import ReviewModal from "./ReviewModal";
+
 const MyOrder = (props) => {
   const isLogin = props.isLogin;
 
@@ -88,6 +91,7 @@ const OrderList = (props) => {
   const commaPrice = totalPrice
     ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     : "";
+
   return (
     <tr>
       <td>{order.payDate}</td>
@@ -123,7 +127,7 @@ const OrderList = (props) => {
         ) : order.payStatus === 2 ? (
           <>
             <div className="order-status-btn-box">
-              <Button5 text="리뷰쓰기" className="hoverEffect2" />
+              <ReviewModal order={order} />
             </div>
           </>
         ) : (
@@ -133,4 +137,5 @@ const OrderList = (props) => {
     </tr>
   );
 };
+
 export default MyOrder;

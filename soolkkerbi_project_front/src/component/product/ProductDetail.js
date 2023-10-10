@@ -216,21 +216,7 @@ const ProductDetail = (props) => {
     </div>
   );
 };
-/*
-const Likes = (props) => {
-  const like = props.like;
-  const changeLike = props.changeLike;
-  console.log(like);
-  console.log(changeLike);
-  return (
-    <div className="productDetail-like-btn" onClick={changeLike}>
-      <span className="material-icons">
-        {like ? "favorite" : "favorite_border"}
-      </span>
-    </div>
-  );
-};
-*/
+
 //수량 버튼 컴포넌트
 const QuantityInput = (props) => {
   const onClick = props.onClick;
