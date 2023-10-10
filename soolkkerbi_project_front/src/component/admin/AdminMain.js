@@ -11,6 +11,7 @@ import ReadIncome from "./ReadIncome";
 import ManageReceive from "./ManageReceive";
 import Swal from "sweetalert2";
 import axios from "axios";
+import ManageQna from "./ManageQna";
 
 const AdminMain = (props) => {
   const isLogin = props.isLogin;
@@ -86,6 +87,7 @@ const AdminMain = (props) => {
             <Route path="manageReceive" element={<ManageReceive />} />
             <Route path="cancelPay" element={<CancelPay />} />
             <Route path="cancelReservation" element={<CancelReservation />} />
+            <Route path="manageQna" element={<ManageQna />} />
             <Route path="readIncome" element={<ReadIncome />} />
           </Routes>
         </div>
