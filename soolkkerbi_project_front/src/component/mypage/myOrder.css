@@ -32,3 +32,83 @@
 .emptyOrder {
   height: 500px;
 }
+/*리뷰쓰기 버튼*/
+.order-status-btn-box .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  font-family: ns-r;
+  color: black;
+  background-color: transparent;
+  border: 2px solid #ccc;
+  width: 100px;
+}
+.order-status-btn-box .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+  color: #fff;
+  background-color: #4f4f4f;
+  border: none;
+  font-weight: bold;
+  transition: 0.5s;
+}
+/*리뷰 모달*/
+#modal-title {
+  text-align: center;
+  font-size: 30px;
+  font-family: ns-b;
+  padding-bottom: 30px;
+  border-bottom: 2px solid black;
+}
+#modal-description {
+  padding: 30px 0;
+  height: 500px;
+  overflow: auto;
+}
+.modal-review-content {
+  width: 100%;
+  border-spacing: 0;
+}
+.modal-review-content td {
+  padding: 20px 0;
+}
+
+/*별점 컴포넌트*/
+#star-rate > span {
+  color: #ff6289;
+}
+/*리뷰 모달 - 이용약관*/
+.review-privacy-agree {
+  padding: 30px 0;
+  width: 90%;
+  margin: 0 auto;
+}
+.review-agree-check {
+  font-size: 24px;
+  padding: 10px 0;
+}
+.review10 {
+  width: 100%;
+  border-top: 2px solid black;
+  border-bottom: 1px solid black;
+}
+.review10 thead th {
+  height: 45px;
+  width: 50%;
+  border-bottom: 1px solid black;
+}
+.review10 tbody td:not(.no-border-left) {
+  border-left: 1px solid #ccc;
+}
+.review10 > tbody > tr > td {
+  text-align: center;
+  height: 40px;
+}
+.review11 {
+  list-style-position: inside;
+}
+
+.review-btn {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+.review-btn > button {
+  width: 200px;
+  margin-right: 20px;
+}
