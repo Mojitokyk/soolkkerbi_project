@@ -61,6 +61,7 @@ public class PayController {
 		cart.setMemberId(memberId);
 		return payService.insertOnePay(cart);
 	}
+	
 	//주문 테이블 insert : 여러개
 	@PostMapping(value="/insertPayList")
 	public int insertPayList(@RequestBody List<Cart> cartList, @RequestAttribute(required=false) String memberId) {

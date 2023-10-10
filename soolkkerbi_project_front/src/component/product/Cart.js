@@ -3,6 +3,7 @@ import { Button1 } from "../util/Buttons";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./cart.css";
 
 const Cart = (props) => {
@@ -16,6 +17,7 @@ const Cart = (props) => {
   const [member, setMember] = useState({});
   //체크 박스 체크 시 cartNo 넣어줌
   const [checkList, setCheckList] = useState([]);
+  const navigate = useNavigate();
   //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
   useEffect(() => {
     axios
@@ -32,7 +34,7 @@ const Cart = (props) => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, []);
+  }, [isLogin]);
   //개별 상품 체크 박스
   const changeSingleBox = (checked, id) => {
     if (checked) {
