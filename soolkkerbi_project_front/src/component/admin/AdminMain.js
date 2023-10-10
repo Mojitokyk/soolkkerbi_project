@@ -40,15 +40,15 @@ const AdminMain = (props) => {
       });
   }, []);
 
-  if (!isLogin) {
-    Swal.fire({
-      title: "로그인이 필요한 서비스 입니다.",
-      text: "로그인 페이지로 이동합니다.",
-      icon: "info",
-    }).then(() => {
-      navigate("/login");
-    });
-  }
+  // if (!isLogin) {
+  //   Swal.fire({
+  //     title: "로그인이 필요한 서비스 입니다.",
+  //     text: "로그인 페이지로 이동합니다.",
+  //     icon: "info",
+  //   }).then(() => {
+  //     navigate("/login");
+  //   });
+  // }
 
   const [menus, setMenus] = useState([
     { url: "info", text: "회원정보 수정", active: true },
