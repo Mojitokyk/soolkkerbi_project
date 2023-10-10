@@ -75,8 +75,20 @@
 }
 .pay-member-info {
   padding: 10px 0px;
+  overflow: hidden;
 }
-.pay-member-info > input,
+.pay-member-info > label {
+  float: left;
+  width: 20%;
+  margin-top: 15px;
+}
+.pay-member-info > input {
+  float: left;
+  width: 75%;
+  padding: 0.5rem;
+  padding-left: 10px;
+  margin-top: 10px;
+}
 .pay-pickup-info-wrap > input {
   width: 95%;
   margin-top: 10px;
@@ -126,4 +138,7 @@
 .pay-info > button {
   margin: 10px 0px;
   font-size: 16px;
+}
+.pay-product-img:hover {
+  cursor: pointer;
 }
