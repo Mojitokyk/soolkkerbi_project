@@ -36,8 +36,8 @@ public class QnaController {
 	
 	//게시물 조회
 	@GetMapping(value="/list/{reqPage}")
-	public Map list(@PathVariable int reqPage) {
-		Map map = qnaService.qnaList(reqPage);
+	public Map list(@PathVariable int reqPage, @RequestAttribute String memberId) {
+		Map map = qnaService.qnaList(reqPage, memberId);
 		return map;
 	}
 	

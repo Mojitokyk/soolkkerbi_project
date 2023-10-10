@@ -9,15 +9,16 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
+import kr.or.skb.qna.model.vo.QnaListData;
 
 @Mapper
 public interface QnaDao {
 
 	//전체 게시물 수
-	int totalCount();
+	int totalCount(String memberId);
 	
 	//페이지 네비게이션 및 게시물 개수 조회
-	List selectQnaList(PageInfo pi);
+	List selectQnaList(QnaListData qld);
 	
 	//게시글 작성
 	int insertQna(Qna q);

@@ -11,11 +11,17 @@ const MyQnaList = (props) => {
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
 
+  const token = window.localStorage.getItem("token");
+
   //useEffect: 최초에 1회 수행후, [ ]배열 값이 달라지면 값에 따라 한 번 더 수행
   useEffect(() => {
     //로그인 체크 후 조회시: post
     axios
-      .get("/qna/list/" + reqPage) //get메서드 사용
+      .get("/qna/list/" + reqPage, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }) //get메서드 사용
       .then((res) => {
         console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setQnaList(res.data.qnaList); //res.data의 'boardList'key의 값을 setBoardList에 넣음

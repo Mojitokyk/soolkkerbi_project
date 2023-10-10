@@ -15,6 +15,7 @@ import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.qna.model.dao.QnaDao;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
+import kr.or.skb.qna.model.vo.QnaListData;
 
 @Service
 public class QnaService {
@@ -26,16 +27,20 @@ public class QnaService {
 	private Pagination pagination;
 	
 	//게시물 조회
-	public Map qnaList(int reqPage) {
+	public Map qnaList(int reqPage, String memberId) {
 		//게시물 조회, 페이징에 필요한 데이터를 취합
 		int numPerPage = 10; //한 페이지당 게시물 수
 		int pageNaviSize = 5; //페이지 네비게이션에 표시되는 개수(길이)
-		int totalCount = qnaDao.totalCount(); //전체 게시물 수
+		int totalCount = qnaDao.totalCount(memberId); //전체 게시물 수
 		
 		//페이징 조회 및 페이지네비 제작에 필요한 데이터를 객체로 받아옴
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		
-		List qnaList = qnaDao.selectQnaList(pi); //pi로 start, end값을 mybatis로 넘김
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		QnaListData qld = new QnaListData(start, end, memberId);
+		
+		List qnaList = qnaDao.selectQnaList(qld); //pi로 start, end값을 mybatis로 넘김
 		
 		//pi와 boardList를 반환해야하나, 1개만 	반환할 수 있다.
 		//방법1. VO 제작

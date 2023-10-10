@@ -27,8 +27,6 @@ const MyQnaWrite = () => {
       axios
         .post("/qna/insert", form, {
           headers: {
-            processData: false,
-            contentType: "multipart/form-data",
             Authorization: "Bearer " + token,
           },
         })
