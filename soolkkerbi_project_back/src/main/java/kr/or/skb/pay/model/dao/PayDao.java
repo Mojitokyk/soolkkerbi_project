@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.or.skb.PageInfo;
+import kr.or.skb.cart.model.vo.Cart;
 import kr.or.skb.pay.model.vo.Pay;
 import kr.or.skb.pay.model.vo.PayListData;
 
@@ -27,6 +28,13 @@ public interface PayDao {
 
 	List selectMyOrderList(PayListData pld);
 
+	int insertOnePay(Cart cart);
+
+	int updateProductStock(Cart cart);
+
+	int deleteCart(Cart cart);
+
 	List selectAllIncome();
+
 
 }

@@ -63,6 +63,18 @@
 		where rnum between #{start} and #{end}
 	</select>
 	
+	<insert id="insertOnePay">
+		insert into pay values(pay_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, to_char(sysdate,'yy/mm/dd'), #{payStringNo}, 1, #{pickupDate}, #{cartStock}, (select product_price from product where product_no=#{cartProductNo}))
+	</insert>
+	
+	<update id="updateProductStock">
+		update product set product_stock = product_stock - #{cartStock} where product_no = #{cartProductNo}
+	</update>
+	
+	<delete id="deleteCart">
+		delete from cart where cart_no=#{cartNo}
+	</delete>
+
 	<select id="selectAllIncome" resultType="pay">
 		select 
 			pay_no, 
@@ -78,4 +90,5 @@
 		from pay join product on (pay_product_no = product_no) 
 		where pay_status = 2
 	</select>
+
 </mapper>
