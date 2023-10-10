@@ -82,6 +82,16 @@ const RegistAnswer = (props) => {
   //     registAnswer();
   //   }
   // };
+
+  //textarea 자동 길이 조절
+  // const default_height = 80;
+  // const textarea = document.querySelector(".regist-textarea");
+  // const onInput = (e) => {
+  //   const inputValue = e.currentTarget.value;
+  //   inputValue.style.height = 0;
+  //   inputValue.style.height = default_height + inputValue.scrollHeight + "px";
+  // };
+
   return (
     <div className="write-answer-frm">
       <ul>
@@ -91,10 +101,11 @@ const RegistAnswer = (props) => {
           </li>
           <li>
             <textarea
-              className="answer-textarea"
+              className="regist-textarea"
               value={answerContent || ""}
               onChange={changeContent}
               // onKeyUp={enterCheck}
+              spellcheck="false"
             ></textarea>
           </li>
         </div>
