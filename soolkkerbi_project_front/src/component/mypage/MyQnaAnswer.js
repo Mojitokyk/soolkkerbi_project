@@ -207,7 +207,7 @@ const PrintAnswer = (props) => {
           setModifyFrm(false);
         })
         .catch((res) => {
-          console.log(res.response.status);
+          console.log(res.status);
         });
     } else {
       Swal.fire("입력값을 확인하세요.");
@@ -232,43 +232,45 @@ const PrintAnswer = (props) => {
     <div className="qnaAnswer-list">
       {answerList.map((answer, index) => {
         return (
-          <div className="print-qnaComment-wrap" key={index}>
+          <div key={index}>
             {modifyFrm === false ? (
-              <ul>
-                <li>
-                  <span>관리자</span>
-                </li>
-                <li>
-                  <div className="qnaComment-content">
-                    {/* <p>{answer.answerNo}</p> */}
-                    <p>{answer.answerDate}</p>
-                    <p>{answer.answerContent}</p>
-                  </div>
-                </li>
-                <li>
-                  {/* {member.memberLevel === 1 ? ( */}
-                  <p className="qnaComment-link">
-                    <span
-                      onClick={() => {
-                        modifyAnswerFrm(answer.answerNo, index);
-                      }}
-                    >
-                      수정
-                    </span>
-                    <span> / </span>
-                    <span
-                      onClick={() => {
-                        deleteAnswer(answer.answerNo, index, answerQnaNo);
-                      }}
-                    >
-                      삭제
-                    </span>
-                  </p>
-                  {/* ) : (
+              <>
+                <div className="print-qnaComment-wrap">
+                  <ul>
+                    <li>
+                      <span>관리자</span>
+                    </li>
+                    <li>
+                      <div className="qnaComment-content">
+                        {/* <p>{answer.answerNo}</p> */}
+                        <p>{answer.answerDate}</p>
+                        <p>{answer.answerContent}</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                {/* {member.memberLevel === 1 ? ( */}
+                <div className="qnaComment-link">
+                  <span
+                    onClick={() => {
+                      modifyAnswerFrm(answer.answerNo, index);
+                    }}
+                  >
+                    수정
+                  </span>
+                  <span> / </span>
+                  <span
+                    onClick={() => {
+                      deleteAnswer(answer.answerNo, index, answerQnaNo);
+                    }}
+                  >
+                    삭제
+                  </span>
+                </div>
+                {/* ) : (
                     ""
                   )} */}
-                </li>
-              </ul>
+              </>
             ) : (
               <div className="write-answer-frm">
                 <ul>
@@ -283,16 +285,16 @@ const PrintAnswer = (props) => {
                       // onKeyUp={enterCheck}
                       placeholder={answer.answerContent}
                     ></textarea>
-                    <input type="text" value={answer.answerNo} />
+                    <input type="hidden" value={answer.answerNo} />
                   </li>
                   <li>
-                    <button
+                    <span
                       onClick={() => {
                         modifyAnswer(answer, index);
                       }}
                     >
                       수정완료
-                    </button>
+                    </span>
                   </li>
                 </ul>
               </div>
