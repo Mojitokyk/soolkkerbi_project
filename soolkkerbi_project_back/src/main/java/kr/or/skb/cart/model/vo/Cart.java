@@ -21,5 +21,7 @@ public class Cart {
 	String productFilepath;
 	int productNumber;//장바구니 품목 수
 	int totalPrice;//장바구니 합계 금액
-	int productStock;//상품 재고 수량
+	int productStock;//상품 재고 수량	
+	String payStringNo;//주문 번호
+	String pickupDate;//픽업일자
 }

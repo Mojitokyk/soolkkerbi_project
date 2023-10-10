@@ -17,4 +17,6 @@ public class Qna {
 	private String qnaContent;
 	private String qnaDate;
 	private int qnaStatus;
+	
+	private String memberId;
 }

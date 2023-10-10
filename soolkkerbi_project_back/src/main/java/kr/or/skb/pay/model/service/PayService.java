@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
+import kr.or.skb.cart.model.vo.Cart;
 import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.pay.model.vo.Pay;
 import kr.or.skb.pay.model.vo.PayListData;
@@ -83,5 +84,31 @@ public class PayService {
 		return map;
 	}
 	
-	
+	@Transactional
+	public int insertOnePay(Cart cart) {
+		int result = 0;
+		result += payDao.insertOnePay(cart);
+		result += payDao.updateProductStock(cart);
+		result += payDao.deleteCart(cart);
+		if(result == 3) {
+			return 1;
+		}else {
+			return 0;			
+		}
+	}
+	@Transactional
+	public int insertPayList(List<Cart> cartList, String memberId) {
+		int result = 0;
+		for(Cart cart : cartList) {
+			cart.setMemberId(memberId);
+			result += payDao.insertOnePay(cart);
+			result += payDao.updateProductStock(cart);
+			result += payDao.deleteCart(cart);
+		}
+		if(result == cartList.size()*3) {
+			return 1;
+		}else {
+			return 0;			
+		}
+	}
 }

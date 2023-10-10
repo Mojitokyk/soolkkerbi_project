@@ -51,6 +51,9 @@ const RegistAnswer = (props) => {
           const newArr = [...answerList];
           newArr.push(res.data);
           setAnswerList(newArr);
+
+          document.getElementsByClassName("write-answer-frm")[0].style.display =
+            "none";
         })
         .catch((res) => {
           console.log(res);
@@ -59,6 +62,8 @@ const RegistAnswer = (props) => {
       Swal.fire("입력값을 확인하세요.");
     }
   };
+
+  console.log(answerList);
 
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
@@ -101,14 +106,23 @@ const PrintAnswer = (props) => {
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
   const [modifyFrm, setModifyFrm] = useState(false);
-  // const [rePrintModify, setRePrintModify] = useState(true);
 
   useEffect(() => {
+    //DB를 통하여 등록된 답변을 출력
     axios
       .get("/qna/printAnswer/" + answerQnaNo)
       .then((res) => {
         console.log(res.data);
         setAnswerList(res.data);
+
+        //등록된 답변 존재시, 등록 창을 숨김
+        const answerFrm =
+          document.getElementsByClassName("write-answer-frm")[0];
+        if (res.data.length === 0) {
+          answerFrm.style.display = "block";
+        } else {
+          answerFrm.style.display = "none";
+        }
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -120,15 +134,22 @@ const PrintAnswer = (props) => {
     console.log("답변 삭제 함수 클릭");
     console.log(answerNo);
     console.log(index);
+    console.log(answerQnaNo);
 
+    const form = new FormData();
+    form.append("answerNo", answerNo);
+    form.append("answerQnaNo", answerQnaNo);
     axios
-      .get("/qna/deleteAnswer/" + answerNo)
+      .post("/qna/deleteAnswer", form)
       .then((res) => {
         console.log(res.data);
 
         const newArr = [...answerList];
         newArr.splice(index, 1);
         setAnswerList(newArr);
+
+        document.getElementsByClassName("write-answer-frm")[0].style.display =
+          "block";
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -222,7 +243,7 @@ const PrintAnswer = (props) => {
                     </span>
                     <span
                       onClick={() => {
-                        deleteAnswer(answer.answerNo, index);
+                        deleteAnswer(answer.answerNo, index, answerQnaNo);
                       }}
                     >
                       삭제

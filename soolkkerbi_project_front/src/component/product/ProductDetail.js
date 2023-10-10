@@ -195,15 +195,19 @@ const ProductDetail = (props) => {
               <span>{commaTotal} 원</span>
             </div>
           </div>
-          <div className="product-order-box">
-            <Button2 text="구매하기" clickEvent={order} />
-            <Button3 text="장바구니" clickEvent={cart} />
-            <div className="productDetail-like-btn" onClick={changeLike}>
-              <span className="material-icons">
-                {like ? "favorite" : "favorite_border"}
-              </span>
+          {!member || (member && member.memberLevel !== 1) ? (
+            <div className="product-order-box">
+              <Button2 text="구매하기" clickEvent={order} />
+              <Button3 text="장바구니" clickEvent={cart} />
+              <div className="productDetail-like-btn" onClick={changeLike}>
+                <span className="material-icons">
+                  {like ? "favorite" : "favorite_border"}
+                </span>
+              </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="product-detail-tab">
