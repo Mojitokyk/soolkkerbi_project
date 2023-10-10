@@ -65,10 +65,15 @@ const ReservationItem = (props) => {
   const reservation = props.reservation;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
+  const token = window.localStorage.getItem("token");
 
   const updateReservationStatus = () => {
     axios
-      .post("/reservation/updateReservationStatus", reservation)
+      .post("/reservation/updateReservationStatus", reservation, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         if (res.data === 1) {
           Swal.fire("예약취소가 완료되었습니다.").then(() => {

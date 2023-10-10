@@ -27,4 +27,6 @@ public interface PayDao {
 
 	List selectMyOrderList(PayListData pld);
 
+	List selectAllIncome();
+
 }

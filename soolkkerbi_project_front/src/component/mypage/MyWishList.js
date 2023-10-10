@@ -53,7 +53,8 @@ const LikeList = (props) => {
   const [over, setOver] = useState(false);
 
   //좋아요 취소
-  const removeList = () => {
+  const removeList = (e) => {
+    e.preventDefault();
     axios
       .post(
         "/product/dislike",

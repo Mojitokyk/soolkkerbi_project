@@ -41,6 +41,15 @@
   font-size: 22px;
 }
 
+.searchDate-btnBox-wrap {
+  width: 100%;
+  background-color: antiquewhite;
+}
+
+.searchDate-btnBox-title {
+  font-family: ns-b;
+}
+
 .admin-content-tbl > table {
   width: 100%;
   border-spacing: 0;

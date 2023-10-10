@@ -68,6 +68,7 @@ const PayItem = (props) => {
   const payPrice = pay.payPrice;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
+  const token = window.localStorage.getItem("token");
 
   const totalPrice = (payStock * payPrice)
     .toString()
@@ -75,7 +76,11 @@ const PayItem = (props) => {
 
   const updatePayStatus = () => {
     axios
-      .post("/pay/updatePayStatus", pay)
+      .post("/pay/updatePayStatus", pay, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         if (res.data === 2) {
           Swal.fire("결제취소가 완료되었습니다.").then(() => {
