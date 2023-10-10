@@ -4,6 +4,7 @@ import Input from "../util/InputForm";
 import { useState } from "react";
 import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Pay = (props) => {
   const isLogin = props.isLogin;
@@ -12,11 +13,26 @@ const Pay = (props) => {
   const cartList = location.state.cartList;
   const totalPrice = location.state.totalPrice;
   const member = location.state.member;
+  const navigate = useNavigate();
   const [memberName, setMemberName] = useState(member.memberName);
   const [memberPhone, setMemberPhone] = useState(member.memberPhone);
   const [memberEmail, setMemberEmail] = useState(member.memberEmail);
   const [pickupDate, setPickupDate] = useState("");
   const pay = () => {
+    const token = window.localStorage.getItem("token");
+    const d = new Date();
+    const payStringNo =
+      d.getFullYear() +
+      "" +
+      (d.getMonth() + 1) +
+      "" +
+      d.getDate() +
+      "" +
+      d.getHours() +
+      "" +
+      d.getMinutes() +
+      "" +
+      d.getSeconds();
     if (
       memberName === "" ||
       memberPhone === "" ||
@@ -34,36 +50,71 @@ const Pay = (props) => {
       const productName = cartList
         ? cartList[0].productName + " 외 " + cartList.length + "건"
         : cart.productName;
-      const d = new Date();
-      const date =
-        d.getFullYear() +
-        "" +
-        (d.getMonth() + 1) +
-        "" +
-        d.getDate() +
-        "" +
-        d.getHours() +
-        "" +
-        d.getMinutes() +
-        "" +
-        d.getSeconds();
       IMP.init("imp83034442");
       IMP.request_pay(
         {
           pg: "html5_inicis",
           pay_method: "card",
-          merchant_uid: "주문번호_" + date,
+          merchant_uid: "주문번호_" + payStringNo,
           name: productName,
-          amount: 100,
+          amount: 100, //price
           buyer_email: memberEmail,
           buyer_name: memberName,
           buyer_tel: memberPhone,
         },
         function (rsp) {
           if (rsp.success) {
-            alert("결제성공");
+            if (cartList) {
+              for (let i = 0; i < cartList.length; i++) {
+                cartList[i].payStringNo = payStringNo;
+                cartList[i].pickupDate = pickupDate;
+              }
+              //pay테이블 insert : 여러 개
+              axios
+                .post("/pay/insertPayList", cartList, {
+                  headers: {
+                    Authorization: "Bearer " + token,
+                  },
+                })
+                .then((res) => {
+                  if (res.data === 1) {
+                    Swal.fire({
+                      icon: "success",
+                      title: "결제 완료",
+                      text: "결제가 완료되었습니다.",
+                    });
+                    navigate("/mypage/order");
+                  }
+                })
+                .catch((res) => {});
+            } else {
+              //pay테이블 insert : 한 개
+              cart.payStringNo = payStringNo;
+              cart.pickupDate = pickupDate;
+              axios
+                .post("/pay/insertOnePay", cart, {
+                  headers: {
+                    Authorization: "Bearer " + token,
+                  },
+                })
+                .then((res) => {
+                  if (res.data === 1) {
+                    Swal.fire({
+                      icon: "success",
+                      title: "결제 완료",
+                      text: "결제가 완료되었습니다.",
+                    });
+                    navigate("/mypage/order");
+                  }
+                })
+                .catch((res) => {});
+            }
           } else {
-            alert("결제실패");
+            Swal.fire({
+              icon: "warning",
+              title: "결제 취소",
+              text: "결제가 취소되었습니다.",
+            });
           }
         }
       );
