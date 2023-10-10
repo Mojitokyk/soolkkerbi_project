@@ -60,6 +60,18 @@ const RegistAnswer = (props) => {
     }
   };
 
+  console.log(answerList);
+
+  //useEffect()는 onload와 역할이 같다. /답변등록 창 숨기기
+  // useEffect(() => {
+  //   const answerFrm = document.getElementsByClassName("write-answer-frm")[0];
+  //   if (answerList.length === 0) {
+  //     answerFrm.style.display = "block";
+  //   } else {
+  //     answerFrm.style.display = "none";
+  //   }
+  // }, []);
+
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
     const inputValue = e.currentTarget.value;
@@ -104,6 +116,16 @@ const PrintAnswer = (props) => {
   // const [rePrintModify, setRePrintModify] = useState(true);
 
   useEffect(() => {
+    //등록된 답변 존재시, 등록 창을 숨김
+    const answerFrm = document.getElementsByClassName("write-answer-frm")[0];
+    console.log(answerList.length);
+    if (answerList.length === 0) {
+      answerFrm.style.display = "block";
+    } else {
+      answerFrm.style.display = "none";
+    }
+
+    //DB를 통하여 등록된 답변을 출력
     axios
       .get("/qna/printAnswer/" + answerQnaNo)
       .then((res) => {
@@ -113,7 +135,7 @@ const PrintAnswer = (props) => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, []);
+  }, [answerList]); //answerList가 변경되면 랜더링
 
   //답변 삭제 함수
   const deleteAnswer = (answerNo, index) => {
