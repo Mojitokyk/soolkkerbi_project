@@ -74,4 +74,21 @@
 	<delete id="deleteCart">
 		delete from cart where cart_no=#{cartNo}
 	</delete>
+
+	<select id="selectAllIncome" resultType="pay">
+		select 
+			pay_no, 
+			pay_member_no, 
+			pay_product_no, 
+			to_char(pay_date,'yyyy-mm-dd') as pay_date, 
+			pay_string_no, 
+			pay_status, 
+			pay_pickup, 
+			pay_stock, 
+			pay_price, 
+			product_case as pay_product_case
+		from pay join product on (pay_product_no = product_no) 
+		where pay_status = 2
+	</select>
+
 </mapper>

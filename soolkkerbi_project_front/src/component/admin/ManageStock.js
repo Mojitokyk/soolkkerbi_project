@@ -78,9 +78,14 @@ const ProductItem = (props) => {
     const productNo = product.productNo;
     const productStock = product.productStock;
     const p = { productNo, productStock };
+    const token = window.localStorage.getItem("token");
 
     axios
-      .post("/product/updateStock", p)
+      .post("/product/updateStock", p, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((res) => {
         if (res.data === 1) {
           Swal.fire("재고가 변경되었습니다.");

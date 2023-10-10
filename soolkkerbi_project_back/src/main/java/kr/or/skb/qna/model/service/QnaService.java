@@ -86,6 +86,8 @@ public class QnaService {
 	//댓글 작성
 	public Answer registAnswer(Answer a) {
 		int result = qnaDao.registAnswer(a);
+		//문의사항의 답변상태 변경1
+		int resultStatus = qnaDao.updateQnaStatus1(a.getAnswerQnaNo());
 		//제일 최신 번호를 조회 -> selectKey 사용
 		System.out.println("answerNo: "+a.getAnswerNo());
 		Answer answer = qnaDao.printRecentAnswer(a.getAnswerNo());
@@ -100,8 +102,15 @@ public class QnaService {
 
 	//댓글 삭제
 	@Transactional
-	public int deleteAnswer(int answerNo) {
-		return qnaDao.deleteAnswer(answerNo);
+	public int deleteAnswer(Answer a) {
+		int result = qnaDao.deleteAnswer(a);
+		//문의사항의 답변상태 변경2
+		int resultStatus = qnaDao.updateQnaStatus2(a);
+		int resultDelete = 0;
+		if(result==1 && resultStatus==1) {
+			resultDelete = 1;
+		}
+		return resultDelete;
 	}
 
 	//댓글 수정

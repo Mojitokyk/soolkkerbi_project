@@ -6,6 +6,7 @@
 .wish-item {
   float: left;
   width: calc(100% / 3);
+  height: 370px;
   padding: 30px 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -16,21 +17,29 @@
 }
 .wish-item-img > img {
   width: 70%;
+  height: 300px;
   object-fit: contain;
 }
 .wish-item-img > span {
   position: absolute;
   right: 50px;
-  top: 10px;
+  top: 15px;
   color: #fff;
 }
-.deleteWish {
-  display: none;
-}
 .wish-item-img:hover {
-  opacity: 0.5;
+  opacity: 0.8;
+}
+.wish-item-img .deleteWish {
+  font-size: 26px;
+  color: #ff6289;
 }
 .wish-item-info > div {
   text-align: center;
   font-size: 18px;
+}
+.emptyWish {
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-family: ns-r;
 }

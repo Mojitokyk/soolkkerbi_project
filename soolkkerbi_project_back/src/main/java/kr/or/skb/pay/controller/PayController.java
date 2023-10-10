@@ -44,7 +44,7 @@ public class PayController {
 	
 	@PostMapping(value="/readAllIncome")
 	public List readAllIncome() {
-		return null;
+		return payService.readAllIncome();
 	}
 	
 	//마이페이지 주문내역 조회하기

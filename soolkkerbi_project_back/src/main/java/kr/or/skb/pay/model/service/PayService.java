@@ -78,6 +78,10 @@ public class PayService {
 		map.put("pi", pi);
 		return map;
 	}
+
+	public List readAllIncome() {
+		return payDao.selectAllIncome();
+	}
 	
 	@Transactional
 	public int insertOnePay(Cart cart) {

@@ -34,4 +34,7 @@ public interface PayDao {
 
 	int deleteCart(Cart cart);
 
+	List selectAllIncome();
+
+
 }
