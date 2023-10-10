@@ -93,6 +93,7 @@ const RegistAnswer = (props) => {
           </li>
           <li style={{ whiteSpace: "pre-line" }}>
             <TextareaAutosize
+              style={{ boxSizing: "border-box" }}
               className="regist-textarea"
               value={answerContent || ""}
               onChange={changeContent}
