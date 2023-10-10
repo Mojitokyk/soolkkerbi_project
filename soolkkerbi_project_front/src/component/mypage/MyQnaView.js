@@ -75,18 +75,11 @@ const MyQnaView = (props) => {
           className="qna-view-detail"
           dangerouslySetInnerHTML={{ __html: qna.qnaContent }} //텍스트 에디터를 사용할 경우
         ></div>
-        {/*
+
         <div className="qna-comment-wrap">
-          {memberLevel === 1 ? (
-            <>
-              <MyQnaAnswer qnaNo={qnaNo} /> 
-            </>
-          ) : (
-            ""
-          )}
+          <MyQnaAnswer member={member} qnaNo={qnaNo} />
         </div>
-        */}
-        <MyQnaAnswer member={member} qnaNo={qnaNo} />
+
         {member.memberLevel === 2 ? (
           <div className="qna-view-btn">
             <Button1 text="목록으로" clickEvent={toList} />

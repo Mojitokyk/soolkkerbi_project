@@ -81,6 +81,6 @@
 	
 	<!-- 댓글 수정 -->
 	<update id="modifyAnswer">
-		update answer set answer_content=#{answerContent} where answer_no=#{answerNo}
+		update answer set answer_content=#{answerContent} answer_date=sysdate where answer_no=#{answerNo}
 	</update>
 </mapper>
