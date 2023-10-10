@@ -11,53 +11,38 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const ReadIncome = () => {
   const [incomeList, setIncomeList] = useState([]);
-
-  const data = [
-    {
-      name: "23-10-01",
-      탁주: 150000,
-      약청주: 240000,
-      과실주: 120000,
-      증류주: 40000,
-    },
-    {
-      name: "23-10-02",
-      탁주: 300000,
-      약청주: 139800,
-      과실주: 120000,
-      증류주: 65000,
-    },
-    {
-      name: "23-10-03",
-      탁주: 200000,
-      약청주: 980000,
-      과실주: 210000,
-      증류주: 600000,
-    },
-    {
-      name: "23-10-04",
-      탁주: 278000,
-      약청주: 390800,
-      과실주: 150000,
-      증류주: 960000,
-    },
-    {
-      name: "23-10-05",
-      탁주: 189000,
-      약청주: 480000,
-      과실주: 890000,
-      증류주: 500000,
-    },
-  ];
+  const [searchDate, setSearchDate] = useState(dayjs("2023-10-01"));
 
   useEffect(() => {
     axios
       .post("/pay/readAllIncome", null)
       .then((res) => {
-        console.log(res.data);
+        const income = new Object();
+        income.payDate = res.data[0].payDate;
+        switch (res.data[0].payProductCase) {
+          case 1:
+            income.case1 = res.data[0].payPrice;
+            break;
+          case 2:
+            income.case2 = res.data[0].payPrice;
+            break;
+          case 3:
+            income.case3 = res.data[0].payPrice;
+            break;
+          case 4:
+            income.case4 = res.data[0].payPrice;
+            break;
+        }
+        incomeList.push(income);
+        console.log(incomeList);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -67,26 +52,45 @@ const ReadIncome = () => {
   return (
     <div className="admin-content-wrap">
       <div className="admin-content-title">매출현황조회</div>
-      <div>날짜조회버튼</div>
+      <div className="searchDate-btnBox-wrap">
+        <div className="searchDate-btnBox-title">조회기간</div>
+        <div className="searchDate-btnBox">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={["DatePicker", "DatePicker"]}>
+              <DatePicker
+                defaultValue={dayjs("2023-10-01")}
+                format="YYYY-MM-DD"
+              />
+              <DatePicker
+                format="YYYY-MM-DD"
+                value={searchDate}
+                onChange={(newValue) => setSearchDate(newValue)}
+              />
+            </DemoContainer>
+          </LocalizationProvider>
+        </div>
+      </div>
       <div>
         <ResponsiveContainer width={"100%"} height={600}>
           <BarChart
-            data={data}
+            data={incomeList}
             margin={{
-              top: 20,
+              top: 50,
               right: 10,
               left: 10,
             }}
           >
             <CartesianGrid vertical={false} />
-            <XAxis dataKey="name" />
+            <XAxis dataKey="payDate" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="탁주" stackId="a" fill="#241468" barSize={50} />
-            <Bar dataKey="약청주" stackId="a" fill="#9F0D7F" barSize={50} />
-            <Bar dataKey="과실주" stackId="a" fill="#EA1179" barSize={50} />
-            <Bar dataKey="증류주" stackId="a" fill="#F79BD3" barSize={50} />
+            <Bar
+              dataKey={incomeList.payProductCase}
+              stackId="a"
+              fill="#ff6289"
+              barSize={50}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>
