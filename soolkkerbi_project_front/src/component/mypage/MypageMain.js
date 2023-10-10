@@ -79,7 +79,13 @@ const MypageMain = (props) => {
             <Route path="review" element={<MyReivew />} />
             <Route
               path="qna/*"
-              element={<MyQna isLogin={isLogin} setIsLogin={setIsLogin} />}
+              element={
+                <MyQna
+                  member={member}
+                  isLogin={isLogin}
+                  setIsLogin={setIsLogin}
+                />
+              }
             />
 
             {/* <Route path="info" element={<MyInfo isLogin={isLogin} setMember={setMember}

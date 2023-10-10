@@ -6,18 +6,24 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const MyQnaAnswer = (props) => {
+  const member = props.member;
   const answerQnaNo = props.qnaNo; //현재 문의사항 번호
   console.log(answerQnaNo);
   const [answerList, setAnswerList] = useState([]);
 
   return (
     <div className="qnaAnswer-wrap">
-      <RegistAnswer
-        answerQnaNo={answerQnaNo}
-        answerList={answerList}
-        setAnswerList={setAnswerList}
-      />
+      {member.memberLevel === 1 ? (
+        <RegistAnswer
+          answerQnaNo={answerQnaNo}
+          answerList={answerList}
+          setAnswerList={setAnswerList}
+        />
+      ) : (
+        ""
+      )}
       <PrintAnswer
+        member={member}
         answerQnaNo={answerQnaNo}
         answerList={answerList}
         setAnswerList={setAnswerList}
@@ -100,6 +106,7 @@ const RegistAnswer = (props) => {
 
 //답변출력
 const PrintAnswer = (props) => {
+  const member = props.member;
   const answerQnaNo = props.answerQnaNo; //현재 문의사항 번호
   console.log(answerQnaNo);
   const answerList = props.answerList;
@@ -125,7 +132,7 @@ const PrintAnswer = (props) => {
         }
       })
       .catch((res) => {
-        console.log(res.response.status);
+        console.log(res.status);
       });
   }, []);
 
@@ -233,22 +240,26 @@ const PrintAnswer = (props) => {
                     {answer.answerDate}
                     {answer.answerContent}
                   </p>
-                  <p className="qnaComment-link">
-                    <span
-                      onClick={() => {
-                        modifyAnswerFrm(answer.answerNo, index);
-                      }}
-                    >
-                      수정
-                    </span>
-                    <span
-                      onClick={() => {
-                        deleteAnswer(answer.answerNo, index, answerQnaNo);
-                      }}
-                    >
-                      삭제
-                    </span>
-                  </p>
+                  {member.memberLevel === 1 ? (
+                    <p className="qnaComment-link">
+                      <span
+                        onClick={() => {
+                          modifyAnswerFrm(answer.answerNo, index);
+                        }}
+                      >
+                        수정
+                      </span>
+                      <span
+                        onClick={() => {
+                          deleteAnswer(answer.answerNo, index, answerQnaNo);
+                        }}
+                      >
+                        삭제
+                      </span>
+                    </p>
+                  ) : (
+                    ""
+                  )}
                 </li>
               </ul>
             ) : (

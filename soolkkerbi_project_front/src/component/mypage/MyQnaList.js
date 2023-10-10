@@ -7,9 +7,12 @@ import axios from "axios";
 
 const MyQnaList = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const [qnaList, setQnaList] = useState([]);
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
+
+  console.log(member.memberLevel);
 
   const token = window.localStorage.getItem("token");
 
@@ -54,11 +57,13 @@ const MyQnaList = (props) => {
           })}
         </tbody>
       </table>
-
-      <div className="qna-write-btn">
-        <Button1 text="작성하기" clickEvent={write} />
-      </div>
-
+      {member.memberLevel === 2 ? (
+        <div className="qna-write-btn">
+          <Button1 text="작성하기" clickEvent={write} />
+        </div>
+      ) : (
+        ""
+      )}
       <div className="qna-pagination">
         <Pagination
           reqPage={reqPage}

@@ -6,6 +6,7 @@ import MyQnaList from "./MyQnaList";
 import MyQnaModify from "./MyQnaModify";
 
 const MyQna = (props) => {
+  const member = props.member;
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
 
@@ -14,9 +15,15 @@ const MyQna = (props) => {
       <div className="mypage-content-title">1:1 문의</div>
       <Routes>
         <Route path="qnaWrite" element={<MyQnaWrite isLogin={isLogin} />} />
-        <Route path="qnaView" element={<MyQnaView isLogin={isLogin} />} />
+        <Route
+          path="qnaView"
+          element={<MyQnaView member={member} isLogin={isLogin} />}
+        />
         <Route path="qnaModify" element={<MyQnaModify isLogin={isLogin} />} />
-        <Route path="*" element={<MyQnaList isLogin={isLogin} />} />
+        <Route
+          path="*"
+          element={<MyQnaList member={member} isLogin={isLogin} />}
+        />
       </Routes>
     </div>
   );
