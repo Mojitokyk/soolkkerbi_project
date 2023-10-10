@@ -43,7 +43,7 @@ public class PayController {
 	}
 	
 	@PostMapping(value="/readAllIncome")
-	public List readAllIncome() {
+	public Map readAllIncome() {
 		return payService.readAllIncome();
 	}
 	

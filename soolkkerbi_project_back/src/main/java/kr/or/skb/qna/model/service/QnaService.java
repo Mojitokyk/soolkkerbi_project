@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
+import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.qna.model.dao.QnaDao;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
@@ -18,6 +20,8 @@ import kr.or.skb.qna.model.vo.Qna;
 public class QnaService {
 	@Autowired
 	private QnaDao qnaDao;
+	@Autowired
+	private MemberDao memberDao;
 	@Autowired
 	private Pagination pagination;
 	
@@ -53,10 +57,10 @@ public class QnaService {
 		//작성자 정보를 현재 아이디만 알고있다. -> Board테이블에는 회원번호가 외래키로 설정되어있다.
 		//아이디를 이용하여 회원번호를 구해온다(회원정보를 조회하여 회원 정보 중 회원번호를 사용한다)
 
-//		Member member = memberDao.selectOneMember(n.getMemberId());
-//		System.out.println("memberNo: "+member.getMemberNo());
-//		n.setNoticeMemberNo(member.getMemberNo());
-//		System.out.println("noticeMemberNo: "+n.getNoticeMemberNo());
+		Member member = memberDao.selectOneMember(q.getMemberId());
+		System.out.println("memberNo: "+member.getMemberNo());
+		q.setQnaMemberNo(member.getMemberNo());
+		System.out.println("qnaMemberNo: "+q.getQnaMemberNo());
 		int result = qnaDao.insertQna(q);
 			return result;
 	}

@@ -43,11 +43,29 @@
 
 .searchDate-btnBox-wrap {
   width: 100%;
-  background-color: antiquewhite;
 }
 
 .searchDate-btnBox-title {
   font-family: ns-b;
+}
+.searchDate-btnBox {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.searchDate-calendar {
+  width: 40%;
+  margin: 10px;
+}
+.searchDate-calendar > .css-bkzwk2-MuiStack-root {
+  align-items: center;
+  padding: 0;
+}
+
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root
+  > .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+  padding: 0.5rem;
 }
 
 .admin-content-tbl > table {

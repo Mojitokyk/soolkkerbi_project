@@ -79,8 +79,9 @@ public class PayService {
 		return map;
 	}
 
-	public List readAllIncome() {
-		return payDao.selectAllIncome();
+	public Map readAllIncome() {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		return map;
 	}
 	
 	@Transactional

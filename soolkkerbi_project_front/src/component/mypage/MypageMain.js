@@ -77,7 +77,10 @@ const MypageMain = (props) => {
             <Route path="reservation" element={<MyReservation />} />
             <Route path="wish" element={<MyWishList isLogin={isLogin} />} />
             <Route path="review" element={<MyReivew />} />
-            <Route path="qna/*" element={<MyQna />} />
+            <Route
+              path="qna/*"
+              element={<MyQna isLogin={isLogin} setIsLogin={setIsLogin} />}
+            />
 
             {/* <Route path="info" element={<MyInfo isLogin={isLogin} setMember={setMember}
                   setIsLogin={setIsLogin} member={member}/>} />
