@@ -66,7 +66,7 @@ export default function FindId() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>아이디 찾기</Button>
+      <p className="find_btn" onClick={handleOpen}>아이디 찾기</p>
       <Modal
         open={open}
         onClose={handleClose}

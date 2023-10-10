@@ -5,7 +5,7 @@
   }
   .login-title {
     text-align: center;
-    color: #071952;
+    color: black;
     font-family: ns-black;
     font-size: 30px;
     padding: 50px;
@@ -13,7 +13,7 @@
   .input-wrap > label {
     display: block;
     padding: 10px 0px;
-    color: #071952;
+    color: black;
     font-family: ns-b;
   }
   .login-wrap .login{

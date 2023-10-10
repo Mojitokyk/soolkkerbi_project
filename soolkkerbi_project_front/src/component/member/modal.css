@@ -21,6 +21,10 @@
  font-size: 20px;
 }
 
+.find_btn{
+    color: #FF6289;
+    font-size: 0.9em;
+}
  
 /* .search-box > span {
     font-size: 22px;
