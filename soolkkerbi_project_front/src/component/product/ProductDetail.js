@@ -30,6 +30,7 @@ const ProductDetail = (props) => {
       )
       .then((res) => {
         setProduct(res.data);
+        //console.log(likes);
       })
       .catch((res) => {
         console.log(res.reponse.status);
@@ -50,7 +51,7 @@ const ProductDetail = (props) => {
     setTotal(price);
   }, [price]);
 
-  //버튼 클릭시 이벤트 작동
+  //버튼 클릭시 수량 이벤트 작동
   const clickCount = (num) => {
     setQuantity((prev) => prev + num);
     setTotal((prev) => prev + price * num);
@@ -76,7 +77,7 @@ const ProductDetail = (props) => {
   };
 
   //좋아요 함수
-  const [like, setLike] = useState(product.isLike);
+  const [like, setLike] = useState(likes);
   const token = window.localStorage.getItem("token");
   const changeLike = () => {
     if (isLogin) {
@@ -197,7 +198,11 @@ const ProductDetail = (props) => {
           <div className="product-order-box">
             <Button2 text="구매하기" clickEvent={order} />
             <Button3 text="장바구니" clickEvent={cart} />
-            <Likes like={likes} changeLike={changeLike} />
+            <div className="productDetail-like-btn" onClick={changeLike}>
+              <span className="material-icons">
+                {like ? "favorite" : "favorite_border"}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -207,10 +212,12 @@ const ProductDetail = (props) => {
     </div>
   );
 };
-
+/*
 const Likes = (props) => {
   const like = props.like;
   const changeLike = props.changeLike;
+  console.log(like);
+  console.log(changeLike);
   return (
     <div className="productDetail-like-btn" onClick={changeLike}>
       <span className="material-icons">
@@ -219,7 +226,7 @@ const Likes = (props) => {
     </div>
   );
 };
-
+*/
 //수량 버튼 컴포넌트
 const QuantityInput = (props) => {
   const onClick = props.onClick;

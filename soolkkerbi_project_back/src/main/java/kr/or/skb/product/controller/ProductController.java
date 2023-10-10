@@ -111,4 +111,10 @@ public class ProductController {
 	public Product selectOneProduct(@RequestBody Product p) {
 		return productService.selectOneProduct(p);
 	}
+	
+	//좋아요 리스트 가져오기
+	@GetMapping(value="/likeList")
+	public List likeList(@RequestAttribute String memberId) {
+		return productService.likeList(memberId);
+	}
 }
