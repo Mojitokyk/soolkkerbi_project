@@ -4,6 +4,7 @@ import "./myQna.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import TextareaAutosize from "react-textarea-autosize";
 
 const MyQnaAnswer = (props) => {
   const member = props.member;
@@ -83,15 +84,6 @@ const RegistAnswer = (props) => {
   //   }
   // };
 
-  //textarea 자동 길이 조절
-  // const default_height = 80;
-  // const textarea = document.querySelector(".regist-textarea");
-  // const onInput = (e) => {
-  //   const inputValue = e.currentTarget.value;
-  //   inputValue.style.height = 0;
-  //   inputValue.style.height = default_height + inputValue.scrollHeight + "px";
-  // };
-
   return (
     <div className="write-answer-frm">
       <ul>
@@ -99,14 +91,15 @@ const RegistAnswer = (props) => {
           <li>
             <span>관리자</span>
           </li>
-          <li>
-            <textarea
+          <li style={{ whiteSpace: "pre-line" }}>
+            <TextareaAutosize
               className="regist-textarea"
               value={answerContent || ""}
               onChange={changeContent}
-              // onKeyUp={enterCheck}
               spellcheck="false"
-            ></textarea>
+              autoFocus
+              // onKeyUp={enterCheck}
+            />
           </li>
         </div>
         <li>
@@ -255,7 +248,9 @@ const PrintAnswer = (props) => {
                       <div className="qnaComment-content">
                         {/* <p>{answer.answerNo}</p> */}
                         <p>{answer.answerDate}</p>
-                        <p>{answer.answerContent}</p>
+                        <p style={{ whiteSpace: "pre-line" }}>
+                          {answer.answerContent}
+                        </p>
                       </div>
                     </li>
                   </ul>
@@ -288,14 +283,16 @@ const PrintAnswer = (props) => {
                   <li>
                     <span>관리자</span>
                   </li>
-                  <li>
-                    <textarea
+                  <li style={{ whiteSpace: "pre-line" }}>
+                    <TextareaAutosize
                       className="answer-textarea"
                       value={answerContent || ""}
                       onChange={changeContent}
                       // onKeyUp={enterCheck}
                       placeholder={answer.answerContent}
-                    ></textarea>
+                      spellcheck="false"
+                      autoFocus
+                    />
                     <input type="hidden" value={answer.answerNo} />
                   </li>
                   <li>
