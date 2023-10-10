@@ -101,6 +101,7 @@ const PrintAnswer = (props) => {
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
   const [modifyFrm, setModifyFrm] = useState(false);
+  // const [rePrintModify, setRePrintModify] = useState(true);
 
   useEffect(() => {
     axios
@@ -135,71 +136,6 @@ const PrintAnswer = (props) => {
   };
 
   //답변 수정 함수
-  /*
-  const modifyAnswer = (answerNo, index) => {
-    console.log("답변 수정 함수 클릭");
-    console.log(answerNo);
-    console.log(index);
-
-    const modifyAnswerComplete = () => {
-      // if (qnaComment !== "" && memberLevel === 1) {
-      if (answerContent !== "") {
-        const form = new FormData();
-        form.append("answerContent", answerContent);
-        form.append("answerNo", answerNo);
-        // form.append("memberId", memberId); - memberId -> qnaMemberNo 임시로 DB의 관리자 번호(62)를 넣음
-        axios
-          .get("/qna/modifyAnswer/" + answerNo)
-          .then((res) => {
-            console.log(res.data);
-            setAnswerContent("");
-
-            const newArr = [...answerList];
-            newArr.push(res.data);
-            setAnswerList(newArr);
-          })
-          .catch((res) => {
-            console.log(res.response.status);
-          });
-      } else {
-        Swal.fire("입력값을 확인하세요.");
-      }
-    };
-    //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
-    const changeContent = (e) => {
-      const inputValue = e.currentTarget.value;
-      setAnswerContent(inputValue);
-    };
-    //Enter로 '등록'을 수행하는 함수
-    const enterCheck = (e) => {
-      if (e.keyCode === 13) {
-        modifyAnswerComplete();
-      }
-    };
-
-    return (
-      <div className="write-answer-frm">
-        <ul>
-          <li>
-            <span>관리자</span>
-          </li>
-          <li>
-            <textarea
-              className="answer-textarea"
-              value={answerContent || ""}
-              onChange={changeContent}
-              onKeyUp={enterCheck}
-            ></textarea>
-          </li>
-          <li>
-            <Button1 text="수정완료" clickEvent={modifyAnswerComplete} />
-          </li>
-        </ul>
-      </div>
-    );
-  };
-*/
-
   const modifyAnswerFrm = (answerNo, index) => {
     console.log("답변 수정양식 함수 클릭");
     console.log(answerNo);
@@ -207,24 +143,36 @@ const PrintAnswer = (props) => {
 
     setModifyFrm(true);
   };
-  const modifyAnswer = (props) => {
-    const answerNo = props.answerNo;
+  const modifyAnswer = (answer, index) => {
+    // const answerNo = props.answerNo;
+    console.log(answer.answerNo);
+    console.log(answer.answerContent); /*이전 값*/
+    console.log(answerContent); /*새로운 값*/
+    console.log(index);
 
     // if (qnaComment !== "" && memberLevel === 1) {
     if (answerContent !== "") {
       const form = new FormData();
-      form.append("answerContent", answerContent);
-      form.append("answerNo", answerNo);
+      form.append("answerContent", answerContent); /*DB에 새로운 값을 전달*/
+      form.append("answerNo", answer.answerNo);
       // form.append("memberId", memberId); - memberId -> qnaMemberNo 임시로 DB의 관리자 번호(62)를 넣음
+
       axios
-        .get("/qna/modifyAnswer/" + answerNo)
+        .post("/qna/modifyAnswer", form)
         .then((res) => {
           console.log(res.data);
           setAnswerContent("");
 
           const newArr = [...answerList];
-          newArr.push(res.data);
+
+          /*출력을 위해 이전 값에 새로운 값을 대입*/
+          answer.answerContent = answerContent;
+
+          /*splice함수로 수정된 객체를 기존의 인덱스 위치에 삽입*/
+          newArr.splice(index, 1, answer);
           setAnswerList(newArr);
+
+          setModifyFrm(false);
         })
         .catch((res) => {
           console.log(res.response.status);
@@ -236,8 +184,10 @@ const PrintAnswer = (props) => {
 
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
+    console.log("content-change");
     const inputValue = e.currentTarget.value;
     setAnswerContent(inputValue);
+    console.log(answerContent);
   };
   //Enter로 '등록'을 수행하는 함수
   const enterCheck = (e) => {
@@ -297,11 +247,13 @@ const PrintAnswer = (props) => {
                     <input type="text" value={answer.answerNo} />
                   </li>
                   <li>
-                    <Button1
-                      text="수정완료"
-                      clickEvent={modifyAnswer}
-                      answerNo={answer.answerNo}
-                    />
+                    <button
+                      onClick={() => {
+                        modifyAnswer(answer, index);
+                      }}
+                    >
+                      수정완료
+                    </button>
                   </li>
                 </ul>
               </div>
@@ -313,3 +265,144 @@ const PrintAnswer = (props) => {
   );
 };
 export default MyQnaAnswer;
+/*
+return (
+  <div className="qnaAnswer-list">
+    {answerList.map((answer, index) => {
+      return (
+        <div className="print-qnaComment-wrap" key={index}>
+          {modifyFrm === false ? (
+            rePrintModify === true ? (
+              <ul>
+                <li>
+                  <span>관리자</span>
+                </li>
+                <li>
+                  <p className="qnaComment-content">
+                    {answer.answerNo}
+                    {answer.answerDate}
+                    {answer.answerContent}
+                  </p>
+                  <p className="qnaComment-link">
+                    <span
+                      onClick={() => {
+                        modifyAnswerFrm(answer.answerNo, index);
+                      }}
+                    >
+                      수정
+                    </span>
+                    <span
+                      onClick={() => {
+                        deleteAnswer(answer.answerNo, index);
+                      }}
+                    >
+                      삭제
+                    </span>
+                  </p>
+                </li>
+              </ul>
+            ) : (
+              ""
+            )
+          ) : (
+            <div className="write-answer-frm">
+              <ul>
+                <li>
+                  <span>관리자</span>
+                </li>
+                <li>
+                  <textarea
+                    className="answer-textarea"
+                    value={answerContent || ""}
+                    onChange={changeContent}
+                    onKeyUp={enterCheck}
+                    placeholder={answer.answerContent}
+                  ></textarea>
+                  <input type="text" value={answer.answerNo} />
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      modifyAnswer(answer.answerNo);
+                    }}
+                  >
+                    수정완료
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
+
+return (
+  <div className="qnaAnswer-list">
+    {answerList.map((answer, index) => {
+      return (
+        <div className="print-qnaComment-wrap" key={index}>
+          {modifyFrm === false ? (
+            <ul>
+              <li>
+                <span>관리자</span>
+              </li>
+              <li>
+                <p className="qnaComment-content">
+                  {answer.answerNo}
+                  {answer.answerDate}
+                  {answer.answerContent}
+                </p>
+                <p className="qnaComment-link">
+                  <span
+                    onClick={() => {
+                      modifyAnswerFrm(answer.answerNo, index);
+                    }}
+                  >
+                    수정
+                  </span>
+                  <span
+                    onClick={() => {
+                      deleteAnswer(answer.answerNo, index);
+                    }}
+                  >
+                    삭제
+                  </span>
+                </p>
+              </li>
+            </ul>
+          ) : (
+            <div className="write-answer-frm">
+              <ul>
+                <li>
+                  <span>관리자</span>
+                </li>
+                <li>
+                  <textarea
+                    className="answer-textarea"
+                    value={answerContent || ""}
+                    onChange={changeContent}
+                    onKeyUp={enterCheck}
+                    placeholder={answer.answerContent}
+                  ></textarea>
+                  <input type="text" value={answer.answerNo} />
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      modifyAnswer(answer.answerNo);
+                    }}
+                  >
+                    수정완료
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+);
+*/

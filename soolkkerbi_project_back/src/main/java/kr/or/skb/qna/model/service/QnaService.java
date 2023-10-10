@@ -1,6 +1,5 @@
 package kr.or.skb.qna.model.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
-import kr.or.skb.notice.model.vo.Notice;
-import kr.or.skb.notice.model.vo.NoticeFile;
 import kr.or.skb.qna.model.dao.QnaDao;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
@@ -105,6 +102,11 @@ public class QnaService {
 	@Transactional
 	public int deleteAnswer(int answerNo) {
 		return qnaDao.deleteAnswer(answerNo);
+	}
+
+	//댓글 수정
+	public int modifyAnswer(Answer a) {
+		return qnaDao.modifyAnswer(a);
 	}
 
 
