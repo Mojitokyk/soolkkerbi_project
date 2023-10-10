@@ -45,9 +45,9 @@ public interface QnaDao {
 	List printAnswer(int answerQnaNo);
 
 	//댓글 삭제
-	int deleteAnswer(int answerNo);
+	int deleteAnswer(Answer a);
 	//문의사항의 답변상태 변경2
-//	int updateQnaStatus2(int answerQnaNo);
+	int updateQnaStatus2(Answer a);
 
 	//댓글 수정
 	int modifyAnswer(Answer a);

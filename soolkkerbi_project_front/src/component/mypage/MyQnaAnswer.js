@@ -51,6 +51,7 @@ const RegistAnswer = (props) => {
           const newArr = [...answerList];
           newArr.push(res.data);
           setAnswerList(newArr);
+
           document.getElementsByClassName("write-answer-frm")[0].style.display =
             "none";
         })
@@ -63,16 +64,6 @@ const RegistAnswer = (props) => {
   };
 
   console.log(answerList);
-
-  //useEffect()는 onload와 역할이 같다. /답변등록 창 숨기기
-  // useEffect(() => {
-  //   const answerFrm = document.getElementsByClassName("write-answer-frm")[0];
-  //   if (answerList.length === 0) {
-  //     answerFrm.style.display = "block";
-  //   } else {
-  //     answerFrm.style.display = "none";
-  //   }
-  // }, []);
 
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
@@ -115,7 +106,6 @@ const PrintAnswer = (props) => {
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
   const [modifyFrm, setModifyFrm] = useState(false);
-  // const [rePrintModify, setRePrintModify] = useState(true);
 
   useEffect(() => {
     //DB를 통하여 등록된 답변을 출력
@@ -146,14 +136,18 @@ const PrintAnswer = (props) => {
     console.log(index);
     console.log(answerQnaNo);
 
+    const form = new FormData();
+    form.append("answerNo", answerNo);
+    form.append("answerQnaNo", answerQnaNo);
     axios
-      .get("/qna/deleteAnswer/" + answerNo)
+      .post("/qna/deleteAnswer", form)
       .then((res) => {
         console.log(res.data);
 
         const newArr = [...answerList];
         newArr.splice(index, 1);
         setAnswerList(newArr);
+
         document.getElementsByClassName("write-answer-frm")[0].style.display =
           "block";
       })

@@ -102,11 +102,15 @@ public class QnaService {
 
 	//댓글 삭제
 	@Transactional
-	public int deleteAnswer(int answerNo) {
-		int result = qnaDao.deleteAnswer(answerNo);
+	public int deleteAnswer(Answer a) {
+		int result = qnaDao.deleteAnswer(a);
 		//문의사항의 답변상태 변경2
-//		int resultStatus = qnaDao.updateQnaStatus2(answerQnaNo);
-		return result;
+		int resultStatus = qnaDao.updateQnaStatus2(a);
+		int resultDelete = 0;
+		if(result==1 && resultStatus==1) {
+			resultDelete = 1;
+		}
+		return resultDelete;
 	}
 
 	//댓글 수정

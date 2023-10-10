@@ -113,11 +113,11 @@ public class QnaController {
 	}
 	
 	//댓글 삭제
-	@GetMapping(value="/deleteAnswer/{answerNo}")
-	public int deleteAnswer(@PathVariable int answerNo) {
-		System.out.println("answerNo: "+answerNo);
-//		System.out.println("answerQnaNo: "+answerQnaNo);
-		return qnaService.deleteAnswer(answerNo);
+	@PostMapping(value="/deleteAnswer")
+	public int deleteAnswer(@ModelAttribute Answer a) {
+		System.out.println(a);
+		int result = qnaService.deleteAnswer(a);
+		return result;
 	}
 	
 	//댓글 수정
