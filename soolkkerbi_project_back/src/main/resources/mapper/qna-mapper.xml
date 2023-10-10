@@ -24,7 +24,7 @@
  	
  	<!-- 게시글 작성 --> <!-- 임시회원번호: 1 /#{noticeMemberNo} -->
  	<insert id="insertQna">
- 		insert into qna values(qna_seq.nextval, 1, #{qnaTitle}, #{qnaContent}, sysdate, 1)
+ 		insert into qna values(qna_seq.nextval, #{qnaMemberNo}, #{qnaTitle}, #{qnaContent}, sysdate, 1)
  	</insert>
  	
  	<!-- 게시글 상세보기 -->
