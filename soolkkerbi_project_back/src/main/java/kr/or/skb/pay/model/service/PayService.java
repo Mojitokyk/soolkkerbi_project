@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
+import kr.or.skb.SelectDate;
 import kr.or.skb.cart.model.vo.Cart;
 import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.pay.model.vo.Pay;
@@ -79,9 +80,9 @@ public class PayService {
 		return map;
 	}
 
-	public Map readAllIncome() {
+	public Map readAllIncome(SelectDate selectDate) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		return map;
+		return null;
 	}
 	
 	@Transactional

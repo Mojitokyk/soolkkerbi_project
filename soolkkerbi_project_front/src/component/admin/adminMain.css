@@ -47,15 +47,17 @@
 
 .searchDate-btnBox-title {
   font-family: ns-b;
+  margin-left: 295px;
 }
 .searchDate-btnBox {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 }
 
 .searchDate-calendar {
-  width: 40%;
+  width: 30%;
   margin: 10px;
 }
 .searchDate-calendar > .css-bkzwk2-MuiStack-root {
