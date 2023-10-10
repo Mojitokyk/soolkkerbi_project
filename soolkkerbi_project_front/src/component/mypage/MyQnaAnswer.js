@@ -222,11 +222,11 @@ const PrintAnswer = (props) => {
     console.log(answerContent);
   };
   //Enter로 '등록'을 수행하는 함수
-  const enterCheck = (e) => {
-    if (e.keyCode === 13) {
-      modifyAnswer();
-    }
-  };
+  // const enterCheck = (e) => {
+  //   if (e.keyCode === 13) {
+  //     modifyAnswer();
+  //   }
+  // };
 
   return (
     <div className="qnaAnswer-list">
@@ -239,11 +239,13 @@ const PrintAnswer = (props) => {
                   <span>관리자</span>
                 </li>
                 <li>
-                  <p className="qnaComment-content">
-                    {answer.answerNo}
-                    {answer.answerDate}
-                    {answer.answerContent}
-                  </p>
+                  <div className="qnaComment-content">
+                    {/* <p>{answer.answerNo}</p> */}
+                    <p>{answer.answerDate}</p>
+                    <p>{answer.answerContent}</p>
+                  </div>
+                </li>
+                <li>
                   {/* {member.memberLevel === 1 ? ( */}
                   <p className="qnaComment-link">
                     <span
@@ -253,6 +255,7 @@ const PrintAnswer = (props) => {
                     >
                       수정
                     </span>
+                    <span> / </span>
                     <span
                       onClick={() => {
                         deleteAnswer(answer.answerNo, index, answerQnaNo);
@@ -277,7 +280,7 @@ const PrintAnswer = (props) => {
                       className="answer-textarea"
                       value={answerContent || ""}
                       onChange={changeContent}
-                      onKeyUp={enterCheck}
+                      // onKeyUp={enterCheck}
                       placeholder={answer.answerContent}
                     ></textarea>
                     <input type="text" value={answer.answerNo} />
