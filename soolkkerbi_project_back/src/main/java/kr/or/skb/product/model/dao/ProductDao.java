@@ -37,5 +37,7 @@ public interface ProductDao {
 	Product selectOneProduct(Product p);
 
 	int selectLike(Product p);
+
+	List likeList(String memberId);
 	
 }

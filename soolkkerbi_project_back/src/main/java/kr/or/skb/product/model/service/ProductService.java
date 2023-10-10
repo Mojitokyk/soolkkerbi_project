@@ -149,4 +149,8 @@ public class ProductService {
 		return 0;
 	}
 	*/
+
+	public List likeList(String memberId) {
+		return productDao.likeList(memberId);
+	}
 }
