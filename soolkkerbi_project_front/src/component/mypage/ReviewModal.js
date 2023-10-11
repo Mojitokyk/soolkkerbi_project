@@ -23,7 +23,7 @@ const style = {
 
 export default function ReviewModal({ order }) {
   console.log(order);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [review, setReview] = useState({});
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
