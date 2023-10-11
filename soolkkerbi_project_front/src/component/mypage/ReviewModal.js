@@ -9,6 +9,8 @@ import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const style = {
   position: "absolute",
@@ -17,25 +19,65 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 1000,
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  border: "1px solid #000",
+  boxShadow: 20,
   p: 4,
 };
 
 export default function ReviewModal({ order }) {
-  console.log(order);
+  //console.log(order);
   const [open, setOpen] = useState(false);
-  const [review, setReview] = useState({});
+
   //모달용
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  //리뷰내용 저장하기
+  //리뷰내용 저장받을 state
   const [reviewTitle, setReviewTitle] = useState("");
   const [reviewContent, setReviewContent] = useState("");
   const [reviewRate, setReviewRate] = useState(5);
-  const [reviewProductNo, setReviewProductNo] = useState(0);
+  const [reviewProductNo, setReviewProductNo] = useState(order.payProductNo);
+  const [reviewMemberNo, setReviewMemberNo] = useState(order.payMemberNo);
   const [reviewReadCount, setReviewReadCount] = useState(0);
 
+  //객체에 저장
+  const [review, setReview] = useState({
+    reviewTitle: reviewTitle,
+    reviewContent: reviewContent,
+    reviewRate: reviewRate,
+    reviewProductNo: reviewProductNo,
+    reviewMemberNo: reviewMemberNo,
+    reviewReadCount: reviewReadCount,
+  });
+
+  //상품번호 클릭시 동작할 함수(서버에 insert 요청하는 함수)
+  const write = () => {
+    if (reviewTitle !== "" && reviewContent !== "") {
+      console.log(review);
+      axios
+        .post("/review/insert", review)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "입력값 확인",
+        text: "입력하지 않은 값이 있는지 확인해주세요",
+      });
+    }
+  };
+  //취소버튼 누르면 창 모달창 꺼지기
+  const clickCancle = () => {
+    setOpen(false);
+  };
+  //reviewTitle value값
+  const changeValue = (e) => {
+    const inputValue = e.currentTarget.value;
+    setReviewTitle(inputValue);
+  };
   return (
     <div>
       <Button onClick={handleOpen}>리뷰쓰기</Button>
@@ -54,7 +96,7 @@ export default function ReviewModal({ order }) {
                   <tr>
                     <th>만족도</th>
                     <td>
-                      <HalfRating />
+                      <HalfRating setReviewRate={setReviewRate} />
                     </td>
                   </tr>
                   <tr>
@@ -66,13 +108,19 @@ export default function ReviewModal({ order }) {
                         id="reviewTitle"
                         type="text"
                         placeholder="제목을 입력하세요"
+                        autoComplete="off"
+                        onChange={changeValue}
                       />
                     </td>
                   </tr>
                   <tr>
                     <th>상세 내용</th>
                     <td>
-                      <TextEditor />
+                      <TextEditor
+                        data={reviewContent}
+                        setData={setReviewContent}
+                        url="/review/contentImg"
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -112,8 +160,8 @@ export default function ReviewModal({ order }) {
               </div>
             </div>
             <div className="review-btn">
-              <Button3 text="취소" />
-              <Button1 text="등록" />
+              <Button3 text="취소" clickEvent={clickCancle} />
+              <Button1 text="등록" clickEvent={write} />
             </div>
           </div>
         </Box>
@@ -122,7 +170,12 @@ export default function ReviewModal({ order }) {
   );
 }
 //별점 컴포넌트
-const HalfRating = () => {
+const HalfRating = (props) => {
+  const setReviewRate = props.setReviewRate;
+  const changeRate = (e) => {
+    const starValue = e.currentTarget.value;
+    setReviewRate(starValue);
+  };
   return (
     <Stack spacing={1}>
       <Rating
@@ -130,6 +183,7 @@ const HalfRating = () => {
         defaultValue={5}
         precision={0.5}
         id="star-rate"
+        onChange={changeRate}
       />
     </Stack>
   );
@@ -138,7 +192,7 @@ const HalfRating = () => {
 const CheckBox = () => {
   return (
     <FormControlLabel
-      control={<Checkbox defaultChecked />}
+      control={<Checkbox />}
       label="개인정보 수집 이용 및 동의"
       sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
     />

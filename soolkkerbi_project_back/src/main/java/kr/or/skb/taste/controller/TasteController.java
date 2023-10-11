@@ -1,4 +1,4 @@
-package kr.or.skb.taste.model.controller;
+package kr.or.skb.taste.controller;
 
 import java.util.Map;
 

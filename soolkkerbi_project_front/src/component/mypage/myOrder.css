@@ -131,3 +131,10 @@ input[id="reviewTitle"] {
   width: 200px;
   margin-right: 20px;
 }
+/*리뷰모달과 알림창 순서 바꾸기*/
+div:where(.swal2-container) {
+  z-index: 1;
+}
+body > .css-79ws1d-MuiModal-root {
+  z-index: 0;
+}
