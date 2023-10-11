@@ -1,47 +1,47 @@
 .login-wrap {
-    width: 400px;
-    margin: 0 auto;
-  }
-  .login-title {
-    text-align: center;
-    color: black;
-    font-family: ns-black;
-    font-size: 30px;
-    padding: 50px;
-  }
-  .input-wrap > label {
-    display: block;
-    padding: 10px 0px;
-    color: black;
-    font-family: ns-b;
-  }
-  .login-wrap .login{
-    width: 400px;
-  }
-  .search-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0px;
-  }
-  .search-box > a {
-    font-size: 0.9em;
-    font-family: ns-r;
-    height: 20px;
-    line-height: 20px;
-  }
-  .search-box > a:hover {
-    text-decoration: underline;
-  }
-  .find {
-    font-size: 0.9em;
-    font-family: ns-r;
-    height: 20px;
-    line-height: 20px;
-  }
-  .find:hover {
-    text-decoration: underline;
-  }
+  width: 400px;
+  margin: 0 auto;
+}
+.login-title {
+  text-align: center;
+  color: black;
+  font-family: ns-black;
+  font-size: 30px;
+  padding: 50px;
+}
+.input-wrap > label {
+  display: block;
+  padding: 10px 0px;
+  color: black;
+  font-family: ns-b;
+}
+.login-wrap .login {
+  width: 400px;
+}
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+}
+.search-box > a {
+  font-size: 0.9em;
+  font-family: ns-r;
+  height: 20px;
+  line-height: 20px;
+}
+.search-box > a:hover {
+  text-decoration: underline;
+}
+.find {
+  font-size: 0.9em;
+  font-family: ns-r;
+  height: 20px;
+  line-height: 20px;
+}
+.find:hover {
+  text-decoration: underline;
+}
 
 .search-box > span {
   font-size: 22px;
@@ -51,7 +51,6 @@
   margin: 20px 0px;
   font-size: 18px;
 }
-
 .search-box > :first-child > button {
   color: #ff6289;
 }

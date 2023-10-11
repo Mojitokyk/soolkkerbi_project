@@ -20,6 +20,7 @@
 .admin-side > ul > li > a {
   display: block;
   padding: 10px;
+  color: #4f4f4f;
 }
 .admin-side > ul > li > a.active-side {
   background-color: #4f4f4f;
@@ -56,9 +57,14 @@
   justify-content: center;
 }
 
+.incomeChart-wrap {
+  font-size: 0.9em;
+}
+
 .searchDate-calendar {
   width: 30%;
   margin: 10px;
+  font-size: 0.9em;
 }
 .searchDate-calendar > .css-bkzwk2-MuiStack-root {
   align-items: center;
@@ -68,6 +74,18 @@
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root
   > .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 0.5rem;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mx-2-wrap {
+  margin-left: 10px;
+}
+.mx-2 {
+  margin-left: 5px;
 }
 
 .admin-content-tbl > table {
