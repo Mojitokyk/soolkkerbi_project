@@ -21,6 +21,9 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler("/qna/editor/**")
 		.addResourceLocations("file:///C:/Temp/soolkkerbi/qna/editor/");
+		
+		registry.addResourceHandler("/review/editor/**")
+		.addResourceLocations("file:///C:/Temp/soolkkerbi/review/editor/");
 	}
 
 	@Bean
