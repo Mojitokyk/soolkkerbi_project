@@ -12,6 +12,7 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.reservation.model.dao.ReservationDao;
 import kr.or.skb.reservation.model.vo.Reservation;
+import kr.or.skb.reservation.model.vo.ReservationData;
 
 @Service
 public class ReservationService {
@@ -36,6 +37,25 @@ public class ReservationService {
 	public int updateReservationStatus(Reservation reservation) {
 		return reservationDao.updateReservationStatus(reservation);
 	}
+
+	public Map myReservationList(int reqPage, String memberId) {
+		int totalCount = reservationDao.totalCount();
+		int numPerPage = 10;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination .getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		int start =pi.getStart();
+		int end = pi.getEnd();
+		ReservationData rld = new ReservationData(memberId,start,end);
+			List myReservationList = reservationDao.myReservationList(rld);
+			//System.out.println("memberId :"+memberId);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("myReservationList" , myReservationList);
+			map.put("pi",pi);
+			return map;
+		
+	}
+	
+	
 	
 	
 }

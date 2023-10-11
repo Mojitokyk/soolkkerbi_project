@@ -6,10 +6,13 @@ import Pagination from "../common/Pagination";
 import axios from "axios";
 
 const NoticeList = (props) => {
+  const member = props.member;
   const isLogin = props.isLogin;
   const [noticeList, setNoticeList] = useState([]);
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
+
+  console.log(member.memberLevel);
 
   //useEffect: 최초에 1회 수행후, [ ]배열 값이 달라지면 값에 따라 한 번 더 수행
   useEffect(() => {
@@ -49,17 +52,13 @@ const NoticeList = (props) => {
         </tbody>
       </table>
 
-      <div className="notice-write-btn">
-        <Button1 text="작성하기" clickEvent={write} />
-      </div>
-
-      {/* {isLogin ? (
+      {member.memberLevel === 1 ? (
         <div className="notice-write-btn">
           <Button1 text="작성하기" clickEvent={write} />
         </div>
       ) : (
         ""
-      )} */}
+      )}
 
       <div className="notice-pagination">
         <Pagination

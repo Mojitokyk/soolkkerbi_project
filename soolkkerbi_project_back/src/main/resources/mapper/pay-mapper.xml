@@ -47,6 +47,7 @@
 		    (select rownum as rnum, o.* from(
 		        (select 
 		            pay_member_no,
+		            pay_product_no,
 		            member_id as pay_member_id,
 		            to_char(pay_date,'yyyy.mm.dd') as pay_date,
 		            pay_string_no,

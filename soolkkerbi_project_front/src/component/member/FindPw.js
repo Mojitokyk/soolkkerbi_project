@@ -72,7 +72,7 @@ export default function FindPw() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>비밀번호 찾기</Button>
+      <p className="find_btn" onClick={handleOpen}>비밀번호 찾기</p>
       <Modal
         open={open}
         onClose={handleClose}

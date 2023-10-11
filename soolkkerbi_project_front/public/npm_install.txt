@@ -24,3 +24,5 @@
 
 23.10.11: npm install react-icons
 
+          npm install react-calendar
+
