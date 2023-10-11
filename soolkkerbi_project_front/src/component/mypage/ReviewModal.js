@@ -41,10 +41,9 @@ export default function ReviewModal({ order }) {
 
   //객체에 저장
   const [review, setReview] = useState({
-    reviewRate: reviewRate,
-    reviewProductNo: reviewProductNo,
-    reviewMemberNo: reviewMemberNo,
-    reviewReadCount: reviewReadCount,
+    reviewProductNo,
+    reviewMemberNo,
+    reviewReadCount,
   });
 
   //상품번호 클릭시 동작할 함수(서버에 insert 요청하는 함수)
@@ -191,7 +190,7 @@ const HalfRating = (props) => {
 const CheckBox = () => {
   return (
     <FormControlLabel
-      control={<Checkbox />}
+      control={<Checkbox defaultChecked />}
       label="개인정보 수집 이용 및 동의"
       sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
     />
