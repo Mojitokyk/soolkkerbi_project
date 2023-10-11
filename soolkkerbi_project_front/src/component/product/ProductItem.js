@@ -9,7 +9,6 @@ const ProductItem = (props) => {
   const isLogin = props.isLogin;
   const member = props.member;
   const navigate = useNavigate();
-
   //좋아요 함수
   const [like, setLike] = useState(product.isLike);
   const token = window.localStorage.getItem("token");
@@ -127,7 +126,7 @@ const ProductItem = (props) => {
         )}
       </div>
       {!member || (member && member.memberLevel !== 1) ? (
-        <Likes like={like} changeLike={changeLike} />
+        <Likes like={like} changeLike={changeLike} isLogin={isLogin} />
       ) : (
         ""
       )}
@@ -142,7 +141,6 @@ const ProductItem = (props) => {
             <span className="material-icons">star</span>
             <span className="star-rate">{product.starRate}</span>
           </div>
-
           <div className="product-item-cart">
             {!member || (member && member.memberLevel !== 1) ? (
               product.productStock === 0 ? (
@@ -164,11 +162,16 @@ const ProductItem = (props) => {
 
 const Likes = (props) => {
   const like = props.like;
+  const isLogin = props.isLogin;
   const changeLike = props.changeLike;
   return (
     <div className="like-zone" onClick={changeLike}>
       <span className="material-icons">
-        {like ? "favorite" : "favorite_border"}
+        {isLogin
+          ? like === 1
+            ? "favorite"
+            : "favorite_border"
+          : "favorite_border"}
       </span>
     </div>
   );
