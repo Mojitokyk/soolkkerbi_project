@@ -13,6 +13,7 @@ import Main from "./component/mainpage/Main";
 import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
+import PartyMain from "./component/tasting/PartyMain";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -52,6 +53,7 @@ function App() {
             element={<AdminMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route path="/cart" element={<Cart isLogin={isLogin} />} />
+          <Route path="/party/*" element={<PartyMain />} />
           <Route
             path="/product/*"
             element={<ProductMain isLogin={isLogin} />}

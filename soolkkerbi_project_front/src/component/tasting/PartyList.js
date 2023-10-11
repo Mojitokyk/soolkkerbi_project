@@ -1,8 +1,6 @@
-import "./partList.css";
+import "./partyList.css";
 
-const PartyList =()=>{
-    return(
-        <div>시음회 리스트</div>
-    )
-}
+const PartyList = () => {
+  return <div>시음회 리스트</div>;
+};
 export default PartyList;
