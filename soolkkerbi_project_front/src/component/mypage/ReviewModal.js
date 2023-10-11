@@ -41,8 +41,6 @@ export default function ReviewModal({ order }) {
 
   //객체에 저장
   const [review, setReview] = useState({
-    reviewTitle: reviewTitle,
-    reviewContent: reviewContent,
     reviewRate: reviewRate,
     reviewProductNo: reviewProductNo,
     reviewMemberNo: reviewMemberNo,
@@ -78,6 +76,7 @@ export default function ReviewModal({ order }) {
     const inputValue = e.currentTarget.value;
     setReviewTitle(inputValue);
   };
+
   return (
     <div>
       <Button onClick={handleOpen}>리뷰쓰기</Button>

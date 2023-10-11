@@ -20,6 +20,7 @@
 .my-side > ul > li > a {
   display: block;
   padding: 10px;
+  color: #4f4f4f;
 }
 .my-side > ul > li > a.active-side {
   background-color: #4f4f4f;

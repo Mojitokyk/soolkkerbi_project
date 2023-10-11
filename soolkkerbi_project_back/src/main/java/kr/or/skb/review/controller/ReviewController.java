@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +35,7 @@ public class ReviewController {
 	
 	//리뷰 등록
 	@PostMapping(value="/insert")
-	public int insertReview(@ModelAttribute Review r) {
+	public int insertReview(@RequestBody Review r) {
 		System.out.println(r);
 		return reviewService.insertReview(r);
 	}
