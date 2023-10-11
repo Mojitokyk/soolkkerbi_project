@@ -13,11 +13,6 @@ const NoticeView = (props) => {
   const [notice, setNotice] = useState({});
   const navigate = useNavigate();
 
-  /*목록으로 돌아가는 함수*/
-  const toList = () => {
-    return navigate("notice");
-  };
-
   console.log(
     "NoticeView - location.state.noticeNo: " + location.state.noticeNo
   );
@@ -33,6 +28,11 @@ const NoticeView = (props) => {
         console.log(res.response.status);
       });
   }, []);
+
+  /*목록으로 돌아가는 함수*/
+  const toList = () => {
+    return navigate("notice");
+  };
 
   //수정 버튼 함수
   const modifyNotice = () => {

@@ -21,3 +21,5 @@
           npm install dayjs
           npm install @mui/x-date-pickers-pro
 
+          npm install react-calendar
+
