@@ -129,4 +129,11 @@ public class QnaController {
 		System.out.println(a);
 		return qnaService.modifyAnswer(a);
 	}
+	
+	//답변 대기 중인 문의사항 출력 - 관리자페이지
+	@GetMapping(value="/adminList/{reqPage}")
+	public Map adminList(@PathVariable int reqPage) {
+		Map map = qnaService.adminList(reqPage);
+		return map;
+	}
 }
