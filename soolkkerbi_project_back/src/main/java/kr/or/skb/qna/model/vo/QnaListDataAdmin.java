@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class QnaListDataAdmin {
 	private int start;
 	private int end;
+	private int answerStatus;
 }

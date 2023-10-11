@@ -131,9 +131,10 @@ public class QnaController {
 	}
 	
 	//답변 대기 중인 문의사항 출력 - 관리자페이지
-	@GetMapping(value="/adminList/{reqPage}")
-	public Map adminList(@PathVariable int reqPage) {
-		Map map = qnaService.adminList(reqPage);
+	@GetMapping(value="/adminList/{reqPage}/{answerStatus}")
+	public Map adminList(@PathVariable int reqPage, @PathVariable int answerStatus) {
+		System.out.println("answerStatus: "+answerStatus);
+		Map map = qnaService.adminList(reqPage, answerStatus);
 		return map;
 	}
 }

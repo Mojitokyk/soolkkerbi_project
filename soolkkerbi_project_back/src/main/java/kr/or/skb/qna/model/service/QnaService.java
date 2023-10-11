@@ -129,7 +129,7 @@ public class QnaService {
 	}
 
 	//답변 대기 중인 문의사항 출력 - 관리자페이지
-	public Map adminList(int reqPage) {
+	public Map adminList(int reqPage, int answerStatus) {
 		//게시물 조회, 페이징에 필요한 데이터를 취합
 		int numPerPage = 10; //한 페이지당 게시물 수
 		int pageNaviSize = 5; //페이지 네비게이션에 표시되는 개수(길이)
@@ -141,7 +141,7 @@ public class QnaService {
 		
 		int start = pi.getStart();
 		int end = pi.getEnd();
-		QnaListDataAdmin qld = new QnaListDataAdmin(start, end);
+		QnaListDataAdmin qld = new QnaListDataAdmin(start, end, answerStatus);
 		
 		List qnaList = qnaDao.selectQnaListAdmin(qld); //pi로 start, end값을 mybatis로 넘김
 		System.out.println("qnaListAdmin: "+qnaList);

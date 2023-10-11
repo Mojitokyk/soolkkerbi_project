@@ -98,7 +98,7 @@
 	            QNA_STATUS
 	        FROM QNA
 	        JOIN MEMBER ON (QNA_MEMBER_NO = MEMBER_NO) 
-	        WHERE QNA_STATUS=1
+	        WHERE QNA_STATUS=#{answerStatus}
 	        ORDER BY 1 DESC)B)
 		WHERE RNUM BETWEEN #{start} AND #{end}
 	</select>

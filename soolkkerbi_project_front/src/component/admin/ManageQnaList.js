@@ -9,10 +9,19 @@ const ManageQnaList = () => {
   const [qnaList, setQnaList] = useState([]);
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
+  const [answerStatus, setAnswerStatus] = useState("1");
+
+  const selectStatus = (e) => {
+    console.log("select 옵션 변경");
+    const changeValue = e.currentTarget.value;
+    console.log(changeValue);
+    setAnswerStatus(changeValue);
+  };
 
   useEffect(() => {
+    console.log(answerStatus);
     axios
-      .get("/qna/adminList/" + reqPage) //get메서드 사용
+      .get("/qna/adminList/" + reqPage + "/" + answerStatus) //get메서드 사용
       .then((res) => {
         console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setQnaList(res.data.qnaList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
@@ -21,10 +30,16 @@ const ManageQnaList = () => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, [reqPage]);
+  }, [reqPage, answerStatus]);
 
   return (
     <>
+      <div className="select-status">
+        <select onChange={selectStatus} defaultValue="1">
+          <option value="1">답변 대기</option>
+          <option value="2">답변 완료</option>
+        </select>
+      </div>
       <table className="qna-list">
         <thead>
           <tr>

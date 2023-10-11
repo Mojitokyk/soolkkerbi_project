@@ -286,3 +286,14 @@
   color: #fff;
   background-color: black;
 }
+
+/*관리자페이지 답변상태 변경탭*/
+.select-status {
+  margin-bottom: 2.5px;
+  text-align: right;
+}
+.select-status > select {
+  outline: none;
+  width: 100px;
+  height: 25px;
+}
