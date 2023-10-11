@@ -95,7 +95,8 @@
 	            QNA_NO, 
 	            QNA_TITLE, 		            
 	            TO_CHAR(QNA_DATE, 'YYYY-MM-DD') AS QNA_DATE,
-	            QNA_STATUS
+	            QNA_STATUS,
+	            QNA_MEMBER_NO
 	        FROM QNA
 	        JOIN MEMBER ON (QNA_MEMBER_NO = MEMBER_NO) 
 	        WHERE QNA_STATUS=#{answerStatus}

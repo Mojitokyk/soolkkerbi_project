@@ -3,8 +3,8 @@ import { Button1 } from "../util/Buttons";
 import "./myQna.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MyQnaAnswer = (props) => {
   const member = props.member;
@@ -40,6 +40,7 @@ const RegistAnswer = (props) => {
   const answerList = props.answerList;
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
+  const navigate = useNavigate();
 
   //answerContent 입력후 DB연동 - memberNo를 보내지 않는 문제가 남아있음
   const registAnswer = () => {
@@ -84,6 +85,11 @@ const RegistAnswer = (props) => {
   //   }
   // };
 
+  /*목록으로 돌아가는 함수*/
+  const toList = () => {
+    return navigate("*");
+  };
+
   return (
     <div className="write-answer-frm">
       <ul>
@@ -105,6 +111,7 @@ const RegistAnswer = (props) => {
         </div>
         <li>
           <div className="write-btn">
+            <Button1 text="목록으로" clickEvent={toList} />
             <Button1 text="등록" clickEvent={registAnswer} />
           </div>
         </li>
@@ -122,6 +129,7 @@ const PrintAnswer = (props) => {
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
   const [modifyFrm, setModifyFrm] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     //DB를 통하여 등록된 답변을 출력
@@ -233,6 +241,11 @@ const PrintAnswer = (props) => {
   //   }
   // };
 
+  /*목록으로 돌아가는 함수*/
+  const toList = () => {
+    return navigate("*");
+  };
+
   return (
     <div className="qnaAnswer-list">
       {answerList.map((answer, index) => {
@@ -258,6 +271,7 @@ const PrintAnswer = (props) => {
                 </div>
                 {member.memberLevel === 1 ? (
                   <div className="qnaComment-link">
+                    <Button1 text="목록으로" clickEvent={toList} />
                     <button
                       onClick={() => {
                         modifyAnswerFrm(answer.answerNo, index);

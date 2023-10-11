@@ -165,6 +165,9 @@
   text-align: right;
   margin-bottom: 5px;
 }
+.write-btn > :first-child {
+  margin-right: 10px;
+}
 .write-btn > button {
   width: 100px;
   font-family: ns-b;
@@ -213,7 +216,8 @@
   text-align: right;
   margin-bottom: 5px;
 }
-.qnaComment-link > :first-child {
+.qnaComment-link > :first-child,
+:first-child + button {
   margin-right: 10px;
 }
 .qnaComment-link > button {
@@ -225,7 +229,6 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  color: #fff;
   background-color: black;
 }
 .qna-view-btn {
@@ -283,7 +286,6 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  color: #fff;
   background-color: black;
 }
 
