@@ -1,67 +1,65 @@
 .join-wrap {
-    width: 500px;
-    margin: 0 auto;
-    padding: 30px;
-  }
-  .join-title {
-    text-align: center;
-    font-family: ns-b;
-    font-size: 30px;
-    color: black;
-    padding: 30px;
-    border-bottom : 2px solid #4f4f4f;
-    margin-bottom: 30px;
-  }
-  .join-input-wrap {
-    display: flex;
-    flex-direction: column;
-    padding: 15px 0px;
-  }
-  .join-input-wrap > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .join-input-wrap > div > .label {
-    width: 30%;
-  }
-  .join-input-wrap > div > .label > label {
-    font-size: 1.1em;
-    font-family: ns-b;
-    color: black;
-    text-align: center;
-  }
-  .join-input-wrap > div > .input {
-    width: 65%;
-  }
-  .check-msg {
-    font-size: 0.8em;
-    width: 70%;
-    align-self: flex-end;
-    color: #FF6289;
-    box-sizing: border-box;
-    padding-left: 30px;
-  }
-  .join-btn-box{
+  width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+}
+.join-title {
+  text-align: center;
+  font-family: ns-b;
+  font-size: 30px;
+  color: black;
+  padding: 30px;
+  border-bottom: 2px solid #4f4f4f;
+  margin-bottom: 30px;
+}
+.join-input-wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0px;
+}
+.join-input-wrap > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.join-input-wrap > div > .label {
+  width: 30%;
+}
+.join-input-wrap > div > .label > label {
+  font-size: 1.1em;
+  font-family: ns-b;
+  color: black;
+  text-align: center;
+}
+.join-input-wrap > div > .input {
+  width: 65%;
+}
+.check-msg {
+  font-size: 0.8em;
+  width: 70%;
+  align-self: flex-end;
+  color: #ff6289;
+  box-sizing: border-box;
+  padding-left: 30px;
+}
+.join-btn-box {
   padding: 30px 0px;
-  }
-  .join-btn-box>button{
-    font-size: 18px;
-  }
-  #modal-modal-description{
-    width: 800px;
-    margin: 0 auto;
-    padding: 30px;
-  }
-  #modal-modal-description>h3{
-    padding: 0.5em;
-    text-align: center;
-  }
-  .modal-content{
-    border: #4f4f4f;
-    width: 90%;
-    height: 100px;
-    overflow: auto;
-
-    
-  }
+}
+.join-btn-box > button {
+  font-size: 18px;
+}
+#modal-modal-description {
+  width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+}
+#modal-modal-description > h3 {
+  padding: 0.5em;
+  text-align: center;
+}
+.modal-content {
+  border: #4f4f4f;
+  width: 90%;
+  height: 100px;
+  overflow: auto;
+}

@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Alias(value="selectDate")
-public class SelectDate {
-	private String start;
-	private String end;
+@Alias(value="payIncome")
+public class PayIncome {
+	private String incomeDate;
+	private int takju;
+	private int yakju;
+	private int spirit;
+	private int fruit;
 }
