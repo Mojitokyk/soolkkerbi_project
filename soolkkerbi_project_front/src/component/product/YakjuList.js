@@ -30,7 +30,7 @@ const YakjuList = (props) => {
 
   return (
     <div className="product-all-wrap">
-      <div className="product-title">약주, 청주</div>
+      <div className="product-title">약·청주</div>
       <div className="product-list-wrap">
         {yakjuList.map((product, index) => {
           return (
