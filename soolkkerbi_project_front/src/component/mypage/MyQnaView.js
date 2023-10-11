@@ -32,7 +32,7 @@ const MyQnaView = (props) => {
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
-    return navigate("qna");
+    return navigate("*");
   };
 
   //수정 버튼 함수

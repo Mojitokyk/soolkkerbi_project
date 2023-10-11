@@ -5,7 +5,8 @@ import { Button1 } from "../util/Buttons";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 
-const ManageQnaList = () => {
+const ManageQnaList = (props) => {
+  const isLogin = props.isLogin;
   const [qnaList, setQnaList] = useState([]);
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
@@ -35,7 +36,7 @@ const ManageQnaList = () => {
   return (
     <>
       <div className="select-status">
-        <select onChange={selectStatus} defaultValue="1">
+        <select onChange={selectStatus}>
           <option value="1">답변 대기</option>
           <option value="2">답변 완료</option>
         </select>
@@ -51,7 +52,7 @@ const ManageQnaList = () => {
         </thead>
         <tbody>
           {qnaList.map((qna, index) => {
-            return <QnaItem key={"qna" + index} qna={qna} />;
+            return <QnaItem key={"qna" + index} qna={qna} isLogin={isLogin} />;
           })}
         </tbody>
       </table>
@@ -67,11 +68,16 @@ const ManageQnaList = () => {
 };
 
 const QnaItem = (props) => {
+  const isLogin = props.isLogin;
   const qna = props.qna;
   const navigate = useNavigate();
   const qnaView = () => {
     console.log("qnaItem - qnaNo: " + qna.qnaNo);
-    navigate("/mypage/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
+    navigate("/admin/manageQna/manageQnaView", {
+      state: {
+        qnaNo: qna.qnaNo,
+      },
+    });
   };
   return (
     <tr className="qna-item" onClick={qnaView}>

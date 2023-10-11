@@ -87,7 +87,10 @@ const AdminMain = (props) => {
             <Route path="manageReceive" element={<ManageReceive />} />
             <Route path="cancelPay" element={<CancelPay />} />
             <Route path="cancelReservation" element={<CancelReservation />} />
-            <Route path="manageQna" element={<ManageQna />} />
+            <Route
+              path="manageQna/*"
+              element={<ManageQna isLogin={isLogin} member={member} />}
+            />
             <Route path="readIncome" element={<ReadIncome />} />
           </Routes>
         </div>
