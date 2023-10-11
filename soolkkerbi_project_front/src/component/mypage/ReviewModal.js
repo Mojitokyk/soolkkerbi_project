@@ -1,13 +1,14 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import TextEditor from "../util/TextEditor";
 import { Button1, Button3 } from "../util/Buttons";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 const style = {
   position: "absolute",
@@ -22,11 +23,16 @@ const style = {
 };
 
 export default function ReviewModal({ order }) {
-  console.log(order);
+  //모달용
   const [open, setOpen] = React.useState(false);
-  const [review, setReview] = useState({});
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  //리뷰내용 저장하기
+  const [reviewTitle, setReviewTitle] = useState("");
+  const [reviewContent, setReviewContent] = useState("");
+  const [reviewRate, setReviewRate] = useState(5);
+  const [reviewProductNo, setReviewProductNo] = useState(0);
+  const [reviewReadCount, setReviewReadCount] = useState(0);
 
   return (
     <div>
@@ -39,26 +45,26 @@ export default function ReviewModal({ order }) {
       >
         <Box sx={style}>
           <div id="modal-title">리뷰 작성</div>
-          <form className="review-form">
+          <div className="review-form">
             <div id="modal-description">
               <table className="modal-review-content">
                 <tbody>
                   <tr>
                     <th>만족도</th>
-                    <th>
+                    <td>
                       <HalfRating />
-                    </th>
+                    </td>
                   </tr>
                   <tr>
-                    <th>상세 제목</th>
+                    <th>
+                      <label htmlFor="reviewTitle">상세 제목</label>
+                    </th>
                     <td>
-                      <label htmlFor="reviewTitle">
-                        <input
-                          id="reviewTitle"
-                          type="text"
-                          placeholder="제목을 입력하세요"
-                        />
-                      </label>
+                      <input
+                        id="reviewTitle"
+                        type="text"
+                        placeholder="제목을 입력하세요"
+                      />
                     </td>
                   </tr>
                   <tr>
@@ -71,10 +77,7 @@ export default function ReviewModal({ order }) {
               </table>
               <div className="review-privacy-agree">
                 <div className="review-agree-check">
-                  <input type="checkBox" id="agree-check"></input>
-                  <label htmlFor="agree-check">
-                    개인정보 수집 및 이용에 대한 동의
-                  </label>
+                  <CheckBox />
                 </div>
                 <div className="review-privacy-agree-txt">
                   <table className="review10">
@@ -110,7 +113,7 @@ export default function ReviewModal({ order }) {
               <Button3 text="취소" />
               <Button1 text="등록" />
             </div>
-          </form>
+          </div>
         </Box>
       </Modal>
     </div>
@@ -127,5 +130,15 @@ const HalfRating = () => {
         id="star-rate"
       />
     </Stack>
+  );
+};
+//체크박스 컴포넌트
+const CheckBox = () => {
+  return (
+    <FormControlLabel
+      control={<Checkbox defaultChecked />}
+      label="개인정보 수집 이용 및 동의"
+      sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+    />
   );
 };
