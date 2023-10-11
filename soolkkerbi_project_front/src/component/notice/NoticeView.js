@@ -7,10 +7,10 @@ import Swal from "sweetalert2";
 
 const NoticeView = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const location = useLocation();
   const noticeNo = location.state.noticeNo;
   const [notice, setNotice] = useState({});
-  const [member, setMember] = useState(null); //상세보기 - 삭제, 수정: 사용자 정보 조회를 위한 state
   const navigate = useNavigate();
 
   /*목록으로 돌아가는 함수*/
@@ -32,25 +32,6 @@ const NoticeView = (props) => {
       .catch((res) => {
         console.log(res.response.status);
       });
-
-    // if (isLogin) {
-    //   //로그인 확인
-    //   const token = window.localStorage.getItem("token"); //토큰 값을 같이 보냄
-    //   console.log(token);
-    //   axios
-    //     .post("/member/getMember", null, {
-    //       headers: {
-    //         Authorization: "Bearer " + token,
-    //       },
-    //     })
-    //     .then((res) => {
-    //       console.log(res.data);
-    //       setMember(res.data);
-    //     })
-    //     .catch((res) => {
-    //       console.log(res.response.status);
-    //     });
-    // }
   }, []);
 
   //수정 버튼 함수
@@ -100,8 +81,14 @@ const NoticeView = (props) => {
       </div>
       <div className="notice-view-btn">
         <Button1 text="목록으로" clickEvent={toList} />
-        <Button1 text="수정" clickEvent={modifyNotice} />
-        <Button1 text="삭제" clickEvent={deleteNotice} />
+        {member.memberLevel === 1 ? (
+          <>
+            <Button1 text="수정" clickEvent={modifyNotice} />
+            <Button1 text="삭제" clickEvent={deleteNotice} />
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
