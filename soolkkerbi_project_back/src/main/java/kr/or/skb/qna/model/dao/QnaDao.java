@@ -10,6 +10,7 @@ import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
 import kr.or.skb.qna.model.vo.QnaListData;
+import kr.or.skb.qna.model.vo.QnaListDataAdmin;
 
 @Mapper
 public interface QnaDao {
@@ -52,6 +53,11 @@ public interface QnaDao {
 
 	//댓글 수정
 	int modifyAnswer(Answer a);
+
+	//답변 대기 중인 문의사항 수
+	int totalCountAdmin();
+	//답변 대기 중인 문의사항 출력 - 관리자페이지
+	List selectQnaListAdmin(QnaListDataAdmin qld);
 
 
 

@@ -1,5 +1,6 @@
 package kr.or.skb.pay.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,9 +81,37 @@ public class PayService {
 		return map;
 	}
 
-	public Map readAllIncome(SelectDate selectDate) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		return null;
+	public List readAllIncome(SelectDate selectDate) {
+		String startDate = selectDate.getStart();
+		
+		
+		int caseOneTotal = payDao.caseOneTotal(selectDate);
+		int caseTwoTotal = payDao.caseTwoTotal(selectDate);
+		int caseThreeTotal = payDao.caseThreeTotal(selectDate);
+		int caseFourTotal = payDao.caseFourTotal(selectDate);		
+		HashMap<String, Object> income1 = new HashMap<String, Object>();
+		income1.put("payDate", startDate);
+		income1.put("탁주", caseOneTotal);
+		income1.put("약주/청주", caseTwoTotal);
+		income1.put("증류주", caseThreeTotal);
+		income1.put("과실주", caseFourTotal);
+				
+		int caseOneTotal2 = payDao.caseOneTotal2(selectDate);
+		int caseTwoTotal2 = payDao.caseTwoTotal2(selectDate);
+		int caseThreeTotal2 = payDao.caseThreeTotal2(selectDate);
+		int caseFourTotal2 = payDao.caseFourTotal2(selectDate);
+		HashMap<String, Object> income2 = new HashMap<String, Object>();
+		income2.put("payDate", "2023-10-05");
+		income2.put("탁주", caseOneTotal2);
+		income2.put("약주/청주", caseTwoTotal2);
+		income2.put("증류주", caseThreeTotal2);
+		income2.put("과실주", caseFourTotal2);
+		
+		ArrayList<Object> list = new ArrayList<Object>();
+		list.add(income1);
+		list.add(income2);
+
+		return list;
 	}
 	
 	@Transactional
@@ -91,11 +120,14 @@ public class PayService {
 		result += payDao.insertOnePay(cart);
 		result += payDao.updateProductStock(cart);
 		result += payDao.deleteCart(cart);
+		return 1;
+		/* 장바구니에 안 담고 바로 구매 가능
 		if(result == 3) {
 			return 1;
 		}else {
 			return 0;			
 		}
+		*/
 	}
 	@Transactional
 	public int insertPayList(List<Cart> cartList, String memberId) {
@@ -106,10 +138,13 @@ public class PayService {
 			result += payDao.updateProductStock(cart);
 			result += payDao.deleteCart(cart);
 		}
+		return 1;
+		/* 장바구니에 안 담고 바로 구매 가능
 		if(result == cartList.size()*3) {
 			return 1;
 		}else {
 			return 0;			
 		}
+		*/
 	}
 }

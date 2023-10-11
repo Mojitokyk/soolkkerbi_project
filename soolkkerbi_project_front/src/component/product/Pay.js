@@ -1,19 +1,29 @@
 import "./pay.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Input from "../util/InputForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 const Pay = (props) => {
   const isLogin = props.isLogin;
-  const location = useLocation();
-  const cart = location.state.cart;
-  const cartList = location.state.cartList;
-  const totalPrice = location.state.totalPrice;
-  const member = location.state.member;
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!isLogin) {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요합니다.",
+      });
+      navigate("/login");
+    }
+  }, [isLogin]);
+  const cart = isLogin ? location.state.cart : "";
+  const cartList = isLogin ? location.state.cartList : "";
+  const totalPrice = isLogin ? location.state.totalPrice : "";
+  const member = isLogin ? location.state.member : "";
   const [memberName, setMemberName] = useState(member.memberName);
   const [memberPhone, setMemberPhone] = useState(member.memberPhone);
   const [memberEmail, setMemberEmail] = useState(member.memberEmail);
@@ -51,73 +61,74 @@ const Pay = (props) => {
         ? cartList[0].productName + " 외 " + cartList.length + "건"
         : cart.productName;
       IMP.init("imp83034442");
-      IMP.request_pay(
-        {
-          pg: "html5_inicis",
-          pay_method: "card",
-          merchant_uid: "주문번호_" + payStringNo,
-          name: productName,
-          amount: 100, //price
-          buyer_email: memberEmail,
-          buyer_name: memberName,
-          buyer_tel: memberPhone,
-        },
-        function (rsp) {
-          if (rsp.success) {
-            if (cartList) {
-              for (let i = 0; i < cartList.length; i++) {
-                cartList[i].payStringNo = payStringNo;
-                cartList[i].pickupDate = pickupDate;
-              }
-              //pay테이블 insert : 여러 개
-              axios
-                .post("/pay/insertPayList", cartList, {
-                  headers: {
-                    Authorization: "Bearer " + token,
-                  },
-                })
-                .then((res) => {
-                  if (res.data === 1) {
-                    Swal.fire({
-                      icon: "success",
-                      title: "결제 완료",
-                      text: "결제가 완료되었습니다.",
-                    });
-                    navigate("/mypage/order");
-                  }
-                })
-                .catch((res) => {});
-            } else {
-              //pay테이블 insert : 한 개
-              cart.payStringNo = payStringNo;
-              cart.pickupDate = pickupDate;
-              axios
-                .post("/pay/insertOnePay", cart, {
-                  headers: {
-                    Authorization: "Bearer " + token,
-                  },
-                })
-                .then((res) => {
-                  if (res.data === 1) {
-                    Swal.fire({
-                      icon: "success",
-                      title: "결제 완료",
-                      text: "결제가 완료되었습니다.",
-                    });
-                    navigate("/mypage/order");
-                  }
-                })
-                .catch((res) => {});
+      const data = {
+        pg: "html5_inicis",
+        pay_method: "card",
+        merchant_uid: "주문번호_" + payStringNo,
+        name: productName,
+        amount: price,
+        buyer_email: memberEmail,
+        buyer_name: memberName,
+        buyer_tel: memberPhone,
+      };
+      IMP.request_pay(data, callback);
+
+      function callback(response) {
+        const { success, error_msg } = response;
+        if (success) {
+          if (cartList) {
+            for (let i = 0; i < cartList.length; i++) {
+              cartList[i].payStringNo = payStringNo;
+              cartList[i].pickupDate = pickupDate;
             }
+            //pay테이블 insert : 여러 개
+            axios
+              .post("/pay/insertPayList", cartList, {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              })
+              .then((res) => {
+                if (res.data === 1) {
+                  Swal.fire({
+                    icon: "success",
+                    title: "결제 완료",
+                    text: "결제가 완료되었습니다.",
+                  });
+                  navigate("/mypage/order");
+                }
+              })
+              .catch((res) => {});
           } else {
-            Swal.fire({
-              icon: "warning",
-              title: "결제 취소",
-              text: "결제가 취소되었습니다.",
-            });
+            //pay테이블 insert : 한 개
+            cart.payStringNo = payStringNo;
+            cart.pickupDate = pickupDate;
+            axios
+              .post("/pay/insertOnePay", cart, {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              })
+              .then((res) => {
+                if (res.data === 1) {
+                  Swal.fire({
+                    icon: "success",
+                    title: "결제 완료",
+                    text: "결제가 완료되었습니다.",
+                  });
+                  navigate("/mypage/order");
+                }
+              })
+              .catch((res) => {});
           }
+        } else {
+          Swal.fire({
+            icon: "warning",
+            title: "결제 취소",
+            text: error_msg,
+          });
         }
-      );
+      }
     }
   };
   return (
@@ -244,8 +255,8 @@ const Cart = (props) => {
   };
   //천원 단위 콤마붙인 가격
   const commaPrice = cart.cartPrice
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    ? cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : "";
   return (
     <div className="pay-product-info-wrap">
       <h3>주문 상품 정보</h3>
@@ -273,7 +284,9 @@ const PaySummary = (props) => {
         <span>
           {totalPrice
             ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            : cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            : cart.cartPrice
+            ? cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : ""}
           원
         </span>
       </div>
@@ -286,7 +299,9 @@ const PaySummary = (props) => {
         <span>
           {totalPrice
             ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            : cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            : cart.cartPrice
+            ? cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : ""}
           원
         </span>
       </div>

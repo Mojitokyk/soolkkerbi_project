@@ -4,6 +4,7 @@ import "./myQna.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import TextareaAutosize from "react-textarea-autosize";
 
 const MyQnaAnswer = (props) => {
   const member = props.member;
@@ -13,15 +14,15 @@ const MyQnaAnswer = (props) => {
 
   return (
     <div className="qnaAnswer-wrap">
-      {/* {member.memberLevel === 1 ? ( */}
-      <RegistAnswer
-        answerQnaNo={answerQnaNo}
-        answerList={answerList}
-        setAnswerList={setAnswerList}
-      />
-      {/* ) : (
+      {member.memberLevel === 1 ? (
+        <RegistAnswer
+          answerQnaNo={answerQnaNo}
+          answerList={answerList}
+          setAnswerList={setAnswerList}
+        />
+      ) : (
         ""
-      )} */}
+      )}
       <PrintAnswer
         member={member}
         answerQnaNo={answerQnaNo}
@@ -82,6 +83,7 @@ const RegistAnswer = (props) => {
   //     registAnswer();
   //   }
   // };
+
   return (
     <div className="write-answer-frm">
       <ul>
@@ -89,13 +91,16 @@ const RegistAnswer = (props) => {
           <li>
             <span>관리자</span>
           </li>
-          <li>
-            <textarea
-              className="answer-textarea"
+          <li style={{ whiteSpace: "pre-line" }}>
+            <TextareaAutosize
+              style={{ boxSizing: "border-box" }}
+              className="regist-textarea"
               value={answerContent || ""}
               onChange={changeContent}
+              spellcheck="false"
+              autoFocus
               // onKeyUp={enterCheck}
-            ></textarea>
+            />
           </li>
         </div>
         <li>
@@ -244,60 +249,65 @@ const PrintAnswer = (props) => {
                       <div className="qnaComment-content">
                         {/* <p>{answer.answerNo}</p> */}
                         <p>{answer.answerDate}</p>
-                        <p>{answer.answerContent}</p>
+                        <p style={{ whiteSpace: "pre-line" }}>
+                          {answer.answerContent}
+                        </p>
                       </div>
                     </li>
                   </ul>
                 </div>
-                {/* {member.memberLevel === 1 ? ( */}
-                <div className="qnaComment-link">
-                  <span
-                    onClick={() => {
-                      modifyAnswerFrm(answer.answerNo, index);
-                    }}
-                  >
-                    수정
-                  </span>
-                  <span> / </span>
-                  <span
-                    onClick={() => {
-                      deleteAnswer(answer.answerNo, index, answerQnaNo);
-                    }}
-                  >
-                    삭제
-                  </span>
-                </div>
-                {/* ) : (
-                    ""
-                  )} */}
-              </>
-            ) : (
-              <div className="write-answer-frm">
-                <ul>
-                  <li>
-                    <span>관리자</span>
-                  </li>
-                  <li>
-                    <textarea
-                      className="answer-textarea"
-                      value={answerContent || ""}
-                      onChange={changeContent}
-                      // onKeyUp={enterCheck}
-                      placeholder={answer.answerContent}
-                    ></textarea>
-                    <input type="hidden" value={answer.answerNo} />
-                  </li>
-                  <li>
-                    <span
+                {member.memberLevel === 1 ? (
+                  <div className="qnaComment-link">
+                    <button
                       onClick={() => {
-                        modifyAnswer(answer, index);
+                        modifyAnswerFrm(answer.answerNo, index);
                       }}
                     >
-                      수정완료
-                    </span>
-                  </li>
-                </ul>
-              </div>
+                      수정
+                    </button>
+                    <button
+                      onClick={() => {
+                        deleteAnswer(answer.answerNo, index, answerQnaNo);
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+              </>
+            ) : (
+              <>
+                <div className="modify-answer-frm">
+                  <ul>
+                    <li>
+                      <span>관리자</span>
+                    </li>
+                    <li style={{ whiteSpace: "pre-line" }}>
+                      <TextareaAutosize
+                        className="modify-textarea"
+                        value={answerContent || ""}
+                        onChange={changeContent}
+                        // onKeyUp={enterCheck}
+                        placeholder={answer.answerContent}
+                        spellcheck="false"
+                        autoFocus
+                      />
+                      <input type="hidden" value={answer.answerNo} />
+                    </li>
+                  </ul>
+                </div>
+                <div className="modify-btn">
+                  <button
+                    onClick={() => {
+                      modifyAnswer(answer, index);
+                    }}
+                  >
+                    수정완료
+                  </button>
+                </div>
+              </>
             )}
           </div>
         );
