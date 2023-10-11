@@ -120,11 +120,14 @@ public class PayService {
 		result += payDao.insertOnePay(cart);
 		result += payDao.updateProductStock(cart);
 		result += payDao.deleteCart(cart);
+		return 1;
+		/* 장바구니에 안 담고 바로 구매 가능
 		if(result == 3) {
 			return 1;
 		}else {
 			return 0;			
 		}
+		*/
 	}
 	@Transactional
 	public int insertPayList(List<Cart> cartList, String memberId) {
@@ -135,10 +138,13 @@ public class PayService {
 			result += payDao.updateProductStock(cart);
 			result += payDao.deleteCart(cart);
 		}
+		return 1;
+		/* 장바구니에 안 담고 바로 구매 가능
 		if(result == cartList.size()*3) {
 			return 1;
 		}else {
 			return 0;			
 		}
+		*/
 	}
 }
