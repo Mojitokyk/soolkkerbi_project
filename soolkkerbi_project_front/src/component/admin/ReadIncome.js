@@ -19,23 +19,14 @@ import { DateRangePicker } from "@mui/x-date-pickers-pro/DateRangePicker";
 import { Button4 } from "../util/Buttons";
 
 const ReadIncome = () => {
-  const todayDate = new Date();
-  const today = new Date();
-  const startDate = new Date(today.setDate(today.getDate() - 6));
+  const yesterdayDate = new Date(new Date().setDate(new Date().getDate() - 1));
+  const startDate = new Date(new Date().setDate(new Date().getDate() - 7));
   const [selectDate, setSelectDate] = useState([
     dayjs(startDate),
-    dayjs(todayDate),
+    dayjs(yesterdayDate),
   ]);
 
-  const [incomeList, setIncomeList] = useState([
-    {
-      payDate: startDate,
-      탁주: 4000,
-      "약주/청주": 2400,
-      증류주: 3600,
-      과실주: 2000,
-    },
-  ]);
+  const [incomeList, setIncomeList] = useState([]);
 
   useEffect(() => {
     const startYear = startDate.getFullYear();
@@ -43,10 +34,13 @@ const ReadIncome = () => {
     const startDay = String(startDate.getDate()).padStart(2, "0");
     const start = `${startYear}-${startMonth}-${startDay}`;
 
-    const todayYear = todayDate.getFullYear();
-    const todayMonth = String(todayDate.getMonth() + 1).padStart(2, "0");
-    const todayDay = String(todayDate.getDate()).padStart(2, "0");
-    const end = `${todayYear}-${todayMonth}-${todayDay}`;
+    const yesterdayYear = yesterdayDate.getFullYear();
+    const yesterdayMonth = String(yesterdayDate.getMonth() + 1).padStart(
+      2,
+      "0"
+    );
+    const yesterdayDay = String(yesterdayDate.getDate()).padStart(2, "0");
+    const end = `${yesterdayYear}-${yesterdayMonth}-${yesterdayDay}`;
 
     const obj = new Object();
     obj.start = start;
@@ -55,24 +49,8 @@ const ReadIncome = () => {
     axios
       .post("/pay/readAllIncome", obj)
       .then((res) => {
-        // const income = new Object();
-        // income.payDate = res.data[0].payDate;
-        // switch (res.data[0].payProductCase) {
-        //   case 1:
-        //     income.case1 = res.data[0].payPrice;
-        //     break;
-        //   case 2:
-        //     income.case2 = res.data[0].payPrice;
-        //     break;
-        //   case 3:
-        //     income.case3 = res.data[0].payPrice;
-        //     break;
-        //   case 4:
-        //     income.case4 = res.data[0].payPrice;
-        //     break;
-        // }
-        // incomeList.push(income);
-        // console.log(incomeList);
+        console.log(res.data);
+        setIncomeList(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
