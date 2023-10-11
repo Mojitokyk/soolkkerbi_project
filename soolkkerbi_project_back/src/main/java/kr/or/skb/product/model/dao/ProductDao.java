@@ -45,5 +45,7 @@ public interface ProductDao {
 	int takjuTotalCount();
 
 	int fruitTotalCount();
+
+	int spiritTotalCount();
 	
 }
