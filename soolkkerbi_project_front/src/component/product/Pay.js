@@ -1,19 +1,29 @@
 import "./pay.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Input from "../util/InputForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
 import axios from "axios";
 
 const Pay = (props) => {
   const isLogin = props.isLogin;
-  const location = useLocation();
-  const cart = location.state.cart;
-  const cartList = location.state.cartList;
-  const totalPrice = location.state.totalPrice;
-  const member = location.state.member;
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    if (!isLogin) {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요합니다.",
+      });
+      navigate("/login");
+    }
+  }, [isLogin]);
+  const cart = isLogin ? location.state.cart : "";
+  const cartList = isLogin ? location.state.cartList : "";
+  const totalPrice = isLogin ? location.state.totalPrice : "";
+  const member = isLogin ? location.state.member : "";
   const [memberName, setMemberName] = useState(member.memberName);
   const [memberPhone, setMemberPhone] = useState(member.memberPhone);
   const [memberEmail, setMemberEmail] = useState(member.memberEmail);
@@ -244,8 +254,8 @@ const Cart = (props) => {
   };
   //천원 단위 콤마붙인 가격
   const commaPrice = cart.cartPrice
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    ? cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    : "";
   return (
     <div className="pay-product-info-wrap">
       <h3>주문 상품 정보</h3>
@@ -273,7 +283,9 @@ const PaySummary = (props) => {
         <span>
           {totalPrice
             ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            : cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            : cart.cartPrice
+            ? cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : ""}
           원
         </span>
       </div>
@@ -286,7 +298,9 @@ const PaySummary = (props) => {
         <span>
           {totalPrice
             ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            : cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            : cart.cartPrice
+            ? cart.cartPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : ""}
           원
         </span>
       </div>
