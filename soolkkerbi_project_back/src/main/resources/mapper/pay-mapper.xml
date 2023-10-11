@@ -47,6 +47,7 @@
 		    (select rownum as rnum, o.* from(
 		        (select 
 		            pay_member_no,
+		            pay_product_no,
 		            member_id as pay_member_id,
 		            to_char(pay_date,'yyyy.mm.dd') as pay_date,
 		            pay_string_no,
@@ -74,61 +75,16 @@
 	<delete id="deleteCart">
 		delete from cart where cart_no=#{cartNo}
 	</delete>
-
-	<select id="caseOneTotal" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 1 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = #{start})
-	</select>
 	
-	<select id="caseTwoTotal" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 2 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = #{start})
-	</select>
-	
-	<select id="caseThreeTotal" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 3 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = #{start})
-	</select>
-	
-	<select id="caseFourTotal" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 4 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = #{start})
-	</select>
-	
-	<select id="caseOneTotal2" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 1 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = to_char(to_date(#{start})+1, 'yyyy-mm-dd'))
-	</select>
-	
-	<select id="caseTwoTotal2" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 2 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = to_char(to_date(#{start})+1, 'yyyy-mm-dd'))
-	</select>
-	
-	<select id="caseThreeTotal2" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 3 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = to_char(to_date(#{start})+1, 'yyyy-mm-dd'))
-	</select>
-	
-	<select id="caseFourTotal2" resultType="int">
-		select nvl(sum(pay_price),0) as pay_total_price from 
-		(select * from pay 
-		join product on (pay_product_no = product_no)
-		where product_case = 4 and pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') = to_char(to_date(#{start})+1, 'yyyy-mm-dd'))
+	<select id="selectAllIncome" resultType="list">
+		select 
+		    to_char(pay_date,'yyyy-mm-dd') pay_date,
+		    nvl(sum((select pay_price from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 1)),0) "탁주",
+		    nvl(sum((select pay_price from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 2)),0) "약주/청주",
+		    nvl(sum((select pay_price from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 3)),0) "증류주",
+		    nvl(sum((select pay_price from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 4)),0) "과실주"
+		from pay p1 
+		where pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') between #{start} and #{end} group by to_char(pay_date,'yyyy-mm-dd')
 	</select>
 
 </mapper>

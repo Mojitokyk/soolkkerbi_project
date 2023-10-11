@@ -16,7 +16,7 @@ public class Review {
 	private int reviewProductNo;
 	private String reviewTitle;
 	private String reviewContent;
-	private int reviewRate;
+	private double reviewRate;
 	private int reviewReadCount;
 	private String reviewDate;
 }

@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
-import kr.or.skb.SelectDate;
 import kr.or.skb.cart.model.vo.Cart;
 import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.pay.model.vo.Pay;
 import kr.or.skb.pay.model.vo.PayListData;
+import kr.or.skb.pay.model.vo.SelectDate;
 import kr.or.skb.product.model.dao.ProductDao;
 
 @Service
@@ -82,36 +82,9 @@ public class PayService {
 	}
 
 	public List readAllIncome(SelectDate selectDate) {
-		String startDate = selectDate.getStart();
-		
-		
-		int caseOneTotal = payDao.caseOneTotal(selectDate);
-		int caseTwoTotal = payDao.caseTwoTotal(selectDate);
-		int caseThreeTotal = payDao.caseThreeTotal(selectDate);
-		int caseFourTotal = payDao.caseFourTotal(selectDate);		
-		HashMap<String, Object> income1 = new HashMap<String, Object>();
-		income1.put("payDate", startDate);
-		income1.put("탁주", caseOneTotal);
-		income1.put("약주/청주", caseTwoTotal);
-		income1.put("증류주", caseThreeTotal);
-		income1.put("과실주", caseFourTotal);
-				
-		int caseOneTotal2 = payDao.caseOneTotal2(selectDate);
-		int caseTwoTotal2 = payDao.caseTwoTotal2(selectDate);
-		int caseThreeTotal2 = payDao.caseThreeTotal2(selectDate);
-		int caseFourTotal2 = payDao.caseFourTotal2(selectDate);
-		HashMap<String, Object> income2 = new HashMap<String, Object>();
-		income2.put("payDate", "2023-10-05");
-		income2.put("탁주", caseOneTotal2);
-		income2.put("약주/청주", caseTwoTotal2);
-		income2.put("증류주", caseThreeTotal2);
-		income2.put("과실주", caseFourTotal2);
-		
-		ArrayList<Object> list = new ArrayList<Object>();
-		list.add(income1);
-		list.add(income2);
-
-		return list;
+		List incomeList = payDao.selectAllIncome(selectDate);
+		System.out.println(incomeList);
+		return incomeList;
 	}
 	
 	@Transactional
