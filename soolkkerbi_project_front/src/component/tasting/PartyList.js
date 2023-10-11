@@ -2,7 +2,7 @@ import "./partyMain.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "../common/Pagination";
-import { Button1 } from "../util/Buttons";
+import { Button1, Button2 } from "../util/Buttons";
 import { useNavigate } from "react-router-dom";
 
 
@@ -52,7 +52,7 @@ const PartyList =(props)=>{
         <div>
         {isLogin && member.memberLevel === 1 ? (
           <div className="taste-write-btn">
-            <Button1 text="시음회 등록" clickEvent={write} />
+            <Button2 text="시음회 등록" clickEvent={write} />
           </div>
         ) : (
           ""
@@ -82,12 +82,11 @@ const PartyList =(props)=>{
     return (
       <div className="taste-item" onClick={tasteView}>
         <div className="taste-item-img">
-        <img src="/image/default.png" />
-          {/* {taste.tasteImg === null ? (
+          {taste.tasteFilepath === null ? (
             <img src="/image/default.png" />
           ) : (
-            <img src={"/tasting/" + taste.tasteImg} />
-          )} */}
+            <img src={"/tasting/" + taste.tasteFilepath} />
+          )}
         </div>
         <div className="taste-item-info">
           <div className="taste-item-title">{taste.tasteTitle}</div>

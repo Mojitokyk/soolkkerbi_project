@@ -11,6 +11,7 @@ import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.member.model.dao.MemberDao;
 import kr.or.skb.taste.model.dao.TasteDao;
+import kr.or.skb.taste.model.vo.Taste;
 
 @Service
 public class TasteService {
@@ -28,11 +29,15 @@ public class TasteService {
 		int totalCount = tasteDao.totalCount();
 		//페이징 조회 및페이지 제작에 필요한 데이터를 객체롤 받아옴
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
-				List boardList = tasteDao.selectPartyList(pi);
+				List tasteList = tasteDao.selectPartyList(pi);
 	    HashMap<String, Object> map = new HashMap<String, Object>();
-	    map.put("boardList", boardList);
+	    map.put("tasteList", tasteList);
 	    map.put("pi",pi);
 	    return map;
 		
+	}
+	public Taste selectOneBoard(int tasteNo) {
+		Taste b = tasteDao.selectOneBoard(tasteNo);
+		return b;
 	}
 }

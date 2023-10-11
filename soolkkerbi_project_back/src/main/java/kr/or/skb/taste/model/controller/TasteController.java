@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.skb.FileUtil;
 import kr.or.skb.taste.model.service.TasteService;
+import kr.or.skb.taste.model.vo.Taste;
 
 @RestController 
 @RequestMapping(value = "/taste")
@@ -29,4 +30,9 @@ public class TasteController {
 		return map;
 
 	}
+	@GetMapping(value = "/view/{tasteNo}") //일단 작동을 위해 만듬!! 고쳐서 사용해주세요!!
+	public Taste view(@PathVariable int tasteNo) {
+		return tasteService.selectOneBoard(tasteNo);
+	}
+
 }

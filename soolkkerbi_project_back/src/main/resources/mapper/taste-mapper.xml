@@ -8,10 +8,23 @@
 	
 	<select id="selectPartyList" resultType="taste">
 	select * from
-			(select rownum as rnum, T.* from
-				(select taste_no,taste_title,taste_filepath,to_char(taste_end,'yyyy-mm-dd' )as taste_end,to_char(taste_start,'yyyy-mm-dd' )as taste_start from taste order by taste_end desc ) T
+			(select rownum as rnum, T.* from(
+				(select taste_no,taste_title,taste_filepath,to_char(taste_end,'yyyy-mm-dd' )as taste_end,to_char(taste_start,'yyyy-mm-dd' )as taste_start from taste order by taste_end desc ) T )
 			)
-		where rnum between 1 and 5;
+		where rnum between #{start} and #{end}
 	</select>
 
+<select id="selectOneBoard" resultType="taste">
+	select 
+	taste_no,
+	taste_member_no,
+	taste_title,
+	taste_content,
+	taste_filepath,
+	to_char(taste_end,'yyyy-mm-dd' )as taste_end,
+	to_char(taste_start,'yyyy-mm-dd' )as taste_start
+	from taste
+	join member on(taste_member_no = member_no)
+	where taste_no =#{tasteNo}
+	</select>
 </mapper>

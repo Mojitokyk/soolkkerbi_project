@@ -27,6 +27,7 @@
   }
   .search-box > a {
     font-size: 0.9em;
+    font-family: ns-r;
     height: 20px;
     line-height: 20px;
   }
@@ -35,6 +36,7 @@
   }
   .find {
     font-size: 0.9em;
+    font-family: ns-r;
     height: 20px;
     line-height: 20px;
   }
