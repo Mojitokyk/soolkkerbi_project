@@ -40,4 +40,5 @@ public class TasteService {
 		Taste b = tasteDao.selectOneBoard(tasteNo);
 		return b;
 	}
+	
 }

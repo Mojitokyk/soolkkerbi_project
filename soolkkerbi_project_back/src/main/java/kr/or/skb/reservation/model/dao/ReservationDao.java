@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.reservation.model.vo.Reservation;
+import kr.or.skb.reservation.model.vo.ReservationData;
 
 @Mapper
 public interface ReservationDao {
@@ -15,5 +16,7 @@ public interface ReservationDao {
 	List selectAllReservation(PageInfo pi);
 
 	int updateReservationStatus(Reservation reservation);
+
+	List myReservationList(ReservationData rld);
 	
 }

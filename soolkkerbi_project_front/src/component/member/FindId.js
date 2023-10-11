@@ -53,7 +53,10 @@ export default function FindId() {
             setMemberName("");
             setMemberEmail("");
           } else {
+            setOpen(false);
             Swal.fire("존재하지않은 회원정보입니다!");
+            setMemberName("");
+            setMemberEmail("");
           }
         })
         .catch((res) => {

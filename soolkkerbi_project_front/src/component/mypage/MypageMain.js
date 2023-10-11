@@ -75,7 +75,7 @@ const MypageMain = (props) => {
               path="order"
               element={<MyOrder member={member} isLogin={isLogin} />}
             />
-            <Route path="reservation" element={<MyReservation />} />
+            <Route path="reservation" element={<MyReservation member={member} isLogin={isLogin}/>} />
             <Route path="wish" element={<MyWishList isLogin={isLogin} />} />
             <Route path="review" element={<MyReivew />} />
             <Route
