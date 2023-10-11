@@ -76,7 +76,6 @@ const QnaItem = (props) => {
     navigate("/admin/manageQna/manageQnaView", {
       state: {
         qnaNo: qna.qnaNo,
-        qnaMemberNo: qna.qnaMemberNo,
       },
     });
   };

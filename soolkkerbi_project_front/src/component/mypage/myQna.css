@@ -55,7 +55,8 @@
 
 /*공지사항 등록*/
 .qna-frm-wrap {
-  width: 800px;
+  width: 900px;
+  margin: 0 auto;
 }
 .qna-info-tbl {
   width: 100%;

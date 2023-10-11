@@ -11,7 +11,6 @@ const ManageQnaView = (props) => {
   const member = props.member;
   const location = useLocation();
   const qnaNo = location.state.qnaNo;
-  const qnaMemberNo = location.state.qnaMemberNo;
   const [qna, setQna] = useState({});
   const navigate = useNavigate();
 

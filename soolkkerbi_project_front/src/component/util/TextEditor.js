@@ -99,6 +99,7 @@ const TextEditor = (props) => {
       formats={formats}
       onChange={setData}
       modules={modules}
+      selection={{ start: 0, end: 0 }}
     />
   );
 };
