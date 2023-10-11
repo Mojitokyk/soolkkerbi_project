@@ -79,7 +79,7 @@ const ProductFrm = (props) => {
                   <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                     <Select value={productCase} onChange={caseChange}>
                       <MenuItem value={1}>탁주</MenuItem>
-                      <MenuItem value={2}>약,청주</MenuItem>
+                      <MenuItem value={2}>약·청주</MenuItem>
                       <MenuItem value={3}>과실주</MenuItem>
                       <MenuItem value={4}>증류주</MenuItem>
                     </Select>
