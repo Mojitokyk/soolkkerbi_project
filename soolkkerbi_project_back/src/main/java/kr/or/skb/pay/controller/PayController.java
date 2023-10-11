@@ -45,7 +45,7 @@ public class PayController {
 	}
 	
 	@PostMapping(value="/readAllIncome")
-	public Map readAllIncome(@RequestBody SelectDate selectDate) {
+	public List readAllIncome(@RequestBody SelectDate selectDate) {
 		System.out.println(selectDate);
 		return payService.readAllIncome(selectDate);
 	}
