@@ -1,4 +1,4 @@
-package kr.or.skb;
+package kr.or.skb.pay.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

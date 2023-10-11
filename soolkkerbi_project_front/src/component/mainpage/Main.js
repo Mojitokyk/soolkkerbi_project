@@ -45,73 +45,86 @@ const SwiperMain = () => {
 };
 
 const MainList = () => {
-  const [mainList, setMainList] = useState([]);
-
-  return (
-    <div className="productR-all-wrap">
-      <div className="productR-title">술꺼비 추천</div>
-      <div className="productR-list-wrap">
-        <ProductRecommend />
-      </div>
-      <div className="productR-page"></div>
-    </div>
-  );
-};
-
-const ProductRecommend = () => {
   //상품의 평가 중 5점인 상품을 리스트로 가져와서 출력(최대 9개)
   /*
   product.starRate == 5
   객체 배열
   Object[] recomends;
   */
+  const [recommendList, setRecommendList] = useState([
+    {
+      product: 1,
+      productName: "양(陽) 막걸리",
+      img: "/image/product_img/takju1.jpg",
+      productPrice: "22,000원",
+    },
+    {
+      product: 2,
+      productName: "양(陽) 막걸리",
+      img: "/image/product_img/takju2.jpg",
+      productPrice: "22,000원",
+    },
+    {
+      product: 3,
+      productName: "양(陽) 막걸리",
+      img: "/image/product_img/takju4.jpg",
+      productPrice: "22,000원",
+    },
+    {
+      product: 4,
+      productName: "양(陽) 막걸리",
+      img: "/image/product_img/takju5.jpg",
+      productPrice: "22,000원",
+    },
+    {
+      product: 4,
+      productName: "양(陽) 막걸리",
+      img: "/image/product_img/sul2.jpg",
+      productPrice: "22,000원",
+    },
+    {
+      product: 4,
+      productName: "양(陽) 막걸리",
+      img: "/image/product_img/sul.jpg",
+      productPrice: "22,000원",
+    },
+  ]);
+
+  return (
+    <div className="productR-all-wrap">
+      <div className="productR-title">술꺼비 추천</div>
+      <div className="productR-list-wrap">
+        <ProductRecommend recommendList={recommendList} />
+      </div>
+      <div className="productR-page"></div>
+    </div>
+  );
+};
+
+const ProductRecommend = (props) => {
+  const recommendList = props.recommendList;
+
   return (
     <>
-      <div className="productR-item">
-        <div className="productR-item-img">
-          <img src="/image/product_img/takju1.jpg" />
-        </div>
-        <div className="productR-item-info">
-          <div className="productR-item-name">양(陽) 막걸리</div>
-          <div className="productR-item-price">22000원</div>
-          <div className="productR-item-more">
-            <div className="productR-item-star"></div>
-            <div className="productR-item-cart">
-              <span className="material-icons">shopping_cart</span>
+      {recommendList.map((product, index) => {
+        return (
+          <div className="productR-item">
+            <div className="productR-item-img">
+              <img src={product.img} />
+            </div>
+            <div className="productR-item-info">
+              <div className="productR-item-name">{product.productName}</div>
+              <div className="productR-item-price">{product.productPrice}</div>
+              <div className="productR-item-more">
+                <div className="productR-item-star"></div>
+                <div className="productR-item-cart">
+                  <span className="material-icons">shopping_cart</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="productR-item">
-        <div className="productR-item-img">
-          <img src="/image/product_img/takju1.jpg" />
-        </div>
-        <div className="productR-item-info">
-          <div className="productR-item-name">양(陽) 막걸리</div>
-          <div className="productR-item-price">22000원</div>
-          <div className="productR-item-more">
-            <div className="productR-item-star"></div>
-            <div className="productR-item-cart">
-              <span className="material-icons">shopping_cart</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="productR-item">
-        <div className="productR-item-img">
-          <img src="/image/product_img/takju1.jpg" />
-        </div>
-        <div className="productR-item-info">
-          <div className="productR-item-name">양(陽) 막걸리</div>
-          <div className="productR-item-price">22000원</div>
-          <div className="productR-item-more">
-            <div className="productR-item-star"></div>
-            <div className="productR-item-cart">
-              <span className="material-icons">shopping_cart</span>
-            </div>
-          </div>
-        </div>
-      </div>
+        );
+      })}
     </>
   );
 };

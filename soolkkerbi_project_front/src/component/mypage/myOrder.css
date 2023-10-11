@@ -64,13 +64,25 @@
   width: 100%;
   border-spacing: 0;
 }
+.modal-review-content > tbody th {
+  width: 15%;
+}
 .modal-review-content td {
   padding: 20px 0;
 }
-
+/*상세제목 인풋*/
+input[id="reviewTitle"] {
+  outline: none;
+  height: 40px;
+  width: 98%;
+  border: none;
+  background-color: #eee;
+  padding-left: 10px;
+  font-size: 18px;
+}
 /*별점 컴포넌트*/
-#star-rate > span {
-  color: #ff6289;
+#star-rate {
+  font-size: 2.5rem;
 }
 /*리뷰 모달 - 이용약관*/
 .review-privacy-agree {
@@ -78,9 +90,12 @@
   width: 90%;
   margin: 0 auto;
 }
-.review-agree-check {
+
+.review-agree-check .css-ahj2mt-MuiTypography-root {
+  padding: 20px 0;
+  font-family: ns-l;
   font-size: 24px;
-  padding: 10px 0;
+  line-height: 1.3;
 }
 .review10 {
   width: 100%;
@@ -101,8 +116,12 @@
 }
 .review11 {
   list-style-position: inside;
+  padding: 10px 0;
 }
-
+.review11 > li:first-child {
+  font-weight: bold;
+  text-decoration: underline;
+}
 .review-btn {
   padding: 20px 0;
   display: flex;

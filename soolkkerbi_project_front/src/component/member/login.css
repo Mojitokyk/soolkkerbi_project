@@ -1,4 +1,3 @@
-
 .login-wrap {
     width: 400px;
     margin: 0 auto;
@@ -44,13 +43,24 @@
     text-decoration: underline;
   }
 
-  
-  .search-box > span {
-    font-size: 22px;
-    transform: rotate(90deg);
-  }
-  .login-btn-box>button {
-    margin: 20px 0px;
-    font-size: 18px;
-  }
- 
+.search-box > span {
+  font-size: 22px;
+  transform: rotate(90deg);
+}
+.login-btn-box > button {
+  margin: 20px 0px;
+  font-size: 18px;
+}
+
+.search-box > :first-child > button {
+  color: #ff6289;
+}
+.search-box > :nth-child(3) > button {
+  color: #ff6289;
+}
+.search-box > :first-child > button:hover {
+  background-color: #fff7f9;
+}
+.search-box > :nth-child(3) > button:hover {
+  background-color: #fff7f9;
+}

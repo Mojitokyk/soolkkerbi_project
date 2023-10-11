@@ -55,7 +55,8 @@
 
 /*공지사항 등록*/
 .qna-frm-wrap {
-  width: 800px;
+  width: 900px;
+  margin: 0 auto;
 }
 .qna-info-tbl {
   width: 100%;
@@ -165,6 +166,9 @@
   text-align: right;
   margin-bottom: 5px;
 }
+.write-btn > :first-child {
+  margin-right: 10px;
+}
 .write-btn > button {
   width: 100px;
   font-family: ns-b;
@@ -213,7 +217,8 @@
   text-align: right;
   margin-bottom: 5px;
 }
-.qnaComment-link > :first-child {
+.qnaComment-link > :first-child,
+:first-child + button {
   margin-right: 10px;
 }
 .qnaComment-link > button {
@@ -225,7 +230,6 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  color: #fff;
   background-color: black;
 }
 .qna-view-btn {
@@ -283,7 +287,6 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  color: #fff;
   background-color: black;
 }
 

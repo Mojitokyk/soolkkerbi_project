@@ -53,6 +53,7 @@ function App() {
             element={<AdminMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route path="/cart" element={<Cart isLogin={isLogin} />} />
+          <Route path="/party/*" element={<PartyMain />} />
           <Route
             path="/product/*"
             element={<ProductMain isLogin={isLogin} />}
