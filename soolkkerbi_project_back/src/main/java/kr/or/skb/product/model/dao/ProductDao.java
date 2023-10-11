@@ -39,5 +39,11 @@ public interface ProductDao {
 	int selectLike(Product p);
 
 	List likeList(String memberId);
+
+	int yakjuTotalCount();
+
+	int takjuTotalCount();
+
+	int fruitTotalCount();
 	
 }

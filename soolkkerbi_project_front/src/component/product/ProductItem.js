@@ -125,10 +125,10 @@ const ProductItem = (props) => {
           <img src={"/product/" + product.productFilepath} />
         )}
       </div>
-      {!member || (member && member.memberLevel !== 1) ? (
-        <Likes like={like} changeLike={changeLike} isLogin={isLogin} />
-      ) : (
+      {isLogin && member && member.memberLevel === 1 ? (
         ""
+      ) : (
+        <Likes like={like} changeLike={changeLike} isLogin={isLogin} />
       )}
       <div className="product-item-info">
         <div className="product-item-name">{product.productName}</div>
@@ -142,16 +142,14 @@ const ProductItem = (props) => {
             <span className="star-rate">{product.starRate}</span>
           </div>
           <div className="product-item-cart">
-            {!member || (member && member.memberLevel !== 1) ? (
-              product.productStock === 0 ? (
-                <span className="material-icons soldout">shopping_cart</span>
-              ) : (
-                <span className="material-icons" onClick={addCart}>
-                  shopping_cart
-                </span>
-              )
-            ) : (
+            {isLogin && member && member.memberLevel === 1 ? (
               ""
+            ) : product.productStock === 0 ? (
+              <span className="material-icons soldout">shopping_cart</span>
+            ) : (
+              <span className="material-icons" onClick={addCart}>
+                shopping_cart
+              </span>
             )}
           </div>
         </div>
