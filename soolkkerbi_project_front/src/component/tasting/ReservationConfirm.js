@@ -37,10 +37,6 @@ const ReservationConfirm = () => {
             <div>날짜</div>
             <div>설정한 날짜 위치</div>
           </div>
-          <div className="reservation-info-people">
-            <div>인원</div>
-            <div>설정한 인원/명</div>
-          </div>
         </div>
       </div>
       <div className="reservation-btn">

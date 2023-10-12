@@ -61,9 +61,9 @@ function CustomCalendar(props) {
   const resList = props.resList;
   const nowDate =resList.reservationDate;
   const [value, onChange] = useState(nowDate);
-  //const activeDate = moment(value).format('YYYY-MM-DD');
-  const [activeDate,setActiveDate ] =useState(moment(value).format('YYYY-MM-DD'));
- // const [activeMonth, setActiveMonth] = useState(monthOfActiveDate);
+  const activeDate = moment(value).format('YYYY-MM-DD');
+ // const [activeDate,setActiveDate ] =useState(moment(value).format('YYYY-MM-DD'));
+ //const [activeMonth, setActiveMonth] = useState(monthOfActiveDate);
   //const [nowDate, setNowDate] = useState("날짜");
 
   const changeDate=()=>{
@@ -82,7 +82,6 @@ function CustomCalendar(props) {
         console.log(activeDate);
         Swal.fire("예약날짜 변경완료");
         setOpen(false);
-        setActiveDate(reservationDate);
         
       })
       .catch((res) => {
