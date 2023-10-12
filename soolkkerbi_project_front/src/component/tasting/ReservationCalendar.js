@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import Calendar from "react-calendar";
 import { Button1 } from "../util/Buttons";
 
 const ReservationCalendar = () => {
@@ -24,7 +25,6 @@ const ReservationCalendar = () => {
         member: member,
         taste: taste,
         // date: date,
-        // people:people,
       },
     });
   };
@@ -35,11 +35,9 @@ const ReservationCalendar = () => {
         <div className="reservation-title">{taste.tasteTitle}</div>
         <div className="reservation-calendar-wrap">
           <div className="calendar-guide">날짜를 선택하세요.</div>
-          <div className="calendar">달력 위치</div>
-        </div>
-        <div className="people-wrap">
-          <div className="people-guide">인원을 선택하세요.</div>
-          <div className="people-setting">인원선택 위치</div>
+          <div className="calendar">
+            <Calendar />
+          </div>
         </div>
       </div>
       <div className="reservation-btn">
