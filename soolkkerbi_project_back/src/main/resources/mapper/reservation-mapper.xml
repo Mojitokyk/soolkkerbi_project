@@ -22,12 +22,16 @@
 	<select id="myReservationList" resultType="reservation">
 	select * from
 		    (select rownum as rnum, r.* from 
-		        (select reservation_no, reservation_date, reservation_String_no, taste_title as reservation_taste_title, reservation_status,taste_filepath
+		        (select reservation_no,to_char(reservation_date,'yyyy-mm-dd' )as reservation_date, reservation_String_no, taste_title as reservation_taste_title, reservation_status,taste_filepath
 		        from reservation join member on (reservation_member_no = member_no) join taste on (reservation_taste_no = taste_no)
 		        where member_id=#{memberId} order by reservation_no) r
 		    )
 		where rnum between #{start} and #{end}
 	</select>
+	
+	<update id="changeDate">
+	update reservation set reservation_date = #{reservationDate} where reservation_no = #{reservationNo}
+	</update>
 	
 	
 </mapper>

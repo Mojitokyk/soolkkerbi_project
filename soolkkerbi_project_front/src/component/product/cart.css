@@ -16,6 +16,15 @@
 }
 .cart-number {
   margin-left: 5px;
+  margin-top: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: black;
+  text-align: center;
+  line-height: 25px;
+  color: #fff;
+  font-size: 14px;
 }
 .cart-tbl > table {
   width: 100%;

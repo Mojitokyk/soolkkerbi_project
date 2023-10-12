@@ -71,7 +71,8 @@ const NoticeView = (props) => {
       <div className="notice-view-wrap">
         <div className="notice-view-title">{notice.noticeTitle}</div>
         <div className="notice-view-info">
-          <div>{notice.memberName}</div>
+          <div>관리자</div>
+          {/*<div>{notice.memberName}<div>*/}
           <div>{notice.noticeDate}</div>
         </div>
         <div

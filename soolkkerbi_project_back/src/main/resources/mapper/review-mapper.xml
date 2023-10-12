@@ -5,4 +5,26 @@
   	insert into review values
   	(review_seq.nextval,#{reviewMemberNo},#{reviewProductNo},#{reviewTitle},#{reviewContent},#{reviewRate},0,sysdate)
   </insert>
+  
+  <select id="totalCount" resultType="int">
+  	select count(*) from (select * from review join member on (review_member_no = member_no) where member_id=#{memberId})
+  </select>
+  
+  <select id="selectMyReviewList" resultType="review">
+  	 select * from
+        (select rownum as rnum, r.* from
+            (select 
+                review_no,
+                review_member_no,
+                review_product_no,
+                product_name,
+                review_title,
+                review_read_count,
+                to_char(review_date,'yyyy.mm.dd')review_date
+            from review 
+            join member on (member_no = review_member_no)
+            join product on (product_no = review_product_no) 
+            where member_id=#{memberId} order by 1 desc)r)
+    where rnum between #{start} and #{end}
+  </select>
 </mapper>

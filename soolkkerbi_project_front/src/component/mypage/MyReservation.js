@@ -5,8 +5,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Switch } from "@mui/material";
 import Swal from "sweetalert2";
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
+import { Button2 } from "../util/Buttons";
+
+import {CalendarModel, CustomCalendar} from "./CalendarModel";
 
 
 
@@ -81,15 +84,18 @@ const MyReservation = (props) => {
   </div>
 );
 };
+
+
+
 const ReservationList = (props) => {
-  const [value, onChange] = useState(new Date());
   const resList = props.resList;
   const navigate = useNavigate();
   const [status, setStatus] = useState(resList.reservationStatus === 1 ? true : false);
   const reservationContent = () => {
-    navigate("/taste/view", { state: { reservationNo: resList.reservationNo } });
+    navigate("/tasting/view", { state: { reservationNo: resList.reservationNo } });
   };
   const changeStatus = (e) => {
+    const reservationDate = resList.reservationDate;
     const reservationNo = resList.reservationNo;
     const checkStatus = e.target.checked;
     const reservationStatus = checkStatus ? 1 : 2;
@@ -97,7 +103,7 @@ const ReservationList = (props) => {
     //const obj={boardNo : boardNo, boardStatus : boardStatus}
     const obj = { reservationNo, reservationStatus };
     const token = window.localStorage.getItem("token");
-    axios
+       axios
       .post("/reservation/changeStatus", obj, {
         headers: {
           Authorization: "Bearer " + token,
@@ -113,21 +119,41 @@ const ReservationList = (props) => {
       .catch((res) => {
         console.log(res);
       });
+   
   };
+
+  // const changeDate=(resList)=>{
+  //   //const navigate = useNavigate();
+  //   console.log(resList);
+  //   //const [value, onChange] = useState(new Date());
+  //   return( 
+  //   <Calendar resList={resList}/> 
+  //   )
+  
+  // };
+  
   return (
     <tr>
-      <td>{resList.reservationStringNo}</td>
-      <td className="title-td" onClick={reservationContent}>
-        <div>{resList.reservationTitle}</div>
+      <td>{resList.reservationStatus}</td>
+      <td onClick={reservationContent}>
+        <div>{resList.reservationTasteTitle}</div>
       </td>
-      <td className="status-td">
-        <Switch onChange={changeStatus} checked={status} />
+      <td>
+      <CalendarModel resList={resList}/>
+      {/* <td onClick={() => {
+        // changeDate(resList);
+        <CalendarModel resList={resList}/>
+          }}> */}
+         {/* {resList.reservationDate}  */}
+        {/* <Calendar onChange={onChange} value={value}/> */}
       </td>
-      <td className="status-td">
-        <Calendar onChange={onChange} value={value}/>
+      <td><div className="order-status-btn-box">
+        <Button2 text="예약취소"/>
+        </div>
       </td>
     </tr>
   );
 };
+
 
 export default MyReservation;

@@ -47,4 +47,8 @@
 		update cart set cart_stock = cart_stock - 1, cart_price = (cart_stock - 1) * (select product_price from product where product_no = cart_product_no)
 		where cart_no=#{cartNo}
 	</update>
+	
+	<insert id="insertCart">
+		insert into cart values(cart_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, #{cartStock}, (#{cartStock}*#{cartPrice}))
+	</insert>
 </mapper>

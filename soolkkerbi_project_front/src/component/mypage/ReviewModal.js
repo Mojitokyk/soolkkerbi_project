@@ -11,6 +11,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -37,23 +38,37 @@ export default function ReviewModal({ order }) {
   const [reviewRate, setReviewRate] = useState(5);
   const [reviewProductNo, setReviewProductNo] = useState(order.payProductNo);
   const [reviewMemberNo, setReviewMemberNo] = useState(order.payMemberNo);
-  const [reviewReadCount, setReviewReadCount] = useState(0);
-
-  //객체에 저장
-  const [review, setReview] = useState({
-    reviewProductNo,
-    reviewMemberNo,
-    reviewReadCount,
-  });
+  const navigate = useNavigate();
+  //reviewTitle value값
+  const changeValue = (e) => {
+    const inputValue = e.currentTarget.value;
+    setReviewTitle(inputValue);
+  };
 
   //상품번호 클릭시 동작할 함수(서버에 insert 요청하는 함수)
   const write = () => {
+    const review = {
+      reviewTitle,
+      reviewContent,
+      reviewRate,
+      reviewMemberNo,
+      reviewProductNo,
+    };
+    //console.log(review);
+
     if (reviewTitle !== "" && reviewContent !== "") {
-      console.log(review);
       axios
         .post("/review/insert", review)
         .then((res) => {
           console.log(res.data);
+          if (res.data > 0) {
+            Swal.fire({
+              icon: "success",
+              title: "등록 완료",
+              text: "리뷰가 등록되었습니다.",
+            });
+            navigate("/");
+          }
         })
         .catch((res) => {
           console.log(res.response.status);
@@ -70,12 +85,6 @@ export default function ReviewModal({ order }) {
   const clickCancle = () => {
     setOpen(false);
   };
-  //reviewTitle value값
-  const changeValue = (e) => {
-    const inputValue = e.currentTarget.value;
-    setReviewTitle(inputValue);
-  };
-
   return (
     <div>
       <Button onClick={handleOpen}>리뷰쓰기</Button>
@@ -190,7 +199,7 @@ const HalfRating = (props) => {
 const CheckBox = () => {
   return (
     <FormControlLabel
-      control={<Checkbox defaultChecked />}
+      control={<Checkbox />}
       label="개인정보 수집 이용 및 동의"
       sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
     />

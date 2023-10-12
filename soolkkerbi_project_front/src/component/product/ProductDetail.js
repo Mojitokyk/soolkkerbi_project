@@ -61,11 +61,74 @@ const ProductDetail = (props) => {
   // comma붙인 total가격
   const commaTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  //결제창로 이동
-  const order = () => {};
   //장바구니에 인서트
-  const cart = () => {};
+  const cart = () => {
+    if (isLogin) {
+      axios
+        .post(
+          "/cart/addFromDetail",
+          {
+            cartProductNo: product.productNo,
+            cartPrice: product.productPrice,
+            cartStock: quantity,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          if (res.data === 1) {
+            Swal.fire({
+              icon: "success",
+              title: "담기 완료",
+              text: "술주머니로 이동하시겠습니까?",
+              showCancelButton: true,
+              confirmButtonText: "술주머니",
+              cancelButtonText: "계속 쇼핑",
+            }).then((res) => {
+              if (res.isConfirmed) {
+                navigate("/cart");
+              }
+            });
+          }
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요한 서비스입니다.",
+      });
+      navigate("/login");
+    }
+  };
 
+  //결제창로 이동
+  const order = () => {
+    const cart = {
+      cartProductNo: product.productNo,
+      cartPrice: product.productPrice * quantity,
+      cartStock: quantity,
+      productFilepath: product.productFilepath,
+      productName: product.productName,
+      productStock: product.productStock,
+    };
+    if (isLogin) {
+      navigate("/product/pay", { state: { cart: cart, member: member } });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요한 서비스입니다.",
+      });
+      navigate("/login");
+    }
+  };
   const navigate = useNavigate();
   //메인으로 이동
   const backHome = () => {
