@@ -25,7 +25,7 @@
 .st5 {
   color: black;
   background-color: transparent;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   font-family: ns-r;
 }
 .st5:hover {
@@ -33,5 +33,4 @@
   border: none;
   color: #fff;
   font-weight: bold;
-  transition: 0.5s;
 }
