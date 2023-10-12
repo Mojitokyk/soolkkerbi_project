@@ -5,9 +5,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Switch } from "@mui/material";
 import Swal from "sweetalert2";
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import { Button2 } from "../util/Buttons";
+
+import CalendarModel from "./CalendarModel";
 
 
 
@@ -82,6 +84,9 @@ const MyReservation = (props) => {
   </div>
 );
 };
+
+
+
 const ReservationList = (props) => {
   const resList = props.resList;
   const navigate = useNavigate();
@@ -114,31 +119,38 @@ const ReservationList = (props) => {
         console.log(res);
       });
   };
+
+  // const changeDate=(resList)=>{
+  //   //const navigate = useNavigate();
+  //   console.log(resList);
+  //   //const [value, onChange] = useState(new Date());
+  //   return( 
+  //   <Calendar resList={resList}/> 
+  //   )
+  
+  // };
+  
   return (
     <tr>
       <td>{resList.reservationStatus}</td>
-      <td className="title-td" onClick={reservationContent}>
+      <td onClick={reservationContent}>
         <div>{resList.reservationTasteTitle}</div>
       </td>
-      <td className="status-td" >
-        {resList.reservationDate }
+      <td>
+      <CalendarModel resList={resList}/>
+      {/* <td onClick={() => {
+        // changeDate(resList);
+        <CalendarModel resList={resList}/>
+          }}> */}
+         {/* {resList.reservationDate}  */}
         {/* <Calendar onChange={onChange} value={value}/> */}
       </td>
       <td><div className="order-status-btn-box">
-        <Button2 text="예액취소"/>
+        <Button2 text="예약취소"/>
         </div>
       </td>
     </tr>
   );
-};
-const changeDate=(props)=>{
-  //const navigate = useNavigate();
-  const resList = props.resList;
-  //const [value, onChange] = useState(new Date());
-  return( 
-  <Calendar resList={resList}/> 
-  )
-
 };
 
 
