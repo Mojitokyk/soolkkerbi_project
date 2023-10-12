@@ -143,3 +143,6 @@ div:where(.swal2-container) {
 body > .css-79ws1d-MuiModal-root {
   z-index: 0;
 }
+.review-agree-check .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root {
+  color: rgba(255, 98, 137, 0.5);
+}
