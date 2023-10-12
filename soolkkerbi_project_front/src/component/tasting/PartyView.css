@@ -1,0 +1,41 @@
+/* 공지사항 상세 */
+.taste-view-wrap {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.taste-view-title {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+}
+.taste-view-info {
+  text-align: right;
+  height: 50px;
+}
+.taste-view-info > :last-child {
+  float: right;
+}
+.taste-view-file {
+  clear: both;
+  text-align: center;
+  margin: 20px 0;
+}
+.taste-view-detail {
+  text-align: center;
+  min-height: 300px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.taste-view-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.taste-view-btn > :first-child,
+.taste-view-btn > :nth-child(2),
+.taste-view-btn > :nth-child(3) {
+  margin-right: 10px;
+}
+.taste-view-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}

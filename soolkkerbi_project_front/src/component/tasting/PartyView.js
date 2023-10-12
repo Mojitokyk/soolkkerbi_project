@@ -1,4 +1,4 @@
-import "./partyMain.css";
+import "./partyView.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -81,7 +81,6 @@ const PartyView = (props) => {
         ></div>
       </div>
       <div className="taste-view-btn">
-        <Button1 text="목록으로" clickEvent={toList} />
         {/* {member.memberLevel === 1 ? (
           <> */}
         <Button1 text="수정" clickEvent={modifyTaste} />
@@ -90,6 +89,7 @@ const PartyView = (props) => {
         ) : (
           ""
         )} */}
+        <Button1 text="목록으로" clickEvent={toList} />
         <Button1 text="예약" clickEvent={reservation} />
       </div>
     </>
