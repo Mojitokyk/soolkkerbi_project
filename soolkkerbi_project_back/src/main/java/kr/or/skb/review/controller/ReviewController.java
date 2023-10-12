@@ -1,9 +1,14 @@
 package kr.or.skb.review.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,4 +44,11 @@ public class ReviewController {
 		System.out.println(r);
 		return reviewService.insertReview(r);
 	}
+	
+	//리뷰 리스트 조회
+	@GetMapping(value="/reviewList/{reqPage}")
+	public Map reviewList(@PathVariable int reqPage, @RequestAttribute String memberId) {
+		return reviewService.reviewList(reqPage,memberId);
+	}
+	
 }
