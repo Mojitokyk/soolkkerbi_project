@@ -108,7 +108,7 @@ const ProductRecommend = (props) => {
     <>
       {recommendList.map((product, index) => {
         return (
-          <div className="productR-item">
+          <div className="productR-item" key={"productR" + index}>
             <div className="productR-item-img">
               <img src={product.img} />
             </div>
