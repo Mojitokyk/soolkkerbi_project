@@ -68,11 +68,11 @@ const PartyView = (props) => {
   //예약 진행 함수
   const reservation = () => {
     console.log("예약 이벤트");
-    navigate(
-      "/taste/reservation",
-      { state: { taste: taste } },
-      { state: { member: member } }
-    );
+    console.log(member);
+    console.log(taste);
+    navigate("/tasting/reservationCalendar", {
+      state: { member: member, taste: taste },
+    });
   };
 
   return (
