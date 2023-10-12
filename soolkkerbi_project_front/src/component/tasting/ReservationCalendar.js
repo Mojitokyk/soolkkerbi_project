@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { Button1 } from "../util/Buttons";
+import moment from "moment";
 
 const ReservationCalendar = () => {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ const ReservationCalendar = () => {
   const taste = location.state.taste;
   console.log(member);
   console.log(taste);
+  const [value, onChange] = useState();
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -36,8 +39,13 @@ const ReservationCalendar = () => {
         <div className="reservation-calendar-wrap">
           <div className="calendar-guide">날짜를 선택하세요.</div>
           <div className="calendar">
-            <Calendar />
+            <Calendar
+              onChange={onChange}
+              value={value}
+              formatDay={(locale, date) => moment(date).format("DD")}
+            />
           </div>
+          <div>{moment(value).format("YYYY년 MM월 DD일")}</div>
         </div>
       </div>
       <div className="reservation-btn">
