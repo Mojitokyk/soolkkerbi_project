@@ -75,4 +75,9 @@ public class CartService {
 		return cartDao.insertCart(cart);
 	}
 
+	@Transactional
+	public int updateCart2(Cart cart) {
+		return cartDao.updateCart2(cart);
+	}
+
 }

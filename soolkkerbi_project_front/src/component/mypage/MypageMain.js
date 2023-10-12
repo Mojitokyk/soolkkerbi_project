@@ -12,7 +12,6 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import MemberChangePw from "./MemberChangePw";
 
-
 const MypageMain = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
@@ -75,7 +74,10 @@ const MypageMain = (props) => {
               path="order"
               element={<MyOrder member={member} isLogin={isLogin} />}
             />
-            <Route path="reservation" element={<MyReservation member={member} isLogin={isLogin}/>} />
+            <Route
+              path="reservation"
+              element={<MyReservation member={member} isLogin={isLogin} />}
+            />
             <Route path="wish" element={<MyWishList isLogin={isLogin} />} />
             <Route path="review" element={<MyReivew />} />
             <Route

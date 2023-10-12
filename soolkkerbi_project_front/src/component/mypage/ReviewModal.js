@@ -38,6 +38,7 @@ export default function ReviewModal({ order }) {
   const [reviewRate, setReviewRate] = useState(5);
   const [reviewProductNo, setReviewProductNo] = useState(order.payProductNo);
   const [reviewMemberNo, setReviewMemberNo] = useState(order.payMemberNo);
+  const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
   //reviewTitle value값
   const changeValue = (e) => {
