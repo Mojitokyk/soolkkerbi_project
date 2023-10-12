@@ -25,6 +25,16 @@
   font-weight: bold;
   color: #9e9e9e;
   padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.info-title > div > .material-icons {
+  color: #ff6289;
+  font-size: 28px;
+  margin-left: 10px;
+}
+.info-title > div > span:last-child {
+  color: #4f4f4f;
 }
 .info-content {
   padding: 20px 0;
@@ -92,7 +102,7 @@
 /*버튼들*/
 .product-order-box {
   display: flex;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 .product-order-box > * {
   margin: 0 5px;
@@ -106,8 +116,9 @@
   cursor: pointer;
 }
 .productDetail-like-btn > span {
-  font-size: 28px;
-  line-height: 40px;
+  font-size: 35px;
+  line-height: 47px;
+  color: #ff6289;
 }
 .product-detail-tab {
   width: 1200px;

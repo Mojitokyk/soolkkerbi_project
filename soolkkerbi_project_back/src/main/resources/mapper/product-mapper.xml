@@ -139,7 +139,18 @@
 	</update>
 
 	<select id="selectOneProduct" resultType="product">
-		select * from product where product_no=#{productNo}
+		select product_no,
+		    product_case,
+		    product_name,
+		    product_alc,
+		    product_liter,
+		    product_info,
+		    product_price,
+		    product_filepath,
+		    product_stock,
+		    product_discount,
+		    round((select avg(review_rate) from review where review_product_no=product_no),1) as star_rate
+     	from product where product_no=#{productNo}
 	</select>
 	<!-- 
 	select l.*,
