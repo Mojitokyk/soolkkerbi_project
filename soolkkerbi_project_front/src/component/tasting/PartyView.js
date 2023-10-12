@@ -3,22 +3,21 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button1 } from "../util/Buttons";
-import { Button2, Button3 } from "../util/Buttons";
 import Swal from "sweetalert2";
 
 const PartyView = (props) => {
   const member = props.member;
   const location = useLocation();
-  const partyNo = location.state.partyNo;
+  const tasteNo = location.state.tasteNo;
   const [party, setParty] = useState({});
   const navigate = useNavigate();
 
-  console.log("PartyView - location.state.partyNo: " + location.state.partyNo);
+  console.log("PartyView - location.state.tasteNo: " + location.state.tasteNo);
 
   useEffect(() => {
-    console.log("axios - partyNo: " + partyNo);
+    console.log("axios - partyNo: " + tasteNo);
     axios
-      .get("/taste/view/" + partyNo)
+      .get("/taste/view/" + tasteNo)
       .then((res) => {
         console.log(res.data);
         setParty(res.data);
@@ -30,13 +29,13 @@ const PartyView = (props) => {
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
-    return navigate("party");
+    return navigate("*");
   };
 
   //수정 버튼 함수
   const modifyParty = () => {
     console.log("수정 이벤트");
-    navigate("/party/modifyParty", { state: { party: party } });
+    navigate("/taste/modifyTaste", { state: { party: party } });
   };
 
   //삭제 버튼 함수
@@ -55,7 +54,7 @@ const PartyView = (props) => {
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
-              navigate("/party");
+              navigate("/taste");
             }
           })
           .catch((res) => {
@@ -70,7 +69,7 @@ const PartyView = (props) => {
       <div className="party-view-wrap">
         <div className="party-view-title">{party.partyTitle}</div>
         <div className="party-view-info">
-          <div>{party.memberName}</div>
+          <div>관리자</div> {/*<div>{party.memberName}</div> */}
           <div>{party.partyDate}</div>
         </div>
         <div

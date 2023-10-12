@@ -54,7 +54,7 @@ function App() {
           />
           <Route path="/cart" element={<Cart isLogin={isLogin} />} />
           <Route
-            path="/party/*"
+            path="/taste/*"
             element={<PartyMain isLogin={isLogin} setIsLogin={setIsLogin} />}
           />
           <Route

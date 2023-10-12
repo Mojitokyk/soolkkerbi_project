@@ -14,7 +14,8 @@ public interface TasteDao {
 
 	List selectPartyList(PageInfo pi);
 
-	Taste selectOneBoard(int tasteNo);
+	//시음회 게시글 상세보기
+	Taste selectOneTaste(int tasteNo);
 	
 
 }
