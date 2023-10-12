@@ -30,9 +30,12 @@ public class TasteController {
 		return map;
 
 	}
-	@GetMapping(value = "/view/{tasteNo}") //일단 작동을 위해 만듬!! 고쳐서 사용해주세요!!
+	
+	//시음회 게시글 상세보기
+	@GetMapping(value = "/view/{tasteNo}") 
 	public Taste view(@PathVariable int tasteNo) {
-		return tasteService.selectOneBoard(tasteNo);
+		System.out.println("tasteNo - controller: "+tasteNo);
+		return tasteService.selectOneTaste(tasteNo);
 	}
 
 }

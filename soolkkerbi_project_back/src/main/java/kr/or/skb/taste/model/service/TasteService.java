@@ -36,9 +36,10 @@ public class TasteService {
 	    return map;
 		
 	}
-	public Taste selectOneBoard(int tasteNo) {
-		Taste b = tasteDao.selectOneBoard(tasteNo);
-		return b;
+	
+	//시음회 게시글 상세보기
+	public Taste selectOneTaste(int tasteNo) {
+		return tasteDao.selectOneTaste(tasteNo);
 	}
 	
 }

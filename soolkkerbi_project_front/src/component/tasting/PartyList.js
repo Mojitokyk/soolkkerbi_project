@@ -7,28 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const PartyList = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const [tasteList, setTasteList] = useState([]);
   const [reqPage, setReqPage] = useState(1);
   const [pageInfo, setPageInfo] = useState({});
-  const [member, setMember] = useState({});
-
-  useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    if (isLogin) {
-      axios
-        .post("/member/getMember", null, {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => {
-          setMember(res.data);
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
-    }
-  }, [isLogin]);
 
   useEffect(() => {
     axios
@@ -75,7 +57,7 @@ const TasteItem = (props) => {
   const taste = props.taste;
   const navigate = useNavigate();
   const tasteView = () => {
-    navigate("/taste/view", { state: { tasteNo: taste.tasteNo } });
+    navigate("/tasting/view", { state: { tasteNo: taste.tasteNo } });
   };
   return (
     <div className="taste-item" onClick={tasteView}>
