@@ -118,6 +118,14 @@
   text-align: center;
   font-size: 1.1em;
 }
+.reservation-done-guide > :last-child {
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+.reservation-done-guide > :last-child > span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 .reservation-done-btn {
   width: 700px;
   margin: 0 auto;
