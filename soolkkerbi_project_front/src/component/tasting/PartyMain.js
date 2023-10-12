@@ -3,6 +3,9 @@ import PartyList from "./PartyList";
 import PartyView from "./PartyView";
 import PartyWrite from "./PartyWrite";
 import PartyModify from "./PartyModify";
+import ReservationCalendar from "./ReservationCalendar";
+import ReservationConfirm from "./ReservationConfirm";
+import ReservationDone from "./ReservationDone";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -33,6 +36,9 @@ const PartyMain = (props) => {
     <div className="party-all-wrap">
       <div className="party-title">시음회</div>
       <Routes>
+        <Route path="reservationCalendar" element={<ReservationCalendar />} />
+        <Route path="reservationConfirm" element={<ReservationConfirm />} />
+        <Route path="reservationDone" element={<ReservationDone />} />
         <Route path="write" element={<PartyWrite isLogin={isLogin} />}></Route>
         <Route
           path="view"
