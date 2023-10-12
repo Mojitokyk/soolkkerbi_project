@@ -18,7 +18,7 @@ const ReservationDone = () => {
         <div className="reservation-title">{taste.tasteTitle}</div>
         <div className="reservation-done-guide">예약이 완료되었습니다.</div>
       </div>
-      <div className="reservation-btn">
+      <div className="reservation-done-btn">
         <Button1 text="목록으로" clickEvent={toList} />
       </div>
     </>

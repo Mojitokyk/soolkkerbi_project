@@ -1,3 +1,4 @@
+import "./partyView.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
@@ -49,10 +50,8 @@ const ReservationCalendar = () => {
               value={value}
               formatDay={(locale, date) => moment(date).format("DD")}
             />
-          </div>
-
-          <div>
-            <span>희망 예약 날짜:</span>
+            <span>희망 예약 날짜</span>
+            <span>:</span>
             <span>{moment(value).format("YYYY년 MM월 DD일")}</span>
           </div>
         </div>

@@ -32,12 +32,16 @@ const ReservationConfirm = () => {
         <div className="reservation-title">{taste.tasteTitle}</div>
         <div className="reservation-info">
           <div className="reservation-info-member">
-            <div>예약자</div>
-            <div>{member.memberName}</div>
+            <span>예약자</span>
+            <span>{member.memberName}</span>
           </div>
           <div className="reservation-info-date">
-            <div>날짜</div>
-            <div>{selectDate}</div>
+            <span>날짜</span>
+            <span>{selectDate}</span>
+          </div>
+          <div className="reservation-direction">
+            <span>장소</span>
+            <span>경기도 남양주시 천마로 163 술꺼비 본사</span>
           </div>
         </div>
       </div>
