@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import NoticeFrm from "./NoticeFrm";
 import axios from "axios";
 import Swal from "sweetalert2";
 
