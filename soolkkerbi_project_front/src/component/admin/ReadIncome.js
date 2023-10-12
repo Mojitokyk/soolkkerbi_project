@@ -92,6 +92,7 @@ const ReadIncome = () => {
                     value={selectDate}
                     onChange={(newValue) => setSelectDate(newValue)}
                     format="YYYY-MM-DD"
+                    id={'"start"'}
                   />
                 </DemoItem>
               </DemoContainer>
@@ -119,12 +120,12 @@ const ReadIncome = () => {
               label={{ value: "원", offset: 30, position: "top" }}
               tickFormatter={formatYAxis}
             />
-            <Tooltip />
-            <Legend content={<RenderLegend />} />
-            <Bar dataKey={"takju"} stackId="a" fill="#3D0C11" barSize={50} />
-            <Bar dataKey={"yakju"} stackId="a" fill="#D80032" barSize={50} />
-            <Bar dataKey={"spirit"} stackId="a" fill="#F78CA2" barSize={50} />
-            <Bar dataKey={"fruit"} stackId="a" fill="#F9DEC9" barSize={50} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
+            <Bar dataKey={"takju"} stackId="a" fill="#8884d8" barSize={20} />
+            <Bar dataKey={"yakju"} stackId="a" fill="#82ca9d" barSize={20} />
+            <Bar dataKey={"spirit"} stackId="a" fill="#ffc658" barSize={20} />
+            <Bar dataKey={"fruit"} stackId="a" fill="#ff6666" barSize={20} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -132,9 +133,9 @@ const ReadIncome = () => {
   );
 };
 
-const RenderLegend = (props) => {
+const CustomLegend = (props) => {
   const { payload } = props;
-  const colors = ["#3D0C11", "#D80032", "#F78CA2", "#F9DEC9"];
+  const colors = ["#8884d8", "#82ca9d", "#ffc658", "#ff6666"];
   return (
     <div className="d-flex">
       {payload.map((entry, index) => (
@@ -153,6 +154,47 @@ const RenderLegend = (props) => {
       ))}
     </div>
   );
+};
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <div className="tooltipLabelTitle">{`${label}`}</div>
+        <div className="custom-tooltip-tbl-wrap">
+          <table className="custom-tooltip-tbl">
+            <tbody>
+              <tr className="tooltipLabel">
+                <td>탁주</td>
+                <td>{`${payload[0].value.toLocaleString()}원`}</td>
+              </tr>
+              <tr className="tooltipLabel">
+                <td>약주/청주</td>
+                <td>{`${payload[1].value.toLocaleString()}원`}</td>
+              </tr>
+              <tr className="tooltipLabel">
+                <td>증류주</td>
+                <td>{`${payload[2].value.toLocaleString()}원`}</td>
+              </tr>
+              <tr className="tooltipLabel">
+                <td>과실주</td>
+                <td>{`${payload[3].value.toLocaleString()}원`}</td>
+              </tr>
+              <tr className="tooltipLabel">
+                <td>총매출액</td>
+                <td>{`${(
+                  payload[0].value +
+                  payload[1].value +
+                  payload[2].value +
+                  payload[3].value
+                ).toLocaleString()}원`}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
 };
 
 const formatYAxis = (tickItem) => tickItem.toLocaleString();
