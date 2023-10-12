@@ -7,6 +7,7 @@
   font-family: ns-b;
   padding: 30px 10px;
   border-bottom: 2px solid #4f4f4f;
+  color: #4f4f4f;
 }
 .admin-side {
   width: 200px;
@@ -40,6 +41,7 @@
   padding-bottom: 30px;
   font-family: ns-b;
   font-size: 22px;
+  color: #4f4f4f;
 }
 
 .searchDate-btnBox-wrap {
@@ -48,7 +50,8 @@
 
 .searchDate-btnBox-title {
   font-family: ns-b;
-  margin-left: 295px;
+  margin-left: 311px;
+  color: #4f4f4f;
 }
 .searchDate-btnBox {
   display: flex;
@@ -62,18 +65,40 @@
 }
 
 .searchDate-calendar {
-  width: 30%;
+  width: 25%;
   margin: 10px;
   font-size: 0.9em;
 }
 .searchDate-calendar > .css-bkzwk2-MuiStack-root {
   align-items: center;
-  padding: 0;
+}
+
+.css-dk32bg-MuiStack-root
+  .MuiTextField-root
+  > .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
+  left: -1px;
+  font-family: ns-r;
+  color: #4f4f4f;
+}
+
+.css-dk32bg-MuiStack-root
+  .MuiTextField-root
+  > .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+  border-radius: 5px;
+  color: #4f4f4f;
+  font-size: 0.9rem;
+  font-family: ns-r;
 }
 
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root
   > .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
   padding: 0.5rem;
+}
+.searchDate-btn {
+  padding-top: 8px;
+}
+.searchDate-btn > button {
+  padding: 0.55rem 0.8rem;
 }
 
 .d-flex {
@@ -86,6 +111,26 @@
 }
 .mx-2 {
   margin-left: 5px;
+}
+.custom-tooltip {
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgb(253, 243, 253);
+}
+.tooltipLabelTitle {
+  text-align: center;
+  font-family: ns-b;
+  margin-bottom: 10px;
+}
+.custom-tooltip-tbl {
+  border-collapse: collapse;
+}
+.tooltipLabel:last-child {
+  border-top: 1px solid #ccc;
+}
+.tooltipLabel > td {
+  padding: 0.5rem;
+  font-family: ns-r;
 }
 
 .admin-content-tbl > table {
