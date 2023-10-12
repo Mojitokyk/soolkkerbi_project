@@ -6,8 +6,10 @@ const ReservationConfirm = () => {
   const location = useLocation();
   const member = location.state.member;
   const taste = location.state.taste;
+  const selectDate = location.state.selectDate;
   console.log(member);
   console.log(taste);
+  console.log(selectDate);
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -31,11 +33,11 @@ const ReservationConfirm = () => {
         <div className="reservation-info">
           <div className="reservation-info-member">
             <div>예약자</div>
-            <div>{member.memberNama}</div>
+            <div>{member.memberName}</div>
           </div>
           <div className="reservation-info-date">
             <div>날짜</div>
-            <div>설정한 날짜 위치</div>
+            <div>{selectDate}</div>
           </div>
         </div>
       </div>
