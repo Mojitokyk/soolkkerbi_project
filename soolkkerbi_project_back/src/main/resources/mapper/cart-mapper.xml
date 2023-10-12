@@ -51,4 +51,8 @@
 	<insert id="insertCart">
 		insert into cart values(cart_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, #{cartStock}, (#{cartStock}*#{cartPrice}))
 	</insert>
+	<update id="updateCart2">
+		update cart set cart_stock = cart_stock + #{cartStock}, cart_price = (cart_stock + #{cartStock}) * (select product_price from product where product_no = cart_product_no)
+		where cart_member_no=(select member_no from member where member_id=#{memberId}) and cart_product_no=#{cartProductNo}
+	</update>
 </mapper>

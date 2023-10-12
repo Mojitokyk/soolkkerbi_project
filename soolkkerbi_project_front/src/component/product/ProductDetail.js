@@ -5,6 +5,9 @@ import axios from "axios";
 import { Button2, Button3 } from "../util/Buttons";
 import Tab1 from "./Tab1";
 import Swal from "sweetalert2";
+import * as React from "react";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
@@ -29,8 +32,8 @@ const ProductDetail = (props) => {
         }
       )
       .then((res) => {
+        //console.log(res.data);
         setProduct(res.data);
-        //console.log(likes);
       })
       .catch((res) => {
         console.log(res.reponse.status);
@@ -79,7 +82,7 @@ const ProductDetail = (props) => {
           }
         )
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
           if (res.data === 1) {
             Swal.fire({
               icon: "success",
@@ -224,7 +227,10 @@ const ProductDetail = (props) => {
         <div className="product-view-info">
           <div className="info-title">
             <div>{product.productName}</div>
-            <div>{commmaPrice} 원</div>
+            <div>
+              {commmaPrice} 원<span className="material-icons">star</span>
+              <span>{product.starRate}</span>
+            </div>
           </div>
           <div className="info-content">
             <ul>

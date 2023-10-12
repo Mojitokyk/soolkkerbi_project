@@ -91,7 +91,7 @@ public class CartController {
 		if(c == null) {
 			return cartService.insertCart(cart);
 		}else { //중복인 경우 -> update
-			return cartService.updateCart(cart);
+			return cartService.updateCart2(cart);
 		}
 	}
 }

@@ -14,3 +14,9 @@
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 }
+.emptyReview {
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  font-family: ns-r;
+}
