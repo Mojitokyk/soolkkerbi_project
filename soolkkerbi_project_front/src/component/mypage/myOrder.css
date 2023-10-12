@@ -83,6 +83,7 @@ input[id="reviewTitle"] {
 /*별점 컴포넌트*/
 #star-rate {
   font-size: 2.5rem;
+  color: #ff6289;
 }
 /*리뷰 모달 - 이용약관*/
 .review-privacy-agree {
@@ -122,6 +123,10 @@ input[id="reviewTitle"] {
   font-weight: bold;
   text-decoration: underline;
 }
+.review-agree-check
+  .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked {
+  color: #ff6289;
+}
 .review-btn {
   padding: 20px 0;
   display: flex;
@@ -130,4 +135,11 @@ input[id="reviewTitle"] {
 .review-btn > button {
   width: 200px;
   margin-right: 20px;
+}
+/*리뷰모달과 알림창 순서 바꾸기*/
+div:where(.swal2-container) {
+  z-index: 1;
+}
+body > .css-79ws1d-MuiModal-root {
+  z-index: 0;
 }

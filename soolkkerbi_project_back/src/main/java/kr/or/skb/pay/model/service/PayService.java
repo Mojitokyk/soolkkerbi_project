@@ -83,7 +83,6 @@ public class PayService {
 
 	public List readAllIncome(SelectDate selectDate) {
 		List incomeList = payDao.selectAllIncome(selectDate);
-		System.out.println(incomeList);
 		return incomeList;
 	}
 	

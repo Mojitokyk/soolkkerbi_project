@@ -50,7 +50,7 @@ public class ProductService {
 	public Map takjuList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
-		int totalCount = productDao.totalCount();
+		int totalCount = productDao.takjuTotalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		int start = pi.getStart();
 		int end = pi.getEnd();
@@ -67,7 +67,7 @@ public class ProductService {
 	public Map yakjuList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
-		int totalCount = productDao.totalCount();
+		int totalCount = productDao.yakjuTotalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		int start = pi.getStart();
 		int end = pi.getEnd();
@@ -84,7 +84,7 @@ public class ProductService {
 	public Map fruitList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
-		int totalCount = productDao.totalCount();
+		int totalCount = productDao.fruitTotalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		int start = pi.getStart();
 		int end = pi.getEnd();
@@ -101,7 +101,7 @@ public class ProductService {
 	public Map spiritsList(int reqPage, String memberId) {
 		int numPerPage = 12;
 		int pageNaviSize = 5;	
-		int totalCount = productDao.totalCount();
+		int totalCount = productDao.spiritTotalCount();
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
 		int start = pi.getStart();
 		int end = pi.getEnd();

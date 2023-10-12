@@ -11,6 +11,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { FaSquareFull } from "react-icons/fa";
+
 import dayjs from "dayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -57,7 +59,23 @@ const ReadIncome = () => {
       });
   }, []);
 
-  const readAllIncome = () => {};
+  const readAllIncome = () => {
+    const obj = new Object();
+    const start = document.getElementById(":r0:").value;
+    const end = document.getElementById(":r1:").value;
+    obj.start = start;
+    obj.end = end;
+
+    axios
+      .post("/pay/readAllIncome", obj)
+      .then((res) => {
+        console.log(res.data);
+        setIncomeList(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
 
   return (
     <div className="admin-content-wrap">
@@ -84,7 +102,7 @@ const ReadIncome = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="incomeChart-wrap">
         <ResponsiveContainer width={"100%"} height={600}>
           <BarChart
             data={incomeList}
@@ -95,24 +113,48 @@ const ReadIncome = () => {
             }}
           >
             <CartesianGrid vertical={false} />
-            <XAxis dataKey="payDate" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey={"탁주"} stackId="a" fill="#3D0C11" barSize={50} />
-            <Bar
-              dataKey={"약주/청주"}
-              stackId="a"
-              fill="#D80032"
-              barSize={50}
+            <XAxis dataKey="incomeDate" />
+            <YAxis
+              type="number"
+              label={{ value: "원", offset: 30, position: "top" }}
+              tickFormatter={formatYAxis}
             />
-            <Bar dataKey={"증류주"} stackId="a" fill="#F78CA2" barSize={50} />
-            <Bar dataKey={"과실주"} stackId="a" fill="#F9DEC9" barSize={50} />
+            <Tooltip />
+            <Legend content={<RenderLegend />} />
+            <Bar dataKey={"takju"} stackId="a" fill="#3D0C11" barSize={50} />
+            <Bar dataKey={"yakju"} stackId="a" fill="#D80032" barSize={50} />
+            <Bar dataKey={"spirit"} stackId="a" fill="#F78CA2" barSize={50} />
+            <Bar dataKey={"fruit"} stackId="a" fill="#F9DEC9" barSize={50} />
           </BarChart>
         </ResponsiveContainer>
       </div>
     </div>
   );
 };
+
+const RenderLegend = (props) => {
+  const { payload } = props;
+  const colors = ["#3D0C11", "#D80032", "#F78CA2", "#F9DEC9"];
+  return (
+    <div className="d-flex">
+      {payload.map((entry, index) => (
+        <>
+          <FaSquareFull className="mx-2-wrap" size={16} color={colors[index]} />
+          <span className="mx-2" key={`item-${index}`}>
+            {entry.value === "takju"
+              ? "탁주"
+              : entry.value === "yakju"
+              ? "약주/청주"
+              : entry.value === "spirit"
+              ? "증류주"
+              : "과실주"}
+          </span>
+        </>
+      ))}
+    </div>
+  );
+};
+
+const formatYAxis = (tickItem) => tickItem.toLocaleString();
 
 export default ReadIncome;

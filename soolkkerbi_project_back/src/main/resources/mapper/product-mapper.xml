@@ -5,6 +5,22 @@
 		select count(*) from product
 	</select>
 	
+	<select id="takjuTotalCount" resultType="int">
+		select count(*) from product where product_case = 1
+	</select>
+	
+	<select id="yakjuTotalCount" resultType="int">
+		select count(*) from product where product_case = 2
+	</select>
+	
+	<select id="fruitTotalCount" resultType="int">
+		select count(*) from product where product_case = 3
+	</select>
+	
+	<select id="spiritTotalCount" resultType="int">
+		select count(*) from product where product_case = 4
+	</select>
+	
 	<select id="selectAllProduct" resultType="product">
 		select * from
 			(select rownum as rnum, p.* from
