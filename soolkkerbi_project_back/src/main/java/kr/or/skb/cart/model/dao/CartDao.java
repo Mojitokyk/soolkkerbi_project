@@ -25,4 +25,6 @@ public interface CartDao {
 
 	int removeCart(int cartNo);
 
+	int insertCart(Cart cart);
+
 }

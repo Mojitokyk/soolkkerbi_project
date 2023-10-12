@@ -142,3 +142,17 @@
   color: #4f4f4f;
   font-weight: bold;
 }
+
+/*버튼*/
+.product-order-box > button {
+  font-size: 18px;
+}
+.product-order-box > .st2:hover {
+  font-weight: bold;
+  background-color: black;
+}
+.product-order-box > .st3:hover {
+  font-weight: bold;
+  background-color: #9e9e9e;
+  color: #fff;
+}

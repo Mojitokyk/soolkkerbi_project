@@ -46,7 +46,7 @@ const LikeList = (props) => {
   //상세페이지로 이동
   const move = () => {
     navigate("/product/view", {
-      state: { productNo: product.productNo, like: product.productIsLike },
+      state: { productNo: product.productNo, like: product.isLike },
     });
   };
   //마우스이벤트
