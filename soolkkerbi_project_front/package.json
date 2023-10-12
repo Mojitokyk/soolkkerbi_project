@@ -16,6 +16,7 @@
     "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
+    "moment": "^2.29.4",
     "nodemailer": "^6.9.5",
     "quill-image-resize-module-react": "^3.0.0",
     "react": "^18.2.0",

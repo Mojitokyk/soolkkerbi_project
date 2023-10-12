@@ -80,4 +80,18 @@ public class CartController {
 		Map map = cartService.selectCart(cart);
 		return map;
 	}
+	
+	//상세페이지 -> 장바구니 담기
+	@PostMapping(value="/addFromDetail")
+	public int addFromDetail(@RequestBody Cart cart, @RequestAttribute(required = false) String memberId) {
+		cart.setMemberId(memberId);
+		//장바구니 품목조회
+		Cart c = cartService.cartCheck(cart);
+		//장바구니에 중복된 품목이 없는 경우
+		if(c == null) {
+			return cartService.insertCart(cart);
+		}else { //중복인 경우 -> update
+			return cartService.updateCart(cart);
+		}
+	}
 }
