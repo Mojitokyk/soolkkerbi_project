@@ -105,7 +105,8 @@
   margin-left: 10px;
   font-size: 15px;
 }
-.material-icons {
+.info-td > .material-icons,
+.product-quantity-wrap > .material-icons {
   cursor: pointer;
   font-size: 20px;
 }
