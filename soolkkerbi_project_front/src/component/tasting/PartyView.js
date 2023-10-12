@@ -13,6 +13,7 @@ const PartyView = (props) => {
   const navigate = useNavigate();
 
   console.log("PartyView - location.state.tasteNo: " + location.state.tasteNo);
+  console.log(member.memberId);
 
   useEffect(() => {
     console.log("axios - partyNo: " + tasteNo);
@@ -35,7 +36,7 @@ const PartyView = (props) => {
   //수정 버튼 함수
   const modifyTaste = () => {
     console.log("수정 이벤트");
-    navigate("/taste/modifyTaste", { state: { taste: taste } });
+    navigate("/tasting/modifyTaste", { state: { taste: taste } });
   };
 
   //삭제 버튼 함수
@@ -50,7 +51,7 @@ const PartyView = (props) => {
     }).then((res) => {
       if (res.isConfirmed) {
         axios
-          .get("/taste/delete/" + taste.tasteNo)
+          .get("/tast/delete/" + taste.tasteNo)
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
@@ -65,7 +66,14 @@ const PartyView = (props) => {
   };
 
   //예약 진행 함수
-  const reservation = () => {};
+  const reservation = () => {
+    console.log("예약 이벤트");
+    navigate(
+      "/taste/reservation",
+      { state: { taste: taste } },
+      { state: { member: member } }
+    );
+  };
 
   return (
     <>

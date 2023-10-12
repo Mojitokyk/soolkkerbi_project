@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import PartyList from "./PartyList";
 import PartyView from "./PartyView";
 import PartyWrite from "./PartyWrite";
+import PartyModify from "./PartyModify";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -37,6 +38,7 @@ const PartyMain = (props) => {
           path="view"
           element={<PartyView isLogin={isLogin} member={member} />}
         ></Route>
+        <Route path="modifyTaste" element={<PartyModify />} />
         <Route
           path="*"
           element={<PartyList isLogin={isLogin} member={member} />}
