@@ -137,9 +137,7 @@ const Cart = (props) => {
     <div className="cart-all-wrap">
       <div className="cart-title">
         장바구니
-        <span className="cart-number">
-          <em>{totalCount.productNumber}</em>
-        </span>
+        <span className="cart-number">{totalCount.productNumber}</span>
       </div>
       <div className="cart-tbl">
         <table>
@@ -154,9 +152,7 @@ const Cart = (props) => {
                   }
                 />
               </td>
-              <td width={"50%"} className="info-td">
-                상품 정보
-              </td>
+              <td width={"50%"}>상품 정보</td>
               <td width={"20%"}>수량</td>
               <td width={"20%"}>주문금액</td>
             </tr>

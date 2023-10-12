@@ -18,5 +18,7 @@ public interface ReservationDao {
 	int updateReservationStatus(Reservation reservation);
 
 	List myReservationList(ReservationData rld);
+
+	int changeDate(Reservation reservation);
 	
 }
