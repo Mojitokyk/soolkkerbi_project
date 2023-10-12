@@ -34,4 +34,8 @@ public class ReservationController {
 		System.out.println("memberId :"+memberId);
 		return reservationService.myReservationList(reqPage,memberId);
 	}
+	@PostMapping(value = "/changeDate")
+	public int changeDate(@RequestBody Reservation reservation) {
+		return reservationService.changeDate(reservation);
+	}
 }

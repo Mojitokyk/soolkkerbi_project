@@ -29,5 +29,9 @@
 		where rnum between #{start} and #{end}
 	</select>
 	
+	<update id="changeDate">
+	update reservation set reservation_date = #{reservationDate} where reservation_no = #{reservationNo}
+	</update>
+	
 	
 </mapper>

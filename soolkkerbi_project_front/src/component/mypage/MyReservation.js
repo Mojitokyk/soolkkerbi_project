@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import 'react-calendar/dist/Calendar.css';
 import { Button2 } from "../util/Buttons";
 
-import CalendarModel from "./CalendarModel";
+import {CalendarModel, CustomCalendar} from "./CalendarModel";
 
 
 
@@ -95,6 +95,7 @@ const ReservationList = (props) => {
     navigate("/tasting/view", { state: { reservationNo: resList.reservationNo } });
   };
   const changeStatus = (e) => {
+    const reservationDate = resList.reservationDate;
     const reservationNo = resList.reservationNo;
     const checkStatus = e.target.checked;
     const reservationStatus = checkStatus ? 1 : 2;
@@ -102,7 +103,7 @@ const ReservationList = (props) => {
     //const obj={boardNo : boardNo, boardStatus : boardStatus}
     const obj = { reservationNo, reservationStatus };
     const token = window.localStorage.getItem("token");
-    axios
+       axios
       .post("/reservation/changeStatus", obj, {
         headers: {
           Authorization: "Bearer " + token,
@@ -118,6 +119,7 @@ const ReservationList = (props) => {
       .catch((res) => {
         console.log(res);
       });
+   
   };
 
   // const changeDate=(resList)=>{

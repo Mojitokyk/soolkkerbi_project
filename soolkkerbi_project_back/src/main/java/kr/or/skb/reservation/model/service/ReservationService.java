@@ -54,6 +54,11 @@ public class ReservationService {
 			return map;
 		
 	}
+
+	public int changeDate(Reservation reservation) {
+		// TODO Auto-generated method stub
+		return reservationDao.changeDate(reservation);
+	}
 	
 	
 	
