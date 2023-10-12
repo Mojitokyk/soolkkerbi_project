@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,5 +38,17 @@ public class TasteController {
 		System.out.println("tasteNo - controller: "+tasteNo);
 		return tasteService.selectOneTaste(tasteNo);
 	}
+	
+	//시음회 게시글 삭제
+	@GetMapping(value="/delete/{tasteNo}")
+	public int deleteTaste(@PathVariable int tasteNo) {
+		System.out.println("tasteNo - controller: "+tasteNo);
+		return 0;
+	}
 
+	//시음회 게시글 수정
+	@PostMapping(value="/modify")
+	public int modifyTaste() {
+		return 0;
+	}
 }
