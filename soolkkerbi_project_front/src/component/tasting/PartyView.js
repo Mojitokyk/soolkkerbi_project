@@ -1,4 +1,4 @@
-import "./partyView.css";
+import "./PartyView.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
