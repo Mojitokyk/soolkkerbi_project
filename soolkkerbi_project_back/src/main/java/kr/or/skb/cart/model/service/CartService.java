@@ -65,8 +65,14 @@ public class CartService {
 		return cartDao.plusCart(cartNo);
 	}
 
+	@Transactional
 	public int removeCart(int cartNo) {
 		return cartDao.removeCart(cartNo);
+	}
+
+	@Transactional
+	public int insertCart(Cart cart) {
+		return cartDao.insertCart(cart);
 	}
 
 }
