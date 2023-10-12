@@ -1,4 +1,4 @@
-import "./partyView.css";
+import "./PartyView.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
