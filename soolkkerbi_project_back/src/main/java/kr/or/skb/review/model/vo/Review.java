@@ -20,4 +20,5 @@ public class Review {
 	private int reviewReadCount;
 	private String reviewDate;
 	private String productName;
+	private String memberName;
 }
