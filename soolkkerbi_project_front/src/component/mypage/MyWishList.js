@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./myWishList.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
