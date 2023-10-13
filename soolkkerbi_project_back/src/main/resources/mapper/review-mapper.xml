@@ -27,4 +27,27 @@
             where member_id=#{memberId} order by 1 desc)r)
     where rnum between #{start} and #{end}
   </select>
+  
+  <select id="totalCount2" resultType="int">
+  	select count(*) from review where review_product_no=#{productNo}
+  </select>
+  
+  <select id="selectProductReview" resultType="review">
+  	select * from
+    	(select rownum as rnum, r.* from
+		    (select  
+		        review_no,
+		        review_member_no,
+		        review_product_no,
+		        review_title,
+		        review_content,
+		        review_rate,
+		        review_read_count,
+		        to_char(review_date,'yyyy-mm-dd')as review_date,
+		        (substr(member_name,1,1)||lpad('*',length(member_name)-1,'*'))as member_name
+		    from review 
+		    join member on (member_no = review_member_no)
+		    where review_product_no=49 order by 1 desc)r)
+where rnum between 1 and 5
+  </select>
 </mapper>

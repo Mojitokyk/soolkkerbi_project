@@ -26,3 +26,23 @@
 #simple-tabpanel-0 {
   text-align: center;
 }
+/*상품후기*/
+.product-detail-review-content {
+  padding: 50px;
+}
+.review-title {
+  font-size: 30px;
+  text-align: center;
+  padding: 50px 0;
+}
+.review-tbl {
+  width: 100%;
+  border-spacing: 0;
+}
+.review-tbl > thead th {
+  background-color: #eee;
+  padding: 15px;
+}
+.review-tbl > tbody td {
+  text-align: center;
+}

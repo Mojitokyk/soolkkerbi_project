@@ -26,7 +26,7 @@ const style = {
 };
 
 export default function ReviewModal({ order }) {
-  //console.log(order);
+  // console.log(order);
   const [open, setOpen] = useState(false);
 
   //모달용
@@ -36,16 +36,18 @@ export default function ReviewModal({ order }) {
   const [reviewTitle, setReviewTitle] = useState("");
   const [reviewContent, setReviewContent] = useState("");
   const [reviewRate, setReviewRate] = useState(5);
-  const [reviewProductNo, setReviewProductNo] = useState(order.payProductNo);
-  const [reviewMemberNo, setReviewMemberNo] = useState(order.payMemberNo);
-  const [checked, setChecked] = useState(false);
+  //const [checked, setChecked] = useState(false);
+
   const navigate = useNavigate();
+
   //reviewTitle value값
   const changeValue = (e) => {
     const inputValue = e.currentTarget.value;
     setReviewTitle(inputValue);
   };
 
+  const reviewProductNo = order.payProductNo;
+  const reviewMemberNo = order.payMemberNo;
   //상품번호 클릭시 동작할 함수(서버에 insert 요청하는 함수)
   const write = () => {
     const review = {
@@ -55,7 +57,7 @@ export default function ReviewModal({ order }) {
       reviewMemberNo,
       reviewProductNo,
     };
-    //console.log(review);
+    console.log(review);
 
     if (reviewTitle !== "" && reviewContent !== "") {
       axios
@@ -82,6 +84,7 @@ export default function ReviewModal({ order }) {
       });
     }
   };
+
   //취소버튼 누르면 창 모달창 꺼지기
   const clickCancle = () => {
     setOpen(false);
