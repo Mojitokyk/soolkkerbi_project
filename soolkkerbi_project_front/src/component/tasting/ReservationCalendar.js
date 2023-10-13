@@ -15,8 +15,11 @@ const ReservationCalendar = () => {
   const [value, onChange] = useState();
 
   console.log(moment(value).format("YYYY년 MM월 DD일")); //선택한 날짜
-  console.log(moment(value).format("YYYY-MM-DD"));
-  const selectDate = moment(value).format("YYYY년 MM월 DD일");
+  console.log(moment(value).format("YYYY/MM/DD"));
+  console.log(moment(value).format("YYYYMMDD"));
+  const selectDateFormat = moment(value).format("YYYY년 MM월 DD일");
+  const selectDate = moment(value).format("YY/MM/DD");
+  const selectDateForReservationNo = moment(value).format("YYYYMMDD");
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -29,11 +32,15 @@ const ReservationCalendar = () => {
     console.log(member);
     console.log(taste);
     console.log(selectDate);
+    console.log(selectDateFormat);
+    console.log(selectDateForReservationNo);
     navigate("/tasting/reservationConfirm", {
       state: {
         member: member,
         taste: taste,
+        selectDateFormat: selectDateFormat,
         selectDate: selectDate,
+        selectDateForReservationNo: selectDateForReservationNo,
       },
     });
   };
@@ -52,7 +59,7 @@ const ReservationCalendar = () => {
             />
             <span>희망 예약 날짜</span>
             <span>:</span>
-            <span>{moment(value).format("YYYY년 MM월 DD일")}</span>
+            <span>{selectDateFormat}</span>
           </div>
         </div>
       </div>
