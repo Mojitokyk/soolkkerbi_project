@@ -41,8 +41,16 @@
 		 where taste_no=#{memberNo}
 	</select>
 	
+
+	<insert id="insertTaste">
+	insert into taste values(taste_seq.nextval,#{tasteMemberNo},#{tasteTitle},#{tasteContent},#{tasteStart},#{tasteEnd},#{tasteFilepath})
+	
+	</insert>
+	
+
 	<!-- 시음회 예약 등록 -->
 	<insert id="insertReservation">
 		insert into reservation values(reservation_seq.nextval, #{reservationMemberNo}, #{reservationTasteNo}, #{reservationDate}, #{reservationStringNo}, 1)
 	</insert>
+
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.skb.FileUtil;
 import kr.or.skb.reservation.model.vo.Reservation;
@@ -54,6 +55,21 @@ public class TasteController {
 	public int modifyTaste() {
 		return 0;
 	}
+
+	@PostMapping(value = "/insert")
+	public int insertTaste(@ModelAttribute Taste t,@ModelAttribute MultipartFile thumbnail, @RequestAttribute String memberId ) {
+		t.setMemderId(memberId);
+		String savepath = root + "taste/";
+		if (thumbnail != null) {
+			String filename = thumbnail.getOriginalFilename();
+			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
+			t.setTasteFilepath(filepath);
+
+		}
+		System.out.println(t);
+		int result = tasteService.insertTaste(t);
+		return result;
+	}
 	
 	//시음회 예약 등록
 	@PostMapping(value="/insertReservation")
@@ -63,5 +79,6 @@ public class TasteController {
 		System.out.println("tasteController - rservation: "+r);
 		int result = tasteService.insertReservation(r);
 		return 0;
+
 	}
 }

@@ -10,6 +10,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/taste/**")
+		.addResourceLocations("file:///C:/Temp/soolkkerbi/taste/");
+		
 		registry.addResourceHandler("/product/**")
 		.addResourceLocations("file:///C:/Temp/soolkkerbi/product/");
 		
