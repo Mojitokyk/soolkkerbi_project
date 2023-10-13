@@ -10,6 +10,7 @@ const Pay = (props) => {
   const isLogin = props.isLogin;
   const navigate = useNavigate();
   const location = useLocation();
+  /*
   useEffect(() => {
     if (!isLogin) {
       Swal.fire({
@@ -20,10 +21,17 @@ const Pay = (props) => {
       navigate("/login");
     }
   }, [isLogin]);
+  */
+  const cart = location.state.cart;
+  const cartList = location.state.cartList;
+  const totalPrice = location.state.totalPrice;
+  const member = location.state.member;
+  /*
   const cart = isLogin ? location.state.cart : "";
   const cartList = isLogin ? location.state.cartList : "";
   const totalPrice = isLogin ? location.state.totalPrice : "";
   const member = isLogin ? location.state.member : "";
+  */
   const [pickupDate, setPickupDate] = useState("");
   const pay = () => {
     const token = window.localStorage.getItem("token");
@@ -40,16 +48,11 @@ const Pay = (props) => {
       d.getMinutes() +
       "" +
       d.getSeconds();
-    if (
-      member.memberName === "" ||
-      member.memberPhone === "" ||
-      member.memberEmail === "" ||
-      pickupDate === ""
-    ) {
+    if (pickupDate === "") {
       Swal.fire({
         icon: "warning",
         title: "입력값 확인",
-        text: "주문자 정보 혹은 방문일자를 확인해주세요.",
+        text: "방문일자를 확인해주세요.",
       });
     } else {
       const { IMP } = window;
