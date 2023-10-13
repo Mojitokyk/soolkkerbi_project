@@ -32,4 +32,9 @@
 	<select id="selectOneTaste" resultType="taste">
 		select * from taste join member on(taste_member_no = member_no) where taste_no=#{memberNo}
 	</select>
+	
+	<!-- 시음회 예약 등록 -->
+	<insert id="insertReservation">
+		insert into reservation values(reservation_seq.nextval, #{reservationMemberNo}, #{reservationTasteNo}, #{reservationDate}, #{reservationStringNo}, 1)
+	</insert>
 </mapper>
