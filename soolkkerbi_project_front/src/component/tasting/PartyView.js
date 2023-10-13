@@ -87,6 +87,12 @@ const PartyView = (props) => {
           className="taste-view-detail"
           dangerouslySetInnerHTML={{ __html: taste.tasteContent }} //텍스트 에디터를 사용할 경우
         ></div>
+        <div className="guide-party-date">
+          <div>시음회 기간</div>
+          <span>{taste.tasteStart}</span>
+          <span>~</span>
+          <span>{taste.tasteEnd}</span>
+        </div>
       </div>
       <div className="taste-view-btn">
         {member.memberLevel === 1 ? (
