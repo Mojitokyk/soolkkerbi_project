@@ -11,12 +11,12 @@ const MyInfo = (props) => {
   const member = props.member;
   const setMember = props.setMember;
   const setIsLogin = props.setIsLogin;
-  const setMemnerPhone = (data) => {
-    member.memberPhone = data; 
+  const setMemberPhone = (data) => {
+    member.memberPhone = data;
     setMember({ ...member });
   };
   const updateMemberPhone = () => {
-    const token = window.localStorage.getItem("token"); 
+    const token = window.localStorage.getItem("token");
     axios
       .post("/member/changePhone", member, {
         headers: {
@@ -32,14 +32,14 @@ const MyInfo = (props) => {
       .catch((res) => {
         if (res.response.status === 403) {
           window.localStorage.removeItem("token");
-          setIsLogin(false); 
+          setIsLogin(false);
         }
       });
   };
 
-  const changePw=()=>{
+  const changePw = () => {
     navigate("/mypage/changepw");
-  }
+  };
   return (
     <div className="mypage-content-warp">
       <div className="mypage-content-title">내 정보</div>
@@ -64,7 +64,7 @@ const MyInfo = (props) => {
                 <Input
                   type="text"
                   data={member.memberPhone}
-                  setData={setMemnerPhone}
+                  setData={setMemberPhone}
                   content="memberPhone"
                 />
                 <Button2 text="변경하기" clickEvent={updateMemberPhone} />
@@ -73,12 +73,16 @@ const MyInfo = (props) => {
           </tr>
         </tbody>
       </table>
-      
-      <div className="changepw-btn" >
-                <Button2 text="비밀번호 변경하러가기" clickEvent={changePw} setMember={setMember}
-                  setIsLogin={setIsLogin} member={member}/>
-              </div>
-    
+
+      <div className="changepw-btn">
+        <Button2
+          text="비밀번호 변경하러가기"
+          clickEvent={changePw}
+          setMember={setMember}
+          setIsLogin={setIsLogin}
+          member={member}
+        />
+      </div>
     </div>
   );
 };

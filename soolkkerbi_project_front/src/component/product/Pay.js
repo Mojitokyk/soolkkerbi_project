@@ -8,6 +8,7 @@ import axios from "axios";
 
 const Pay = (props) => {
   const isLogin = props.isLogin;
+  console.log(isLogin);
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -20,6 +21,7 @@ const Pay = (props) => {
       navigate("/login");
     }
   }, [isLogin]);
+
   const cart = isLogin ? location.state.cart : "";
   const cartList = isLogin ? location.state.cartList : "";
   const totalPrice = isLogin ? location.state.totalPrice : "";
