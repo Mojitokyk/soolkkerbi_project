@@ -70,6 +70,7 @@ const ReservationCalendar = () => {
             <Calendar
               onChange={onChange}
               selectRange={false}
+              activeStartDate={new Date(taste.tasteStart)}
               minDate={new Date(taste.tasteStart)}
               maxDate={new Date(taste.tasteEnd)}
               value={value}
