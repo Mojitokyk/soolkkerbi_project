@@ -40,17 +40,7 @@ const MypageMain = (props) => {
           });
         }
       });
-  }, []);
-
-  // if (!isLogin) {
-  //   Swal.fire({
-  //     title: "로그인이 필요한 서비스 입니다.",
-  //     text: "로그인 페이지로 이동합니다.",
-  //     icon: "info",
-  //   }).then(() => {
-  //     navigate("/login");
-  //   });
-  // }
+  }, [isLogin]);
 
   const [menus, setMenus] = useState([
     { url: "order", text: "주문 내역", active: true },
@@ -121,11 +111,10 @@ const FirstPage = (props) => {
   return (
     <div className="myProfile-box">
       <div className="profile-img">
-        <img src="/image/profile_img/default_profile.png" />
+        <img src="/image/profile_img/default_profile.png" alt="face" />
       </div>
       <div className="profile-content">
         <div>{member.memberName}님 안녕하세요</div>
-        <div>누적금액 0원</div>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import kr.or.skb.review.model.vo.Review;
 import kr.or.skb.review.model.vo.ReviewData;
+import kr.or.skb.review.model.vo.ReviewListData;
 
 @Mapper
 public interface ReviewDao {
@@ -15,5 +16,9 @@ public interface ReviewDao {
 	int totalCount(String memberId);
 
 	List selectMyReviewList(ReviewData rd);
+
+	int totalCount2(int productNo);
+
+	List selectProductReview(ReviewListData rld);
 	
 }

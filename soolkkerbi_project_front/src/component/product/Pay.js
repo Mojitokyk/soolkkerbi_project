@@ -10,6 +10,7 @@ const Pay = (props) => {
   const isLogin = props.isLogin;
   const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     if (!isLogin) {
       Swal.fire({
@@ -20,14 +21,14 @@ const Pay = (props) => {
       navigate("/login");
     }
   }, [isLogin]);
+
   const cart = isLogin ? location.state.cart : "";
   const cartList = isLogin ? location.state.cartList : "";
   const totalPrice = isLogin ? location.state.totalPrice : "";
   const member = isLogin ? location.state.member : "";
-  const [memberName, setMemberName] = useState(member.memberName);
-  const [memberPhone, setMemberPhone] = useState(member.memberPhone);
-  const [memberEmail, setMemberEmail] = useState(member.memberEmail);
+
   const [pickupDate, setPickupDate] = useState("");
+
   const pay = () => {
     const token = window.localStorage.getItem("token");
     const d = new Date();
@@ -43,16 +44,11 @@ const Pay = (props) => {
       d.getMinutes() +
       "" +
       d.getSeconds();
-    if (
-      memberName === "" ||
-      memberPhone === "" ||
-      memberEmail === "" ||
-      pickupDate === ""
-    ) {
+    if (pickupDate === "") {
       Swal.fire({
         icon: "warning",
         title: "입력값 확인",
-        text: "주문자 정보 혹은 방문일자를 확인해주세요.",
+        text: "방문일자를 확인해주세요.",
       });
     } else {
       const { IMP } = window;
@@ -67,9 +63,9 @@ const Pay = (props) => {
         merchant_uid: "주문번호_" + payStringNo,
         name: productName,
         amount: price,
-        buyer_email: memberEmail,
-        buyer_name: memberName,
-        buyer_tel: memberPhone,
+        buyer_email: member.memberEmail,
+        buyer_name: member.memberName,
+        buyer_tel: member.memberPhone,
       };
       IMP.request_pay(data, callback);
 
@@ -141,25 +137,25 @@ const Pay = (props) => {
             <h3>주문자 정보</h3>
             <div className="pay-member-info">
               <label htmlFor="memberName">이름</label>
-              <Input
+              <input
                 type="text"
-                data={memberName}
-                setData={setMemberName}
-                content="memberName"
+                value={member.memberName}
+                id="memberName"
+                readOnly
               />
               <label htmlFor="memberPhone">연락처</label>
-              <Input
+              <input
                 type="text"
-                data={memberPhone}
-                setData={setMemberPhone}
-                content="memberPhone"
+                value={member.memberPhone}
+                id="memberPhone"
+                readOnly
               />
               <label htmlFor="memberEmail">이메일</label>
-              <Input
+              <input
                 type="text"
-                data={memberEmail}
-                setData={setMemberEmail}
-                content="memberEmail"
+                value={member.memberEmail}
+                id="memberEmail"
+                readOnly
               />
             </div>
           </div>

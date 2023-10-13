@@ -7,6 +7,7 @@ const Input = (props) => {
   const content = props.content;
   const blurEvent = props.blurEvent;
   const placeholder = props.placeholder;
+  const keyEvent = props.keyEvent;
   const changeValue = (e) => {
     const inputValue = e.currentTarget.value;
     setData(inputValue);
@@ -21,6 +22,7 @@ const Input = (props) => {
         onChange={changeValue}
         onBlur={blurEvent}
         placeholder={placeholder}
+        onKeyUp={keyEvent}
       ></input>
     </>
   );

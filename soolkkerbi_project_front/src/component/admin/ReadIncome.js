@@ -61,8 +61,8 @@ const ReadIncome = () => {
 
   const readAllIncome = () => {
     const obj = new Object();
-    const start = document.getElementById(":r0:").value;
-    const end = document.getElementById(":r1:").value;
+    const start = document.querySelectorAll(".MuiInputBase-input")[0].value;
+    const end = document.querySelectorAll(".MuiInputBase-input")[1].value;
     obj.start = start;
     obj.end = end;
 

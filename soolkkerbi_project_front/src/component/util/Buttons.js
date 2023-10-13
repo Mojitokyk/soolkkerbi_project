@@ -2,9 +2,10 @@ import "./buttons.css";
 const Button1 = (props) => {
   const clickEvent = props.clickEvent;
   const text = props.text;
+  const id = props.id;
   return (
     <>
-      <button className="btn st1" type="button" onClick={clickEvent}>
+      <button className="btn st1" type="button" onClick={clickEvent} id={id}>
         {text}
       </button>
     </>

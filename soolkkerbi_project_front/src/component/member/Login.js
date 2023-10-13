@@ -22,7 +22,7 @@ const Login = (props) => {
       .post("/member/login", member)
       .then((res) => {
         if (res.data === "실패") {
-          Swal.fire("아이디/비번 확인");
+          Swal.fire("아이디와 비밀번호를 확인해주세요");
         } else {
           window.localStorage.setItem("token", res.data);
           setIsLogin(true);
@@ -33,17 +33,12 @@ const Login = (props) => {
         console.log(res.data);
       });
   };
-  // const handleOnClick = () => {
-  //   login();
-  // };
-  // // 버튼에 적용할 클릭 이벤트 함수
 
-  // const handleOnKeyPress = e => {
-  //   if (e.key === 'Enter') {
-  //     handleOnClick(); // Enter 입력이 되면 클릭 이벤트 실행
-  //   }
-  // };
-  // // 인풋에 적용할 Enter 키 입력 함수
+  function pressEnter() {
+    if (window.event.key === "Enter") {
+      login();
+    }
+  }
 
   return (
     <div className="login-wrap">
@@ -55,6 +50,7 @@ const Login = (props) => {
           data={memberId}
           type="type"
           content="memberId"
+          keyEvent={pressEnter}
         ></Input>
       </div>
       <div className="input-wrap login">
@@ -64,6 +60,7 @@ const Login = (props) => {
           data={memberPw}
           type="password"
           content="memberPw"
+          keyEvent={pressEnter}
         ></Input>
       </div>
 
@@ -75,7 +72,7 @@ const Login = (props) => {
         <Link to="/join">회원가입</Link>
       </div>
       <div className="login-btn-box">
-        <Button1 text="로그인" clickEvent={login}></Button1>
+        <Button1 text="로그인" clickEvent={login} id="loginBtn"></Button1>
         {/* 엔터클릭이벤트추가 */}
       </div>
     </div>
