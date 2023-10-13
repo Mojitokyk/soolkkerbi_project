@@ -69,7 +69,7 @@ public class TasteController {
 		System.out.println(t);
 		int result = tasteService.insertTaste(t);
 		return result;
-
+	}
 	
 	//시음회 예약 등록
 	@PostMapping(value="/insertReservation")

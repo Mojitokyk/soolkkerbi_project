@@ -52,7 +52,7 @@ public class TasteService {
 		t.setTasteMemberNo(member.getMemberNo());
 		int result = tasteDao.insertTaste(t);
 		return result;
-
+	}
 	//시음회 예약 등록
 	public int insertReservation(Reservation r) {
 		//1. 회원번호를 가져옴
