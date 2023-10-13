@@ -37,4 +37,6 @@ public interface PayDao {
 
 	List selectAllIncome(SelectDate selectDate);
 
+	int cancelPay(int payNo);
+
 }
