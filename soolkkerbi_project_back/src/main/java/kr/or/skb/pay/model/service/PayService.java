@@ -119,4 +119,8 @@ public class PayService {
 		}
 		*/
 	}
+
+	public int cancelPay(int payNo) {
+		return payDao.cancelPay(payNo);
+	}
 }

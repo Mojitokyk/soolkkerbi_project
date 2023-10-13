@@ -5,6 +5,7 @@ import Pagination from "../common/Pagination";
 import { Button4, Button5 } from "../util/Buttons";
 import * as React from "react";
 import ReviewModal from "./ReviewModal";
+import Swal from "sweetalert2";
 
 const MyOrder = (props) => {
   const isLogin = props.isLogin;
@@ -51,7 +52,13 @@ const MyOrder = (props) => {
           <tbody>
             {orderList.length > 0 ? (
               orderList.map((order, index) => {
-                return <OrderList key={"order" + index} order={order} />;
+                return (
+                  <OrderList
+                    key={"order" + index}
+                    order={order}
+                    setOrderList={setOrderList}
+                  />
+                );
               })
             ) : (
               <>
@@ -82,6 +89,8 @@ const MyOrder = (props) => {
 //주문내역 출력하기
 const OrderList = (props) => {
   const order = props.order;
+  //console.log(order);
+  const setOrderList = props.setOrderList;
   const payStock = order.payStock;
   const payPrice = order.payPrice;
   //총 금액 구해서 콤마 붙이기
@@ -90,6 +99,33 @@ const OrderList = (props) => {
     ? totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     : "";
 
+  //결제취소요청
+  const canclePay = () => {
+    //console.log(order.payNo);
+    Swal.fire({
+      icon: "question",
+      title: "결제 취소 요청",
+      text: "결제를 취소하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "결제 취소",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      const obj = new Object();
+      obj.payNo = order.payNo;
+      if (res.isConfirmed) {
+        axios
+          .post("/pay/cancelPay", obj)
+          .then((res) => {
+            console.log(res.data);
+            setOrderList(res.data);
+            //window.location.reload();
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    });
+  };
   return (
     <tr>
       <td>{order.payDate}</td>
@@ -119,7 +155,11 @@ const OrderList = (props) => {
         {order.payStatus === 1 ? (
           <>
             <div className="order-status-btn-box">
-              <Button4 className="hoverEffect" text="취소요청" />
+              <Button4
+                className="hoverEffect"
+                text="취소요청"
+                clickEvent={canclePay}
+              />
             </div>
           </>
         ) : order.payStatus === 2 ? (

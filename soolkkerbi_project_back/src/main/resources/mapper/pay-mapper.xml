@@ -46,6 +46,7 @@
 		select * from
 		    (select rownum as rnum, o.* from(
 		        (select 
+		        	pay_no,
 		            pay_member_no,
 		            pay_product_no,
 		            member_id as pay_member_id,
@@ -86,4 +87,7 @@
 		from pay p1 where pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') between #{start} and #{end} group by to_char(pay_date,'yyyy-mm-dd')order by 1
 	</select>
 
+	<update id="cancelPay">
+		update pay set pay_status = 3 where pay_no=#{payNo}
+	</update>
 </mapper>

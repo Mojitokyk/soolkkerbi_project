@@ -69,4 +69,11 @@ public class PayController {
 	public int insertPayList(@RequestBody List<Cart> cartList, @RequestAttribute(required=false) String memberId) {
 		return payService.insertPayList(cartList,memberId);
 	}
+	
+	//마이페이지->결제취소요청
+	@PostMapping(value="/cancelPay")
+	public int cancelPay(@RequestBody Pay pay) {
+		int payNo = pay.getPayNo();
+		return payService.cancelPay(payNo);
+	}
 }
