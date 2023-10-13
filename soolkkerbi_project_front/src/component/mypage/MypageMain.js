@@ -111,11 +111,10 @@ const FirstPage = (props) => {
   return (
     <div className="myProfile-box">
       <div className="profile-img">
-        <img src="/image/profile_img/default_profile.png" />
+        <img src="/image/profile_img/default_profile.png" alt="face" />
       </div>
       <div className="profile-content">
         <div>{member.memberName}님 안녕하세요</div>
-        <div>누적금액 0원</div>
       </div>
     </div>
   );

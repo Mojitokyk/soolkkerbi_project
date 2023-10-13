@@ -8,7 +8,6 @@ import ReviewModal from "./ReviewModal";
 
 const MyOrder = (props) => {
   const isLogin = props.isLogin;
-
   const [orderList, setOrderList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
@@ -101,7 +100,7 @@ const OrderList = (props) => {
         ) : order.productStock === 0 ? (
           <img src="/image/product_img/sold_out.png" />
         ) : (
-          <img src={"/product/" + order.payProductFilepath} />
+          <img src={"/product/" + order.payProductFilepath} alt="drink" />
         )}
       </td>
       <td>{order.payProductName}</td>

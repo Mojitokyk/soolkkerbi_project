@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.skb.FileUtil;
+import kr.or.skb.product.model.vo.Product;
 import kr.or.skb.review.model.service.ReviewService;
 import kr.or.skb.review.model.vo.Review;
 
@@ -51,4 +52,11 @@ public class ReviewController {
 		return reviewService.reviewList(reqPage,memberId);
 	}
 	
+	//상품마다 리뷰 리스트 조회
+	@PostMapping(value="/productReviewList/{reqPage}")
+	public Map productReviewList(@PathVariable int reqPage,@RequestBody Product product) {
+		int productNo = product.getProductNo();
+		System.out.println(productNo);
+		return reviewService.productReviewList(reqPage, productNo);
+	}
 }

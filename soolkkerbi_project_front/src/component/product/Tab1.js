@@ -2,9 +2,11 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import "./tab1.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
 //탭메뉴 mui
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -72,11 +74,88 @@ export default function BasicTabs({ product }) {
         <PickupInfo />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
+        <ProductReview product={product} />
       </CustomTabPanel>
     </Box>
   );
 }
+//상품후기 게시글
+const ProductReview = (props) => {
+  const product = props.product;
+  const [reviewList, setReviewList] = useState([]);
+  const [pageInfo, setPageInfo] = useState({});
+  const [reqPage, setReqPage] = useState(1);
+
+  //객체 만들어서 post로 보내주기
+  const obj = new Object();
+  obj.productNo = product.productNo;
+  useEffect(() => {
+    axios
+      .post("/review/productReviewList/" + reqPage, obj)
+      .then((res) => {
+        //console.log(res.data);
+        setReviewList(res.data.list);
+        setPageInfo(res.data.pi);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, [reqPage]);
+  return (
+    <div className="product-detail-review-content">
+      <div className="review-wrap">
+        <div className="review-title">상품후기</div>
+        <div className="review-content">
+          <table className="review-tbl">
+            <thead>
+              <tr>
+                <th width={"10%"}>번호</th>
+                <th width={"40%"}>제목</th>
+                <th width={"20%"}>작성자</th>
+                <th width={"20%"}>작성일</th>
+                <th width={"10%"}>조회수</th>
+              </tr>
+            </thead>
+            <tbody>
+              {reviewList.length > 0 ? (
+                reviewList.map((review, index) => {
+                  return <ReviewItem key={"review" + index} review={review} />;
+                })
+              ) : (
+                <>
+                  <tr>
+                    <td colSpan={5} className="emptyReview">
+                      리뷰내역이 없습니다.
+                    </td>
+                  </tr>
+                </>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+const ReviewItem = (props) => {
+  const review = props.review;
+  return (
+    <>
+      <tr>
+        <td>{review.reviewNo}</td>
+        <td>{review.reviewTitle}</td>
+        <td>{review.memberName}</td>
+        <td>{review.reviewDate}</td>
+        <td>{review.reviewReadCount}</td>
+      </tr>
+      <tr>
+        <td colSpan={5}></td>
+        {/*여기에서 글이 보여야함 */}
+      </tr>
+    </>
+  );
+};
+//픽업안내글
 const PickupInfo = () => {
   return (
     <div className="product-detail-info-content">

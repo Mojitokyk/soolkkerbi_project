@@ -13,6 +13,7 @@ import kr.or.skb.Pagination;
 import kr.or.skb.review.model.dao.ReviewDao;
 import kr.or.skb.review.model.vo.Review;
 import kr.or.skb.review.model.vo.ReviewData;
+import kr.or.skb.review.model.vo.ReviewListData;
 
 @Service
 public class ReviewService {
@@ -39,6 +40,21 @@ public class ReviewService {
 		List reviewList = reviewDao.selectMyReviewList(rd);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", reviewList);
+		map.put("pi", pi);
+		return map;
+	}
+
+	public Map productReviewList(int reqPage, int productNo) {
+		int totalCount = reviewDao.totalCount2(productNo);
+		int numPerPage = 5;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		int start = pi.getStart();
+		int end = pi.getEnd();
+		ReviewListData rld = new ReviewListData(start, end, productNo);
+		List list = reviewDao.selectProductReview(rld);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
 		map.put("pi", pi);
 		return map;
 	}

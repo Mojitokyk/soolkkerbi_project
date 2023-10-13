@@ -8,10 +8,9 @@ import axios from "axios";
 
 const Pay = (props) => {
   const isLogin = props.isLogin;
-  console.log(isLogin);
   const navigate = useNavigate();
   const location = useLocation();
-  /*
+
   useEffect(() => {
     if (!isLogin) {
       Swal.fire({
@@ -23,20 +22,13 @@ const Pay = (props) => {
     }
   }, [isLogin]);
 
-  */
-
-  const cart = location.state.cart;
-  const cartList = location.state.cartList;
-  const totalPrice = location.state.totalPrice;
-  const member = location.state.member;
-
-  /*
   const cart = isLogin ? location.state.cart : "";
   const cartList = isLogin ? location.state.cartList : "";
   const totalPrice = isLogin ? location.state.totalPrice : "";
   const member = isLogin ? location.state.member : "";
-  */
+
   const [pickupDate, setPickupDate] = useState("");
+
   const pay = () => {
     const token = window.localStorage.getItem("token");
     const d = new Date();
