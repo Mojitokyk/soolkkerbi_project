@@ -16,6 +16,7 @@
 }
 .taste-view-info > :last-child {
   float: right;
+  font-size: 1.1em;
 }
 .taste-view-file {
   clear: both;
@@ -27,17 +28,18 @@
   min-height: 300px;
   padding-top: 50px;
   padding-bottom: 20px;
+  font-size: 1.1em;
 }
 .guide-party-date {
   text-align: center;
   padding-bottom: 50px;
 }
 .guide-party-date > div {
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin-bottom: 5px;
 }
 .guide-party-date > span {
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin: 0 10px;
 }
 .taste-view-btn {

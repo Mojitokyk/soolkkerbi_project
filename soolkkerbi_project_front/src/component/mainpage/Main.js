@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
@@ -53,42 +54,42 @@ const MainList = () => {
   Object[] recomends;
   */
   const [recommendList, setRecommendList] = useState([
-    {
-      product: 1,
-      productName: "양(陽) 막걸리",
-      img: "/image/product_img/takju1.jpg",
-      productPrice: "22,000원",
-    },
-    {
-      product: 2,
-      productName: "양(陽) 막걸리",
-      img: "/image/product_img/takju2.jpg",
-      productPrice: "22,000원",
-    },
-    {
-      product: 3,
-      productName: "양(陽) 막걸리",
-      img: "/image/product_img/takju4.jpg",
-      productPrice: "22,000원",
-    },
-    {
-      product: 4,
-      productName: "양(陽) 막걸리",
-      img: "/image/product_img/takju5.jpg",
-      productPrice: "22,000원",
-    },
-    {
-      product: 4,
-      productName: "양(陽) 막걸리",
-      img: "/image/product_img/sul2.jpg",
-      productPrice: "22,000원",
-    },
-    {
-      product: 4,
-      productName: "양(陽) 막걸리",
-      img: "/image/product_img/sul.jpg",
-      productPrice: "22,000원",
-    },
+    // {
+    //   product: 1,
+    //   productName: "양(陽) 막걸리",
+    //   img: "/image/product_img/takju1.jpg",
+    //   productPrice: "22,000원",
+    // },
+    // {
+    //   product: 2,
+    //   productName: "양(陽) 막걸리",
+    //   img: "/image/product_img/takju2.jpg",
+    //   productPrice: "22,000원",
+    // },
+    // {
+    //   product: 3,
+    //   productName: "양(陽) 막걸리",
+    //   img: "/image/product_img/takju4.jpg",
+    //   productPrice: "22,000원",
+    // },
+    // {
+    //   product: 4,
+    //   productName: "양(陽) 막걸리",
+    //   img: "/image/product_img/takju5.jpg",
+    //   productPrice: "22,000원",
+    // },
+    // {
+    //   product: 4,
+    //   productName: "양(陽) 막걸리",
+    //   img: "/image/product_img/sul2.jpg",
+    //   productPrice: "22,000원",
+    // },
+    // {
+    //   product: 4,
+    //   productName: "양(陽) 막걸리",
+    //   img: "/image/product_img/sul.jpg",
+    //   productPrice: "22,000원",
+    // },
   ]);
 
   //추천 리스트 DB에서 조회
@@ -97,7 +98,7 @@ const MainList = () => {
       .get("/product/recommendList")
       .then((res) => {
         console.log(res.data);
-        // setRecommendList(res.data);
+        setRecommendList(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -128,12 +129,19 @@ const ProductRecommend = (props) => {
             </div>
             <div className="productR-item-info">
               <div className="productR-item-name">{product.productName}</div>
-              <div className="productR-item-price">{product.productPrice}</div>
+              <div className="productR-item-price">
+                {product.productPrice
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
+              </div>
               <div className="productR-item-more">
                 <div className="productR-item-star"></div>
-                <div className="productR-item-cart">
-                  <span className="material-icons">shopping_cart</span>
-                </div>
+                {/* <div className="productR-item-cart">
+                  <span className="material-icons">
+                    shopping_cart
+                  </span>
+                </div> */}
               </div>
             </div>
           </div>
