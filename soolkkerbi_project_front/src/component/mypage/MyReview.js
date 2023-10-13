@@ -1,6 +1,7 @@
 import "./myReview.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const MyReview = () => {
   const [reviewList, setReviewList] = useState([]);
@@ -62,8 +63,15 @@ const MyReview = () => {
 //리뷰리스트 가져오기
 const ReviewList = (props) => {
   const review = props.review;
+  const navigate = useNavigate();
+  const reviewClick = () => {
+    console.log(review.reviewProductNo);
+    // navigate("/product/view", {
+    //   productNo: review.reviewProductNo,
+    // });
+  };
   return (
-    <tr>
+    <tr onClick={reviewClick} className="moveToDetail">
       <td>{review.reviewNo}</td>
       <td>{review.productName}</td>
       <td>{review.reviewTitle}</td>
