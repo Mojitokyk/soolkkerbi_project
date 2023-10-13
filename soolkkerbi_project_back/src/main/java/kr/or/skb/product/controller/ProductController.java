@@ -3,6 +3,7 @@ package kr.or.skb.product.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -116,5 +117,12 @@ public class ProductController {
 	@GetMapping(value="/likeList")
 	public List likeList(@RequestAttribute String memberId) {
 		return productService.likeList(memberId);
+	}
+	
+	//메인페이지 추천리스트 조회
+	@GetMapping(value="/recommendList")
+	public List recommendList() {
+		List list = productService.recommendList();
+		return list;
 	}
 }

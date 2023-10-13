@@ -47,5 +47,8 @@ public interface ProductDao {
 	int fruitTotalCount();
 
 	int spiritTotalCount();
+
+	//메인페이지 추천리스트 조회
+	List recommendList();
 	
 }

@@ -5,6 +5,7 @@ import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
 import "swiper/components/pagination/pagination.min.css";
 import "./main.css";
+import axios from "axios";
 
 const Main = (props) => {
   return (
@@ -89,6 +90,19 @@ const MainList = () => {
       productPrice: "22,000원",
     },
   ]);
+
+  //추천 리스트 DB에서 조회
+  useEffect(() => {
+    axios
+      .get("/product/recommendList")
+      .then((res) => {
+        console.log(res.data);
+        // setRecommendList(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, []);
 
   return (
     <div className="productR-all-wrap">

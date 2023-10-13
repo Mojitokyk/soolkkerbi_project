@@ -153,4 +153,9 @@ public class ProductService {
 	public List likeList(String memberId) {
 		return productDao.likeList(memberId);
 	}
+
+	//메인페이지 추천리스트 조회
+	public List recommendList() {
+		return productDao.recommendList();
+	}
 }
