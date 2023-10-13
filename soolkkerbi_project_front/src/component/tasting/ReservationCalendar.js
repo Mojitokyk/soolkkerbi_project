@@ -14,12 +14,26 @@ const ReservationCalendar = () => {
   console.log(taste);
   const [value, onChange] = useState();
 
-  console.log(moment(value).format("YYYY년 MM월 DD일")); //선택한 날짜
+  console.log(taste.tasteStart);
+  console.log(taste.tasteEnd);
+
+  //선택한 날짜
+  console.log(moment(value).format("YYYY년 MM월 DD일"));
   console.log(moment(value).format("YYYY/MM/DD"));
   console.log(moment(value).format("YYYYMMDD"));
   const selectDateFormat = moment(value).format("YYYY년 MM월 DD일");
   const selectDate = moment(value).format("YY/MM/DD");
   const selectDateForReservationNo = moment(value).format("YYYYMMDD");
+
+  // const [startDate, setStartDate] = useState();
+  // const [endDate, setEndDate] = useState();
+  // const changeDate = (e) => {
+  //   const startDateFormat = taste.tasteStart;
+  //   const endDateFormat = taste.tasteEnd;
+
+  //   setStartDate(startDateFormat);
+  //   setEndDate(endDateFormat);
+  // };
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -54,6 +68,9 @@ const ReservationCalendar = () => {
           <div className="calendar">
             <Calendar
               onChange={onChange}
+              selectRange={false}
+              minDate={new Date(taste.tasteStart)}
+              maxDate={new Date(taste.tasteEnd)}
               value={value}
               formatDay={(locale, date) => moment(date).format("DD")}
             />
