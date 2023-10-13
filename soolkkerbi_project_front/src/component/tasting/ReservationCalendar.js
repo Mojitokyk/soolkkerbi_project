@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { Button1 } from "../util/Buttons";
 import moment from "moment";
+import Swal from "sweetalert2";
 import "../mypage/calendar.css";
 
 const ReservationCalendar = () => {
@@ -22,19 +23,9 @@ const ReservationCalendar = () => {
   console.log(moment(value).format("YYYY년 MM월 DD일"));
   console.log(moment(value).format("YYYY/MM/DD"));
   console.log(moment(value).format("YYYYMMDD"));
-  const selectDateFormat = moment(value).format("YYYY년 MM월 DD일");
+  const selectDateFormat = moment(value).format("YYYY-MM-DD");
   const selectDate = moment(value).format("YY/MM/DD");
   const selectDateForReservationNo = moment(value).format("YYYYMMDD");
-
-  // const [startDate, setStartDate] = useState();
-  // const [endDate, setEndDate] = useState();
-  // const changeDate = (e) => {
-  //   const startDateFormat = taste.tasteStart;
-  //   const endDateFormat = taste.tasteEnd;
-
-  //   setStartDate(startDateFormat);
-  //   setEndDate(endDateFormat);
-  // };
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -47,17 +38,34 @@ const ReservationCalendar = () => {
     console.log(member);
     console.log(taste);
     console.log(selectDate);
-    console.log(selectDateFormat);
     console.log(selectDateForReservationNo);
-    navigate("/tasting/reservationConfirm", {
-      state: {
-        member: member,
-        taste: taste,
-        selectDateFormat: selectDateFormat,
-        selectDate: selectDate,
-        selectDateForReservationNo: selectDateForReservationNo,
-      },
-    });
+    console.log(selectDateFormat);
+    console.log(taste.tasteStart);
+
+    if (selectDateFormat < taste.tasteStart) {
+      Swal.fire({
+        icon: "warning",
+        title: "예약 가능한 날짜가 아닙니다.",
+        html:
+          "희망 예약 날짜 : " +
+          selectDateFormat +
+          "<br/>" +
+          "시음회 기간 : " +
+          taste.tasteStart +
+          " ~ " +
+          taste.tasteEnd,
+      });
+    } else {
+      navigate("/tasting/reservationConfirm", {
+        state: {
+          member: member,
+          taste: taste,
+          selectDateFormat: selectDateFormat,
+          selectDate: selectDate,
+          selectDateForReservationNo: selectDateForReservationNo,
+        },
+      });
+    }
   };
 
   return (
