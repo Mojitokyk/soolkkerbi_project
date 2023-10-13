@@ -38,4 +38,8 @@ public class ReservationController {
 	public int changeDate(@RequestBody Reservation reservation) {
 		return reservationService.changeDate(reservation);
 	}
+	@GetMapping(value = "/delete/{reservationNo}")
+	public int delete(@PathVariable int reservationNo) {
+		return reservationService.delete(reservationNo);
+	}
 }

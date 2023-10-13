@@ -8,7 +8,8 @@ const PartyWrite =()=>{
     const [tasteTitle, setTasteTitle] = useState("");
     const [thumbnail, setThumbnail] = useState({});
     const [tasteContent, setTasteContent] = useState("");
-    //const [tasteImg, setTasteImg] = useState(null);
+    const [tasteStart, setTasteStart] = useState(null);
+    const [tasteEnd, setTasteEnd] = useState(null);
     const [tasteFilepath, setTasteFilepath] = useState(null);
     const navigate = useNavigate(); //글쓰기 버튼 클릭시 동작할 함수(서버에 insert요청함수)
     const write = () => {
@@ -19,6 +20,8 @@ const PartyWrite =()=>{
       //기본적인 문자열 또는 숫자데이터를 전송하는 경우 json전송
       //파일이 포함되어있는 경우 => FormData
       const form = new FormData();
+      form.append("tasteStart",tasteStart);
+      form.append("tasteEnd",tasteEnd);
       form.append("tasteTitle", tasteTitle);
       form.append("tasteContent", tasteContent);
       form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우 File객체를 전송
@@ -38,7 +41,7 @@ const PartyWrite =()=>{
         .then((res) => {
           console.log(res.data);
           if (res.data > 0) {
-            navigate("/taste");
+            navigate("/tasting");
           }
         })
         .catch((res) => {
@@ -54,6 +57,10 @@ const PartyWrite =()=>{
       <PartyFrm
         tasteTitle={tasteTitle}
         setTasteTitle={setTasteTitle}
+        tasteStart={tasteStart}
+        setTasteStart={setTasteStart}
+        tasteEnd={tasteEnd}
+        setTasteEnd={setTasteEnd}
         tasteContent={tasteContent}
         setTasteContent={setTasteContent}
         thumbnail={thumbnail}
@@ -61,6 +68,7 @@ const PartyWrite =()=>{
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
         buttonEvent={write}
+
         type="write"
       />
     </div>

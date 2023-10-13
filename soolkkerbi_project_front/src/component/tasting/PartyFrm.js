@@ -4,6 +4,10 @@ import { useState } from "react";
 import TextEditor from "../util/TextEditor";
 
 const PartyFrm = (props) => {
+  const tasteStart=props.tasteStart;
+  const setTasteStart=props.setTasteStart;
+  const tasteEnd = props.tasteEnd;
+  const setTasteEnd =props.setTasteEnd;
   const tasteTitle = props.tasteTitle;
   const setTasteTitle = props.setTasteTitle;
   const tasteContent = props.tasteContent;
@@ -72,7 +76,36 @@ const PartyFrm = (props) => {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="thumbnail">대표이미지</label>
+                  <label htmlFor="tasteStart">시음회 시작날짜</label>
+                </td>
+                <td>
+                  <Input
+                    type="text"
+                    data={tasteStart}
+                    setData={setTasteStart}
+                    content="tasteStart"
+                    placeholder="YYYY-MM-DD"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label htmlFor="tasteEnd">시음회 종료날짜</label>
+                </td>
+                <td>
+                  <Input
+                    type="text"
+                    data={tasteEnd}
+                    setData={setTasteEnd}
+                    content="tasteEnd"
+                    placeholder="YYYY-MM-DD"
+                  />
+                </td>
+              </tr>
+              
+              <tr>
+                <td>
+                  <label htmlFor="thumbnail">썸네일</label>
                 </td>
                 <td>
                   <input

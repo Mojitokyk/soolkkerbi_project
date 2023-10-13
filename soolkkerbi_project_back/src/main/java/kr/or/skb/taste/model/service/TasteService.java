@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.taste.model.dao.TasteDao;
 import kr.or.skb.taste.model.vo.Taste;
 
@@ -40,6 +41,13 @@ public class TasteService {
 	//시음회 게시글 상세보기
 	public Taste selectOneTaste(int tasteNo) {
 		return tasteDao.selectOneTaste(tasteNo);
+	}
+
+	public int insertTaste(Taste t) {
+		Member member = memberDao.selectOneMember(t.getMemderId());
+		t.setTasteMemberNo(member.getMemberNo());
+		int result = tasteDao.insertTaste(t);
+		return result;
 	}
 	
 }

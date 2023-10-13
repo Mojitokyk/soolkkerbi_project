@@ -28,6 +28,8 @@ const style = {
 };
 
  function CalendarModel(props) {
+  const changeStatus = props.changeStatus;
+  const setChangeStatus=props.setChangeStatus;
     const resList = props.resList;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -49,7 +51,7 @@ const style = {
             예약날짜 변경하기
           </Typography>
           <div id="modal-modal-description" sx={{ mt: 2 }}>
-           <CustomCalendar  resList = {resList} setOpen={setOpen}/>
+           <CustomCalendar  resList = {resList} setOpen={setOpen} setChangeStatus={setChangeStatus} changeStatus={changeStatus}/>
           </div>
         </Box>
       </Modal>
@@ -57,6 +59,8 @@ const style = {
   );
 }
 function CustomCalendar(props) {
+  const changeStatus = props.changeStatus;
+  const setChangeStatus=props.setChangeStatus;
   const setOpen = props.setOpen;
   const resList = props.resList;
   const nowDate =resList.reservationDate;
@@ -67,7 +71,8 @@ function CustomCalendar(props) {
   //const [nowDate, setNowDate] = useState("날짜");
 
   const changeDate=()=>{
-    
+    const changeStatus = props.changeStatus;
+    const setChangeStatus=props.setChangeStatus;
     const reservationDate =activeDate;
     const reservationNo = resList.reservationNo;
     const obj = { reservationNo, reservationDate };
@@ -82,7 +87,7 @@ function CustomCalendar(props) {
         console.log(activeDate);
         Swal.fire("예약날짜 변경완료");
         setOpen(false);
-        
+        setChangeStatus(!changeStatus);
       })
       .catch((res) => {
         console.log(res);

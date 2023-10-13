@@ -65,7 +65,7 @@ const TasteItem = (props) => {
         {taste.tasteFilepath === null ? (
           <img src="/image/default.png" />
         ) : (
-          <img src={"/tasting/" + taste.tasteFilepath} />
+          <img src={"/taste/" + taste.tasteFilepath} />
         )}
       </div>
       <div className="taste-item-info">

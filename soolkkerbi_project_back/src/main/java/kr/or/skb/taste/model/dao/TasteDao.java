@@ -16,6 +16,8 @@ public interface TasteDao {
 
 	//시음회 게시글 상세보기
 	Taste selectOneTaste(int tasteNo);
+
+	int insertTaste(Taste t);
 	
 
 }

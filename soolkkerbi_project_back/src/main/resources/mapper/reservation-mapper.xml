@@ -33,5 +33,9 @@
 	update reservation set reservation_date = #{reservationDate} where reservation_no = #{reservationNo}
 	</update>
 	
+	<delete id="delete">
+	delete from reservation where reservation_no=#{reservationNo}
+	</delete>
+	
 	
 </mapper>

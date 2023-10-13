@@ -5,10 +5,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.skb.FileUtil;
 import kr.or.skb.taste.model.service.TasteService;
@@ -50,5 +53,19 @@ public class TasteController {
 	@PostMapping(value="/modify")
 	public int modifyTaste() {
 		return 0;
+	}
+	@PostMapping(value = "/insert")
+	public int insertTaste(@ModelAttribute Taste t,@ModelAttribute MultipartFile thumbnail, @RequestAttribute String memberId ) {
+		t.setMemderId(memberId);
+		String savepath = root + "taste/";
+		if (thumbnail != null) {
+			String filename = thumbnail.getOriginalFilename();
+			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
+			t.setTasteFilepath(filepath);
+
+		}
+		System.out.println(t);
+		int result = tasteService.insertTaste(t);
+		return result;
 	}
 }

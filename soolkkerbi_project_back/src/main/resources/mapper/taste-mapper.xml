@@ -32,4 +32,10 @@
 	<select id="selectOneTaste" resultType="taste">
 		select * from taste join member on(taste_member_no = member_no) where taste_no=#{memberNo}
 	</select>
+	
+	<insert id="insertTaste">
+	insert into taste values(taste_seq.nextval,#{tasteMemberNo},#{tasteTitle},#{tasteContent},#{tasteStart},#{tasteEnd},#{tasteFilepath})
+	
+	</insert>
+	
 </mapper>
