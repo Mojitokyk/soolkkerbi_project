@@ -47,7 +47,14 @@
 		        (substr(member_name,1,1)||lpad('*',length(member_name)-1,'*'))as member_name
 		    from review 
 		    join member on (member_no = review_member_no)
-		    where review_product_no=49 order by 1 desc)r)
-where rnum between 1 and 5
+		    where review_product_no=#{productNo} order by 1 desc)r)
+	where rnum between #{start} and #{end}
+  </select>
+  <update id="updateCount">
+  	update review set review_read_count = review_read_count+1 where review_no=#{reviewNo}
+  </update>
+  
+  <select id="reviewCount" resultType="int">
+  	select count(*) from review where review_product_no=#{productNo}
   </select>
 </mapper>

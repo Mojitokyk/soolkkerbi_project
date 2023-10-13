@@ -7,6 +7,8 @@ import "./tab1.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import Pagination from "../common/Pagination";
+import { Button4 } from "../util/Buttons";
 //탭메뉴 mui
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -101,10 +103,24 @@ const ProductReview = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage]);
+
+  //리뷰갯수 구해오기
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    axios
+      .post("/review/reviewCount", obj)
+      .then((res) => {
+        //console.log(res.data);
+        setCount(res.data);
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  }, []);
   return (
     <div className="product-detail-review-content">
       <div className="review-wrap">
-        <div className="review-title">상품후기</div>
+        <div className="review-title">상품후기({count})</div>
         <div className="review-content">
           <table className="review-tbl">
             <thead>
@@ -132,6 +148,17 @@ const ProductReview = (props) => {
               )}
             </tbody>
           </table>
+          <div>
+            {reviewList.length > 0 ? (
+              <Pagination
+                reqPage={reqPage}
+                setReqPage={setReqPage}
+                pageInfo={pageInfo}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -139,19 +166,41 @@ const ProductReview = (props) => {
 };
 const ReviewItem = (props) => {
   const review = props.review;
+  const [visible, setVisible] = useState(false);
+  const obj = new Object();
+  obj.reviewNo = review.reviewNo;
+  const changeCount = () => {
+    setVisible(!visible);
+    if (!visible) {
+      axios
+        .post("/review/updateCount", obj)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    }
+  };
   return (
     <>
-      <tr>
+      <tr onClick={changeCount} className="tr2">
         <td>{review.reviewNo}</td>
         <td>{review.reviewTitle}</td>
         <td>{review.memberName}</td>
         <td>{review.reviewDate}</td>
         <td>{review.reviewReadCount}</td>
       </tr>
-      <tr>
-        <td colSpan={5}></td>
-        {/*여기에서 글이 보여야함 */}
-      </tr>
+      {visible && (
+        <tr>
+          <td colSpan={5} className="change-td">
+            <div
+              className="review-info"
+              dangerouslySetInnerHTML={{ __html: review.reviewContent }}
+            ></div>
+          </td>
+        </tr>
+      )}
     </>
   );
 };

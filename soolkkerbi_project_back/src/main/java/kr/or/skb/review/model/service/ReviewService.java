@@ -58,4 +58,13 @@ public class ReviewService {
 		map.put("pi", pi);
 		return map;
 	}
+	public int reviewCount(int productNo) {
+		return reviewDao.reviewCount(productNo);
+	}
+
+	@Transactional
+	public int updateCount(int reviewNo) {
+		return reviewDao.updateCount(reviewNo);
+	}
+
 }

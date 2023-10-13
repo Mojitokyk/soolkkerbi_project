@@ -20,5 +20,9 @@ public interface ReviewDao {
 	int totalCount2(int productNo);
 
 	List selectProductReview(ReviewListData rld);
+
+	int updateCount(int reviewNo);
+
+	int reviewCount(int productNo);
 	
 }

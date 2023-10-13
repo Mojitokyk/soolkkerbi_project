@@ -56,7 +56,20 @@ public class ReviewController {
 	@PostMapping(value="/productReviewList/{reqPage}")
 	public Map productReviewList(@PathVariable int reqPage,@RequestBody Product product) {
 		int productNo = product.getProductNo();
-		System.out.println(productNo);
+		//System.out.println(productNo);
 		return reviewService.productReviewList(reqPage, productNo);
+	}
+	//상품 리뷰 총 갯수
+	@PostMapping(value="/reviewCount")
+	public int reviewCount(@RequestBody Product product) {
+		int productNo = product.getProductNo();
+		return reviewService.reviewCount(productNo);
+	}
+	
+	//리뷰 조회수 올리기
+	@PostMapping(value="/updateCount")
+	public int updateCount(@RequestBody Review review) {
+		int reviewNo = review.getReviewNo();
+		return reviewService.updateCount(reviewNo);
 	}
 }
