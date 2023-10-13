@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.member.model.dao.MemberDao;
+import kr.or.skb.member.model.vo.Member;
+import kr.or.skb.reservation.model.vo.Reservation;
 import kr.or.skb.taste.model.dao.TasteDao;
 import kr.or.skb.taste.model.vo.Taste;
 
@@ -40,6 +42,17 @@ public class TasteService {
 	//시음회 게시글 상세보기
 	public Taste selectOneTaste(int tasteNo) {
 		return tasteDao.selectOneTaste(tasteNo);
+	}
+
+	//시음회 예약 등록
+	public int insertReservation(Reservation r) {
+		//1. 회원번호를 가져옴
+		Member m = memberDao.selectOneMember(r.getReservationMemberId());
+		System.out.println("tasteService - memberNo: "+m.getMemberNo());
+		r.setReservationMemberNo(m.getMemberNo());
+		System.out.println("tasteService - reservationMemberNo: "+r.getReservationMemberNo());
+		//2. 회원번호를 사용하여 insert 
+		return tasteDao.insertReservation(r);
 	}
 	
 }

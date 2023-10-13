@@ -44,7 +44,7 @@ public class QnaController {
 	//게시글 작성
 	//Board b: boardTitle, boardDetail
 	@PostMapping(value="/insert")
-	public int insertQna(@ModelAttribute Qna q, @RequestAttribute String memberId) {// @RequestAttribute String memberId
+	public int insertQna(@ModelAttribute Qna q, @RequestAttribute String memberId) {
 		System.out.println("qnaController: "+q);
 		System.out.println("memberId: "+memberId);
 		q.setMemberId(memberId);
