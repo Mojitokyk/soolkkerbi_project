@@ -17,6 +17,7 @@ import PartyMain from "./component/tasting/PartyMain";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  console.log(isLogin);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");

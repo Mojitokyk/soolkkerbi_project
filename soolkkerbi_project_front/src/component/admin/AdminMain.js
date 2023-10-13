@@ -31,17 +31,22 @@ const AdminMain = (props) => {
       })
       .then((res) => {
         setMember(res.data);
+        navigate("/admin/info");
       })
       .catch((res) => {
         if (res.response.status === 403) {
-          Swal.fire("로그인이 필요합니다.").then(() => {
+          Swal.fire({
+            title: "로그인이 필요한 서비스입니다.",
+            text: "로그인 페이지로 이동합니다.",
+            icon: "info",
+          }).then(() => {
             navigate("/login");
           });
         }
       });
   }, [isLogin]);
 
-  const [menus, setMenus] = useState([
+  const [menuList, setMenuList] = useState([
     { url: "info", text: "회원정보 수정", active: true },
     { url: "readAllMember", text: "전체회원 조회", active: false },
     { url: "insertProduct", text: "상품 등록", active: false },
@@ -58,7 +63,7 @@ const AdminMain = (props) => {
     <div className="admin-wrap">
       <div className="admin-title">관리자페이지</div>
       <div className="admin-content">
-        <AdminSideMenu menus={menus} setMenus={setMenus} />
+        <AdminSideMenu menuList={menuList} setMenuList={setMenuList} />
         <div className="admin-menu-content">
           <Routes>
             <Route
@@ -90,21 +95,21 @@ const AdminMain = (props) => {
 };
 
 const AdminSideMenu = (props) => {
-  const menus = props.menus;
-  const setMenus = props.setMenus;
+  const menuList = props.menuList;
+  const setMenuList = props.setMenuList;
 
   const activeTab = (index) => {
-    menus.forEach((item) => {
+    menuList.forEach((item) => {
       item.active = false;
     });
-    menus[index].active = true;
-    setMenus([...menus]);
+    menuList[index].active = true;
+    setMenuList([...menuList]);
   };
 
   return (
     <div className="admin-side">
       <ul>
-        {menus.map((menu, index) => {
+        {menuList.map((menu, index) => {
           return (
             <li key={"adminMenu" + index}>
               {menu.active ? (
