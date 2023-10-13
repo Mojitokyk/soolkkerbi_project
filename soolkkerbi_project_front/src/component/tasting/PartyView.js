@@ -6,6 +6,7 @@ import { Button1 } from "../util/Buttons";
 import Swal from "sweetalert2";
 
 const PartyView = (props) => {
+  const isLogin = props.isLogin;
   const member = props.member;
   const location = useLocation();
   const tasteNo = location.state.tasteNo;
@@ -70,9 +71,19 @@ const PartyView = (props) => {
     console.log("예약 이벤트");
     console.log(member);
     console.log(taste);
-    navigate("/tasting/reservationCalendar", {
-      state: { member: member, taste: taste },
-    });
+    console.log(isLogin);
+    if (isLogin) {
+      navigate("/tasting/reservationCalendar", {
+        state: { member: member, taste: taste },
+      });
+    } else {
+      Swal.fire({
+        icon: "warning",
+        title: "로그인 필요",
+        text: "로그인이 필요한 서비스입니다.",
+      });
+      navigate("/login");
+    }
   };
 
   return (
