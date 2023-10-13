@@ -1,6 +1,9 @@
+import "./PartyView.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { Button1 } from "../util/Buttons";
+import moment from "moment";
 
 const ReservationCalendar = () => {
   const navigate = useNavigate();
@@ -9,6 +12,11 @@ const ReservationCalendar = () => {
   const taste = location.state.taste;
   console.log(member);
   console.log(taste);
+  const [value, onChange] = useState();
+
+  console.log(moment(value).format("YYYY년 MM월 DD일")); //선택한 날짜
+  console.log(moment(value).format("YYYY-MM-DD"));
+  const selectDate = moment(value).format("YYYY년 MM월 DD일");
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -20,11 +28,12 @@ const ReservationCalendar = () => {
     console.log("다음 버튼 이벤트");
     console.log(member);
     console.log(taste);
+    console.log(selectDate);
     navigate("/tasting/reservationConfirm", {
       state: {
         member: member,
         taste: taste,
-        // date: date,
+        selectDate: selectDate,
       },
     });
   };
@@ -36,7 +45,14 @@ const ReservationCalendar = () => {
         <div className="reservation-calendar-wrap">
           <div className="calendar-guide">날짜를 선택하세요.</div>
           <div className="calendar">
-            <Calendar />
+            <Calendar
+              onChange={onChange}
+              value={value}
+              formatDay={(locale, date) => moment(date).format("DD")}
+            />
+            <span>희망 예약 날짜</span>
+            <span>:</span>
+            <span>{moment(value).format("YYYY년 MM월 DD일")}</span>
           </div>
         </div>
       </div>

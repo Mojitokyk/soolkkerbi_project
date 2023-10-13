@@ -1,6 +1,8 @@
-/* 공지사항 상세 */
+/* 시음회 상세 */
 .taste-view-wrap {
+  width: 1000px;
   border-bottom: 1px solid #ccc;
+  margin: 0 auto;
   margin-bottom: 10px;
 }
 .taste-view-title {
@@ -27,7 +29,9 @@
   padding-bottom: 50px;
 }
 .taste-view-btn {
+  width: 1000px;
   text-align: right;
+  margin: 0 auto;
   margin-bottom: 5px;
 }
 .taste-view-btn > :first-child,
@@ -36,6 +40,101 @@
   margin-right: 10px;
 }
 .taste-view-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}
+
+/*예약 날짜 선택*/
+.reservation-wrap {
+  width: 700px;
+  border-bottom: 1px solid #ccc;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.reservation-title {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1.1em;
+}
+.reservation-calendar-wrap {
+  padding: 10px;
+  padding-bottom: 60px;
+}
+.calendar-guide {
+  font-size: 1.1em;
+  margin-bottom: 50px;
+}
+.calendar {
+  text-align: center;
+  font-size: 1.1em;
+}
+.calendar > :nth-child(3) {
+  margin: 0px 10px;
+}
+.react-calendar {
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.reservation-btn {
+  width: 700px;
+  margin: 0 auto;
+  text-align: right;
+}
+.reservation-btn > :first-child {
+  margin-right: 10px;
+}
+.reservation-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}
+
+/*예약 내역 확인*/
+.reservation-info {
+  padding: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 1.1em;
+  overflow: hidden;
+}
+.reservation-info-member {
+  margin-bottom: 15px;
+}
+.reservation-info-member > :last-child {
+  float: right;
+}
+.reservation-info-date {
+  margin-bottom: 40px;
+}
+.reservation-info-date > :last-child {
+  float: right;
+}
+.reservation-direction > :last-child {
+  float: right;
+}
+
+/*예약 완료*/
+.reservation-done-guide {
+  padding: 50px;
+  text-align: center;
+  font-size: 1.1em;
+}
+.reservation-done-guide > :last-child {
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+.reservation-done-guide > :last-child > span {
+  font-weight: bold;
+}
+.reservation-done-guide > :last-child > span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.reservation-done-btn {
+  width: 700px;
+  margin: 0 auto;
+  text-align: right;
+}
+.reservation-done-btn > button {
   width: 100px;
   font-family: ns-b;
 }

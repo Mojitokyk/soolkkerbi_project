@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./myWishList.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyWishList = (props) => {
   const isLogin = props.isLogin;
@@ -29,7 +30,13 @@ const MyWishList = (props) => {
       <div className="my-wish-list">
         {product.length > 0 ? (
           product.map((product, index) => {
-            return <LikeList key={"list" + index} product={product} />;
+            return (
+              <LikeList
+                key={"list" + index}
+                product={product}
+                setProduct={setProduct}
+              />
+            );
           })
         ) : (
           <div className="emptyWish">조회내역이 없습니다.</div>
@@ -42,6 +49,7 @@ const MyWishList = (props) => {
 const LikeList = (props) => {
   const token = window.localStorage.getItem("token");
   const product = props.product;
+  const setProduct = props.setProduct;
   const navigate = useNavigate();
   //상세페이지로 이동
   const move = () => {
@@ -50,11 +58,11 @@ const LikeList = (props) => {
     });
   };
   //마우스이벤트
-  const [over, setOver] = useState(false);
+  //const [over, setOver] = useState(false);
 
   //좋아요 취소
-  const removeList = (e) => {
-    e.preventDefault();
+  const removeList = () => {
+    //e.preventDefault();
     axios
       .post(
         "/product/dislike",
@@ -68,23 +76,24 @@ const LikeList = (props) => {
         }
       )
       .then((res) => {
-        //console.log(res.data);
-        navigate("/mypage/wish");
+        Swal.fire({
+          icon: "success",
+          title: "저장취소",
+        });
+        setProduct(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
       });
   };
+  // onMouseOver={() => {
+  //   setOver(true);
+  // }}
+  // onMouseLeave={() => {
+  //   setOver(false);
+  // }}
   return (
-    <div
-      className="wish-item"
-      onMouseOver={() => {
-        setOver(true);
-      }}
-      onMouseLeave={() => {
-        setOver(false);
-      }}
-    >
+    <div className="wish-item">
       <div className="wish-item-img" onClick={move}>
         {product.productFilepath === null ? (
           <img src="/image/product_img/no_image.png" />
@@ -93,16 +102,14 @@ const LikeList = (props) => {
         ) : (
           <img src={"/product/" + product.productFilepath} />
         )}
-        {over ? (
-          <span className="material-icons deleteWish" onClick={removeList}>
-            cancel
-          </span>
-        ) : (
-          ""
-        )}
       </div>
       <div className="wish-item-info">
         <div>{product.productName}</div>
+        <div className="close-span">
+          <span className="material-icons deleteWish" onClick={removeList}>
+            close
+          </span>
+        </div>
       </div>
     </div>
   );

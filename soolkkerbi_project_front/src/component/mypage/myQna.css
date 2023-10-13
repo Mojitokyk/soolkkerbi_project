@@ -217,8 +217,10 @@
   text-align: right;
   margin-bottom: 5px;
 }
-.qnaComment-link > :first-child,
-:first-child + button {
+.qnaComment-link > :first-child {
+  margin-right: 10px;
+}
+.qnaComment-link > :nth-child(2) {
   margin-right: 10px;
 }
 .qnaComment-link > button {
