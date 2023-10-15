@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
@@ -17,7 +17,14 @@ const Main = (props) => {
 };
 
 const SwiperMain = () => {
+  const navigate = useNavigate();
   SwiperCore.use([Autoplay, Navigation, Pagination]);
+
+  const toProductView = (productNo) => {
+    console.log("페이지 이동 이벤트 클릭");
+    console.log(productNo);
+    navigate("/product/view", { state: { productNo: productNo } });
+  };
   return (
     <div className="main-slide">
       <Swiper
@@ -27,7 +34,12 @@ const SwiperMain = () => {
         loop
       >
         <SwiperSlide>
-          <img src="/image/main_img/main1.jpg"></img>
+          <img
+            src="/image/main_img/main1.jpg"
+            onClick={() => {
+              toProductView(51);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
           <img src="/image/main_img/main2.jpg"></img>
@@ -46,51 +58,9 @@ const SwiperMain = () => {
   );
 };
 
+//술꺼비 추천
 const MainList = () => {
-  //상품의 평가 중 5점인 상품을 리스트로 가져와서 출력(최대 9개)
-  /*
-  product.starRate == 5
-  객체 배열
-  Object[] recomends;
-  */
-  const [recommendList, setRecommendList] = useState([
-    // {
-    //   product: 1,
-    //   productName: "양(陽) 막걸리",
-    //   img: "/image/product_img/takju1.jpg",
-    //   productPrice: "22,000원",
-    // },
-    // {
-    //   product: 2,
-    //   productName: "양(陽) 막걸리",
-    //   img: "/image/product_img/takju2.jpg",
-    //   productPrice: "22,000원",
-    // },
-    // {
-    //   product: 3,
-    //   productName: "양(陽) 막걸리",
-    //   img: "/image/product_img/takju4.jpg",
-    //   productPrice: "22,000원",
-    // },
-    // {
-    //   product: 4,
-    //   productName: "양(陽) 막걸리",
-    //   img: "/image/product_img/takju5.jpg",
-    //   productPrice: "22,000원",
-    // },
-    // {
-    //   product: 4,
-    //   productName: "양(陽) 막걸리",
-    //   img: "/image/product_img/sul2.jpg",
-    //   productPrice: "22,000원",
-    // },
-    // {
-    //   product: 4,
-    //   productName: "양(陽) 막걸리",
-    //   img: "/image/product_img/sul.jpg",
-    //   productPrice: "22,000원",
-    // },
-  ]);
+  const [recommendList, setRecommendList] = useState([]);
 
   //추천 리스트 DB에서 조회
   useEffect(() => {

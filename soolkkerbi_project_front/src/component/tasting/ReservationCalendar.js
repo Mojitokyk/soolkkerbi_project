@@ -47,7 +47,7 @@ const ReservationCalendar = () => {
         icon: "warning",
         title: "예약 가능한 날짜가 아닙니다.",
         html:
-          "희망 예약 날짜 : " +
+          "선택하신 희망 예약 날짜 : " +
           selectDateFormat +
           "<br/>" +
           "시음회 기간 : " +
