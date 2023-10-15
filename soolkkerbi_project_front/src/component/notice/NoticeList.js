@@ -82,7 +82,7 @@ const NoticeItem = (props) => {
     <tr className="notice-item" onClick={noticeView}>
       <td className="notice-item-no">{notice.noticeNo}</td>
       <td className="notice-item-title">{notice.noticeTitle}</td>
-      <td className="notice-item-writer">{notice.memberName}</td>
+      <td className="notice-item-writer">운영자</td>
       <td className="notice-item-date">{notice.noticeDate}</td>
     </tr>
   );

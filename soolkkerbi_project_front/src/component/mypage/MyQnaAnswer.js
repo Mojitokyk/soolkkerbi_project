@@ -42,7 +42,7 @@ const RegistAnswer = (props) => {
   const [answerContent, setAnswerContent] = useState("");
   const navigate = useNavigate();
 
-  //answerContent 입력후 DB연동 - memberNo를 보내지 않는 문제가 남아있음
+  //answerContent 입력후 DB연동
   const registAnswer = () => {
     // if (qnaComment !== "" && memberLevel === 1) {
     if (answerContent !== "") {
@@ -246,6 +246,12 @@ const PrintAnswer = (props) => {
     return navigate("*");
   };
 
+  //수정취소 함수
+  const cancelModify = () => {
+    console.log(answerQnaNo);
+    setModifyFrm(false);
+  };
+
   return (
     <div className="qnaAnswer-list">
       {answerList.map((answer, index) => {
@@ -313,6 +319,12 @@ const PrintAnswer = (props) => {
                   </ul>
                 </div>
                 <div className="modify-btn">
+                  <button
+                    className="cancel-modifyAnswer-btn"
+                    onClick={cancelModify}
+                  >
+                    취소
+                  </button>
                   <button
                     onClick={() => {
                       modifyAnswer(answer, index);

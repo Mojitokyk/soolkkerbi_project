@@ -311,6 +311,9 @@
   outline: none;
   background-color: black;
 }
+.cancel-modifyAnswer-btn {
+  margin-right: 10px;
+}
 
 /*관리자페이지 답변상태 변경탭*/
 .select-status {
