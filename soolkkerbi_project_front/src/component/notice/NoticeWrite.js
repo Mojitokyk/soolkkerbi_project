@@ -1,10 +1,10 @@
-import { useState } from "react";
 import NoticeFrm from "./NoticeFrm";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const NoticeWrite = () => {
+const NoticeWrite = (props) => {
   //제목, 썸네일 , 내용, 첨부파일 작성하여 삽입 -> 전송용 데이터를 담음 state
   //변수명과 맞춘 것 - 문자열
   //변수명과 안 맞춘 것 - 첨부파일(배열, 객체로 받음)
@@ -12,6 +12,9 @@ const NoticeWrite = () => {
   const [thumbnail, setThumbnail] = useState({});
   const [noticeContent, setNoticeContent] = useState("");
   const [noticeFile, setNoticeFile] = useState([]);
+  const member = props.member;
+  const setMember = props.setMember;
+  const isLogin = props.isLogin;
 
   //화면용(화면에 데이터를 띄움)
   //boardImg -> 썸네일 미리보기용 /fileList -> 첨부파일 목록 출력용
@@ -19,12 +22,37 @@ const NoticeWrite = () => {
   const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
 
+  const token = window.localStorage.getItem("token");
+  useEffect(() => {
+    axios
+      .post("/member/getMember", null, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setMember(res.data);
+      })
+      .catch((res) => {
+        if (res.response.status === 403) {
+          Swal.fire({
+            title: "로그인이 필요한 서비스입니다.",
+            text: "로그인 페이지로 이동합니다.",
+            icon: "info",
+          }).then(() => {
+            navigate("/login");
+          });
+        }
+      });
+  }, [isLogin]);
+
   //글쓰기 버튼 클릭 시 동작할 함수(서버에 insert요청 함수)
   const write = () => {
     console.log(noticeTitle);
     console.log(thumbnail);
     console.log(noticeContent);
     console.log(noticeFile);
+
     if (noticeTitle !== "" && noticeContent !== "") {
       //기본적인 문자열 또는 숫자데이터를 전송하는 경우, JSON을 전송
       //파일이 포함되어 있는 경우 -> FormData
@@ -38,7 +66,6 @@ const NoticeWrite = () => {
         form.append("noticeFile", noticeFile[i]);
       }
 
-      //   const token = window.localStorage.getItem("token");
       axios
         .post("/notice/insert", form, {
           headers: {

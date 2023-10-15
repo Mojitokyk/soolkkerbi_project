@@ -20,11 +20,13 @@ const SwiperMain = () => {
   const navigate = useNavigate();
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
+  //제품 상세페이지로 이동
   const toProductView = (productNo) => {
     console.log("페이지 이동 이벤트 클릭");
     console.log(productNo);
     navigate("/product/view", { state: { productNo: productNo } });
   };
+
   return (
     <div className="main-slide">
       <Swiper
@@ -35,23 +37,75 @@ const SwiperMain = () => {
       >
         <SwiperSlide>
           <img
-            src="/image/main_img/main1.jpg"
+            src="/image/main_img/main1_text_51.jpg"
             onClick={() => {
               toProductView(51);
             }}
           ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main2.jpg"></img>
+          <img
+            src="/image/main_img/main2_text_105.jpg"
+            onClick={() => {
+              toProductView(105);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main3.jpg"></img>
+          <img
+            src="/image/main_img/main3_text_122.jpg"
+            onClick={() => {
+              toProductView(122);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main4.jpg"></img>
+          <img
+            src="/image/main_img/main4_text_125.jpg"
+            onClick={() => {
+              toProductView(125);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main5.jpg"></img>
+          <img
+            src="/image/main_img/main5_text_52.jpg"
+            onClick={() => {
+              toProductView(52);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main6_text_96.jpg"
+            onClick={() => {
+              toProductView(96);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main7_text_91.jpg"
+            onClick={() => {
+              toProductView(91);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main8_text_108.jpg"
+            onClick={() => {
+              toProductView(108);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main9_text_111.jpg"
+            onClick={() => {
+              toProductView(111);
+            }}
+          ></img>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -88,14 +142,57 @@ const MainList = () => {
 
 const ProductRecommend = (props) => {
   const recommendList = props.recommendList;
+  const navigate = useNavigate();
+
+  //제품 상세페이지로 이동
+  const toProductView = (productNo) => {
+    console.log("페이지 이동 이벤트 클릭");
+    console.log(productNo);
+    navigate("/product/view", { state: { productNo: productNo } });
+  };
+
+  //이미지 경로 삽입(미사용 함수) -> onLoad
+  //productInfo에서 img src=""에 해당하는 경로 문자열 추출 및 경로 삽입
+  // const productImg = (productInfo) => {
+  //   // const productInfo = props.productInfo;
+  //   console.log(productInfo);
+
+  //   // .jpg 위치 찾기
+  //   const resultSearchJpg = productInfo.toLowerCase().indexOf('.jpg"');
+  //   console.log(resultSearchJpg);
+  //   const endLocation = resultSearchJpg + 5; //.jpg"가 끝나는 위치
+
+  //   // <img src 위치 찾기
+  //   const resultSearchImg = productInfo.toLowerCase().indexOf('<img src="');
+  //   console.log(resultSearchImg);
+  //   const startLocation = resultSearchImg + 9; // src의 ' " '이 시작하는 위치
+
+  //   //productInfo중 이미지 경로만 문자열로 추출
+  //   const imgLocation = productInfo.slice(startLocation, endLocation);
+  //   console.log(imgLocation); //성공
+
+  //   document.querySelector(".productR-Img").src = imgLocation;
+  // };
+
+  //이미지 경로 삽입2(미사용 함수) -> onLoad
+  // const productImg = (productFilepath) => {
+  //   const imgLocation = "/product/" + productFilepath;
+  //   document.querySelector("productR-img").src = imgLocation;
+  // };
 
   return (
     <>
       {recommendList.map((product, index) => {
         return (
-          <div className="productR-item" key={"productR" + index}>
+          <div
+            className="productR-item"
+            key={"productR" + index}
+            onClick={() => {
+              toProductView(product.productNo);
+            }}
+          >
             <div className="productR-item-img">
-              <img src={product.img} />
+              <img src={"/product/" + product.productFilepath} />
             </div>
             <div className="productR-item-info">
               <div className="productR-item-name">{product.productName}</div>
@@ -104,14 +201,6 @@ const ProductRecommend = (props) => {
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 원
-              </div>
-              <div className="productR-item-more">
-                <div className="productR-item-star"></div>
-                {/* <div className="productR-item-cart">
-                  <span className="material-icons">
-                    shopping_cart
-                  </span>
-                </div> */}
               </div>
             </div>
           </div>

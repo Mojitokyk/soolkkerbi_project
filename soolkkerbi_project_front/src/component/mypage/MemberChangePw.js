@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 
 const MemberChangePw = (props) => {
-  const [IsPwauth, setIsPwauth] = useState(false); 
+  const [IsPwauth, setIsPwauth] = useState(false);
   const [currPw, setCurrPw] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
@@ -78,7 +78,7 @@ const MemberChangePw = (props) => {
             <div className="new-pw-input-wrap">
               <div className="pw-input-wrap">
                 <div>
-                  <label htmlFor="memberPw">새비번</label>
+                  <label htmlFor="memberPw">새비밀번호</label>
                   <Input
                     type="passWord"
                     data={memberPw}
@@ -87,7 +87,7 @@ const MemberChangePw = (props) => {
                   />
                 </div>
                 <div>
-                  <label htmlFor="memberPwRe">새비번 확인</label>
+                  <label htmlFor="memberPwRe">새비밀번호 확인</label>
                   <Input
                     type="passWord"
                     data={memberPwRe}
@@ -106,7 +106,7 @@ const MemberChangePw = (props) => {
         ) : (
           <div className="pw-input-wrap">
             <div>
-              <label htmlFor="currPw">현재 비번</label>
+              <label htmlFor="currPw">현재 비밀번호</label>
               <Input
                 type="passWord"
                 data={currPw}

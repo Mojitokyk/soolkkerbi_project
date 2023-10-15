@@ -71,7 +71,7 @@ const NoticeView = (props) => {
       <div className="notice-view-wrap">
         <div className="notice-view-title">{notice.noticeTitle}</div>
         <div className="notice-view-info">
-          <div>관리자</div>
+          <div>운영자</div>
           {/*<div>{notice.memberName}<div>*/}
           <div>{notice.noticeDate}</div>
         </div>
@@ -81,15 +81,19 @@ const NoticeView = (props) => {
         ></div>
       </div>
       <div className="notice-view-btn">
-        <Button1 text="목록으로" clickEvent={toList} />
         {member.memberLevel === 1 ? (
           <>
-            <Button1 text="수정" clickEvent={modifyNotice} />
-            <Button1 text="삭제" clickEvent={deleteNotice} />
+            <button className="modify-notice-btn" onClick={modifyNotice}>
+              수정
+            </button>
+            <button className="delete-notice-btn" onClick={deleteNotice}>
+              삭제
+            </button>
           </>
         ) : (
           ""
         )}
+        <Button1 text="목록으로" clickEvent={toList} />
       </div>
     </>
   );

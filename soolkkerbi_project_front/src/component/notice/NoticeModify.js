@@ -36,21 +36,16 @@ const NoticeModify = () => {
       form.append("noticeFile", noticeFile[i]);
     }
     form.append("delFileNo", delFileNo.join("/"));
-    // const token = window.localStorage.getItem("token");
 
     axios
-      .post("/notice/modify", form, {
-        // headers: {
-        //   contentType: "multipart/form-data",
-        //   processData: false,
-        //   Authorization: "Bearer " + token,
-        // },
-      })
+      .post("/notice/modify", form)
       .then((res) => {
         console.log(res.data);
 
         if (res.data === 1) {
-          navigate("/notice");
+          navigate("/notice/noticeView", {
+            state: { noticeNo: notice.noticeNo },
+          });
         } else {
           Swal.fire("수정 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.");
         }
@@ -63,6 +58,7 @@ const NoticeModify = () => {
   return (
     <div>
       <NoticeFrm
+        noticeNo={notice.noticeNo}
         noticeTitle={noticeTitle}
         setNoticeTitle={setNoticeTitle}
         noticeContent={noticeContent}

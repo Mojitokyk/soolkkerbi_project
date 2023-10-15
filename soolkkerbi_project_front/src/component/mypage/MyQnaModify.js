@@ -37,7 +37,7 @@ const MyQnaModify = () => {
         console.log(res.data);
 
         if (res.data === 1) {
-          navigate("/mypage/qna");
+          navigate("/mypage/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
         } else {
           Swal.fire("수정 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.");
         }
@@ -50,6 +50,7 @@ const MyQnaModify = () => {
   return (
     <div>
       <MyQnaFrm
+        qnaNo={qna.qnaNo}
         qnaTitle={qnaTitle}
         setQnaTitle={setQnaTitle}
         qnaContent={qnaContent}
