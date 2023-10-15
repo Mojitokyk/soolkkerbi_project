@@ -141,9 +141,16 @@
   text-align: right;
   margin-bottom: 5px;
 }
-.notice-view-btn > :first-child,
-.notice-view-btn > :nth-child(2) {
+.modify-notice-btn,
+.delete-notice-btn {
   margin-right: 10px;
+  width: 100px;
+  height: 41.28px;
+  background-color: black;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .notice-view-btn > button {
   width: 100px;
