@@ -25,6 +25,7 @@ const SwiperMain = () => {
     console.log(productNo);
     navigate("/product/view", { state: { productNo: productNo } });
   };
+
   return (
     <div className="main-slide">
       <Swiper
@@ -35,23 +36,75 @@ const SwiperMain = () => {
       >
         <SwiperSlide>
           <img
-            src="/image/main_img/main1.jpg"
+            src="/image/main_img/main1_text_51.jpg"
             onClick={() => {
               toProductView(51);
             }}
           ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main2.jpg"></img>
+          <img
+            src="/image/main_img/main2_text_105.jpg"
+            onClick={() => {
+              toProductView(105);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main3.jpg"></img>
+          <img
+            src="/image/main_img/main3_text_122.jpg"
+            onClick={() => {
+              toProductView(122);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main4.jpg"></img>
+          <img
+            src="/image/main_img/main4_text_125.jpg"
+            onClick={() => {
+              toProductView(125);
+            }}
+          ></img>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="/image/main_img/main5.jpg"></img>
+          <img
+            src="/image/main_img/main5_text_52.jpg"
+            onClick={() => {
+              toProductView(52);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main6_text_96.jpg"
+            onClick={() => {
+              toProductView(96);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main7_text_91.jpg"
+            onClick={() => {
+              toProductView(91);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main8_text_108.jpg"
+            onClick={() => {
+              toProductView(108);
+            }}
+          ></img>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src="/image/main_img/main9_text_111.jpg"
+            onClick={() => {
+              toProductView(111);
+            }}
+          ></img>
         </SwiperSlide>
       </Swiper>
     </div>
