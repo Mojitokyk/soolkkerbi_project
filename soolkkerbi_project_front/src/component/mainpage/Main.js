@@ -173,14 +173,6 @@ const ProductRecommend = (props) => {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 원
               </div>
-              <div className="productR-item-more">
-                <div className="productR-item-star"></div>
-                {/* <div className="productR-item-cart">
-                  <span className="material-icons">
-                    shopping_cart
-                  </span>
-                </div> */}
-              </div>
             </div>
           </div>
         );
@@ -188,5 +180,26 @@ const ProductRecommend = (props) => {
     </>
   );
 };
+
+// //productInfo에서 img src=""에 해당하는 경로 문자열 추출 및 경로 삽입
+// const productImg = (productInfo) => {
+//   console.log(productInfo);
+
+//   // .jpg 위치 찾기
+//   const resultSearchJpg = productInfo.toLowerCase().indexOf('.jpg"');
+//   console.log(resultSearchJpg);
+//   const endLocation = resultSearchJpg + 5; //.jpg"가 끝나는 위치
+
+//   // <img src 위치 찾기
+//   const resultSearchImg = productInfo.toLowerCase().indexOf('<img src="');
+//   console.log(resultSearchImg);
+//   const startLocation = resultSearchImg + 9; // src의 ' " '이 시작하는 위치
+
+//   //productInfo중 이미지 경로만 문자열로 추출
+//   const imgLocation = productInfo.slice(startLocation, endLocation);
+//   console.log(imgLocation); //성공
+
+//   return (document.getElementsById(".productR-Img").src = imgLocation);
+// };
 
 export default Main;
