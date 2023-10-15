@@ -20,6 +20,7 @@ const SwiperMain = () => {
   const navigate = useNavigate();
   SwiperCore.use([Autoplay, Navigation, Pagination]);
 
+  //제품 상세페이지로 이동
   const toProductView = (productNo) => {
     console.log("페이지 이동 이벤트 클릭");
     console.log(productNo);
@@ -141,12 +142,26 @@ const MainList = () => {
 
 const ProductRecommend = (props) => {
   const recommendList = props.recommendList;
+  const navigate = useNavigate();
+
+  //제품 상세페이지로 이동
+  const toProductView = (productNo) => {
+    console.log("페이지 이동 이벤트 클릭");
+    console.log(productNo);
+    navigate("/product/view", { state: { productNo: productNo } });
+  };
 
   return (
     <>
       {recommendList.map((product, index) => {
         return (
-          <div className="productR-item" key={"productR" + index}>
+          <div
+            className="productR-item"
+            key={"productR" + index}
+            onClick={() => {
+              toProductView(product.productNo);
+            }}
+          >
             <div className="productR-item-img">
               <img src={product.img} />
             </div>
