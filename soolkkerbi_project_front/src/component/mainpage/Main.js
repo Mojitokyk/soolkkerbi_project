@@ -151,6 +151,29 @@ const ProductRecommend = (props) => {
     navigate("/product/view", { state: { productNo: productNo } });
   };
 
+  //이미지 경로 삽입(미사용 함수)
+  //productInfo에서 img src=""에 해당하는 경로 문자열 추출 및 경로 삽입
+  // const productImg = (productInfo) => {
+  //   // const productInfo = props.productInfo;
+  //   console.log(productInfo);
+
+  //   // .jpg 위치 찾기
+  //   const resultSearchJpg = productInfo.toLowerCase().indexOf('.jpg"');
+  //   console.log(resultSearchJpg);
+  //   const endLocation = resultSearchJpg + 5; //.jpg"가 끝나는 위치
+
+  //   // <img src 위치 찾기
+  //   const resultSearchImg = productInfo.toLowerCase().indexOf('<img src="');
+  //   console.log(resultSearchImg);
+  //   const startLocation = resultSearchImg + 9; // src의 ' " '이 시작하는 위치
+
+  //   //productInfo중 이미지 경로만 문자열로 추출
+  //   const imgLocation = productInfo.slice(startLocation, endLocation);
+  //   console.log(imgLocation); //성공
+
+  //   document.querySelector(".productR-Img").src = imgLocation;
+  // };
+
   return (
     <>
       {recommendList.map((product, index) => {
@@ -163,7 +186,7 @@ const ProductRecommend = (props) => {
             }}
           >
             <div className="productR-item-img">
-              <img src={product.img} />
+              <img src={"/product/" + product.productFilepath} />
             </div>
             <div className="productR-item-info">
               <div className="productR-item-name">{product.productName}</div>
@@ -180,26 +203,5 @@ const ProductRecommend = (props) => {
     </>
   );
 };
-
-// //productInfo에서 img src=""에 해당하는 경로 문자열 추출 및 경로 삽입
-// const productImg = (productInfo) => {
-//   console.log(productInfo);
-
-//   // .jpg 위치 찾기
-//   const resultSearchJpg = productInfo.toLowerCase().indexOf('.jpg"');
-//   console.log(resultSearchJpg);
-//   const endLocation = resultSearchJpg + 5; //.jpg"가 끝나는 위치
-
-//   // <img src 위치 찾기
-//   const resultSearchImg = productInfo.toLowerCase().indexOf('<img src="');
-//   console.log(resultSearchImg);
-//   const startLocation = resultSearchImg + 9; // src의 ' " '이 시작하는 위치
-
-//   //productInfo중 이미지 경로만 문자열로 추출
-//   const imgLocation = productInfo.slice(startLocation, endLocation);
-//   console.log(imgLocation); //성공
-
-//   return (document.getElementsById(".productR-Img").src = imgLocation);
-// };
 
 export default Main;
