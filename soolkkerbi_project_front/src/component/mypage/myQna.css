@@ -86,6 +86,26 @@
   min-height: 300px;
   font-size: 1em;
 }
+.prev-qna-btn {
+  margin-right: 10px;
+  width: 100px;
+  height: 41.28px;
+  background-color: black;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.toList-qna-btn {
+  margin-right: 10px;
+  width: 100px;
+  height: 41.28px;
+  background-color: black;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 .qna-frm-wrap > .qna-btn-box {
   text-align: right;

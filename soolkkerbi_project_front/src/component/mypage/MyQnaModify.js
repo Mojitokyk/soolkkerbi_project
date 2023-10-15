@@ -50,6 +50,7 @@ const MyQnaModify = () => {
   return (
     <div>
       <MyQnaFrm
+        qnaNo={qna.qnaNo}
         qnaTitle={qnaTitle}
         setQnaTitle={setQnaTitle}
         qnaContent={qnaContent}
