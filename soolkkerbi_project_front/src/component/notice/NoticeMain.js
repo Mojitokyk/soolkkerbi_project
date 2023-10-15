@@ -28,15 +28,7 @@ const NoticeMain = (props) => {
         setMember(res.data);
       })
       .catch((res) => {
-        if (res.response.status === 403) {
-          Swal.fire({
-            title: "로그인이 필요한 서비스입니다.",
-            text: "로그인 페이지로 이동합니다.",
-            icon: "info",
-          }).then(() => {
-            navigate("/login");
-          });
-        }
+        console.log(res.response.data);
       });
   }, [isLogin]);
 
@@ -46,7 +38,16 @@ const NoticeMain = (props) => {
         <h2>공지사항</h2>
       </div>
       <Routes>
-        <Route path="noticeWrite" element={<NoticeWrite isLogin={isLogin} />} />
+        <Route
+          path="noticeWrite"
+          element={
+            <NoticeWrite
+              isLogin={isLogin}
+              member={member}
+              setMember={setMember}
+            />
+          }
+        />
         <Route
           path="noticeView"
           element={<NoticeView isLogin={isLogin} member={member} />}
