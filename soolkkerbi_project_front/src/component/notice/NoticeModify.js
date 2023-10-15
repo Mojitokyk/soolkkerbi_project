@@ -43,7 +43,9 @@ const NoticeModify = () => {
         console.log(res.data);
 
         if (res.data === 1) {
-          navigate("/notice");
+          navigate("/notice/noticeView", {
+            state: { noticeNo: notice.noticeNo },
+          });
         } else {
           Swal.fire("수정 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.");
         }
