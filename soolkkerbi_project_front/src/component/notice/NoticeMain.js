@@ -35,7 +35,7 @@ const NoticeMain = (props) => {
         <h2>공지사항</h2>
       </div>
       <Routes>
-        <Route path="noticeWrite" element={<NoticeWrite />} />
+        <Route path="noticeWrite" element={<NoticeWrite isLogin={isLogin} />} />
         <Route
           path="noticeView"
           element={<NoticeView isLogin={isLogin} member={member} />}
