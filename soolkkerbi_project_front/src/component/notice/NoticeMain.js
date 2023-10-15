@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./notice.css";
@@ -6,6 +6,7 @@ import NoticeList from "./NoticeList";
 import NoticeView from "./NoticeView";
 import NoticeWrite from "./NoticeWrite";
 import NoticeModify from "./NoticeModify";
+import Swal from "sweetalert2";
 
 const NoticeMain = (props) => {
   const isLogin = props.isLogin;
@@ -13,6 +14,8 @@ const NoticeMain = (props) => {
   const token = window.localStorage.getItem("token");
 
   const [member, setMember] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -25,9 +28,17 @@ const NoticeMain = (props) => {
         setMember(res.data);
       })
       .catch((res) => {
-        console.log(res.status);
+        if (res.response.status === 403) {
+          Swal.fire({
+            title: "로그인이 필요한 서비스입니다.",
+            text: "로그인 페이지로 이동합니다.",
+            icon: "info",
+          }).then(() => {
+            navigate("/login");
+          });
+        }
       });
-  }, []);
+  }, [isLogin]);
 
   return (
     <div className="notice-all-wrap">
