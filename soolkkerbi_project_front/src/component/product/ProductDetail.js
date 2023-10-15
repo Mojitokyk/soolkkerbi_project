@@ -16,10 +16,13 @@ const ProductDetail = (props) => {
   const likes = location.state.like;
   const member = location.state.member;
   const [product, setProduct] = useState({});
+  const { pathName } = useLocation();
 
   //상세페이지에 필요한 데이터 가져오기
   useEffect(() => {
     const token = window.localStorage.getItem("token");
+
+    window.scroll(0, 0);
 
     axios
       .post(
@@ -38,7 +41,7 @@ const ProductDetail = (props) => {
       .catch((res) => {
         console.log(res.reponse.status);
       });
-  }, [likes]);
+  }, [likes, pathName]);
 
   //갯수와 총 금액 state만들기
   const price = Number(product.productPrice);
