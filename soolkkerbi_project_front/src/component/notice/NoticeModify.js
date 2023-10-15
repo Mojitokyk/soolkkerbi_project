@@ -36,16 +36,9 @@ const NoticeModify = () => {
       form.append("noticeFile", noticeFile[i]);
     }
     form.append("delFileNo", delFileNo.join("/"));
-    // const token = window.localStorage.getItem("token");
 
     axios
-      .post("/notice/modify", form, {
-        // headers: {
-        //   contentType: "multipart/form-data",
-        //   processData: false,
-        //   Authorization: "Bearer " + token,
-        // },
-      })
+      .post("/notice/modify", form)
       .then((res) => {
         console.log(res.data);
 
@@ -63,6 +56,7 @@ const NoticeModify = () => {
   return (
     <div>
       <NoticeFrm
+        noticeNo={notice.noticeNo}
         noticeTitle={noticeTitle}
         setNoticeTitle={setNoticeTitle}
         noticeContent={noticeContent}

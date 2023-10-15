@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button1 } from "../util/Buttons";
 import TextEditor from "../util/TextEditor";
 import InputTitle from "../util/InputFormTitle";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const NoticeFrm = (props) => {
   const noticeTitle = props.noticeTitle;
@@ -20,7 +21,9 @@ const NoticeFrm = (props) => {
   const type = props.type;
   const delFileNo = props.delFileNo;
   const setDelFileNo = props.setDelFileNo;
+  const noticeNo = props.noticeNo;
   const [newFileList, setNewFileList] = useState([]); //새 첨부파일 출력용 state
+  const navigate = useNavigate();
 
   const thumbnailChange = (e) => {
     const files = e.currentTarget.files; //files -> 배열의 형태를 하고 있지만 일반 객체
@@ -48,6 +51,17 @@ const NoticeFrm = (props) => {
       arr.push(files[i].name);
     }
     setNewFileList(arr);
+  };
+
+  //'취소'버튼
+  const prev = () => {
+    console.log("취소 버튼 클릭");
+    navigate("/notice/noticeView", { state: { noticeNo: noticeNo } });
+  };
+
+  /*목록으로 돌아가는 함수*/
+  const toList = () => {
+    return navigate("notice");
   };
 
   return (
@@ -79,9 +93,19 @@ const NoticeFrm = (props) => {
       </div>
       <div className="notice-btn-box">
         {type === "modify" ? (
-          <Button1 text="수정하기" clickEvent={buttonEvent} />
+          <>
+            <button className="prev-notice-btn" onClick={prev}>
+              취소
+            </button>
+            <Button1 text="수정하기" clickEvent={buttonEvent} />
+          </>
         ) : (
-          <Button1 text="등록" clickEvent={buttonEvent} />
+          <>
+            <button className="toList-notice-btn" onClick={toList}>
+              목록으로
+            </button>
+            <Button1 text="등록" clickEvent={buttonEvent} />
+          </>
         )}
       </div>
     </div>

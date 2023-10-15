@@ -108,6 +108,26 @@
   width: 100px;
   font-family: ns-b;
 }
+.prev-notice-btn {
+  margin-right: 10px;
+  width: 100px;
+  height: 41.28px;
+  background-color: black;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.toList-notice-btn {
+  margin-right: 10px;
+  width: 100px;
+  height: 41.28px;
+  background-color: black;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 /* 공지사항 상세 */
 .notice-view-wrap {
