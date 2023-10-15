@@ -151,7 +151,7 @@ const ProductRecommend = (props) => {
     navigate("/product/view", { state: { productNo: productNo } });
   };
 
-  //이미지 경로 삽입(미사용 함수)
+  //이미지 경로 삽입(미사용 함수) -> onLoad
   //productInfo에서 img src=""에 해당하는 경로 문자열 추출 및 경로 삽입
   // const productImg = (productInfo) => {
   //   // const productInfo = props.productInfo;
@@ -172,6 +172,12 @@ const ProductRecommend = (props) => {
   //   console.log(imgLocation); //성공
 
   //   document.querySelector(".productR-Img").src = imgLocation;
+  // };
+
+  //이미지 경로 삽입2(미사용 함수) -> onLoad
+  // const productImg = (productFilepath) => {
+  //   const imgLocation = "/product/" + productFilepath;
+  //   document.querySelector("productR-img").src = imgLocation;
   // };
 
   return (
