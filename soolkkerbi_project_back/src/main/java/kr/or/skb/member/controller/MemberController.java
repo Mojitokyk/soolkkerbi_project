@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.skb.EmailSender;
 import kr.or.skb.member.model.service.MemberService;
 import kr.or.skb.member.model.vo.Member;
 
@@ -21,6 +22,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private EmailSender emailSender;
 	
 	
 	@GetMapping(value = "/checkId/{memberId}") 
@@ -91,5 +94,16 @@ public class MemberController {
 	@PostMapping(value = "/deleteMember")
 	public int deleteMember(@RequestAttribute String memberId) {
 		return memberService.deleteMember(memberId);
+	}
+	@PostMapping(value = "/memberPwChange")
+	public int memberPwChange(@RequestBody Member member) {
+		//member.setMemberId(memberId); 
+		return memberService.changePwMember(member);
+	}
+	
+	@PostMapping(value = "/auth")
+	public String authMail(@RequestBody String memberEmail) {
+		String authCode = emailSender.authMail(memberEmail);
+		return authCode;
 	}
 }
