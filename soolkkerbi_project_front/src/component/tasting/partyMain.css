@@ -1,53 +1,93 @@
 .party-all-wrap {
-    width: 1200px;
-    margin: 50px auto;
-  }
-  .party-title {
-    text-align: center;
-    font-size: 22px;
-    padding-bottom: 30px;
-    font-weight: bold;
-    color: black;
-  }
-  .party-list-wrap {
-    overflow: hidden;
-    padding: 10px;
-  }
-  .party-item {
-    float: left;
-    box-sizing: border-box;
-    width: calc(100% / 4);
-  
-    padding: 30px;
-    cursor: pointer;
-  }
-  .party-item:hover {
-    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-  }
-  .party-item-img {
-    height: 238px;
-  }
-  .party-item-img > img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;  
-  }
-  .party-item.info {
-    margin-top: 30px;
-  }
-  .party-item-title {
-    white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    font-family: ns-eb;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  .party-item-writer,
-  .party-item-date {
-    font-size: 0.9em;
-    font-family: ns-b;
-  }
-  .party-page {
-    margin-top: 30px;
-  }
+  width: 1200px;
+  margin: 50px auto;
+}
+.party-title {
+  text-align: center;
+  margin: 50px 0;
+  font-weight: bold;
+  color: black;
+}
+.party-list-wrap {
+  overflow: hidden;
+  padding: 10px;
+}
+.party-item {
+  float: left;
+  box-sizing: border-box;
+  width: calc(100% / 4);
+
+  padding: 30px;
+  cursor: pointer;
+}
+.party-item:hover {
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.party-item-img {
+  height: 238px;
+}
+.party-item-img > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.party-item.info {
+  margin-top: 30px;
+}
+.party-item-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: ns-eb;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.party-item-writer,
+.party-item-date {
+  font-size: 0.9em;
+  font-family: ns-b;
+}
+.party-page {
+  margin-top: 30px;
+}
+
+/*시음회 목록 조회*/
+.taste-write-btn {
+  text-align: right;
+  margin-bottom: 5px;
+}
+.taste-write-btn > button {
+  width: 100px;
+  font-family: ns-b;
+}
+.taste-list-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-top: 1px solid #ccc;
+}
+.taste-item {
+  float: left;
+  box-sizing: border-box;
+  width: calc(100% / 3);
+  padding: 45px;
+  cursor: pointer;
+  text-align: center;
+}
+.taste-item-img {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.taste-item-title {
+  font-size: 1.2em;
+  font-family: ns-b;
+}
+.taste-item-date > span {
+  font-weight: bold;
+}
+.taste-item-date > :nth-child(2) {
+  margin: 0 5px;
+}
+.taste-page {
+  clear: left;
+}

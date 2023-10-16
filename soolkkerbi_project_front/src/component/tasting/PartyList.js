@@ -34,7 +34,7 @@ const PartyList = (props) => {
     <div>
       {isLogin && member.memberLevel === 1 ? (
         <div className="taste-write-btn">
-          <Button2 text="시음회 등록" clickEvent={write} />
+          <Button1 text="시음회 등록" clickEvent={write} />
         </div>
       ) : (
         ""
@@ -72,11 +72,11 @@ const TasteItem = (props) => {
       </div>
       <div className="taste-item-info">
         <div className="taste-item-title">{taste.tasteTitle}</div>
-        <div className="taste-item-startdate">{taste.tasteStart}</div>
-        <span>
-          <br />~<br />
-        </span>
-        <div className="taste-item-enddate">{taste.tasteEnd}</div>
+        <div className="taste-item-date">
+          <span className="taste-item-startdate">{taste.tasteStart}</span>
+          <span>~</span>
+          <span className="taste-item-enddate">{taste.tasteEnd}</span>
+        </div>
       </div>
     </div>
   );
