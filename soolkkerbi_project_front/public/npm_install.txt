@@ -26,4 +26,6 @@
 
           npm install react-calendar
           npm install moment
+          npm install stream => X
+          npm install node-polyfill-webpack-plugin => X
 
