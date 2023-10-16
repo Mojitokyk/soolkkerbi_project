@@ -75,7 +75,7 @@
 }
 .taste-item-img {
   border: 1px solid #ccc;
-  /* height: 247px; */
+  height: 247px;
   box-sizing: border-box;
   border-radius: 5px;
   margin-bottom: 5px;
