@@ -1,5 +1,7 @@
 package kr.or.skb.taste.controller;
 
+import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +73,17 @@ public class TasteController {
 	@GetMapping(value="/delete/{tasteNo}")
 	public int deleteTaste(@PathVariable int tasteNo) {
 		System.out.println("tasteNo - controller: "+tasteNo);
-		return 0;
+		System.out.println("controller delete");
+		Taste taste = tasteService.delete(tasteNo);
+		if(taste != null) {
+			String savepath = root+"taste/";
+			File file = new File(savepath + taste.getTasteFilepath());
+			file.delete();
+			
+			return 1;
+		}else {
+			return 0;			
+		}
 	}
 
 	//시음회 게시글 수정

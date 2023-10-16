@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
@@ -65,6 +66,18 @@ public class TasteService {
 		//2. 회원번호를 사용하여 insert 
 		return tasteDao.insertReservation(r);
 
+	}
+
+	//시음회 삭제
+	@Transactional
+	public Taste delete(int tasteNo) {
+		System.out.println("service delete로 넘어옴");
+		Taste taste = tasteDao.selectOneTaste(tasteNo);
+		int result = tasteDao.deleteTaste(tasteNo);
+		if(result > 0) {
+			return taste;
+		}
+		return null;
 	}
 	
 }

@@ -25,6 +25,9 @@ public interface TasteDao {
 	//시음회 예약 등록
 	int insertReservation(Reservation r);
 
+	//시음회 삭제
+	int deleteTaste(int tasteNo);
+
 	
 
 }
