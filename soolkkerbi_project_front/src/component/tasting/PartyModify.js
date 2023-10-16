@@ -42,7 +42,7 @@ const PartyModify = () => {
       })
       .then((res) => {
         if (res.data === 1) {
-          navigate("/taste");
+          navigate("/tasting");
         } else {
           Swal.fire("수정 중 문제가 발생했습니다. 잠시후 다시 시도해주세요");
         }
@@ -68,8 +68,6 @@ const PartyModify = () => {
         setThumbnail={setThumbnail}
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
-        // tasteNo={tasteNo}
-        // setTasteNo={setTasteNo}
         buttonEvent={modify}
 
         type="modify"

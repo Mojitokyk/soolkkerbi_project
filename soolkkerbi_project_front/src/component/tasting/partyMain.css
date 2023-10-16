@@ -75,8 +75,15 @@
 }
 .taste-item-img {
   border: 1px solid #ccc;
+  /* height: 247px; */
+  box-sizing: border-box;
   border-radius: 5px;
   margin-bottom: 5px;
+}
+.taste-item-img>img{
+  width: 310px;
+  height: 247px;
+  object-fit: contain;
 }
 .taste-item-title {
   font-size: 1.2em;
