@@ -13,9 +13,7 @@ const ManageQnaList = (props) => {
   const [answerStatus, setAnswerStatus] = useState("1");
 
   const selectStatus = (e) => {
-    console.log("select 옵션 변경");
     const changeValue = e.currentTarget.value;
-    console.log(changeValue);
     setAnswerStatus(changeValue);
   };
 
@@ -24,7 +22,6 @@ const ManageQnaList = (props) => {
     axios
       .get("/qna/adminList/" + reqPage + "/" + answerStatus) //get메서드 사용
       .then((res) => {
-        console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setQnaList(res.data.qnaList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
         setPageInfo(res.data.pi); //res.data의 'pi'key의 값을 setPageInfo에 넣음
       })

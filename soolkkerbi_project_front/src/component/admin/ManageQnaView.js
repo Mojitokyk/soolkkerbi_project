@@ -22,7 +22,6 @@ const ManageQnaView = (props) => {
     axios
       .get("/qna/view/" + qnaNo)
       .then((res) => {
-        console.log(res.data);
         setQna(res.data);
       })
       .catch((res) => {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import kr.or.skb.PageInfo;
 import kr.or.skb.review.model.vo.Review;
 import kr.or.skb.review.model.vo.ReviewData;
 import kr.or.skb.review.model.vo.ReviewListData;
@@ -24,5 +25,9 @@ public interface ReviewDao {
 	int updateCount(int reviewNo);
 
 	int reviewCount(int productNo);
+
+	int totalCount3(int reqPage);
+
+	List selectAllReview(PageInfo pi);
 	
 }

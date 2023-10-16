@@ -57,4 +57,30 @@
   <select id="reviewCount" resultType="int">
   	select count(*) from review where review_product_no=#{productNo}
   </select>
+  
+  <select id="totalCount3" resultType="int">
+  	select count(*) from review
+  </select>
+  
+  <select id="selectAllReview" resultType="review">
+	select * from
+	    (select 
+	        rownum as rnum, r.*
+	    from    
+	        (select 
+	            review_no, 
+	            review_member_no, 
+	            review_product_no, 
+	            review_title, 
+	            review_content, 
+	            review_rate, 
+	            review_read_count, 
+	            review_date, 
+	            member_id as review_member_id,
+	            product_name
+	        from 
+	            review full join member on (review_member_no = member_no) join product on (review_product_no = product_no)
+	        order by review_date desc) r)
+	where rnum between #{start} and #{end}
+  </select>
 </mapper>

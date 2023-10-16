@@ -42,7 +42,7 @@ const MyInfo = (props) => {
   };
   return (
     <div className="mypage-content-warp">
-      <div className="mypage-content-title">내 정보</div>
+      <div className="mypage-content-title">회원정보 수정</div>
       <table className="mypage-info-tbl">
         <tbody>
           <tr>
