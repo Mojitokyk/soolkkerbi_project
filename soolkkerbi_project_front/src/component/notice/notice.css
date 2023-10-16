@@ -176,3 +176,14 @@
   width: 100px;
   font-family: ns-b;
 }
+
+/*quill에디터에서 글씨 크기를 수정하여도 적용되지 않으므로, 직접 css에 설정*/
+.ql-size-small {
+  font-size: 0.75em;
+}
+.ql-size-large {
+  font-size: 1.5em;
+}
+.ql-size-huge {
+  font-size: 2.5em;
+}

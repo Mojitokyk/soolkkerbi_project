@@ -13,13 +13,14 @@ public interface TasteDao {
 
 	int totalCount();
 
+	//시음회 목록 조회
 	List selectPartyList(PageInfo pi);
+
+	//시음회 등록
+	int insertTaste(Taste t);
 
 	//시음회 게시글 상세보기
 	Taste selectOneTaste(int tasteNo);
-
-
-	int insertTaste(Taste t);
 
 	//시음회 예약 등록
 	int insertReservation(Reservation r);
