@@ -34,7 +34,9 @@ const PartyMain = (props) => {
 
   return (
     <div className="party-all-wrap">
-      <div className="party-title">시음회</div>
+      <div className="party-title">
+        <h2>시음회</h2>
+      </div>
       <Routes>
         <Route path="reservationCalendar" element={<ReservationCalendar />} />
         <Route path="reservationConfirm" element={<ReservationConfirm />} />

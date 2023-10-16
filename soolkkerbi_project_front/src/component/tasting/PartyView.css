@@ -26,9 +26,12 @@
 .taste-view-detail {
   text-align: center;
   min-height: 300px;
-  padding-top: 50px;
-  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
   font-size: 1.1em;
+}
+.taste-view-detail > p > img {
+  /* width: 100%; */
 }
 .guide-party-date {
   text-align: center;

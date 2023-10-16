@@ -68,6 +68,12 @@ public class TasteService {
 
 	}
 
+	//시음회 수정
+	public int modify(Taste t) {
+		//System.out.println(t);
+		return tasteDao.modify(t);
+	}
+	
 	//시음회 삭제
 	@Transactional
 	public Taste delete(int tasteNo) {
