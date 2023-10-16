@@ -53,5 +53,15 @@
 	<insert id="insertReservation">
 		insert into reservation values(reservation_seq.nextval, #{reservationMemberNo}, #{reservationTasteNo}, #{reservationDate}, #{reservationStringNo}, 1)
 	</insert>
+	
+	<update id="modify">
+	update taste set 
+	        taste_start=#{tasteStart},
+	        taste_end=#{tasteEnd},
+			taste_title = #{tasteTitle},
+			taste_content = #{tasteContent},
+			taste_Filepath =#{tasteFilepath}
+		where taste_no = #{tasteNo}
+	</update>
 
 </mapper>

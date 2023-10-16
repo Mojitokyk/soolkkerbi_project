@@ -11,7 +11,18 @@ const MemberChangePw = (props) => {
   const [currPw, setCurrPw] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
+  const [ReqPwMsg, setReqPwMsg]= useState(""); 
   const token = window.localStorage.getItem("token");
+
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+  const pwReqCheck = () => {
+    if (!passwordRegEx.test(memberPw)) {
+      setReqPwMsg("비밀번호는 소문자,대문자,숫자 8~20글자 입니다.");
+    } else {
+      setReqPwMsg("");
+    }
+  };
+
   const pwCheck = () => {
     axios
       .post(
@@ -84,6 +95,8 @@ const MemberChangePw = (props) => {
                     data={memberPw}
                     setData={setMemberPw}
                     content="memberPw"
+                    //CheckMsg={ReqPwMsg}
+                    blurEvent={pwReqCheck}
                   />
                 </div>
                 <div>

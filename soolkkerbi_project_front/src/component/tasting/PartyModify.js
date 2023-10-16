@@ -2,32 +2,34 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import PartyFrm from "./PartyFrm";
 
 const PartyModify = () => {
   const location = useLocation();
   const taste = location.state.taste;
   console.log(taste);
 
-  const [tasteTitle, setTasteTitle] = useState("");
+  const [tasteTitle, setTasteTitle] = useState(taste.tasteTitle);
     const [thumbnail, setThumbnail] = useState({});
-    const [tasteContent, setTasteContent] = useState("");
-    const [tasteStart, setTasteStart] = useState(null);
-    const [tasteEnd, setTasteEnd] = useState(null);
-    const [tasteFilepath, setTasteFilepath] = useState(null);
+    const [tasteContent, setTasteContent] = useState(taste.tasteContent);
+    const [tasteStart, setTasteStart] = useState(taste.tasteStart);
+    const [tasteEnd, setTasteEnd] = useState(taste.tasteEnd);
+    const [tasteFilepath, setTasteFilepath] = useState(taste.tasteFilepath);
     const navigate = useNavigate(); //글쓰기 버튼 클릭시 동작할 함수(서버에 insert요청함수)
-    const write = () => {
+    const modify = () => {
     console.log(tasteTitle);
     console.log(thumbnail);
     console.log(tasteContent);
-    if (tasteTitle !== "" && tasteContent !== "") {  
-      //기본적인 문자열 또는 숫자데이터를 전송하는 경우 json전송
-      //파일이 포함되어있는 경우 => FormData
+    console.log(tasteFilepath);
+    
       const form = new FormData();
       form.append("tasteStart",tasteStart);
       form.append("tasteEnd",tasteEnd);
       form.append("tasteTitle", tasteTitle);
       form.append("tasteContent", tasteContent);
+      form.append("tasteFilepath",tasteFilepath);
       form.append("thumbnail", thumbnail);
+      form.append("tasteNo",taste.tasteNo);
 
       const token = window.localStorage.getItem("token");
     axios
@@ -40,7 +42,7 @@ const PartyModify = () => {
       })
       .then((res) => {
         if (res.data === 1) {
-          navigate("/board");
+          navigate("/taste");
         } else {
           Swal.fire("수정 중 문제가 발생했습니다. 잠시후 다시 시도해주세요");
         }
@@ -48,7 +50,7 @@ const PartyModify = () => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  };
+ 
 };
   return (
     <div>
@@ -66,7 +68,9 @@ const PartyModify = () => {
         setThumbnail={setThumbnail}
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
-        buttonEvent={write}
+        // tasteNo={tasteNo}
+        // setTasteNo={setTasteNo}
+        buttonEvent={modify}
 
         type="modify"
       />

@@ -68,7 +68,6 @@ const PartyWrite =()=>{
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
         buttonEvent={write}
-
         type="write"
       />
     </div>

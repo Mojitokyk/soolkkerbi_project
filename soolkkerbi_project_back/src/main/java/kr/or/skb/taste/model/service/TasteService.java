@@ -66,5 +66,10 @@ public class TasteService {
 		return tasteDao.insertReservation(r);
 
 	}
+
+	public int modify(Taste t) {
+		//System.out.println(t);
+		return tasteDao.modify(t);
+	}
 	
 }
