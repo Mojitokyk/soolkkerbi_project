@@ -106,3 +106,33 @@
 .product-item-cart > .soldout {
   color: #ccc;
 }
+
+/*품절*/
+.sold-out-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.sold-out {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 235.01px;
+  height: 315px;
+  display: table;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+}
+.sold-out-image {
+  display: table-cell;
+  vertical-align: middle;
+}
+.sold-out-image > img {
+  width: 100%;
+}
+.sold-out > p {
+  display: table-cell;
+  vertical-align: middle;
+}

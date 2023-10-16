@@ -14,7 +14,6 @@ const CancelPay = () => {
     axios
       .get("/pay/readAllCancelPay/" + reqPage)
       .then((res) => {
-        console.log(res.data);
         setPayList(res.data.list);
         setPageInfo(res.data.pi);
       })

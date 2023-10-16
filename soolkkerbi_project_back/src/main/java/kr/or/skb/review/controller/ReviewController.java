@@ -72,4 +72,9 @@ public class ReviewController {
 		int reviewNo = review.getReviewNo();
 		return reviewService.updateCount(reviewNo);
 	}
+	
+	@GetMapping(value="/readAllReview/{reqPage}")
+	public Map readAllReview(@PathVariable int reqPage) {
+		return reviewService.readAllReview(reqPage);
+	}
 }

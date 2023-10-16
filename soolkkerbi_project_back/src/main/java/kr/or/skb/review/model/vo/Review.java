@@ -21,4 +21,5 @@ public class Review {
 	private String reviewDate;
 	private String productName;
 	private String memberName;
+	private String reviewMemberId;
 }

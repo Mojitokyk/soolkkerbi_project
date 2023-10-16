@@ -2,6 +2,7 @@ import Input from "../util/InputForm";
 import { Button1 } from "../util/Buttons";
 import { useState } from "react";
 import TextEditor from "../util/TextEditor";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PartyFrm = (props) => {
   const tasteStart = props.tasteStart;
@@ -22,6 +23,7 @@ const PartyFrm = (props) => {
   const type = props.type;
   const delFileNo = props.delFileNo;
   const setDelFileNo = props.setDelFileNo;
+  const navigate = useNavigate();
 
   const thumbnailChange = (e) => {
     const files = e.currentTarget.files; //객체임
@@ -48,6 +50,11 @@ const PartyFrm = (props) => {
   //     }
   //     setNewFileList(arr);
   //   };
+
+  const toList = () => {
+    return navigate("*");
+  };
+
   return (
     <div className="taste-frm-wrap">
       <div className="taste-frm-top">
@@ -109,11 +116,12 @@ const PartyFrm = (props) => {
                 </td>
                 <td>
                   <input
+                    className="input-form"
                     type="file"
                     id="thumbnail"
                     accept="image/*"
                     onChange={thumbnailChange}
-                  />{" "}
+                  />
                   {/* image/* : 이미지파일만 가능하게 */}
                 </td>
               </tr>
@@ -173,6 +181,7 @@ const PartyFrm = (props) => {
         </textarea> */}
       </div>
       <div className="taste-btn-box">
+        <Button1 text="목록으로" clickEvent={toList} />
         {type === "modify" ? (
           <Button1 text="수정하기" clickEvent={buttonEvent} />
         ) : (

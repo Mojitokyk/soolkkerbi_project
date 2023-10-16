@@ -80,7 +80,7 @@
   border-radius: 5px;
   margin-bottom: 5px;
 }
-.taste-item-img>img{
+.taste-item-img > img {
   width: 310px;
   height: 247px;
   object-fit: contain;
@@ -97,4 +97,63 @@
 }
 .taste-page {
   clear: left;
+}
+
+/*시음회 등록*/
+.taste-frm-whole-wrap {
+  width: 1000px;
+  margin: 0 auto;
+}
+.taste-frm-title {
+  padding-left: 10px;
+  font-family: ns-b;
+  font-size: 1.2em;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  padding-left: 10px;
+}
+.taste-thumbnail {
+  width: 35%;
+  text-align: center;
+  object-fit: contain;
+  float: left;
+  padding: 10px;
+}
+.taste-info {
+  float: right;
+  width: 60%;
+  padding: 41px 0;
+}
+.taste-content-box {
+  clear: both;
+}
+.taste-info-tbl {
+  width: 100%;
+  border-collapse: collapse;
+}
+.taste-info-tbl > tbody > tr > td {
+  text-align: center;
+}
+.taste-info-tbl > tbody > tr > :first-child {
+  width: 30%;
+}
+.teste-info-tbl > tbody > tr > :last-child {
+  width: 70%;
+}
+.taste-info-tbl > tbody > :last-child > :last-child > input {
+  border-bottom: 1px solid #ccc;
+}
+.taste-content-box {
+  margin-bottom: 5px;
+}
+.taste-btn-box {
+  text-align: right;
+}
+.taste-btn-box > button {
+  width: 100px;
+  font-family: ns-b;
+}
+.taste-btn-box > :first-child {
+  margin-right: 10px;
 }

@@ -21,7 +21,7 @@ const ReadAllMember = () => {
 
   return (
     <div className="admin-content-wrap">
-      <div className="admin-content-title">전체회원목록</div>
+      <div className="admin-content-title">전체회원 조회</div>
       <div className="admin-content-tbl">
         <table>
           <thead>

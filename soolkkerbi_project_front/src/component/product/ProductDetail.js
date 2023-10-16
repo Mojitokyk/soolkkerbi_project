@@ -222,7 +222,15 @@ const ProductDetail = (props) => {
           {product.productFilepath === null ? (
             <img src="/image/product_img/no_image.png" />
           ) : product.productStock === 0 ? (
-            <img src="/image/product_img/sold_out.png" />
+            // <img src="/image/product_img/sold_out.png" />
+            <div className="detail-sold-out-wrap">
+              <div className="detail-sold-out-image">
+                <img src={"/product/" + product.productFilepath} />
+              </div>
+              <div className="detail-sold-out">
+                <p>SOLD OUT</p>
+              </div>
+            </div>
           ) : (
             <img src={"/product/" + product.productFilepath} />
           )}
