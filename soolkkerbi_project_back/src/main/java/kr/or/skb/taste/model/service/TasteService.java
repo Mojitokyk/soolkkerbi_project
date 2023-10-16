@@ -26,6 +26,7 @@ public class TasteService {
 	private Pagination pagination;
 	@Autowired private MemberDao memberDao;
 	
+	//시음회 목록 조회
 	public Map partyList(int reqPage) {
 		// 게시물조회 ,페이징에 필요한 데이터를 취합
 		int numPerPage = 12; //한페이지당 게시물수
@@ -41,18 +42,19 @@ public class TasteService {
 		
 	}
 	
-	//시음회 게시글 상세보기
-	public Taste selectOneTaste(int tasteNo) {
-		return tasteDao.selectOneTaste(tasteNo);
-	}
-
-
+	//시음회 등록
 	public int insertTaste(Taste t) {
 		Member member = memberDao.selectOneMember(t.getMemderId());
 		t.setTasteMemberNo(member.getMemberNo());
 		int result = tasteDao.insertTaste(t);
 		return result;
 	}
+
+	//시음회 게시글 상세보기
+	public Taste selectOneTaste(int tasteNo) {
+		return tasteDao.selectOneTaste(tasteNo);
+	}
+
 	//시음회 예약 등록
 	public int insertReservation(Reservation r) {
 		//1. 회원번호를 가져옴

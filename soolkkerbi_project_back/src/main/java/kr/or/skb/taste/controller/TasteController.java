@@ -32,11 +32,35 @@ public class TasteController {
 	@Value("${file.root}")
 	private String root;
 	
+	//시음회 목록 조회
 	@GetMapping(value = "/list/{reqPage}")
 	public Map list(@PathVariable int reqPage) {
 		Map map = tasteService.partyList(reqPage);
 		return map;
+	}
+	
+	//시음회 등록
+	@PostMapping(value = "/insert")
+	public int insertTaste(@ModelAttribute Taste t, @ModelAttribute MultipartFile thumbnail, @RequestAttribute String memberId ) {
+		t.setMemderId(memberId);
+		String savepath = root + "taste/";
+		if (thumbnail != null) {
+			String filename = thumbnail.getOriginalFilename();
+			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
+			t.setTasteFilepath(filepath);
 
+		}
+		System.out.println(t);
+		int result = tasteService.insertTaste(t);
+		return result;
+	}
+	//시음회 등록 - 텍스트 에디터 파일 업로드
+	@PostMapping(value="/tasteImg")
+	public String tasteImg(@ModelAttribute MultipartFile image) {
+		String savepath = root+"taste/editor/";
+		String filename = image.getOriginalFilename();
+		String filepath = fileUtil.getFilepath(savepath, filename, image);
+		return "/taste/editor/"+filepath;
 	}
 	
 	//시음회 게시글 상세보기
@@ -59,20 +83,6 @@ public class TasteController {
 		return 0;
 	}
 
-	@PostMapping(value = "/insert")
-	public int insertTaste(@ModelAttribute Taste t,@ModelAttribute MultipartFile thumbnail, @RequestAttribute String memberId ) {
-		t.setMemderId(memberId);
-		String savepath = root + "taste/";
-		if (thumbnail != null) {
-			String filename = thumbnail.getOriginalFilename();
-			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
-			t.setTasteFilepath(filepath);
-
-		}
-		System.out.println(t);
-		int result = tasteService.insertTaste(t);
-		return result;
-	}
 	
 	//시음회 예약 등록
 	@PostMapping(value="/insertReservation")
@@ -81,7 +91,7 @@ public class TasteController {
 		r.setReservationMemberId(memberId);
 		System.out.println("tasteController - rservation: "+r);
 		int result = tasteService.insertReservation(r);
-		return 0;
+		return result;
 
 	}
 	@PostMapping(value="/modify")
