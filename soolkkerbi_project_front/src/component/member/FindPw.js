@@ -21,7 +21,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-// const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
+//const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 
 // module.exports = {
 //     // Other rules...
@@ -51,13 +51,17 @@ export default function FindPw() {
   const [CheckPwMsg, setCheckPWMsg] = React.useState("");
 
   const [auth, setAuth] = React.useState("");
+  const [checkauth, setCheckAuth]= React.useState("");
   const member = { memberId, memberEmail };
   const memberPwChange={memberId,memberPw};
 
   const pwCheck = () => {
+    const passwordReg = new RegExp(
+        '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])(?=.*[0-9])[A-Za-z\\d$@$!%*?&]{8,45}'
+      );
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비밀번호입력 재확인 해주세욥!"); //비번도 정규표현식 완료해얗
-    } else {
+      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
+    } else if(memberPw !== memberPwRe && passwordReg.test(memberEmail)) {
       setCheckPWMsg("");
     }
   };
@@ -90,10 +94,12 @@ export default function FindPw() {
   };
   const sendEmail=()=>{
     const memberEmail = member.memberEmail;
+    console.log(memberEmail)
     axios
-        .post("/member/auth", memberEmail)
+        .post("/member/auth", {memberEmail})
         .then((res) => {  
             console.log(res.data);
+            setCheckAuth(res.data);
             setIsCodeShow(true);
         })
         .catch((res) => {
@@ -135,8 +141,12 @@ export default function FindPw() {
   // }
   }
   const authcheck=()=>{
-    setChangeResult(true);
-    navigate("/login");
+    if(auth === checkauth){
+      setChangeResult(true);
+      
+    }else{
+      Swal.fire("인증번호를 다시 확인해 주세요!")
+    }
   }
 const changePw=()=>{
   // const pw_check = /^[a-z]+[a-z0-9]{5,19}$/g;
@@ -157,7 +167,7 @@ const changePw=()=>{
           setMemberPw("");
           setMemberPwRe("");
           Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!")
-          navigate("/login")
+          setOpen(false);
         } else {
           Swal.fire({
             icon: "warning",
@@ -233,13 +243,14 @@ const changePw=()=>{
               <Button3 text="인증번호받기" clickEvent={sendEmail} />
             </div>
             <div className={'pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red]'}>
-              {isCodeShow && <Timer />}
+              {isCodeShow  ?<Timer />:""}
             </div>
             
           </div>
           <div className="authclear">
-              <Button1 text="인증하기" clickEvent={authcheck}/>
+              <Button1 text="인증하기"  clickEvent={()=>{authcheck(auth, checkauth)}}/>
             </div>
+           
         </Box>
           ) : (
             <Box sx={style}>

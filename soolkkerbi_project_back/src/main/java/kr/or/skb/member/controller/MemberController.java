@@ -102,8 +102,10 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "/auth")
-	public String authMail(@RequestBody String memberEmail) {
-		String authCode = emailSender.authMail(memberEmail);
+	public String authMail(@RequestBody Member member) {
+		System.out.println(member.getMemberEmail());
+		String authCode = emailSender.authMail(member.getMemberEmail());
+		System.out.println(authCode);
 		return authCode;
 	}
 }

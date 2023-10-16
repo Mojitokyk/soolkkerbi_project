@@ -35,6 +35,8 @@ const Join = () => {
   const [CheckIdMsg, setCheckIdMsg] = useState("");
   // const [okcheckId, setOkCheckId] = useState(""); 만족시 파란색으로 사용가능?
   const [CheckPwMsg, setCheckPWMsg] = useState("");
+  const [ReqPwMsg, setReqPwMsg]= useState(""); 
+  const [CheckEmailMsg,setCheckEmailMsg] = useState("");
   const navigate = useNavigate();
   const idCheck = () => {
     const idReg = /^[a-zA-Z0-9]{4,8}$/;
@@ -59,20 +61,32 @@ const Join = () => {
       setCheckIdMsg("");
     }
   };
-  // const emailReg = new RegExp('[a-zA-Z0-9.-]\\.[a-zA-Z]{2,6}$');
-  // const passwordReg = new RegExp(
-  //   '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])(?=.*[0-9])[A-Za-z\\d$@$!%*?&]{8,45}'
-  // );
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");//비번도 정규표현식 완료해얗
-    } else {
+      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
+    } else{
       setCheckPWMsg("");
     }
   };
+  const pwReqCheck = () => {
+    if (!passwordRegEx.test(memberPw)) {
+      setReqPwMsg("비밀번호는 소문자,대문자,숫자 8~20글자 입니다.");
+    } else {
+      setReqPwMsg("");
+    }
+  };
 
+  const checkEmail =()=>{
+    if (!emailRegEx.test(memberEmail)) {
+      setCheckEmailMsg("아메일 형식에 맞게 작성해주세요");
+    } else{
+      setCheckEmailMsg("");
+    }
+  }
   const join = () => {
-    if (CheckIdMsg === "" && CheckPwMsg === "") {
+    if (CheckIdMsg === "" && CheckPwMsg === "" && CheckEmailMsg === "" && ReqPwMsg === "") {
       const member = {
         memberId,
         memberPw,
@@ -117,6 +131,8 @@ const Join = () => {
         type="passWord"
         content="memberPw"
         label="비밀번호"
+        CheckMsg={ReqPwMsg}
+        blurEvent={pwReqCheck}
       />
       <JoinInputWrap
         data={memberPwRe}
@@ -147,6 +163,8 @@ const Join = () => {
         type="text"
         content="memberEmail"
         label="이메일"
+        CheckMsg={CheckEmailMsg}
+        blurEvent={checkEmail}
       />
       <div className="join-btn-box">
          <Button1 text="이용약관 확인" clickEvent={handleOpen}></Button1>
