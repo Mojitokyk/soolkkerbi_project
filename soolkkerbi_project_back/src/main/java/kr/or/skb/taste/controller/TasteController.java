@@ -1,6 +1,8 @@
 package kr.or.skb.taste.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -86,12 +88,6 @@ public class TasteController {
 		}
 	}
 
-	//시음회 게시글 수정
-	@PostMapping(value="/modify")
-	public int modifyTaste() {
-		return 0;
-	}
-
 	
 	//시음회 예약 등록
 	@PostMapping(value="/insertReservation")
@@ -102,5 +98,34 @@ public class TasteController {
 		int result = tasteService.insertReservation(r);
 		return result;
 
+	}
+	
+	
+	//시음회 게시글 수정
+	@PostMapping(value="/modify")
+	public int modify(@ModelAttribute Taste t,@ModelAttribute MultipartFile thumbnail) {
+		System.out.println(t.getTasteTitle());
+		System.out.println(t.getTasteContent());
+		System.out.println(t.getTasteFilepath());
+		System.out.println(thumbnail);
+		//Board table 업데이트, 
+		//썸네일이 들어오면 -> 썸네일 교체, 썸네일 없으면 기존 썸네일로 덮어쓰기
+		//Board_file 테이블 업데이트 -> 삭제한게 있으면 삭제, 추가한 거 있으면 insert
+		//삭제한 파일 있으면 파일 물리적 삭제
+		if(t.getTasteFilepath().equals("null")) {
+			t.setTasteFilepath(null);
+		}
+		String savepath = root+""
+				+ "taste/";
+		if(thumbnail != null) {
+			//System.out.println(thumbnail.getOriginalFilename());
+			String filepath = fileUtil.getFilepath(savepath, thumbnail.getOriginalFilename(), thumbnail);
+			t.setTasteFilepath(filepath);
+		}
+		System.out.println(t);
+		int  changeList = tasteService.modify(t);
+	   return changeList;
+		
+		
 	}
 }
