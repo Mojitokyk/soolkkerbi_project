@@ -168,7 +168,7 @@ const Pay = (props) => {
               <p>서울시 영등포구 선유동2로 57 이레빌딩 19층</p>
               <p>07212</p>
             </div>
-            <h3>방문 일자</h3>
+            <h3>방문 일자 및 시간</h3>
             <Input
               type="text"
               data={pickupDate}
