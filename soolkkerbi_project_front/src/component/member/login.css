@@ -69,3 +69,7 @@
 .search-box > :nth-child(3) > button:hover {
   background-color: #fff7f9;
 }
+
+.login-btn-box > button {
+  font-family: ns-b;
+}

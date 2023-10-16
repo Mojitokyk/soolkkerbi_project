@@ -111,6 +111,7 @@
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
+  padding-left: 10px;
 }
 .taste-thumbnail {
   width: 35%;
@@ -142,10 +143,6 @@
 }
 .taste-info-tbl > tbody > :last-child > :last-child > input {
   border-bottom: 1px solid #ccc;
-}
-.input-form {
-  border: none;
-  border-top: 1px solid #ccc;
 }
 .taste-content-box {
   margin-bottom: 5px;
