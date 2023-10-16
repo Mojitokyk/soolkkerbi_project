@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
     requireTLS: true,
     auth: {
         user: 'dldbsk123012301230@gmail.com', // .env 파일 GMAIL_ID 변수 = gmail 주소
-        pass: '8740sass(^^)' // .env 파일 GMAIL_PASSWORD 변수 = gmail 패스워드 혹은 2단계 앱인증 사용시 앱 비밀번호
+        pass: 'tiowpkhgaqjcrfag' // .env 파일 GMAIL_PASSWORD 변수 = gmail 패스워드 혹은 2단계 앱인증 사용시 앱 비밀번호
     }
 })
 
