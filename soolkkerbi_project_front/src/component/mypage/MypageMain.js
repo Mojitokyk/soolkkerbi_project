@@ -31,7 +31,12 @@ const MypageMain = (props) => {
       .then((res) => {
         //console.log(res.data);
         setMember(res.data);
-        document.querySelectorAll(".my-side a")[0].click();
+        //console.log(res.data.memberLevel);
+        //document.querySelectorAll(".my-side a")[0].click();
+         //관리자페이지에서 회원비번변경요청시 바로 비번변경페이지로이동하기위함!!
+        if(res.data.memberLevel===2){
+          document.querySelectorAll(".my-side a")[0].click();
+        }
       })
       .catch((res) => {
         if (res.response.status === 403) {

@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import ManageQna from "./ManageQna";
 import ManageReview from "./ManageReview";
+import MemberChangePw from "../mypage/MemberChangePw";
 
 const AdminMain = (props) => {
   const isLogin = props.isLogin;

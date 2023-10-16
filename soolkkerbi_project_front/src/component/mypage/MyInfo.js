@@ -2,7 +2,7 @@ import axios from "axios";
 import { Button1, Button2, Button3 } from "../util/Buttons";
 import Input from "../util/InputForm";
 import "./myInfo.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import MemberChangePw from "./MemberChangePw";
 
@@ -41,7 +41,11 @@ const MyInfo = (props) => {
     navigate("/mypage/changepw");
   };
   const adminchangePw = () => {
-    navigate("/changepw");
+    <MemberChangePw setMember={setMember}
+    setIsLogin={setIsLogin}
+    member={member}/>
+    //navigate("/changepw",{replace: true});
+    //document.querySelectorAll(".my-side a")[5].click();
   };
   
   return (
@@ -79,15 +83,7 @@ const MyInfo = (props) => {
       </table>
 
       <div className="changepw-btn">
-      {member.memberType === 1 ? (
-          <Button2
-          text="비밀번호 변경하러가기"
-           clickEvent={changePw}
-          setMember={setMember}
-          setIsLogin={setIsLogin}
-          member={member}
-        /> 
-        ) : (
+      {/* {member.memberType === 1 ? (
           <Button2
           text="비밀번호 변경하러가기"
            clickEvent={adminchangePw}
@@ -95,14 +91,22 @@ const MyInfo = (props) => {
           setIsLogin={setIsLogin}
           member={member}
         /> 
-        )}
-        {/* <Button2
+        ) : (
+          <Button2
           text="비밀번호 변경하러가기"
            clickEvent={changePw}
           setMember={setMember}
           setIsLogin={setIsLogin}
           member={member}
-        /> */}
+        /> 
+        )} */}
+        <Button2
+          text="비밀번호 변경하러가기"
+           clickEvent={changePw}
+          setMember={setMember}
+          setIsLogin={setIsLogin}
+          member={member}
+        />
       </div>
     </div>
   );
