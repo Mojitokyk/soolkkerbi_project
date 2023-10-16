@@ -37,6 +37,8 @@ const Join = () => {
   const [CheckPwMsg, setCheckPWMsg] = useState("");
   const [ReqPwMsg, setReqPwMsg]= useState(""); 
   const [CheckEmailMsg,setCheckEmailMsg] = useState("");
+  const [CheckNameMsg,setCheckNameMsg] = useState("");
+  const [CheckPhoneMsg,setCheckPhoneMsg] = useState("");
   const navigate = useNavigate();
   const idCheck = () => {
     const idReg = /^[a-zA-Z0-9]{4,8}$/;
@@ -62,7 +64,9 @@ const Join = () => {
     }
   };
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/
+  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+  const PhoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
+  const NameReg=/^[ㄱ-힣]+$/;
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
@@ -85,8 +89,22 @@ const Join = () => {
       setCheckEmailMsg("");
     }
   }
+  const checkName =()=>{
+    if (!NameReg.test(memberName)) {
+      setCheckNameMsg("이름은 한글만 기입해주세요");
+    } else{
+      setCheckNameMsg("");
+    }
+  }
+  const checkPhone =()=>{
+    if (!PhoneregExp.test(memberPhone)) {
+      setCheckPhoneMsg("000-0000-0000");
+    } else{
+      setCheckPhoneMsg("");
+    }
+  }
   const join = () => {
-    if (CheckIdMsg === "" && CheckPwMsg === "" && CheckEmailMsg === "" && ReqPwMsg === "") {
+    if (CheckIdMsg === "" && CheckPwMsg === "" && CheckEmailMsg === "" && ReqPwMsg === "" && CheckNameMsg === "" && CheckPhoneMsg === "") {
       const member = {
         memberId,
         memberPw,
@@ -149,6 +167,8 @@ const Join = () => {
         type="text"
         content="memberName"
         label="이름"
+        CheckMsg={CheckNameMsg}
+        blurEvent={checkName}
       />
       <JoinInputWrap
         data={memberPhone}
@@ -156,6 +176,8 @@ const Join = () => {
         type="text"
         content="setMemberPhone"
         label="전화번호"
+        CheckMsg={CheckPhoneMsg}
+        blurEvent={checkPhone}
       />
       <JoinInputWrap
         data={memberEmail}
