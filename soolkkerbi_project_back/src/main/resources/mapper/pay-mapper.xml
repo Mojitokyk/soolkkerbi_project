@@ -78,13 +78,57 @@
 	</delete>
 	
 	<select id="selectAllIncome" resultType="payIncome">
+		<!--
 		select 
-		    to_char(pay_date,'yyyy-mm-dd') as income_date,
-		    nvl(sum((select (pay_stock * pay_price) from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 1)),0) as takju,
-		    nvl(sum((select (pay_stock * pay_price) from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 2)),0) as yakju,
-		    nvl(sum((select (pay_stock * pay_price) from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 3)),0) as spirit,
-		    nvl(sum((select (pay_stock * pay_price) from pay p2 join product pro on (pay_product_no = product_no) where p2.pay_no = p1.pay_no and pro.product_case = 4)),0) as fruit
-		from pay p1 where pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') between #{start} and #{end} group by to_char(pay_date,'yyyy-mm-dd')order by 1
+		    to_char(b.dt, 'yyyy-mm-dd') as pay_date, 
+		    nvl(sum(a.takju), 0) as takju,
+		    nvl(sum(a.yakju), 0) as yakju,
+		    nvl(sum(a.spirit), 0) as spirit,
+		    nvl(sum(a.fruit), 0) as fruit
+		from (select 
+		        to_char(pay_date, 'yyyy-mm-dd') as pay_date,
+		        nvl(sum((select pay_stock * pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 1)), 0) as takju,
+		        nvl(sum((select pay_stock * pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 2)), 0) as yakju,
+		        nvl(sum((select pay_stock * pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 3)), 0) as spirit,
+		        nvl(sum((select pay_stock * pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 4)), 0) as fruit
+		      from pay p1
+		      where pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') between #{start} and #{end}
+		      group by to_char(pay_date, 'yyyy-mm-dd')) a,     
+		      (select to_date(#{start}) + level - 1 as dt 
+		       from dual 
+		       connect by level <= (to_date(#{end}) - to_date(#{start}) + 1)) b
+		where b.dt = a.pay_date(+)
+		group by to_char(b.dt, 'yyyy-mm-dd')
+		order by 1
+		-->
+		
+		select 
+		    to_char(pay_date,'yyyy-mm-dd') as pay_date,
+		    nvl(sum((select pay_stock*pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 1)),0) as takju,
+		    nvl(sum((select pay_stock*pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 2)),0) as yakju,
+		    nvl(sum((select pay_stock*pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 3)),0) as spirit,
+		    nvl(sum((select pay_stock*pay_price 
+		             from pay p2 join product pro on (pay_product_no = product_no) 
+		             where p2.pay_no = p1.pay_no and pro.product_case = 4)),0) as fruit
+		from pay p1 
+		where pay_status = 2 and to_char(pay_date,'yyyy-mm-dd') between #{start} and #{end}
+		group by to_char(pay_date,'yyyy-mm-dd') 
+		order by 1
+		  
 	</select>
 
 	<update id="cancelPay">
