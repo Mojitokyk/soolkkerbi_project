@@ -44,6 +44,10 @@
   color: #4f4f4f;
 }
 
+.admin-content-tbl > table > thead > tr > td {
+  color: #4f4f4f;
+}
+
 .searchDate-btnBox-wrap {
   width: 100%;
 }

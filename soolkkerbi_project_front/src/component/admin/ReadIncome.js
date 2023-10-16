@@ -51,7 +51,6 @@ const ReadIncome = () => {
     axios
       .post("/pay/readAllIncome", obj)
       .then((res) => {
-        console.log(res.data);
         setIncomeList(res.data);
       })
       .catch((res) => {
@@ -69,7 +68,6 @@ const ReadIncome = () => {
     axios
       .post("/pay/readAllIncome", obj)
       .then((res) => {
-        console.log(res.data);
         setIncomeList(res.data);
       })
       .catch((res) => {

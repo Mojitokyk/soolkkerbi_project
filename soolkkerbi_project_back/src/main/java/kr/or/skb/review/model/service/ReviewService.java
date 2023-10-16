@@ -67,4 +67,16 @@ public class ReviewService {
 		return reviewDao.updateCount(reviewNo);
 	}
 
+	public Map readAllReview(int reqPage) {
+		int totalCount = reviewDao.totalCount3(reqPage);
+		int numPerPage = 10;
+		int pageNaviSize = 5;
+		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
+		List reviewList = reviewDao.selectAllReview(pi);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", reviewList);
+		map.put("pi", pi);
+		return map;
+	}
+
 }
