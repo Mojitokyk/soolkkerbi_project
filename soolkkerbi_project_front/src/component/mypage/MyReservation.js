@@ -51,7 +51,7 @@ const MyReservation = (props) => {
             <td width={"40%"} >
             예약한 시음회
             </td>
-            <td width={"20%"}>예약날짜번경</td>
+            <td width={"20%"}>예약날짜변경</td>
             <td className="content-btn" width={"20%"}>취소</td>
           </tr>
         </thead>

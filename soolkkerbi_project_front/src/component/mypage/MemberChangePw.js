@@ -82,7 +82,7 @@ const MemberChangePw = (props) => {
   };
   return (
     <div className="mypage-content-warp">
-      <div className="mypage-content-title">비밀번호 번경</div>
+      <div className="mypage-content-title">비밀번호 변경</div>
       <div className="pw-auth">
         {IsPwauth ? (
           <>

@@ -40,6 +40,10 @@ const MyInfo = (props) => {
   const changePw = () => {
     navigate("/mypage/changepw");
   };
+  const adminchangePw = () => {
+    navigate("/changepw");
+  };
+  
   return (
     <div className="mypage-content-warp">
       <div className="mypage-content-title">내 정보</div>
@@ -75,13 +79,30 @@ const MyInfo = (props) => {
       </table>
 
       <div className="changepw-btn">
-        <Button2
+      {member.memberType === 1 ? (
+          <Button2
           text="비밀번호 변경하러가기"
-          clickEvent={changePw}
+           clickEvent={changePw}
           setMember={setMember}
           setIsLogin={setIsLogin}
           member={member}
-        />
+        /> 
+        ) : (
+          <Button2
+          text="비밀번호 변경하러가기"
+           clickEvent={adminchangePw}
+          setMember={setMember}
+          setIsLogin={setIsLogin}
+          member={member}
+        /> 
+        )}
+        {/* <Button2
+          text="비밀번호 변경하러가기"
+           clickEvent={changePw}
+          setMember={setMember}
+          setIsLogin={setIsLogin}
+          member={member}
+        /> */}
       </div>
     </div>
   );
