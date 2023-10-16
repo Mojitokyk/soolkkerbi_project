@@ -4,10 +4,10 @@ import { useState } from "react";
 import TextEditor from "../util/TextEditor";
 
 const PartyFrm = (props) => {
-  const tasteStart=props.tasteStart;
-  const setTasteStart=props.setTasteStart;
+  const tasteStart = props.tasteStart;
+  const setTasteStart = props.setTasteStart;
   const tasteEnd = props.tasteEnd;
-  const setTasteEnd =props.setTasteEnd;
+  const setTasteEnd = props.setTasteEnd;
   const tasteTitle = props.tasteTitle;
   const setTasteTitle = props.setTasteTitle;
   const tasteContent = props.tasteContent;
@@ -39,15 +39,15 @@ const PartyFrm = (props) => {
       setTasteFilepath(null);
     }
   };
-//   const changeFile = (e) => {
-//     const files = e.currentTarget.files;
-//     setBoardFile(files);
-//     const arr = new Array();
-//     for (let i = 0; i < files.length; i++) {
-//       arr.push(files[i].name);
-//     }
-//     setNewFileList(arr);
-//   };
+  //   const changeFile = (e) => {
+  //     const files = e.currentTarget.files;
+  //     setBoardFile(files);
+  //     const arr = new Array();
+  //     for (let i = 0; i < files.length; i++) {
+  //       arr.push(files[i].name);
+  //     }
+  //     setNewFileList(arr);
+  //   };
   return (
     <div className="taste-frm-wrap">
       <div className="taste-frm-top">
@@ -102,7 +102,7 @@ const PartyFrm = (props) => {
                   />
                 </td>
               </tr>
-              
+
               <tr>
                 <td>
                   <label htmlFor="thumbnail">썸네일</label>
@@ -161,7 +161,7 @@ const PartyFrm = (props) => {
         <TextEditor
           data={tasteContent}
           setData={setTasteContent}
-          url="/taste/contentImg"
+          url="/taste/tasteImg"
         />
         {/* <textarea
           onChange={(e) => {

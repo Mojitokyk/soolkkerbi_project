@@ -24,10 +24,12 @@ const PartyList = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage]); //바꾸고 싶은 정보넣기 reqPage떠라 달라지니가!!
+
   const navigate = useNavigate();
   const write = () => {
     navigate("write");
   };
+
   return (
     <div>
       {isLogin && member.memberLevel === 1 ? (
