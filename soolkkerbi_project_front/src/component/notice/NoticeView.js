@@ -76,7 +76,7 @@ const NoticeView = (props) => {
           <div>{notice.noticeDate}</div>
         </div>
         <div
-          className="notice-view-detail"
+          className="notice-view-detail .ql-editor"
           dangerouslySetInnerHTML={{ __html: notice.noticeContent }} //텍스트 에디터를 사용할 경우
         ></div>
       </div>
