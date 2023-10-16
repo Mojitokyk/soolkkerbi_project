@@ -195,4 +195,5 @@
 .detail-sold-out > p {
   display: table-cell;
   vertical-align: middle;
+  font-size: 1.75em;
 }
