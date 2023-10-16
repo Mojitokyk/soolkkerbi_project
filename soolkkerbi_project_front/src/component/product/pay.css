@@ -1,5 +1,6 @@
 .pay-all-wrap {
   background-color: #f0f0f0;
+  padding-bottom: 50px;
 }
 .pay-wrap {
   width: 1200px;
@@ -31,12 +32,16 @@
 }
 .pay-product-info-wrap,
 .pay-member-info-wrap,
-.pay-pickup-info-wrap,
 .pay-summary-wrap,
 .pay-info-wrap {
   background-color: #fff;
   padding-left: 20px;
   padding-bottom: 10px;
+}
+.pay-pickup-info-wrap {
+  background-color: #fff;
+  padding-left: 20px;
+  padding-bottom: 30px;
 }
 .pay-product-info-wrap > h3,
 .pay-member-info-wrap > h3,
