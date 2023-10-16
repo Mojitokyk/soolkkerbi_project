@@ -52,11 +52,11 @@ const PartyView = (props) => {
     }).then((res) => {
       if (res.isConfirmed) {
         axios
-          .get("/tast/delete/" + taste.tasteNo)
+          .get("/taste/delete/" + taste.tasteNo)
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
-              navigate("/taste");
+              navigate("/tasting");
             }
           })
           .catch((res) => {
