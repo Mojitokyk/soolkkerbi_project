@@ -68,7 +68,10 @@
   width: 15%;
 }
 .modal-review-content td {
-  padding: 20px 0;
+  padding: 20px;
+}
+.review-content > .quill .ql-editor {
+  height: 500px;
 }
 /*상세제목 인풋*/
 input[id="reviewTitle"] {
