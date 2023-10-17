@@ -38,7 +38,7 @@
  	
  	 <!-- 게시글 상세보기 -->
  	<select id="selectOneNotice" resultMap="getNotice">
- 		select notice_no, notice_title, member_name, notice_content, to_char(notice_date, 'yyyy-mm-dd') as notice_date from notice JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) where notice_no=#{noticeNo}
+ 		select notice_no, notice_title, member_name, notice_content, to_char(notice_date, 'yyyy-mm-dd') as notice_date from notice LEFT JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) where notice_no=#{noticeNo}
  	</select>
  	<!--  게시글 상세보기 - 파일 -->
 	<select id="selectOneNoticeFile" resultType="NoticeFile">
