@@ -79,4 +79,14 @@ public class ReviewService {
 		return map;
 	}
 
+	@Transactional
+	public int deleteReview(int reviewNo) {
+		return reviewDao.deleteReview(reviewNo);
+	}
+
+	@Transactional
+	public int modifyReview(Review r) {
+		return reviewDao.modifyMember(r);
+	}
+
 }

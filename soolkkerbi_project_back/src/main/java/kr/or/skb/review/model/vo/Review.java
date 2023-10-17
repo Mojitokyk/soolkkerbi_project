@@ -22,4 +22,5 @@ public class Review {
 	private String productName;
 	private String memberName;
 	private String reviewMemberId;
+	private int isLike;
 }

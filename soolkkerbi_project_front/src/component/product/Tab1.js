@@ -67,6 +67,7 @@ export default function BasicTabs({ product }) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
+        <div>수정</div>
         <div
           className="product-detail-info-content"
           dangerouslySetInnerHTML={{ __html: product.productInfo }}
