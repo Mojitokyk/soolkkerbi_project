@@ -203,27 +203,28 @@ const ProductDetail = (props) => {
   //상품삭제
   const deleteProduct = () => {
     console.log(product.productNo);
-    // Swal.fire({
-    //   icon: "question",
-    //   title: "삭제",
-    //   text: "상품을 삭제하시겠습니까?",
-    //   showCancelButton: true,
-    //   confirmButtonText: "삭제",
-    //   cancelButtonText: "취소",
-    // }).then((res) => {
-    //   const obj = new Object();
-    //   obj.productNo = product.productNo;
-    //   if (res.isConfirmed) {
-    //     axios
-    //       .post("/product/delete", obj)
-    //       .then((res) => {
-    //         console.log(res.data);
-    //       })
-    //       .catch((res) => {
-    //         console.log(res.response.status);
-    //       });
-    //   }
-    // });
+    Swal.fire({
+      icon: "question",
+      title: "삭제",
+      text: "상품을 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      const obj = new Object();
+      obj.productNo = product.productNo;
+      if (res.isConfirmed) {
+        axios
+          .post("/product/delete", obj)
+          .then((res) => {
+            //console.log(res.data);
+            navigate("/");
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    });
   };
 
   return (

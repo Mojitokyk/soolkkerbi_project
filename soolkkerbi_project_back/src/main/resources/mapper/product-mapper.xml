@@ -178,4 +178,8 @@
 		    order by dbms_random.value
 		) where rownum <![CDATA[<]]>  10
 	</select>
+	
+	<delete id="deleteProduct">
+		delete from product where product_no=#{productNo}
+	</delete>
 </mapper>
