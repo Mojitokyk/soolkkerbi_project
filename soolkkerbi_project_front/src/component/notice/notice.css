@@ -19,6 +19,7 @@
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
 .notice-list tr {
   height: 40px;
@@ -46,16 +47,22 @@
 }
 
 .notice-list > thead > tr {
-  background-color: #4f4f4f;
+  /* background-color: #4f4f4f; */
+  border-top: 1px solid #4f4f4f;
+  border-bottom: 1px solid #4f4f4f;
 }
 .notice-list > thead > tr th {
-  color: #fff;
+  color: #4f4f4f;
+  padding: 13px 5px;
 }
 .notice-list > tbody > tr {
-  border-bottom: 1px solid #ccc;
+  border: none;
+}
+.notice-list > tbody > tr > td {
+  padding: 13px 5px;
 }
 .notice-list > tbody > tr:hover {
-  background-color: #ccc;
+  background-color: #eee;
   cursor: pointer;
 }
 
