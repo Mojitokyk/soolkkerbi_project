@@ -55,11 +55,13 @@ public class ReservationService {
 		
 	}
 
+	@Transactional
 	public int changeDate(Reservation reservation) {
 		// TODO Auto-generated method stub
 		return reservationDao.changeDate(reservation);
 	}
 
+	@Transactional
 	public int delete(int reservationNo) {
 		// TODO Auto-generated method stub
 		return reservationDao.delete(reservationNo);

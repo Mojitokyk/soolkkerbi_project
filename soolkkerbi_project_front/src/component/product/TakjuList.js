@@ -14,7 +14,6 @@ const TakjuList = (props) => {
   const [member, setMember] = useState({});
   const token = window.localStorage.getItem("token");
   const navigate = useNavigate();
-
   useEffect(() => {
     axios
       .post("/product/takju/" + reqPage, null, {
@@ -27,17 +26,7 @@ const TakjuList = (props) => {
         setPageInfo(res.data.pi);
         setMember(res.data.member);
       })
-      .catch((res) => {
-        console.log(res.response.status);
-        if (res.respons.status === 500) {
-          Swal.fire({
-            icon: "error",
-            title: "서비스 요청 지연",
-            text: "서버요청이 지연되고 있습니다. 잠시 후 다시 시도해주세요.",
-          });
-          navigate("/");
-        }
-      });
+      .catch((res) => {});
   }, [reqPage]);
   return (
     <div className="product-all-wrap">
@@ -59,6 +48,7 @@ const TakjuList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setTakjuList}
         />
       </div>
     </div>

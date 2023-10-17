@@ -109,13 +109,19 @@ const PartyView = (props) => {
         {member.memberLevel === 1 ? (
           <>
             <Button1 text="수정" clickEvent={modifyTaste} />
-            <Button1 text="삭제" clickEvent={deleteTaste} />
+            <button className="taste-delete-btn" onClick={deleteTaste}>
+              삭제
+            </button>
           </>
         ) : (
           ""
         )}
         <Button1 text="목록으로" clickEvent={toList} />
-        <Button1 text="예약" clickEvent={reservation} />
+        {member.memberLevel === 2 ? (
+          <Button1 text="예약" clickEvent={reservation} />
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

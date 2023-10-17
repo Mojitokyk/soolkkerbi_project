@@ -32,13 +32,14 @@
 	<!-- 시음회 게시글 상세보기 -->
 	<select id="selectOneTaste" resultType="taste">
 		select taste_no,
+			member_id,
 			taste_member_no,
 			taste_title,
 			taste_content,
 			taste_filepath,
 			to_char(taste_end,'yyyy-mm-dd')as taste_end,
 			to_char(taste_start,'yyyy-mm-dd')as taste_start
-		 from taste join member on(taste_member_no = member_no) 
+		 from taste left join member on(taste_member_no = member_no) 
 		 where taste_no=#{memberNo}
 	</select>
 	

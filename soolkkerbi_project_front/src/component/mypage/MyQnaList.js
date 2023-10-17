@@ -51,11 +51,19 @@ const MyQnaList = (props) => {
             <th>답변상태</th>
           </tr>
         </thead>
-        <tbody>
-          {qnaList.map((qna, index) => {
-            return <QnaItem key={"qna" + index} qna={qna} />;
-          })}
-        </tbody>
+        {qnaList.length > 0 ? (
+          <tbody>
+            {qnaList.map((qna, index) => {
+              return <QnaItem key={"qna" + index} qna={qna} />;
+            })}
+          </tbody>
+        ) : (
+          <tbody>
+            <tr>
+              <td colSpan={4}>작성하신 1:1문의가 없습니다.</td>
+            </tr>
+          </tbody>
+        )}
       </table>
       {member.memberLevel === 2 ? (
         <div className="qna-write-btn">
@@ -64,13 +72,18 @@ const MyQnaList = (props) => {
       ) : (
         ""
       )}
-      <div className="qna-pagination">
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-        />
-      </div>
+      {qnaList.length > 0 ? (
+        <div className="qna-pagination">
+          <Pagination
+            reqPage={reqPage}
+            setReqPage={setReqPage}
+            pageInfo={pageInfo}
+            setList={setQnaList}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };

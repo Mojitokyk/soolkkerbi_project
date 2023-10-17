@@ -136,7 +136,9 @@
   padding: 0.5rem;
   font-family: ns-r;
 }
-
+.admin-content-tbl {
+  border-bottom: 1px solid #ddd;
+}
 .admin-content-tbl > table {
   width: 100%;
   border-spacing: 0;
@@ -145,11 +147,21 @@
 .admin-content-tbl > table > thead td {
   font-family: ns-b;
   border-bottom: 1px solid #4f4f4f;
+  border-top: 1px solid #4f4f4f;
 }
 
 .admin-content-tbl > table td {
   text-align: center;
-  padding: 20px 5px;
+  padding: 13px 5px;
+}
+.admin-content-tbl > table > tbody > tr:hover {
+  background-color: #eee;
+}
+.emptyList {
+  background-color: #eee;
+}
+.emptyList > img {
+  width: 40%;
 }
 
 .admin-paging-wrap {

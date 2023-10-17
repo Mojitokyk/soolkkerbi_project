@@ -6,8 +6,11 @@ import Swal from "sweetalert2";
 
 const MyWishList = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const token = window.localStorage.getItem("token");
-  const [product, setProduct] = useState([]);
+  const [productList, setProductList] = useState([]);
+  const [changeStatus, setChangeStatus] = useState(true);
+
   useEffect(() => {
     axios
       .get("/product/likeList", {
@@ -16,25 +19,26 @@ const MyWishList = (props) => {
         },
       })
       .then((res) => {
-        //console.log(res.data);
-        setProduct(res.data);
+        setProductList(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, []);
+  }, [changeStatus]);
 
   return (
     <div className="mypage-content-wrap">
       <div className="mypage-content-title">관심 상품</div>
       <div className="my-wish-list">
-        {product.length > 0 ? (
-          product.map((product, index) => {
+        {productList.length > 0 ? (
+          productList.map((product, index) => {
             return (
               <LikeList
                 key={"list" + index}
                 product={product}
-                setProduct={setProduct}
+                changeStatus={changeStatus}
+                setChangeStatus={setChangeStatus}
+                member={member}
               />
             );
           })
@@ -48,13 +52,19 @@ const MyWishList = (props) => {
 //좋아요 리스트
 const LikeList = (props) => {
   const token = window.localStorage.getItem("token");
+  const member = props.member;
   const product = props.product;
-  const setProduct = props.setProduct;
+  const changeStatus = props.changeStatus;
+  const setChangeStatus = props.setChangeStatus;
   const navigate = useNavigate();
   //상세페이지로 이동
   const move = () => {
     navigate("/product/view", {
-      state: { productNo: product.productNo, like: product.isLike },
+      state: {
+        productNo: product.productNo,
+        like: product.isLike,
+        member: member,
+      },
     });
   };
   //마우스이벤트
@@ -79,8 +89,9 @@ const LikeList = (props) => {
         Swal.fire({
           icon: "success",
           title: "저장취소",
+        }).then(() => {
+          setChangeStatus(!changeStatus);
         });
-        setProduct(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -98,7 +109,15 @@ const LikeList = (props) => {
         {product.productFilepath === null ? (
           <img src="/image/product_img/no_image.png" />
         ) : product.productStock === 0 ? (
-          <img src="/image/product_img/sold_out.png" />
+          //<img src="/image/product_img/sold_out.png" />
+          <div className="wish-sold-out-wrap">
+            <div className="wish-sold-out-image">
+              <img src={"/product/" + product.productFilepath} />
+            </div>
+            <div className="wish-sold-out">
+              <p>SOLD OUT</p>
+            </div>
+          </div>
         ) : (
           <img src={"/product/" + product.productFilepath} />
         )}

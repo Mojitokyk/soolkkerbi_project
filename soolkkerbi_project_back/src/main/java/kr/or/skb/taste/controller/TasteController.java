@@ -43,7 +43,7 @@ public class TasteController {
 	//시음회 등록
 	@PostMapping(value = "/insert")
 	public int insertTaste(@ModelAttribute Taste t, @ModelAttribute MultipartFile thumbnail, @RequestAttribute String memberId ) {
-		t.setMemderId(memberId);
+		t.setMemberId(memberId);
 		String savepath = root + "taste/";
 		if (thumbnail != null) {
 			String filename = thumbnail.getOriginalFilename();

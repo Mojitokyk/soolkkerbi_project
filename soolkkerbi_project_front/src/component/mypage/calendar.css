@@ -12,6 +12,7 @@
 .react-calendar__tile--active:enabled:focus {
   background-color: #ff6289;
 }
+
 .btn-box{
   display: flex;
   align-content: center;
@@ -30,3 +31,12 @@
   text-align: center;
   padding-bottom: 15px;
 }
+
+.react-calendar__tile--now {
+  background: #a3a3a3;
+  color: #fff;
+}
+.react-calendar__tile--now:enabled:hover {
+  background: #a3a3a3;
+}
+

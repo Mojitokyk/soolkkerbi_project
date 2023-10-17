@@ -118,9 +118,8 @@ const ProductItem = (props) => {
     <div className="product-item">
       <div className="product-item-img" onClick={productView}>
         {product.productFilepath === null ? (
-          <img src="/image/product_img/no_image.png" />
+          <img src="/image/product_img/no_image.jpg" />
         ) : product.productStock === 0 ? (
-          // <img src="/image/product_img/sold_out.png" />
           <div className="sold-out-wrap">
             <div className="sold-out-image">
               <img src={"/product/" + product.productFilepath} />

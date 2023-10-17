@@ -30,7 +30,7 @@
  	
  	<!-- 게시글 상세보기 -->
  	<select id="selectOneQna" resultMap="getQna">
- 		select qna_no, qna_title, qna_content from qna where qna_no=#{qnaNo}
+ 		select qna_no, qna_title, member_id, qna_content from qna join member on (member_no=qna_member_no) where qna_no=#{qnaNo}
  	</select>
  	<resultMap type="qna" id="getQna">
 		<result column="qna_no" property="qnaNo"/>

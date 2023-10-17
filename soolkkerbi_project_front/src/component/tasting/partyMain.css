@@ -99,6 +99,13 @@
   clear: left;
 }
 
+/*등록된 시음회가 없을 경우*/
+.tast-list-none {
+  padding: 50px 0;
+  text-align: center;
+  font-size: 1.2em;
+}
+
 /*시음회 등록*/
 .taste-frm-whole-wrap {
   width: 1000px;
