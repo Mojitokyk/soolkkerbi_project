@@ -50,6 +50,7 @@ const PartyList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setTasteList}
         />
       </div>
     </div>

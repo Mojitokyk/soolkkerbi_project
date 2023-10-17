@@ -65,6 +65,7 @@ const NoticeList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setNoticeList}
         />
       </div>
     </>

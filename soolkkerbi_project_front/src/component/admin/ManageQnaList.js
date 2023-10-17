@@ -58,6 +58,7 @@ const ManageQnaList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setQnaList}
         />
       </div>
     </>
