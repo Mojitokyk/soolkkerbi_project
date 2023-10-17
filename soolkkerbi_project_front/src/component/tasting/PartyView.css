@@ -51,10 +51,21 @@
   margin: 0 auto;
   margin-bottom: 5px;
 }
-.taste-view-btn > :first-child,
-.taste-view-btn > :nth-child(2) {
-  /* .taste-view-btn > :nth-child(3) */
+.taste-view-btn > :first-child {
+  /* .taste-view-btn > :nth-child(2) 
+  .taste-view-btn > :nth-child(3) */
   margin-right: 10px;
+}
+.taste-delete-btn {
+  margin-right: 10px;
+  width: 100px;
+  height: 41.28px;
+  background-color: black;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
 }
 .taste-view-btn > button {
   width: 100px;
