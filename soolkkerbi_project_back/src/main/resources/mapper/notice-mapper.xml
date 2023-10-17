@@ -17,7 +17,7 @@
 		            MEMBER_NAME, 		             
 		            TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NOTICE_DATE
 		        FROM NOTICE
-		        JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) 
+		        LEFT JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) 
 		        ORDER BY 1 DESC)B)
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
