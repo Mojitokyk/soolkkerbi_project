@@ -28,6 +28,7 @@
 .react-calendar__month-view__days > :nth-child(14),
 .react-calendar__month-view__days > :nth-child(21),
 .react-calendar__month-view__days > :nth-child(28),
-.react-calendar__month-view__days > :nth-child(35) {
+.react-calendar__month-view__days > :nth-child(35),
+.react-calendar__month-view__days > :nth-child(42) {
   color: blue;
 }
