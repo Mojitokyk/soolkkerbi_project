@@ -81,7 +81,7 @@ const MypageMain = (props) => {
               path="wish"
               element={<MyWishList isLogin={isLogin} member={member} />}
             />
-            <Route path="review" element={<MyReivew />} />
+            <Route path="review" element={<MyReivew member={member} />} />
             <Route
               path="qna/*"
               element={
