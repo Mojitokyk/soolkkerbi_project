@@ -61,3 +61,7 @@
 .review-tbl tbody .change-td {
   padding: 0;
 }
+/* 별점 */
+.product-review-rate > div > .css-ryrseu-MuiRating-root {
+  color: #ff6289;
+}
