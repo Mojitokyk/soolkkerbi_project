@@ -14,7 +14,6 @@ import Direction from "./component/mainpage/Direction";
 import NoticeMain from "./component/notice/NoticeMain";
 import Cart from "./component/product/Cart";
 import PartyMain from "./component/tasting/PartyMain";
-import axios from "axios";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);

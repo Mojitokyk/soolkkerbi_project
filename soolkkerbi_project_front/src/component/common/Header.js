@@ -119,7 +119,7 @@ const HeaderMember = (props) => {
             <Link to="/admin">관리자페이지</Link>
           </span>
           <span className="logout">
-            <Link to="#" title="로그아웃" onClick={logout}>
+            <Link to="/" title="로그아웃" onClick={logout}>
               로그아웃
             </Link>
           </span>
