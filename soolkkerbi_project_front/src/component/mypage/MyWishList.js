@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const MyWishList = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const token = window.localStorage.getItem("token");
   const [productList, setProductList] = useState([]);
   const [changeStatus, setChangeStatus] = useState(true);
@@ -37,6 +38,7 @@ const MyWishList = (props) => {
                 product={product}
                 changeStatus={changeStatus}
                 setChangeStatus={setChangeStatus}
+                member={member}
               />
             );
           })
@@ -50,6 +52,7 @@ const MyWishList = (props) => {
 //좋아요 리스트
 const LikeList = (props) => {
   const token = window.localStorage.getItem("token");
+  const member = props.member;
   const product = props.product;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
@@ -57,7 +60,11 @@ const LikeList = (props) => {
   //상세페이지로 이동
   const move = () => {
     navigate("/product/view", {
-      state: { productNo: product.productNo, like: product.isLike },
+      state: {
+        productNo: product.productNo,
+        like: product.isLike,
+        member: member,
+      },
     });
   };
   //마우스이벤트

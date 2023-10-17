@@ -86,6 +86,9 @@
   min-height: 300px;
   font-size: 1em;
 }
+.qna-content-box > .quill .ql-editor {
+  height: 500px;
+}
 .prev-qna-btn {
   margin-right: 10px;
   width: 100px;

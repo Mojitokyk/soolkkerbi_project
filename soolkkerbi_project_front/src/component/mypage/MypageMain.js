@@ -33,8 +33,8 @@ const MypageMain = (props) => {
         setMember(res.data);
         //console.log(res.data.memberLevel);
         //document.querySelectorAll(".my-side a")[0].click();
-         //관리자페이지에서 회원비번변경요청시 바로 비번변경페이지로이동하기위함!!
-        if(res.data.memberLevel===2){
+        //관리자페이지에서 회원비번변경요청시 바로 비번변경페이지로이동하기위함!!
+        if (res.data.memberLevel === 2) {
           document.querySelectorAll(".my-side a")[0].click();
         }
       })
@@ -77,7 +77,10 @@ const MypageMain = (props) => {
               path="reservation"
               element={<MyReservation member={member} isLogin={isLogin} />}
             />
-            <Route path="wish" element={<MyWishList isLogin={isLogin} />} />
+            <Route
+              path="wish"
+              element={<MyWishList isLogin={isLogin} member={member} />}
+            />
             <Route path="review" element={<MyReivew />} />
             <Route
               path="qna/*"
