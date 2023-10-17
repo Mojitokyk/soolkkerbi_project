@@ -92,7 +92,7 @@ export default function ProductModify(props) {
   };
 
   return (
-    <div>
+    <div className="product-modify">
       <Button onClick={handleOpen}>수정</Button>
       <Modal
         open={open}
@@ -101,7 +101,12 @@ export default function ProductModify(props) {
         aria-describedby="modal-description"
       >
         <Box sx={style}>
-          <div id="modal-title">상품 수정</div>
+          <div id="modal-title">
+            <div>상품 수정</div>
+            <span className="material-icons" onClick={clickCancle}>
+              close
+            </span>
+          </div>
           <div className="product-form">
             <div id="modal-description">
               <ProductFrm
