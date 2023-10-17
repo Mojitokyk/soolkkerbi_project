@@ -145,11 +145,15 @@
 .admin-content-tbl > table > thead td {
   font-family: ns-b;
   border-bottom: 1px solid #4f4f4f;
+  border-top: 1px solid #4f4f4f;
 }
 
 .admin-content-tbl > table td {
   text-align: center;
-  padding: 20px 5px;
+  padding: 13px 5px;
+}
+.admin-content-tbl > table > tbody > tr:hover {
+  background-color: #eee;
 }
 
 .admin-paging-wrap {

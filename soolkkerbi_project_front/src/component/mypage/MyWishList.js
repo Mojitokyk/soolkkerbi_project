@@ -7,7 +7,9 @@ import Swal from "sweetalert2";
 const MyWishList = (props) => {
   const isLogin = props.isLogin;
   const token = window.localStorage.getItem("token");
-  const [product, setProduct] = useState([]);
+  const [productList, setProductList] = useState([]);
+  const [changeStatus, setChangeStatus] = useState(true);
+
   useEffect(() => {
     axios
       .get("/product/likeList", {
@@ -16,25 +18,25 @@ const MyWishList = (props) => {
         },
       })
       .then((res) => {
-        //console.log(res.data);
-        setProduct(res.data);
+        setProductList(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, []);
+  }, [changeStatus]);
 
   return (
     <div className="mypage-content-wrap">
       <div className="mypage-content-title">관심 상품</div>
       <div className="my-wish-list">
-        {product.length > 0 ? (
-          product.map((product, index) => {
+        {productList.length > 0 ? (
+          productList.map((product, index) => {
             return (
               <LikeList
                 key={"list" + index}
                 product={product}
-                setProduct={setProduct}
+                changeStatus={changeStatus}
+                setChangeStatus={setChangeStatus}
               />
             );
           })
@@ -49,7 +51,8 @@ const MyWishList = (props) => {
 const LikeList = (props) => {
   const token = window.localStorage.getItem("token");
   const product = props.product;
-  const setProduct = props.setProduct;
+  const changeStatus = props.changeStatus;
+  const setChangeStatus = props.setChangeStatus;
   const navigate = useNavigate();
   //상세페이지로 이동
   const move = () => {
@@ -79,8 +82,9 @@ const LikeList = (props) => {
         Swal.fire({
           icon: "success",
           title: "저장취소",
+        }).then(() => {
+          setChangeStatus(!changeStatus);
         });
-        setProduct(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
