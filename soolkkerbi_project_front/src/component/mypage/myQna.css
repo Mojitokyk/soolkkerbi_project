@@ -9,7 +9,7 @@
   height: 40px;
 }
 .qna-list > tbody > tr {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
 }
 .qna-list .qna-list > thead > tr > :first-child {
   width: 10%;
@@ -31,19 +31,25 @@
 }
 
 .qna-list > thead > tr {
-  background-color: #4f4f4f;
+  /* background-color: #4f4f4f; */
+  border-top: 1px solid #4f4f4f;
+  border-bottom: 1px solid #4f4f4f;
 }
 .qna-list > thead > tr th {
-  color: #fff;
+  /* color: #fff; */
+  color: #4f4f4f;
+  padding: 13px 5px;
 }
 .qna-list > tbody > tr {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
+}
+.qna-list > tbody > tr > td {
+  padding: 13px 5px;
 }
 .qna-list > tbody > tr:hover {
-  background-color: #ccc;
+  background-color: #eee;
   cursor: pointer;
 }
-
 .qna-write-btn {
   text-align: right;
   margin-bottom: 5px;
@@ -329,6 +335,7 @@
 }
 .select-status > select {
   outline: none;
-  width: 100px;
-  height: 25px;
+  width: 105px;
+  height: 30px;
+  font-size: 1em;
 }

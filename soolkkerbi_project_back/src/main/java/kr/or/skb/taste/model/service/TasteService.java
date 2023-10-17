@@ -45,7 +45,7 @@ public class TasteService {
 	
 	//시음회 등록
 	public int insertTaste(Taste t) {
-		Member member = memberDao.selectOneMember(t.getMemderId());
+		Member member = memberDao.selectOneMember(t.getMemberId());
 		t.setTasteMemberNo(member.getMemberNo());
 		int result = tasteDao.insertTaste(t);
 		return result;
