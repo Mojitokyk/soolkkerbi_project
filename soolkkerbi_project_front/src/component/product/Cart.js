@@ -219,7 +219,7 @@ const CartProduct = (props) => {
       <td className="info-td">
         <div className="product-img" onClick={productView}>
           {cart.productFilepath === null ? (
-            <img src="/image/product_img/no_image.png" />
+            <img src="/image/product_img/no_image.jpg" />
           ) : (
             <img src={"/product/" + cart.productFilepath} />
           )}

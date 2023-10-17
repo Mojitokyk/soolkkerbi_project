@@ -25,6 +25,7 @@
   width: 60%;
 }
 #member-phone > div > button {
+  font-family: ns-b;
   width: 30%;
 }
 .changepw-btn {
@@ -35,4 +36,5 @@
 .changepw-btn > button {
   width: 50.5%;
   box-sizing: content-box;
+  font-family: ns-b;
 }

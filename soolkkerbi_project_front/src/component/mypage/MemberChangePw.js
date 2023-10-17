@@ -11,7 +11,7 @@ const MemberChangePw = (props) => {
   const [currPw, setCurrPw] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
-  const [ReqPwMsg, setReqPwMsg]= useState(""); 
+  const [ReqPwMsg, setReqPwMsg] = useState("");
   const token = window.localStorage.getItem("token");
 
   const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
@@ -41,7 +41,7 @@ const MemberChangePw = (props) => {
         } else {
           Swal.fire({
             icon: "warning",
-            title: "비번틀림!!",
+            text: "비밀번호가 일치하지 않습니다.",
           });
         }
       });

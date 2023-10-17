@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import TextEditor from "../util/TextEditor";
 import InputTitle from "../util/InputFormTitle";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -60,14 +60,14 @@ const MyQnaFrm = (props) => {
             <button className="prev-qna-btn" onClick={prev}>
               취소
             </button>
-            <Button1 text="수정하기" clickEvent={buttonEvent} />
+            <Button2 text="수정하기" clickEvent={buttonEvent} />
           </>
         ) : (
           <>
             <button className="toList-qna-btn" onClick={toList}>
               목록으로
             </button>
-            <Button1 text="등록" clickEvent={buttonEvent} />
+            <Button2 text="등록" clickEvent={buttonEvent} />
           </>
         )}
       </div>

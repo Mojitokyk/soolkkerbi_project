@@ -2,7 +2,7 @@ import "./myQna.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
 import MyQnaAnswer from "./MyQnaAnswer";
 
@@ -82,9 +82,9 @@ const MyQnaView = (props) => {
 
         {member.memberLevel === 2 ? (
           <div className="qna-view-btn">
-            <Button1 text="목록으로" clickEvent={toList} />
-            <Button1 text="수정" clickEvent={modifyQna} />
-            <Button1 text="삭제" clickEvent={deleteQna} />
+            <Button2 text="목록으로" clickEvent={toList} />
+            <Button2 text="수정" clickEvent={modifyQna} />
+            <Button2 text="삭제" clickEvent={deleteQna} />
           </div>
         ) : (
           ""

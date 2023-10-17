@@ -229,7 +229,11 @@ const CartList = (props) => {
                 productView(cart.cartProductNo);
               }}
             >
-              <img src={"/product/" + cart.productFilepath} />
+              {cart.productFilepath === null ? (
+                <img src="/image/product_img/no_image.jpg" />
+              ) : (
+                <img src={"/product/" + cart.productFilepath} />
+              )}
             </div>
             <div className="pay-product-info-detail">
               <div className="product-detail-name">{cart.productName}</div>
@@ -258,7 +262,11 @@ const Cart = (props) => {
       <h3>주문 상품 정보</h3>
       <div className="pay-product-info">
         <div className="pay-product-img" onClick={productView}>
-          <img src={"/product/" + cart.productFilepath} />
+          {cart.productFilepath === null ? (
+            <img src="/image/product_img/no_image.jpg" />
+          ) : (
+            <img src={"/product/" + cart.productFilepath} />
+          )}
         </div>
         <div className="pay-product-info-detail">
           <div className="product-detail-name">{cart.productName}</div>

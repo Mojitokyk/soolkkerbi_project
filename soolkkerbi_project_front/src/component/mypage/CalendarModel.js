@@ -1,13 +1,14 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 //import CustomCalendar from './Calendar';
 import { useEffect, useState } from "react";
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import moment from "moment";
+
 import { Button2, Button3 } from '../util/Buttons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -17,32 +18,33 @@ import "./calender.css";
 
 
 
+
 //사용한모달폼!!
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
+  bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
 };
 
- function CalendarModel(props) {
+function CalendarModel(props) {
   const changeStatus = props.changeStatus;
   const setChangeStatus=props.setChangeStatus;
   const navigate = useNavigate();
     const resList = props.resList;
+
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
- 
 
   return (
     <div>
-      <Button onClick={handleOpen} >{resList.reservationDate}</Button>
+      <Button onClick={handleOpen}>{resList.reservationDate}</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -54,7 +56,12 @@ const style = {
             예약날짜 변경하기
           </Typography>
           <div id="modal-modal-description" sx={{ mt: 2 }}>
-           <CustomCalendar  resList = {resList} setOpen={setOpen} setChangeStatus={setChangeStatus} changeStatus={changeStatus}/>
+            <CustomCalendar
+              resList={resList}
+              setOpen={setOpen}
+              setChangeStatus={setChangeStatus}
+              changeStatus={changeStatus}
+            />
           </div>
         </Box>
       </Modal>
@@ -64,20 +71,20 @@ const style = {
 function CustomCalendar(props) {
   const navigate = useNavigate();
   const changeStatus = props.changeStatus;
-  const setChangeStatus=props.setChangeStatus;
+  const setChangeStatus = props.setChangeStatus;
   const setOpen = props.setOpen;
   const resList = props.resList;
-  const nowDate =resList.reservationDate;
+  const nowDate = resList.reservationDate;
   const [value, onChange] = useState(nowDate);
-  const activeDate = moment(value).format('YYYY-MM-DD');
- // const [activeDate,setActiveDate ] =useState(moment(value).format('YYYY-MM-DD'));
- //const [activeMonth, setActiveMonth] = useState(monthOfActiveDate);
+  const activeDate = moment(value).format("YYYY-MM-DD");
+  // const [activeDate,setActiveDate ] =useState(moment(value).format('YYYY-MM-DD'));
+  //const [activeMonth, setActiveMonth] = useState(monthOfActiveDate);
   //const [nowDate, setNowDate] = useState("날짜");
 
-  const changeDate=()=>{
+  const changeDate = () => {
     const changeStatus = props.changeStatus;
-    const setChangeStatus=props.setChangeStatus;
-    const reservationDate =activeDate;
+    const setChangeStatus = props.setChangeStatus;
+    const reservationDate = activeDate;
     const reservationNo = resList.reservationNo;
     const obj = { reservationNo, reservationDate };
     const token = window.localStorage.getItem("token");
@@ -95,9 +102,8 @@ function CustomCalendar(props) {
       })
       .catch((res) => {
         console.log(res);
-        
       });
-  }
+  };
   // const getActiveMonth = (activeStartDate: moment.MomentInput) => {
   //   const newActiveMonth = moment(activeStartDate).format('YYYY-MM');
   //   setActiveMonth(newActiveMonth);
@@ -122,4 +128,4 @@ const back=()=>{
     </div>
   );
 }
-export {CustomCalendar , CalendarModel} ;
+export { CustomCalendar, CalendarModel };

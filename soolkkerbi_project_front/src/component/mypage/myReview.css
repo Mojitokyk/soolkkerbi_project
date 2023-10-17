@@ -1,18 +1,21 @@
 .my-reviewList-tbl > table {
   width: 100%;
   border-spacing: 0;
+  border-bottom: 1px solid #ddd;
 }
 .my-reviewList-tbl > table td {
   text-align: center;
   padding: 5px;
 }
 .my-reviewList-tbl > table > thead td {
+  padding: 13px 0;
   font-family: ns-b;
+  border-top: 1px solid #4f4f4f;
   border-bottom: 1px solid #4f4f4f;
 }
 .my-reviewList-tbl > table > tbody td {
   padding: 10px 5px;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
 }
 .emptyReview {
   height: 200px;
@@ -32,7 +35,7 @@
 .review-modify-btn
   > div
   > .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   border: none;
   font-weight: bold;
