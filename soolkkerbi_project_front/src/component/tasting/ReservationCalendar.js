@@ -2,7 +2,7 @@ import "./PartyView.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import moment from "moment";
 import Swal from "sweetalert2";
 import "../mypage/calendar.css";
@@ -92,8 +92,8 @@ const ReservationCalendar = () => {
         </div>
       </div>
       <div className="reservation-btn">
-        <Button1 text="목록으로" clickEvent={toList} />
-        <Button1 text="다음" clickEvent={reservationConfirm} />
+        <Button2 text="목록으로" clickEvent={toList} />
+        <Button2 text="다음" clickEvent={reservationConfirm} />
       </div>
     </>
   );

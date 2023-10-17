@@ -2,7 +2,7 @@ import "./PartyView.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
 
 const PartyView = (props) => {
@@ -108,7 +108,7 @@ const PartyView = (props) => {
       <div className="taste-view-btn">
         {member.memberLevel === 1 ? (
           <>
-            <Button1 text="수정" clickEvent={modifyTaste} />
+            <Button2 text="수정" clickEvent={modifyTaste} />
             <button className="taste-delete-btn" onClick={deleteTaste}>
               삭제
             </button>
@@ -116,9 +116,9 @@ const PartyView = (props) => {
         ) : (
           ""
         )}
-        <Button1 text="목록으로" clickEvent={toList} />
+        <Button2 text="목록으로" clickEvent={toList} />
         {member.memberLevel === 2 ? (
-          <Button1 text="예약" clickEvent={reservation} />
+          <Button2 text="예약" clickEvent={reservation} />
         ) : (
           ""
         )}

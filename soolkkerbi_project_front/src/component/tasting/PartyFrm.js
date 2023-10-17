@@ -1,5 +1,5 @@
 import Input from "../util/InputForm";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import { useState } from "react";
 import TextEditor from "../util/TextEditor";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -181,11 +181,11 @@ const PartyFrm = (props) => {
         </textarea> */}
       </div>
       <div className="taste-btn-box">
-        <Button1 text="목록으로" clickEvent={toList} />
+        <Button2 text="목록으로" clickEvent={toList} />
         {type === "modify" ? (
-          <Button1 text="수정하기" clickEvent={buttonEvent} />
+          <Button2 text="수정하기" clickEvent={buttonEvent} />
         ) : (
-          <Button1 text="작성하기" clickEvent={buttonEvent} />
+          <Button2 text="작성하기" clickEvent={buttonEvent} />
         )}
       </div>
     </div>

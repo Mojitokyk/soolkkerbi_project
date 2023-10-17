@@ -91,6 +91,7 @@
 }
 .taste-item-date > span {
   font-weight: bold;
+  color: #4f4f4f;
 }
 .taste-item-date > :nth-child(2) {
   margin: 0 5px;
@@ -164,6 +165,6 @@
 .taste-btn-box > :first-child {
   margin-right: 10px;
 }
-.taste-content-box > .quill > .ql-container>.ql-editor>p {
+.taste-content-box > .quill > .ql-container > .ql-editor > p {
   height: 400px;
 }

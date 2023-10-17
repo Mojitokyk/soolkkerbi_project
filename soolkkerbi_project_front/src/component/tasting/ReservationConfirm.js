@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import axios from "axios";
 
 const ReservationConfirm = () => {
@@ -82,8 +82,8 @@ const ReservationConfirm = () => {
         </div>
       </div>
       <div className="reservation-btn">
-        <Button1 text="목록으로" clickEvent={toList} />
-        <Button1 text="예약완료" clickEvent={reservationDone} />
+        <Button2 text="목록으로" clickEvent={toList} />
+        <Button2 text="예약완료" clickEvent={reservationDone} />
       </div>
     </>
   );
