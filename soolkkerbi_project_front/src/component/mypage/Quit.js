@@ -4,9 +4,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Button3 } from "../util/Buttons";
+import { Button2, Button3 } from "../util/Buttons";
 import "./quit.css";
 
 
@@ -36,7 +36,7 @@ export default function BasicModal(props) {
         Swal.fire({
           icon: "warning",
           title: "회원탈퇴",
-          text: "회원을 탈퇴하시겠습니까?",
+          text: "회원 탈퇴를 진행하시겠습니까?",
           showCancelButton: true,
           confirmButtonText: "탈퇴하기",
           cancelButtonText: "취소",
@@ -67,10 +67,14 @@ export default function BasicModal(props) {
           }
         });
       };
+      const back=()=>{
+        setOpen(false);
+      }
 
   return (
     <div>
       <Button onClick={handleOpen}>탈퇴하러가기...ㅠㅠ</Button>
+      {/* <Button onClick={handleOpen}>회원탈퇴</Button> */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -78,9 +82,13 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+        <div className="closeModel">
+          <span class="material-icons" onClick={back}>close</span>
+          </div>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             진짜 탈퇴하시나요...??
           </Typography>
+          
           <div id="modal-modal-description" sx={{ mt: 2 }}>
             진짜 탈퇴하시면 주문내역,찜목록 시음회예약정보 등 전부 사라져요!!ㅠㅠ<br/>
             모든 회원정보와 활동내역의 쿠키들이 사라지기 때문에 다시한번 생각해주세요!!ㅠㅠ!!<br/>

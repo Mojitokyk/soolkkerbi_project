@@ -12,3 +12,21 @@
 .react-calendar__tile--active:enabled:focus {
   background-color: #ff6289;
 }
+.btn-box{
+  display: flex;
+  align-content: center;
+}
+.changeDate-btn{
+  padding-left: 10px;
+  width: 45%;
+  align-items: start;
+}
+.back-btn{
+  padding-left: 10px;
+  width: 45%;
+  align-items: end;
+}
+.Calendartext{
+  text-align: center;
+  padding-bottom: 15px;
+}

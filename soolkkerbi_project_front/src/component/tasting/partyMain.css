@@ -157,3 +157,6 @@
 .taste-btn-box > :first-child {
   margin-right: 10px;
 }
+.taste-content-box > .quill > .ql-container>.ql-editor>p {
+  height: 400px;
+}

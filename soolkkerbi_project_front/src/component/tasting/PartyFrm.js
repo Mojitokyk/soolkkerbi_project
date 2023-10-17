@@ -169,7 +169,7 @@ const PartyFrm = (props) => {
         <TextEditor
           data={tasteContent}
           setData={setTasteContent}
-          url="/taste/tasteImg"
+          url="/tasting/contentImg"
         />
         {/* <textarea
           onChange={(e) => {

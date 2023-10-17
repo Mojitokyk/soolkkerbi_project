@@ -8,9 +8,10 @@ import { useEffect, useState } from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from "moment";
-import { Button2 } from '../util/Buttons';
+import { Button2, Button3 } from '../util/Buttons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -30,6 +31,7 @@ const style = {
  function CalendarModel(props) {
   const changeStatus = props.changeStatus;
   const setChangeStatus=props.setChangeStatus;
+  const navigate = useNavigate();
     const resList = props.resList;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -59,6 +61,7 @@ const style = {
   );
 }
 function CustomCalendar(props) {
+  const navigate = useNavigate();
   const changeStatus = props.changeStatus;
   const setChangeStatus=props.setChangeStatus;
   const setOpen = props.setOpen;
@@ -98,15 +101,22 @@ function CustomCalendar(props) {
   //   const newActiveMonth = moment(activeStartDate).format('YYYY-MM');
   //   setActiveMonth(newActiveMonth);
   // };
-
+const back=()=>{
+  setOpen(false);
+}
   return (
     <div>
       <Calendar onChange={onChange} value={value}  formatDay={(locale, date) => moment(date).format("DD")} />
          <div className="Calendartext">
           <p>예약변경 선택날짜 : {moment(value).format("YYYY년 MM월 DD일")} </p>   
          </div>
+         <div className='btn-box'>
          <div className='changeDate-btn'>
           <Button2  text="날짜 변경" clickEvent={changeDate}/>
+         </div>
+         <div className='back-btn'>
+          <Button3 text="돌아가기" clickEvent={back}/>
+         </div>
          </div>
     </div>
   );

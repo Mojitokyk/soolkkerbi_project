@@ -78,6 +78,7 @@ const MyReservation = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setResList}
         />
       ) : (
         ""
