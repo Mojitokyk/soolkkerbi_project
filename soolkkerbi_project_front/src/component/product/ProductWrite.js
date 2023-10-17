@@ -27,7 +27,10 @@ const ProductWrite = () => {
       productLiter !== "" &&
       productInfo !== "" &&
       productPrice !== "" &&
-      productStock !== ""
+      productStock !== "" &&
+      productStock != 0 &&
+      productPrice != 0 &&
+      productLiter != 0
     ) {
       //기본적인 문자열 또는 숫자데이터를 전송하는 경우 json을 전송
       //파일이 포함되어 있는 경우 -> FormData를 사용
@@ -66,7 +69,7 @@ const ProductWrite = () => {
       Swal.fire({
         icon: "warning",
         title: "입력값 확인",
-        text: "입력하지 않은 값이 있는지 확인해주세요.",
+        text: "입력값이 없거나 0인지 확인해주세요.",
       });
     }
   };

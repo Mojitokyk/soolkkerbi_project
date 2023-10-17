@@ -50,7 +50,6 @@ const ProductFrm = (props) => {
       <div className="product-frm-top">
         <div className="product-thumbnail">
           {productImg === null ? (
-            // <img src="/image/product_img/noimage.jpg" />
             <img src="/image/product_img/no_image.jpg" />
           ) : (
             <img src={productImg} />

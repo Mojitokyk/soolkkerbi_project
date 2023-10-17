@@ -117,17 +117,28 @@ const ProductItem = (props) => {
   return (
     <div className="product-item">
       <div className="product-item-img" onClick={productView}>
-        {product.productFilepath === null ? (
+        {product.productStock === 0 ? (
+          product.productFilepath === null ? (
+            <div className="sold-out-wrap">
+              <div className="sold-out-image">
+                <img src="/image/product_img/no_image.jpg" />
+              </div>
+              <div className="sold-out">
+                <p>SOLD OUT</p>
+              </div>
+            </div>
+          ) : (
+            <div className="sold-out-wrap">
+              <div className="sold-out-image">
+                <img src={"/product/" + product.productFilepath} />
+              </div>
+              <div className="sold-out">
+                <p>SOLD OUT</p>
+              </div>
+            </div>
+          )
+        ) : product.productFilepath === null ? (
           <img src="/image/product_img/no_image.jpg" />
-        ) : product.productStock === 0 ? (
-          <div className="sold-out-wrap">
-            <div className="sold-out-image">
-              <img src={"/product/" + product.productFilepath} />
-            </div>
-            <div className="sold-out">
-              <p>SOLD OUT</p>
-            </div>
-          </div>
         ) : (
           <img src={"/product/" + product.productFilepath} />
         )}

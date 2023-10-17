@@ -45,11 +45,19 @@ const NoticeList = (props) => {
             <th>게시일</th>
           </tr>
         </thead>
-        <tbody>
-          {noticeList.map((notice, index) => {
-            return <NoticeItem key={"notice" + index} notice={notice} />;
-          })}
-        </tbody>
+        {noticeList.length > 0 ? (
+          <tbody>
+            {noticeList.map((notice, index) => {
+              return <NoticeItem key={"notice" + index} notice={notice} />;
+            })}
+          </tbody>
+        ) : (
+          <tbody>
+            <tr>
+              <td colSpan={4}>등록된 공지사항이 없습니다.</td>
+            </tr>
+          </tbody>
+        )}
       </table>
 
       {member.memberLevel === 1 ? (
@@ -59,15 +67,18 @@ const NoticeList = (props) => {
       ) : (
         ""
       )}
-
-      <div className="notice-pagination">
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-          setList={setNoticeList}
-        />
-      </div>
+      {noticeList.length > 0 ? (
+        <div className="notice-pagination">
+          <Pagination
+            reqPage={reqPage}
+            setReqPage={setReqPage}
+            pageInfo={pageInfo}
+            setList={setNoticeList}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 };

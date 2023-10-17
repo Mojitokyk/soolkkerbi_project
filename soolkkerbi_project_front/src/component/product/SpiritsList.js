@@ -29,14 +29,6 @@ const SpiritsList = (props) => {
       })
       .catch((res) => {
         console.log(res.response.status);
-        if (res.respons.status === 500) {
-          Swal.fire({
-            icon: "error",
-            title: "서비스 요청 지연",
-            text: "서버요청이 지연되고 있습니다. 잠시 후 다시 시도해주세요.",
-          });
-          navigate("/");
-        }
       });
   }, [reqPage]);
 
