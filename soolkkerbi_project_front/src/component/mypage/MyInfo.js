@@ -21,7 +21,7 @@ const MyInfo = (props) => {
   const PhoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
   const checkPhone =()=>{
     if (!PhoneregExp.test(member.memberPhone)) {
-      setCheckPhoneMsg("000-0000-0000");
+      setCheckPhoneMsg("010-0000-0000");
     } else{
       setCheckPhoneMsg("");
     }
@@ -49,7 +49,7 @@ const MyInfo = (props) => {
           }
         });
     }else{
-      Swal.fire("전화번호 양식은 010-0000-0000입니다!")
+      Swal.fire("전화번호양식참고하여 작성해주세요!")
     }
   };
 

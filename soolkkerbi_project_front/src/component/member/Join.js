@@ -77,7 +77,7 @@ const Join = () => {
   //최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식
   const pwReqCheck = () => {
     if (!passwordRegEx.test(memberPw)) {
-      setReqPwMsg("비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수문자 최소8자입니다.");
+      setReqPwMsg("비밀번호는 문자,숫자 및 하나의 특수문자 최소8자입니다.");
     } else {
       setReqPwMsg("");
     }
@@ -85,7 +85,7 @@ const Join = () => {
 
   const checkEmail =()=>{
     if (!emailRegEx.test(memberEmail)) {
-      setCheckEmailMsg("아메일 형식에 맞게 작성해주세요");
+      setCheckEmailMsg("이메일 형식에 맞게 작성해주세요");
     } else{
       setCheckEmailMsg("");
     }

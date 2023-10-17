@@ -36,10 +36,10 @@
 .check-msg {
   font-size: 0.8em;
   width: 70%;
-  text-align: center;
+  text-align: end;
   /* align-self: flex-start; */
   color: #ff6289;
   box-sizing: border-box;
-  padding-left: 30px;
+  padding-left: 20px;
   margin-left: 20px;
 }
