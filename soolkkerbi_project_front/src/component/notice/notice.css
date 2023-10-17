@@ -124,6 +124,7 @@
   font-family: ns-b;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 .toList-notice-btn {
   margin-right: 10px;
@@ -179,6 +180,7 @@
   font-family: ns-b;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 .notice-view-btn > button {
   width: 100px;

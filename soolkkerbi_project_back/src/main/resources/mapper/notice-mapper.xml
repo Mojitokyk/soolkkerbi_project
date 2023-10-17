@@ -22,74 +22,21 @@
 		WHERE RNUM BETWEEN #{start} AND #{end}
  	</select>
  	
- 	<!-- 게시글 작성 --> <!-- 임시회원번호: 1 /#{noticeMemberNo} -->
+ 	<!-- 게시글 작성 --> 
  	<insert id="insertNotice">
- 		insert into notice values(notice_seq.nextval, 1, #{noticeTitle}, #{noticeContent}, sysdate)
- 
- 		<selectKey resultType="int" keyProperty="noticeNo" order="AFTER">
- 			select max(notice_no) from notice
- 		</selectKey><!-- 'insertBoard' 수행 후 작성된 쿼리를 수행하여, int타입으로 boardNo속성에 삽입: insertBoardFile에서 사용되는 boardNo를 구하기 위함 -->
- 	</insert>
- 	
- 	<!-- 게시글 작성 파일 업로드 -->
- 	<insert id="insertNoticeFile">
- 		insert into notice_file values(notice_file_seq.nextval, #{noticeNo}, #{noticeFileName}, #{noticeFilePath})
+ 		insert into notice values(notice_seq.nextval, #{noticeMemberNo}, #{noticeTitle}, #{noticeContent}, sysdate)
  	</insert>
  	
  	 <!-- 게시글 상세보기 -->
- 	<select id="selectOneNotice" resultMap="getNotice">
- 		select notice_no, notice_title, member_name, notice_content, to_char(notice_date, 'yyyy-mm-dd') as notice_date from notice LEFT JOIN MEMBER ON (NOTICE_MEMBER_NO = MEMBER_NO) where notice_no=#{noticeNo}
+ 	<select id="selectOneNotice" resultType="notice">
+ 		select * from notice where notice_no=#{noticeNo}
  	</select>
- 	<!--  게시글 상세보기 - 파일 -->
-	<select id="selectOneNoticeFile" resultType="NoticeFile">
-		select * from notice_file where notice_no=#{noticeNo}
-	</select>
- 	<resultMap type="notice" id="getNotice">
-		<result column="notice_no" property="noticeNo"/>
-		<result column="notice_title" property="noticeTitle"/>
-		<result column="notice_member_no" property="noticeMemberNo"/>
-		<result column="notice_content" property="noticeContent"/>
-		<result column="notice_date" property="noticeDate"/>
-		<collection
-			property="fileList"
-			select="selectOneNoticeFile"
-			column="notice_no"
-			javaType="java.util.List"
-			ofType="noticeFile"
-		/>
-	</resultMap>
-	
-	<!-- 게시글 파일 다운로드 -->
-	<select id="getNoticeFile" resultType="NoticeFile">
-		select * from notice_file where notice_file_no=#{noticeFileNo}
-	</select>
-	
-	<!-- 게시글 삭제 - 조회 -->
-	<select id="selectNoticeFileList" resultType="noticeFile">
-		select * from notice_file where notice_no=#{noticeNo}
-	</select>
-	
+
 	<!-- 게시글 삭제 -->
 	<delete id="deleteNotice">
 		delete from notice where notice_no=#{noticeNo}
 	</delete>
-	
-	<!-- 게시물 수정 - 조회 -->
-	<select id="selectNoticeFile" resultType="NoticeFile">
-		select * from notice_file where notice_file_no in 
-		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
-			#{fileNo}
-		</foreach>
-	</select>
-	
-	<!-- 게시물 수정 - 파일 삭제 -->
-	<delete id="deleteNoticeFile">
-		delete from notice_file where notice_file_no in
-		<foreach collection="array" open="(" close=")" separator="," item="fileNo">
-			#{fileNo}
-		</foreach>
-	</delete>
-	
+
 	<!-- 게시물 수정 - board테이블 변경 -->
 	<update id="updateNotice">
 		update notice set notice_title=#{noticeTitle}, notice_content=#{noticeContent} where notice_no=#{noticeNo}

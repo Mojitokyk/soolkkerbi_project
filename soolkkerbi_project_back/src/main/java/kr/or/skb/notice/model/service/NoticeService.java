@@ -1,6 +1,6 @@
 package kr.or.skb.notice.model.service;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.or.skb.member.model.vo.Member;
-import kr.or.skb.member.model.dao.MemberDao;
+
 import kr.or.skb.notice.model.vo.Notice;
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
 import kr.or.skb.notice.model.dao.NoticeDao;
-import kr.or.skb.notice.model.vo.Notice;
-import kr.or.skb.notice.model.vo.NoticeFile;
+
 
 @Service
 public class NoticeService {
@@ -24,8 +22,6 @@ public class NoticeService {
 	private NoticeDao noticeDao;
 	@Autowired
 	private Pagination pagination;
-	@Autowired
-	private MemberDao memberDao;
 	
 	//게시물 조회
 	public Map noticeList(int reqPage) {
@@ -51,85 +47,30 @@ public class NoticeService {
 	
 	//게시글 작성
 	@Transactional
-	public int insertNotice(Notice n, ArrayList<NoticeFile> fileList) {
+	public int insertNotice(Notice n) {
 		System.out.println(n);
-		System.out.println(fileList);
-		
-		//Board테이블에 insert하기 위해서는 회원번호를 알아야한다.
-		//작성자 정보를 현재 아이디만 알고있다. -> Board테이블에는 회원번호가 외래키로 설정되어있다.
-		//아이디를 이용하여 회원번호를 구해온다(회원정보를 조회하여 회원 정보 중 회원번호를 사용한다)
-
-//		Member member = memberDao.selectOneMember(n.getMemberId());
-//		System.out.println("memberNo: "+member.getMemberNo());
-//		n.setNoticeMemberNo(member.getMemberNo());
-//		System.out.println("noticeMemberNo: "+n.getNoticeMemberNo());
-		System.out.println("noticeNo: "+n.getNoticeNo());
 		int result = noticeDao.insertNotice(n);
-		for(NoticeFile noticeFile : fileList) {
-			noticeFile.setNoticeNo(n.getNoticeNo()); //board-mapper의 <selectKey>에서 구해진 boardNo를 삽입
-			
-			result += noticeDao.insertNoticeFile(noticeFile);
-			System.out.println("result "+result);
-		}
-		if(result == 1 + fileList.size()) {
-			return result;
-		}else {
-			return 0;
-		}
+		return result;
 	}
 	
 	//게시글 상세보기
 	public Notice selectOneNotice(int noticeNo) {
 		Notice n = noticeDao.selectOneNotice(noticeNo);
-//		List fileList = noticeDao.selectOneNoticeFile(noticeNo);
-//		n.setFileList(fileList);
 		return n;
 	}
-	//게시글 파일 다운로드
-	public NoticeFile getNoticeFile(int noticeFileNo) {
-		// TODO Auto-generated method stub
-		return noticeDao.getNoticeFile(noticeFileNo);
-	}
+
 	
 	//게시글 삭제
 	@Transactional
-	public List<NoticeFile> delete(int noticeNo) {
-		//1. 게시글 조회
-		List<NoticeFile> list = noticeDao.selectNoticeFileList(noticeNo);
-		//2. 게시글 삭제
+	public int delete(int noticeNo) {
 		int result = noticeDao.deleteNotice(noticeNo);
-		if(result > 0) {
-			return list;
-		}
-		return null;
+		return result;
 	}
 	
 	//게시물 수정
 	@Transactional
-	public List<NoticeFile> modify(Notice n, ArrayList<NoticeFile> fileList) {
-		List<NoticeFile> delFileList = new ArrayList<NoticeFile>();
-		String [] delFileNo = {};
-		int result = 0;
-		if(!n.getDelFileNo().equals("")) {
-			delFileNo = n.getDelFileNo().split("/");
-			//1. 삭제한 파일이 있으면 조회
-			delFileList = noticeDao.selectNoticeFile(delFileNo);			
-			//2. 삭제할 파일 삭제
-			result += noticeDao.deleteNoticeFile(delFileNo);
-		}
-		//3. 추가할 파일 있으면 추가
-		for(NoticeFile nf : fileList) {
-			result += noticeDao.insertNoticeFile(nf);
-		}
-		//4. board테이블 변경
-		result += noticeDao.updateNotice(n);
-		
-		//board테이블 update + 새로추가한 파일개수 +  파일 삭제한 것
-		if(result == 1+fileList.size()+delFileNo.length) {
-			return delFileList;
-		}else {			
-			return null;
-		}
+	public int modify(Notice n) {
+		return noticeDao.updateNotice(n);
 	}
 
 }

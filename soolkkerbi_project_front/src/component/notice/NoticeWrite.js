@@ -9,17 +9,9 @@ const NoticeWrite = (props) => {
   //변수명과 맞춘 것 - 문자열
   //변수명과 안 맞춘 것 - 첨부파일(배열, 객체로 받음)
   const [noticeTitle, setNoticeTitle] = useState("");
-  const [thumbnail, setThumbnail] = useState({});
   const [noticeContent, setNoticeContent] = useState("");
-  const [noticeFile, setNoticeFile] = useState([]);
-  const member = props.member;
-  const setMember = props.setMember;
+  const [member, setMember] = useState({});
   const isLogin = props.isLogin;
-
-  //화면용(화면에 데이터를 띄움)
-  //boardImg -> 썸네일 미리보기용 /fileList -> 첨부파일 목록 출력용
-  const [noticeImg, setNoticeImg] = useState(null);
-  const [fileList, setFileList] = useState([]);
   const navigate = useNavigate();
 
   const token = window.localStorage.getItem("token");
@@ -49,32 +41,17 @@ const NoticeWrite = (props) => {
   //글쓰기 버튼 클릭 시 동작할 함수(서버에 insert요청 함수)
   const write = () => {
     console.log(noticeTitle);
-    console.log(thumbnail);
     console.log(noticeContent);
-    console.log(noticeFile);
+    console.log(member.memberNo);
 
     if (noticeTitle !== "" && noticeContent !== "") {
-      //기본적인 문자열 또는 숫자데이터를 전송하는 경우, JSON을 전송
-      //파일이 포함되어 있는 경우 -> FormData
-      const form = new FormData();
-      form.append("noticeTitle", noticeTitle);
-      form.append("noticeContent", noticeContent);
-      form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우, File객체를 전송
-      //첨부파일이 여러개인 경우(multiple인 경우 -> 같은 이름으로 첨부파일이 여려개인 경우) - 객체 배열
-      for (let i = 0; i < noticeFile.length; i++) {
-        console.log(111);
-        form.append("noticeFile", noticeFile[i]);
-      }
-
+      const obj = new Object();
+      obj.noticeMemberNo = member.memberNo;
+      obj.noticeTitle = noticeTitle;
+      obj.noticeContent = noticeContent;
+      console.log(obj);
       axios
-        .post("/notice/insert", form, {
-          headers: {
-            //processData, contentType: 문자열만 전송하는 것이 아닌, 파일 타입도 있다는 것을 인지시킴
-            processData: false,
-            contentType: "multipart/form-data",
-            // Authorization: "Bearer " + token,
-          },
-        })
+        .post("/notice/insert", obj)
         .then((res) => {
           console.log(res.data);
           navigate("/notice");
@@ -94,14 +71,7 @@ const NoticeWrite = (props) => {
         setNoticeTitle={setNoticeTitle}
         noticeContent={noticeContent}
         setNoticeContent={setNoticeContent}
-        thumbnail={thumbnail}
-        setThumbnail={setThumbnail}
-        noticeFile={noticeFile}
-        setNoticeFile={setNoticeFile}
-        noticeImg={noticeImg}
-        setNoticeImg={setNoticeImg}
-        fileList={fileList}
-        setFileList={setFileList}
+        member={member}
         buttonEvent={write}
         type="write"
       />
