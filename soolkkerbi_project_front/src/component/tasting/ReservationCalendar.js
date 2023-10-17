@@ -83,6 +83,7 @@ const ReservationCalendar = () => {
               maxDate={new Date(taste.tasteEnd)}
               value={value}
               formatDay={(locale, date) => moment(date).format("DD")}
+              calendarType={"US"}
             />
             <span>희망 예약 날짜</span>
             <span>:</span>
