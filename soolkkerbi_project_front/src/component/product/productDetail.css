@@ -68,6 +68,11 @@
 .option-input-tool {
   display: flex;
 }
+.option-input-tool > button > span {
+  line-height: 1.5;
+  font-size: 16px;
+  color: #4f4f4f;
+}
 .amount-btn {
   background-color: #fff;
   width: 30px;

@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./productDetail.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button2, Button3 } from "../util/Buttons";
+import { Button1, Button2, Button3, Button4, Button5 } from "../util/Buttons";
 import Tab1 from "./Tab1";
 import Swal from "sweetalert2";
 import * as React from "react";
@@ -275,7 +275,13 @@ const ProductDetail = (props) => {
               <span>{commaTotal} 원</span>
             </div>
           </div>
-          {!member || (member && member.memberLevel !== 1) ? (
+          {!member || (member && member.memberLevel === 1) ? (
+            ""
+          ) : product.productStock === 0 ? (
+            <div className="product-order-box">
+              <Button5 text="품절된 상품입니다" readOnly />
+            </div>
+          ) : (
             <div className="product-order-box">
               <Button2 text="구매하기" clickEvent={order} />
               <Button3 text="장바구니" clickEvent={cart} />
@@ -285,8 +291,6 @@ const ProductDetail = (props) => {
                 </span>
               </div>
             </div>
-          ) : (
-            ""
           )}
         </div>
       </div>
@@ -310,7 +314,7 @@ const QuantityInput = (props) => {
         disabled={quantity === 1}
         onClick={() => onClick(-1)}
       >
-        -
+        <span className="material-icons">remove</span>
       </button>
       <input
         className="amount-input"
@@ -326,7 +330,7 @@ const QuantityInput = (props) => {
         disabled={stock < 1 || stock === quantity}
         onClick={() => onClick(1)}
       >
-        +
+        <span className="material-icons">add</span>
       </button>
     </div>
   );
