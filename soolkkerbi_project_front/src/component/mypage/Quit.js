@@ -83,7 +83,7 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
         <div className="closeModel">
-          <span class="material-icons" onClick={back}>close</span>
+          <span class="material-icons quit_off" onClick={back}>close</span>
           </div>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             진짜 탈퇴하시나요...??

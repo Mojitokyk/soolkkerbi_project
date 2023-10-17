@@ -217,6 +217,18 @@ const ReservationList = (props) => {
               )}
               
             )} */}
+            {resList.reservationStatus === 2 ? (
+              <Button2 text="취소진행중"
+              clickEvent={() => {
+                deleteRes(changeStatus, setChangeStatus);
+              }} />
+            ) : (
+              <Button2 text="예약취소요청"
+              clickEvent={() => {
+                deleteRes(changeStatus, setChangeStatus);
+              }} />
+              
+            )}
 
         </div>
       </td>
