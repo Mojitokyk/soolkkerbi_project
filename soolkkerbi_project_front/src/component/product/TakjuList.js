@@ -27,7 +27,6 @@ const TakjuList = (props) => {
         setMember(res.data.member);
       })
       .catch((res) => {
-        console.log(res.response.status);
         if (res.respons.status === 500) {
           Swal.fire({
             icon: "error",
@@ -58,6 +57,7 @@ const TakjuList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setTakjuList}
         />
       </div>
     </div>

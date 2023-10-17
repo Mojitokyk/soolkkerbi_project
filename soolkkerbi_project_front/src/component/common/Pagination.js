@@ -4,10 +4,15 @@ const Pagination = (props) => {
   const reqPage = props.reqPage;
   const setReqPage = props.setReqPage;
   const pageInfo = props.pageInfo;
+  const setList = props.setList;
 
   const changePage = (e) => {
     const changePage = e.currentTarget.innerText;
     setReqPage(changePage);
+    if (reqPage !== changePage) {
+      setList([]);
+      setReqPage(changePage);
+    }
   };
 
   // 페이징 jsx가 저장될 배열

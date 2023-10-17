@@ -127,11 +127,13 @@ export default function ReviewModal({ order }) {
                   <tr>
                     <th>상세 내용</th>
                     <td>
-                      <TextEditor
-                        data={reviewContent}
-                        setData={setReviewContent}
-                        url="/review/contentImg"
-                      />
+                      <div className="review-content">
+                        <TextEditor
+                          data={reviewContent}
+                          setData={setReviewContent}
+                          url="/review/contentImg"
+                        />
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -203,7 +205,7 @@ const HalfRating = (props) => {
 const CheckBox = () => {
   return (
     <FormControlLabel
-      control={<Checkbox />}
+      control={<Checkbox defaultChecked />}
       label="개인정보 수집 이용 및 동의"
       sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
     />

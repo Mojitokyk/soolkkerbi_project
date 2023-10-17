@@ -52,8 +52,8 @@
   margin-bottom: 5px;
 }
 .taste-view-btn > :first-child,
-.taste-view-btn > :nth-child(2),
-.taste-view-btn > :nth-child(3) {
+.taste-view-btn > :nth-child(2) {
+  /* .taste-view-btn > :nth-child(3) */
   margin-right: 10px;
 }
 .taste-view-btn > button {

@@ -60,6 +60,7 @@ const YakjuList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setYakjuList}
         />
       </div>
     </div>
