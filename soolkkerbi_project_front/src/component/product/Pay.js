@@ -10,7 +10,7 @@ const Pay = (props) => {
   const isLogin = props.isLogin;
   const navigate = useNavigate();
   const location = useLocation();
-
+  /*
   useEffect(() => {
     if (!isLogin) {
       Swal.fire({
@@ -21,12 +21,15 @@ const Pay = (props) => {
       navigate("/login");
     }
   }, [isLogin]);
-
   const cart = isLogin ? location.state.cart : "";
   const cartList = isLogin ? location.state.cartList : "";
   const totalPrice = isLogin ? location.state.totalPrice : "";
   const member = isLogin ? location.state.member : "";
-
+*/
+  const cart = location.state.cart;
+  const cartList = location.state.cartList;
+  const totalPrice = location.state.totalPrice;
+  const member = location.state.member;
   const [pickupDate, setPickupDate] = useState("");
 
   const pay = () => {

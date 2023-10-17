@@ -25,7 +25,6 @@
 }
 .right-wrap {
   width: 430px;
-  position: sticky;
 }
 .right-wrap > div {
   margin-bottom: 20px;
