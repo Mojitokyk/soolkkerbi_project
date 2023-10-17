@@ -46,6 +46,7 @@ const ReadAllMember = () => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setMemberList}
         />
       </div>
     </div>

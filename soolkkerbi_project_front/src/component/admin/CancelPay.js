@@ -38,25 +38,40 @@ const CancelPay = () => {
             </tr>
           </thead>
           <tbody>
-            {payList.map((pay, index) => {
-              return (
-                <PayItem
-                  key={"cancelPay" + index}
-                  pay={pay}
-                  changeStatus={changeStatus}
-                  setChangeStatus={setChangeStatus}
-                />
-              );
-            })}
+            {payList.length > 0 ? (
+              payList.map((pay, index) => {
+                return (
+                  <PayItem
+                    key={"cancelPay" + index}
+                    pay={pay}
+                    changeStatus={changeStatus}
+                    setChangeStatus={setChangeStatus}
+                  />
+                );
+              })
+            ) : (
+              <>
+                <tr>
+                  <td colSpan={6} className="emptyList">
+                    <img src="/image/no_content_img/no_content.png" />
+                  </td>
+                </tr>
+              </>
+            )}
           </tbody>
         </table>
       </div>
       <div className="admin-paging-wrap">
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-        />
+        {payList.length > 0 ? (
+          <Pagination
+            reqPage={reqPage}
+            setReqPage={setReqPage}
+            pageInfo={pageInfo}
+            setList={setPayList}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

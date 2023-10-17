@@ -37,25 +37,40 @@ const CancelReservation = () => {
             </tr>
           </thead>
           <tbody>
-            {reservationList.map((reservation, index) => {
-              return (
-                <ReservationItem
-                  key={"cancelReservation" + index}
-                  reservation={reservation}
-                  changeStatus={changeStatus}
-                  setChangeStatus={setChangeStatus}
-                />
-              );
-            })}
+            {reservationList.length > 0 ? (
+              reservationList.map((reservation, index) => {
+                return (
+                  <ReservationItem
+                    key={"cancelReservation" + index}
+                    reservation={reservation}
+                    changeStatus={changeStatus}
+                    setChangeStatus={setChangeStatus}
+                  />
+                );
+              })
+            ) : (
+              <>
+                <tr>
+                  <td colSpan={5} className="emptyList">
+                    <img src="/image/no_content_img/no_content.png" />
+                  </td>
+                </tr>
+              </>
+            )}
           </tbody>
         </table>
       </div>
       <div className="admin-paging-wrap">
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-        />
+        {reservationList.length > 0 ? (
+          <Pagination
+            reqPage={reqPage}
+            setReqPage={setReqPage}
+            pageInfo={pageInfo}
+            setList={setReservationList}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

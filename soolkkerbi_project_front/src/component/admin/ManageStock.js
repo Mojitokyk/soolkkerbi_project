@@ -56,6 +56,7 @@ const ManageStock = () => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setProductList}
         />
       </div>
     </div>

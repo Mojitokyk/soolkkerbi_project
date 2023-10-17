@@ -155,6 +155,12 @@
 .admin-content-tbl > table > tbody > tr:hover {
   background-color: #eee;
 }
+.emptyList {
+  background-color: #eee;
+}
+.emptyList > img {
+  width: 40%;
+}
 
 .admin-paging-wrap {
   margin-top: 50px;

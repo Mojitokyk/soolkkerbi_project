@@ -53,7 +53,7 @@ const ManageReceive = () => {
               <>
                 <tr>
                   <td colSpan={6} className="emptyList">
-                    예약내역이 없습니다.
+                    <img src="/image/no_content_img/no_content.png" />
                   </td>
                 </tr>
               </>
@@ -67,6 +67,7 @@ const ManageReceive = () => {
             reqPage={reqPage}
             setReqPage={setReqPage}
             pageInfo={pageInfo}
+            setList={setPayList}
           />
         ) : (
           ""
