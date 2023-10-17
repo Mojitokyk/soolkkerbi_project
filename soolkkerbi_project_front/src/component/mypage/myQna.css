@@ -121,6 +121,10 @@
   padding: 10px;
   font-size: 1.1em;
 }
+.qna-view-userName {
+  padding: 10px;
+  text-align: right;
+}
 .qna-view-detail {
   padding: 20px 10px;
   min-height: 100px;
