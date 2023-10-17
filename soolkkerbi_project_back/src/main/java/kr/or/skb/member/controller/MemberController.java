@@ -44,6 +44,7 @@ public class MemberController {
 	@PostMapping(value = "/login")
 	public String login(@RequestBody Member member) {
 		String result=memberService.login(member);
+		System.out.println(result);
 		return result;
 	}
 
@@ -108,4 +109,5 @@ public class MemberController {
 		System.out.println(authCode);
 		return authCode;
 	}
+	
 }

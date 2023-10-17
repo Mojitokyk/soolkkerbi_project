@@ -192,6 +192,10 @@
   cursor: pointer;
 }
 
+.reviewRate-star {
+  color: #ff6289;
+}
+
 .admin-change-btn-box {
   width: 70%;
   margin: 0 auto;

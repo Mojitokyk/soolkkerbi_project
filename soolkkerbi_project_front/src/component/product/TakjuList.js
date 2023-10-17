@@ -26,7 +26,9 @@ const TakjuList = (props) => {
         setPageInfo(res.data.pi);
         setMember(res.data.member);
       })
-      .catch((res) => {});
+      .catch((res) => {
+        console.log(res.response.status);
+      });
   }, [reqPage]);
   return (
     <div className="product-all-wrap">
