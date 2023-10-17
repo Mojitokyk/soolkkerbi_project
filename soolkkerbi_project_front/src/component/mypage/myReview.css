@@ -11,7 +11,7 @@
   border-bottom: 1px solid #4f4f4f;
 }
 .my-reviewList-tbl > table > tbody td {
-  padding: 10px 0;
+  padding: 10px 5px;
   border-bottom: 1px solid #eee;
 }
 .emptyReview {
@@ -22,4 +22,21 @@
 }
 .moveToDetail {
   cursor: pointer;
+}
+.review-modify-btn > div > .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  height: 41px;
+  color: #4f4f4f;
+  font-family: ns-b;
+  border: 1px solid #ccc;
+}
+.review-modify-btn
+  > div
+  > .css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+  background-color: black;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+.moveToDetail > td:last-child > button {
+  font-weight: bold;
 }

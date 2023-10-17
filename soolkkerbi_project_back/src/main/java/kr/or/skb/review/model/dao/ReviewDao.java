@@ -29,5 +29,9 @@ public interface ReviewDao {
 	int totalCount3(int reqPage);
 
 	List selectAllReview(PageInfo pi);
+
+	int deleteReview(int reviewNo);
+
+	int modifyMember(Review r);
 	
 }
