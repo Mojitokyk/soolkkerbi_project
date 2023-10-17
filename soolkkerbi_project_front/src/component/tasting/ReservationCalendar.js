@@ -5,7 +5,7 @@ import Calendar from "react-calendar";
 import { Button1 } from "../util/Buttons";
 import moment from "moment";
 import Swal from "sweetalert2";
-import "../mypage/calender.css";
+import "../mypage/calendar.css";
 
 const ReservationCalendar = () => {
   const navigate = useNavigate();

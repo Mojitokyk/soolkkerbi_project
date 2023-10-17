@@ -13,7 +13,7 @@ import { Button2, Button3 } from '../util/Buttons';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import "./calender.css";
+import "./calendar.css";
 
 
 
