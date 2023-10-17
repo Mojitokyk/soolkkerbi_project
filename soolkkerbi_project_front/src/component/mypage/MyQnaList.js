@@ -59,7 +59,7 @@ const MyQnaList = (props) => {
           </tbody>
         ) : (
           <tbody>
-            <tr className="emptyQna">
+            <tr>
               <td colSpan={4}>작성하신 1:1문의가 없습니다.</td>
             </tr>
           </tbody>
