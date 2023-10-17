@@ -109,6 +109,7 @@
 .product-quantity-wrap > .material-icons {
   cursor: pointer;
   font-size: 20px;
+  margin-top: 3px;
 }
 .cart-price-tbl {
   margin-top: 50px;
