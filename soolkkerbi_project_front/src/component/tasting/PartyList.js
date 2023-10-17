@@ -40,19 +40,25 @@ const PartyList = (props) => {
         ""
       )}
 
-      <div className="taste-list-wrap">
-        {tasteList.map((taste, index) => {
-          return <TasteItem key={"taste" + index} taste={taste} />;
-        })}
-      </div>
-      <div className="taste-page">
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-          setList={setTasteList}
-        />
-      </div>
+      {tasteList.length > 0 ? (
+        <>
+          <div className="taste-list-wrap">
+            {tasteList.map((taste, index) => {
+              return <TasteItem key={"taste" + index} taste={taste} />;
+            })}
+          </div>
+          <div className="taste-page">
+            <Pagination
+              reqPage={reqPage}
+              setReqPage={setReqPage}
+              pageInfo={pageInfo}
+              setList={setTasteList}
+            />
+          </div>
+        </>
+      ) : (
+        <div className="tast-list-none">진행중인 시음회가 없습니다.</div>
+      )}
     </div>
   );
 };
