@@ -17,13 +17,16 @@
                 review_no,
                 review_member_no,
                 review_product_no,
+                review_rate,
+                review_content,
                 product_name,
                 review_title,
                 review_read_count,
-                to_char(review_date,'yyyy.mm.dd')review_date
+                to_char(review_date,'yyyy.mm.dd')review_date,
+                (select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
             from review 
             join member on (member_no = review_member_no)
-            join product on (product_no = review_product_no) 
+            join product on (product_no = review_product_no)
             where member_id=#{memberId} order by 1 desc)r)
     where rnum between #{start} and #{end}
   </select>
@@ -83,4 +86,12 @@
 	        order by review_date desc) r)
 	where rnum between #{start} and #{end}
   </select>
+  
+  <delete id="deleteReview">
+  	delete from review where review_no=#{reviewNo}
+  </delete>
+  
+  <update id="modifyMember">
+  	update review set review_title=#{reviewTitle}, review_content=#{reviewContent}, review_rate = #{reviewRate} where review_no=#{reviewNo}
+  </update>
 </mapper>

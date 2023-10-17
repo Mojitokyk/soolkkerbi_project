@@ -77,4 +77,17 @@ public class ReviewController {
 	public Map readAllReview(@PathVariable int reqPage) {
 		return reviewService.readAllReview(reqPage);
 	}
+	//리뷰 삭제
+	@PostMapping(value="/delete")
+	public int delete(@RequestBody Review r) {
+		int reviewNo = r.getReviewNo();
+		return reviewService.deleteReview(reviewNo);
+	}
+	
+	//리뷰 수정
+	@PostMapping(value="/modify")
+	public int modify(@RequestBody Review r) {
+		System.out.println(r);
+		return reviewService.modifyReview(r);
+	}
 }
