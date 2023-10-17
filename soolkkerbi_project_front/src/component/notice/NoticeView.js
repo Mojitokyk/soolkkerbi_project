@@ -2,7 +2,7 @@ import "./notice.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
 
 const NoticeView = (props) => {
@@ -93,7 +93,7 @@ const NoticeView = (props) => {
         ) : (
           ""
         )}
-        <Button1 text="목록으로" clickEvent={toList} />
+        <Button2 text="목록으로" clickEvent={toList} />
       </div>
     </>
   );
