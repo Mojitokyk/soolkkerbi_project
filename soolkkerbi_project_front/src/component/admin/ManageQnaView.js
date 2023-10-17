@@ -23,6 +23,7 @@ const ManageQnaView = (props) => {
       .get("/qna/view/" + qnaNo)
       .then((res) => {
         setQna(res.data);
+        console.log(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -33,6 +34,7 @@ const ManageQnaView = (props) => {
     <>
       <div className="qna-view-wrap">
         <div className="qna-view-title">{qna.qnaTitle}</div>
+        <div className="qna-view-userName">{qna.memberId}</div>
         <div
           className="qna-view-detail"
           dangerouslySetInnerHTML={{ __html: qna.qnaContent }} //텍스트 에디터를 사용할 경우
