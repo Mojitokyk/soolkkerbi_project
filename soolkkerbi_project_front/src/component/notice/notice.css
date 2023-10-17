@@ -119,7 +119,7 @@
   margin-right: 10px;
   width: 100px;
   height: 41.28px;
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   font-family: ns-b;
   border-radius: 5px;
@@ -129,11 +129,12 @@
   margin-right: 10px;
   width: 100px;
   height: 41.28px;
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   font-family: ns-b;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 
 /* 공지사항 상세 */
@@ -173,7 +174,7 @@
   margin-right: 10px;
   width: 100px;
   height: 41.28px;
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   font-family: ns-b;
   border-radius: 5px;

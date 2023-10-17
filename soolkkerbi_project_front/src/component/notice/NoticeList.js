@@ -1,7 +1,7 @@
 import "./notice.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 
@@ -62,7 +62,7 @@ const NoticeList = (props) => {
 
       {member.memberLevel === 1 ? (
         <div className="notice-write-btn">
-          <Button1 text="작성하기" clickEvent={write} />
+          <Button2 text="작성하기" clickEvent={write} />
         </div>
       ) : (
         ""
