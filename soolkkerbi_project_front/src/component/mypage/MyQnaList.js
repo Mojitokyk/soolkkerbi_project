@@ -1,7 +1,7 @@
 import "./myQna.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import Pagination from "../common/Pagination";
 import axios from "axios";
 
@@ -67,7 +67,7 @@ const MyQnaList = (props) => {
       </table>
       {member.memberLevel === 2 ? (
         <div className="qna-write-btn">
-          <Button1 text="작성하기" clickEvent={write} />
+          <Button2 text="작성하기" clickEvent={write} />
         </div>
       ) : (
         ""

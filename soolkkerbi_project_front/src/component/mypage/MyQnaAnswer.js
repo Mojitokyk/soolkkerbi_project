@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import "./myQna.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -111,8 +111,8 @@ const RegistAnswer = (props) => {
         </div>
         <li>
           <div className="write-btn">
-            <Button1 text="목록으로" clickEvent={toList} />
-            <Button1 text="등록" clickEvent={registAnswer} />
+            <Button2 text="목록으로" clickEvent={toList} />
+            <Button2 text="등록" clickEvent={registAnswer} />
           </div>
         </li>
       </ul>
@@ -277,7 +277,7 @@ const PrintAnswer = (props) => {
                 </div>
                 {member.memberLevel === 1 ? (
                   <div className="qnaComment-link">
-                    <Button1 text="목록으로" clickEvent={toList} />
+                    <Button2 text="목록으로" clickEvent={toList} />
                     <button
                       onClick={() => {
                         modifyAnswerFrm(answer.answerNo, index);

@@ -100,7 +100,7 @@
   margin-right: 10px;
   width: 100px;
   height: 41.28px;
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   font-family: ns-b;
   border-radius: 5px;
@@ -110,11 +110,12 @@
   margin-right: 10px;
   width: 100px;
   height: 41.28px;
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   font-family: ns-b;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 
 .qna-frm-wrap > .qna-btn-box {
@@ -266,7 +267,7 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  background-color: black;
+  background-color: #4f4f4f;
 }
 .qna-view-btn {
   clear: both;
@@ -323,7 +324,7 @@
   border-radius: 5px;
   border: none;
   outline: none;
-  background-color: black;
+  background-color: #4f4f4f;
 }
 .cancel-modifyAnswer-btn {
   margin-right: 10px;

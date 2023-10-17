@@ -22,6 +22,12 @@
   font-size: 0.9rem;
   font-family: ns-r;
 }
+.my-order-tbl > table > tbody > tr > :nth-child(3) > div > button {
+  color: #ff6289;
+}
+.my-order-tbl > table > tbody > tr > :nth-child(3) > div > button:hover {
+  background-color: #ffebf0;
+}
 .my-order-tbl > table > tbody td:nth-child(4) {
   text-align: left;
   padding-left: 20px;
@@ -31,6 +37,9 @@
 }
 .order-status-btn-box {
   width: 100px;
+}
+.order-status-btn-box > button {
+  font-family: ns-b;
 }
 .emptyOrder {
   height: 500px;
