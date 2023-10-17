@@ -79,8 +79,14 @@ const HeaderMember = (props) => {
 
   /*로그아웃 함수*/
   const logout = () => {
-    window.localStorage.removeItem("token");
-    setIsLogin(false);
+    Swal.fire({
+      title: "로그아웃되었습니다.",
+      text: "메인페이지로 이동합니다.",
+      icon: "info",
+    }).then(() => {
+      window.localStorage.removeItem("token");
+      setIsLogin(false);
+    });
   };
 
   useEffect(() => {
@@ -127,7 +133,7 @@ const HeaderMember = (props) => {
             <Link to="/mypage">마이페이지</Link>
           </span>
           <span className="logout">
-            <Link to="#" title="로그아웃" onClick={logout}>
+            <Link to="/" title="로그아웃" onClick={logout}>
               로그아웃
             </Link>
           </span>
