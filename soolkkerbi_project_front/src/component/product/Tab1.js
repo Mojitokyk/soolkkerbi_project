@@ -8,7 +8,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import Pagination from "../common/Pagination";
-import { Button4 } from "../util/Buttons";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
+
 //탭메뉴 mui
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,7 +45,8 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs({ product }) {
+export default function BasicTabs(props) {
+  const product = props.product;
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -67,7 +70,6 @@ export default function BasicTabs({ product }) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <div>수정</div>
         <div
           className="product-detail-info-content"
           dangerouslySetInnerHTML={{ __html: product.productInfo }}
@@ -127,8 +129,9 @@ const ProductReview = (props) => {
             <thead>
               <tr>
                 <th width={"10%"}>번호</th>
-                <th width={"40%"}>제목</th>
-                <th width={"20%"}>작성자</th>
+                <th width={"15%"}>별점</th>
+                <th width={"35%"}>제목</th>
+                <th width={"10%"}>작성자</th>
                 <th width={"20%"}>작성일</th>
                 <th width={"10%"}>조회수</th>
               </tr>
@@ -141,7 +144,7 @@ const ProductReview = (props) => {
               ) : (
                 <>
                   <tr>
-                    <td colSpan={5} className="emptyReview">
+                    <td colSpan={6} className="emptyReview">
                       리뷰내역이 없습니다.
                     </td>
                   </tr>
@@ -155,6 +158,7 @@ const ProductReview = (props) => {
                 reqPage={reqPage}
                 setReqPage={setReqPage}
                 pageInfo={pageInfo}
+                setList={setReviewList}
               />
             ) : (
               ""
@@ -187,6 +191,9 @@ const ReviewItem = (props) => {
     <>
       <tr onClick={changeCount} className="tr2">
         <td>{review.reviewNo}</td>
+        <td className="product-review-rate">
+          <HalfRating reviewRate={review.reviewRate} />
+        </td>
         <td>{review.reviewTitle}</td>
         <td>{review.memberName}</td>
         <td>{review.reviewDate}</td>
@@ -194,7 +201,7 @@ const ReviewItem = (props) => {
       </tr>
       {visible && (
         <tr>
-          <td colSpan={5} className="change-td">
+          <td colSpan={6} className="change-td">
             <div
               className="review-info"
               dangerouslySetInnerHTML={{ __html: review.reviewContent }}
@@ -203,6 +210,20 @@ const ReviewItem = (props) => {
         </tr>
       )}
     </>
+  );
+};
+//별점 컴포넌트
+const HalfRating = (props) => {
+  const reviewRate = props.reviewRate;
+  return (
+    <Stack spacing={1}>
+      <Rating
+        name="half-rating"
+        defaultValue={reviewRate}
+        precision={0.5}
+        readOnly
+      />
+    </Stack>
   );
 };
 //픽업안내글

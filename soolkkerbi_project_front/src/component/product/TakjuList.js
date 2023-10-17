@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "../common/Pagination";
 import ProductItem from "./ProductItem";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 const TakjuList = (props) => {
   const isLogin = props.isLogin;
@@ -13,7 +11,6 @@ const TakjuList = (props) => {
   const [pageInfo, setPageInfo] = useState({});
   const [member, setMember] = useState({});
   const token = window.localStorage.getItem("token");
-  const navigate = useNavigate();
   useEffect(() => {
     axios
       .post("/product/takju/" + reqPage, null, {
@@ -26,7 +23,9 @@ const TakjuList = (props) => {
         setPageInfo(res.data.pi);
         setMember(res.data.member);
       })
-      .catch((res) => {});
+      .catch((res) => {
+        console.log(res.response.status);
+      });
   }, [reqPage]);
   return (
     <div className="product-all-wrap">

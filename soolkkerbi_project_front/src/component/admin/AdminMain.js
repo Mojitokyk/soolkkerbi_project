@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import ManageQna from "./ManageQna";
 import ManageReview from "./ManageReview";
-import MemberChangePw from "../mypage/MemberChangePw";
 
 const AdminMain = (props) => {
   const isLogin = props.isLogin;
@@ -39,7 +38,7 @@ const AdminMain = (props) => {
         if (res.response.status === 403) {
           Swal.fire({
             title: "로그인이 필요한 서비스입니다.",
-            text: "로그인 페이지로 이동합니다.",
+            text: "로그인페이지로 이동합니다.",
             icon: "info",
           }).then(() => {
             navigate("/login");

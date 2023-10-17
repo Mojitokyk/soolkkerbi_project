@@ -12,26 +12,7 @@
   .react-calendar__tile--active:enabled:focus {
     background-color: #ff6289;
   }
-  .react-calendar__tile--now {
-    background: #a3a3a3;
-    color: #fff;
-  }
-  .react-calendar__tile--now:enabled:hover {
-    background: #a3a3a3;
-  }
-  /*일요일 색상 변경*/
-  .react-calendar__month-view__days__day--weekend {
-    color: red;
-  }
-  /*토요일 색상 변경*/
-  .react-calendar__month-view__days > :nth-child(7),
-  .react-calendar__month-view__days > :nth-child(14),
-  .react-calendar__month-view__days > :nth-child(21),
-  .react-calendar__month-view__days > :nth-child(28),
-  .react-calendar__month-view__days > :nth-child(35),
-  .react-calendar__month-view__days > :nth-child(42) {
-    color: blue;
-  }
+  
   .btn-box{
     display: flex;
     align-content: center;
@@ -50,3 +31,13 @@
     text-align: center;
     padding-bottom: 15px;
   }
+  
+  .react-calendar__tile--now {
+    background: #a3a3a3;
+    color: #fff;
+  }
+  .react-calendar__tile--now:enabled:hover {
+    background: #a3a3a3;
+  }
+  
+  

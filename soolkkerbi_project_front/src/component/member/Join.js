@@ -64,7 +64,7 @@ const Join = () => {
     }
   };
   const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const PhoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
   const NameReg=/^[ㄱ-힣]+$/;
   const pwCheck = () => {
@@ -74,9 +74,10 @@ const Join = () => {
       setCheckPWMsg("");
     }
   };
+  //최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식
   const pwReqCheck = () => {
     if (!passwordRegEx.test(memberPw)) {
-      setReqPwMsg("비밀번호는 소문자,대문자,숫자 8~20글자 입니다.");
+      setReqPwMsg("비밀번호는 문자,숫자 및 하나의 특수문자 최소8자입니다.");
     } else {
       setReqPwMsg("");
     }
@@ -84,7 +85,7 @@ const Join = () => {
 
   const checkEmail =()=>{
     if (!emailRegEx.test(memberEmail)) {
-      setCheckEmailMsg("아메일 형식에 맞게 작성해주세요");
+      setCheckEmailMsg("이메일 형식에 맞게 작성해주세요");
     } else{
       setCheckEmailMsg("");
     }
@@ -98,7 +99,7 @@ const Join = () => {
   }
   const checkPhone =()=>{
     if (!PhoneregExp.test(memberPhone)) {
-      setCheckPhoneMsg("000-0000-0000");
+      setCheckPhoneMsg("전화번호 양식은 010-0000-0000입니다!");
     } else{
       setCheckPhoneMsg("");
     }

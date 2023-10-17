@@ -76,19 +76,22 @@ const MyReservation = (props) => {
           </tbody>
         </table>
       </div>
-      <div>
-        {resList.length > 0 ? (
-          <Pagination
-            reqPage={reqPage}
-            setReqPage={setReqPage}
-            pageInfo={pageInfo}
-          />
-        ) : (
-          ""
-        )}
-      </div>
+    <div>
+      {resList.length > 0 ? (
+        <Pagination
+          reqPage={reqPage}
+          setReqPage={setReqPage}
+          pageInfo={pageInfo}
+          setList={setResList}
+        />
+      ) : (
+        ""
+      )}
     </div>
-  );
+    </div>
+
+);
+
 };
 
 const ReservationList = (props) => {
@@ -156,7 +159,7 @@ const ReservationList = (props) => {
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
-              Swal.fire("예약이 취소되었습니다.").then(() => {
+              Swal.fire("예약이 취소요청이 완료되었습니다.").then(() => {
                 setChangeStatus(!changeStatus);
               });
             }
@@ -190,12 +193,43 @@ const ReservationList = (props) => {
       </td>
       <td>
         <div className="order-status-btn-box">
-          <Button2
-            text="예약취소"
+          {/* <Button2
+            text="예약취소요청"
             clickEvent={() => {
               deleteRes(changeStatus, setChangeStatus);
-            }}
-          />
+            }} />*/}
+            {/* {resList.reservationStatus === 2 ? (
+              <Button2 text="예약취소진행중"
+              clickEvent={() => {
+                deleteRes(changeStatus, setChangeStatus);
+              }} />
+            ) : (
+              {resList.reservationStatus === 1 ? (
+              <Button2 text="예약취소요청"
+              clickEvent={() => {
+                deleteRes(changeStatus, setChangeStatus);
+              }} />
+              ):(
+                <Button2 text="예약취소완료"
+                clickEvent={() => {
+                  deleteRes(changeStatus, setChangeStatus);
+                }} />
+              )}
+              
+            )} */}
+            {resList.reservationStatus === 2 ? (
+              <Button2 text="취소진행중"
+              clickEvent={() => {
+                deleteRes(changeStatus, setChangeStatus);
+              }} />
+            ) : (
+              <Button2 text="예약취소요청"
+              clickEvent={() => {
+                deleteRes(changeStatus, setChangeStatus);
+              }} />
+              
+            )}
+
         </div>
       </td>
     </tr>

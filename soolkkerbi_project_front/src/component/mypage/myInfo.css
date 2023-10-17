@@ -21,7 +21,7 @@
   display: flex;
   justify-content: space-between;
 }
-#member-phone > div > input {
+#member-phone > div > .input {
   width: 60%;
 }
 #member-phone > div > button {

@@ -25,7 +25,7 @@ function App() {
     } else {
       setIsLogin(true);
     }
-  }, []);
+  }, [isLogin]);
 
   return (
     <div className="wrap">

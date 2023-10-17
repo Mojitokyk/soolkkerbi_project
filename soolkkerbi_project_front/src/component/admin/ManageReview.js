@@ -13,6 +13,7 @@ const ManageReview = () => {
     axios
       .get("/review/readAllReview/" + reqPage)
       .then((res) => {
+        console.log(res.data);
         setReviewList(res.data.list);
         setPageInfo(res.data.pi);
       })
@@ -30,9 +31,9 @@ const ManageReview = () => {
             <tr>
               <td width={"20%"}>작성일</td>
               <td width={"15%"}>작성자</td>
-              <td width={"20%"}>제목</td>
+              <td width={"25%"}>제목</td>
               <td width={"20%"}>상품명</td>
-              <td width={"15%"}>별점</td>
+              <td width={"10%"}>별점</td>
               <td width={"10%"}>후기삭제</td>
             </tr>
           </thead>
@@ -70,10 +71,15 @@ const ReviewItem = (props) => {
   return (
     <tr>
       <td>{review.reviewDate}</td>
-      <td>{review.reviewMemberId}</td>
+      <td>
+        {review.reviewMemberId === null ? "탈퇴회원" : review.reviewMemberId}
+      </td>
       <td>{review.reviewTitle}</td>
       <td>{review.productName}</td>
-      <td>{review.reviewRate}</td>
+      <td className="admin-reviewRate-box">
+        <div className="material-icons reviewRate-star">star</div>
+        <div className="admin-reviewRate">{review.reviewRate}</div>
+      </td>
       <td>
         <div className="admin-change-btn-box">
           <Button4 text="삭제" />

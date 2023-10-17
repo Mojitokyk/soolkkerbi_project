@@ -34,7 +34,7 @@ public class MemberService {
 	
 	public MemberService() {
 		super();
-		expiredMs = 1000 * 60 * 60;
+		expiredMs = 1000 * 60 * 60 * 12;
 	}
 
 	public Member selectOneMember(String memberId) {
@@ -49,8 +49,9 @@ public class MemberService {
 	public String login(Member member) {
 		Member m = memberDao.selectOneMember(member.getMemberId());
 		if (m != null && bCryptPasswordEncoder.matches(member.getMemberPw(), m.getMemberPw())) {
-
-			return jwtUtil.createToken(member.getMemberId(), secretKey, expiredMs);
+			String token = jwtUtil.createToken(member.getMemberId(), secretKey, expiredMs);
+			System.out.println(jwtUtil.isExpired(token, secretKey));
+			return token;
 		} else {
 			return "실패";
 		}
@@ -85,10 +86,8 @@ public class MemberService {
 	public int pwCheck(Member member) {
 		Member m = memberDao.selectOneMember(member.getMemberId());
 		if (m != null && bCryptPasswordEncoder.matches(member.getMemberPw(), m.getMemberPw())) {
-
 			return 1;
 		}
-
 		return 0;
 	}
 	@Transactional
@@ -101,4 +100,5 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.deleteMember(memberId);
 	}
+
 }

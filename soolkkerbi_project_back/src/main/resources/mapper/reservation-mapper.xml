@@ -34,7 +34,8 @@
 	</update>
 	
 	<delete id="delete">
-	delete from reservation where reservation_no=#{reservationNo}
+	 <!-- delete from reservation where reservation_no=#{reservationNo} 관리자에게 취소요청  -->
+	update reservation set reservation_status = 2 where reservation_no = #{reservationNo}
 	</delete>
 	
 	

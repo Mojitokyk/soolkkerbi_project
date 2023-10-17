@@ -7,3 +7,7 @@
 .delete-btn-box{
     padding-top: 25px;
 }
+.quit_off{
+    float: right;
+    cursor: pointer;
+}

@@ -14,10 +14,10 @@ const MemberChangePw = (props) => {
   const [ReqPwMsg, setReqPwMsg] = useState("");
   const token = window.localStorage.getItem("token");
 
-  const passwordRegEx = /^[A-Za-z0-9]{8,20}$/;
+  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const pwReqCheck = () => {
     if (!passwordRegEx.test(memberPw)) {
-      setReqPwMsg("비밀번호는 소문자,대문자,숫자 8~20글자 입니다.");
+      setReqPwMsg("비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수문자 최소8자입니다.");
     } else {
       setReqPwMsg("");
     }
@@ -48,7 +48,7 @@ const MemberChangePw = (props) => {
   };
   const changePw = (data) => {
     const token = window.localStorage.getItem("token");
-    if (memberPw !== "" && memberPw === memberPwRe) {
+    if (ReqPwMsg == "" && memberPw !== "" && memberPw === memberPwRe) {
       axios
         .post(
           "/member/changePw",
@@ -65,6 +65,7 @@ const MemberChangePw = (props) => {
             setCurrPw("");
             setMemberPw("");
             setMemberPwRe("");
+            //navigator("/mypage/info");
           } else {
             Swal.fire({
               icon: "warning",
@@ -90,25 +91,27 @@ const MemberChangePw = (props) => {
               <div className="pw-input-wrap">
                 <div>
                   <label htmlFor="memberPw">새비밀번호</label>
-                  <Input
-                    type="passWord"
-                    data={memberPw}
-                    setData={setMemberPw}
-                    content="memberPw"
-                    //CheckMsg={ReqPwMsg}
-                    blurEvent={pwReqCheck}
-                  />
+                  <JoinInputWrap
+                      data={memberPw}
+                      setData={setMemberPw}
+                      type="passWord"
+                      content="memberPw"
+                      label="비밀번호"
+                      CheckMsg={ReqPwMsg}
+                      blurEvent={pwReqCheck}
+                    />
                 </div>
                 <div>
                   <label htmlFor="memberPwRe">새비밀번호 확인</label>
-                  <Input
-                    type="passWord"
-                    data={memberPwRe}
-                    setData={setMemberPwRe}
-                    content="memberPwRe"
-                    //CheckMsg={CheckPwMsg}
-                    blurEvent={pwCheck}
-                  />
+                  <JoinInputWrap
+                          data={memberPwRe}
+                          setData={setMemberPwRe}
+                          type="passWord"
+                          content="memberPwRe"
+                          label="비밀번호확인"
+                          //CheckMsg={CheckPwMsg}
+                          blurEvent={pwCheck}
+                      />
                 </div>
               </div>
             </div>
@@ -134,4 +137,28 @@ const MemberChangePw = (props) => {
     </div>
   );
 };
+const JoinInputWrap = (props) => {
+  const data = props.data;
+  const setData = props.setData;
+  const type = props.type;
+  const content = props.content;
+  const blurEvent = props.blurEvent;
+  const CheckMsg = props.CheckMsg;
+
+  return (
+    <>
+        <div className="input">
+          <Input
+            type={type}
+            data={data}
+            setData={setData}
+            content={content}
+            blurEvent={blurEvent}
+          />
+        </div>
+       <div className="check-msg">{CheckMsg}</div>  
+ </> 
+ );
+};
+
 export default MemberChangePw;
