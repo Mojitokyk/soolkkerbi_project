@@ -60,6 +60,7 @@ const FruitList = (props) => {
           reqPage={reqPage}
           setReqPage={setReqPage}
           pageInfo={pageInfo}
+          setList={setFruitList}
         />
       </div>
     </div>
