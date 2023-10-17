@@ -7,7 +7,9 @@
   padding: 5px;
 }
 .my-order-tbl > table > thead td {
+  padding: 13px 0;
   font-family: ns-b;
+  border-top: 1px solid #4f4f4f;
   border-bottom: 1px solid #4f4f4f;
 }
 .my-order-tbl > table > tbody > tr > td > img {
@@ -15,7 +17,7 @@
 }
 .my-order-tbl > table > tbody td {
   padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  /* border-bottom: 1px solid #eee; */
   font-size: 0.9rem;
   font-family: ns-r;
 }
