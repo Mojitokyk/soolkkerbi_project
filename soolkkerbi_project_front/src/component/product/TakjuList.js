@@ -14,7 +14,6 @@ const TakjuList = (props) => {
   const [member, setMember] = useState({});
   const token = window.localStorage.getItem("token");
   const navigate = useNavigate();
-
   useEffect(() => {
     axios
       .post("/product/takju/" + reqPage, null, {
