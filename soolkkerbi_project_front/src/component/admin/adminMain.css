@@ -136,7 +136,9 @@
   padding: 0.5rem;
   font-family: ns-r;
 }
-
+.admin-content-tbl {
+  border-bottom: 1px solid #ddd;
+}
 .admin-content-tbl > table {
   width: 100%;
   border-spacing: 0;

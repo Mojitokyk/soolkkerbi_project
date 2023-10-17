@@ -4,6 +4,7 @@
   border-collapse: collapse;
   width: 100%;
   margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
 .qna-list tr {
   height: 40px;
