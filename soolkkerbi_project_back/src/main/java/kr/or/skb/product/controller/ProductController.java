@@ -125,4 +125,10 @@ public class ProductController {
 		List list = productService.recommendList();
 		return list;
 	}
+	//상품 삭제
+	@PostMapping(value="/delete")
+	public int deleteProduct(@RequestBody Product p) {
+		int productNo = p.getProductNo();
+		return productService.deleteProduct(productNo);
+	}
 }
