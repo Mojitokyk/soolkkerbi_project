@@ -76,17 +76,6 @@ const MyReservation = (props) => {
           </tbody>
         </table>
       </div>
-      <div>
-        {resList.length > 0 ? (
-          <Pagination
-            reqPage={reqPage}
-            setReqPage={setReqPage}
-            pageInfo={pageInfo}
-          />
-        ) : (
-          ""
-        )}
-      </div>
     <div>
       {resList.length > 0 ? (
         <Pagination
