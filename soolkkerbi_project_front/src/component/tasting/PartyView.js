@@ -115,7 +115,7 @@ const PartyView = (props) => {
           ""
         )}
         <Button1 text="목록으로" clickEvent={toList} />
-        <Button1 text="예약" clickEvent={reservation} />
+        {/* <Button1 text="예약" clickEvent={reservation} /> */}
       </div>
     </>
   );
