@@ -191,9 +191,19 @@
   justify-content: center;
   cursor: pointer;
 }
-
+.admin-reviewRate-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .reviewRate-star {
   color: #ff6289;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.admin-reviewRate {
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 .admin-change-btn-box {

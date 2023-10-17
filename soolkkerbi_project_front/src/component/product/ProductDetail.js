@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import * as React from "react";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import ProductModify from "./ProductModify";
 
 const ProductDetail = (props) => {
   const isLogin = props.isLogin;
@@ -199,6 +200,33 @@ const ProductDetail = (props) => {
     }
   };
 
+  //상품삭제
+  const deleteProduct = () => {
+    console.log(product.productNo);
+    Swal.fire({
+      icon: "question",
+      title: "삭제",
+      text: "상품을 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      const obj = new Object();
+      obj.productNo = product.productNo;
+      if (res.isConfirmed) {
+        axios
+          .post("/product/delete", obj)
+          .then((res) => {
+            //console.log(res.data);
+            navigate("/");
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    });
+  };
+
   return (
     <div className="product-view-all-wrap">
       <div className="product-view-wrap">
@@ -276,7 +304,14 @@ const ProductDetail = (props) => {
             </div>
           </div>
           {!member || (member && member.memberLevel === 1) ? (
-            ""
+            member && member.memberLevel === 1 ? (
+              <div className="product-order-box">
+                <ProductModify product={product} setProduct={setProduct} />
+                <Button2 text="삭제" clickEvent={deleteProduct} />
+              </div>
+            ) : (
+              ""
+            )
           ) : product.productStock === 0 ? (
             <div className="product-order-box">
               <Button5 text="품절된 상품입니다" readOnly />

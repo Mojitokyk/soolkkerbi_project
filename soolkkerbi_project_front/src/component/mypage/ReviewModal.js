@@ -7,8 +7,6 @@ import TextEditor from "../util/TextEditor";
 import { Button1, Button3 } from "../util/Buttons";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";

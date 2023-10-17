@@ -158,4 +158,8 @@ public class ProductService {
 	public List recommendList() {
 		return productDao.recommendList();
 	}
+
+	public int deleteProduct(int productNo) {
+		return productDao.deleteProduct(productNo);
+	}
 }

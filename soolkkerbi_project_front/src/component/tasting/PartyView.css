@@ -9,6 +9,7 @@
   border-bottom: 1px solid #ccc;
   padding: 10px;
   font-size: 1.1em;
+  color: #4f4f4f;
 }
 .taste-view-info {
   text-align: right;
@@ -17,6 +18,7 @@
 .taste-view-info > :last-child {
   float: right;
   font-size: 1.1em;
+  color: #4f4f4f;
 }
 .taste-view-file {
   clear: both;
@@ -29,6 +31,7 @@
   padding-top: 20px;
   padding-bottom: 30px;
   font-size: 1.1em;
+  color: #4f4f4f;
 }
 .taste-view-detail > p > img {
   /* width: 100%; */
@@ -40,10 +43,12 @@
 .guide-party-date > div {
   font-size: 1.1em;
   margin-bottom: 5px;
+  color: #4f4f4f;
 }
 .guide-party-date > span {
   font-size: 1.1em;
   margin: 0 10px;
+  color: #4f4f4f;
 }
 .taste-view-btn {
   width: 1000px;
@@ -60,7 +65,7 @@
   margin-right: 10px;
   width: 100px;
   height: 41.28px;
-  background-color: black;
+  background-color: #4f4f4f;
   color: #fff;
   font-family: ns-b;
   border-radius: 5px;
@@ -83,6 +88,7 @@
   border-bottom: 1px solid #ccc;
   padding: 10px;
   font-size: 1.1em;
+  color: #4f4f4f;
 }
 .reservation-calendar-wrap {
   padding: 10px;
@@ -91,10 +97,14 @@
 .calendar-guide {
   font-size: 1.1em;
   margin-bottom: 50px;
+  color: #4f4f4f;
 }
 .calendar {
   text-align: center;
   font-size: 1.1em;
+}
+.calendar > span {
+  color: #4f4f4f;
 }
 .calendar > :nth-child(3) {
   margin: 0px 10px;
@@ -124,6 +134,9 @@
   font-size: 1.1em;
   overflow: hidden;
 }
+.reservation-info span {
+  color: #4f4f4f;
+}
 .reservation-info-member {
   margin-bottom: 15px;
 }
@@ -146,6 +159,10 @@
   text-align: center;
   font-size: 1.1em;
 }
+.reservation-done-guide div,
+span {
+  color: #4f4f4f;
+}
 .reservation-done-guide > :nth-child(2) {
   margin-top: 10px;
   font-size: 0.8em;
@@ -153,12 +170,20 @@
 .reservation-done-guide > :nth-child(2) > span {
   font-weight: bold;
 }
+
+.reservation-done-guide > :nth-child(3) {
+  font-size: 0.8em;
+}
+.reservation-done-guide > :nth-child(3) > span {
+  font-weight: bold;
+  color: #ff6289;
+}
 .reservation-done-guide > :last-child {
+  margin-top: 5px;
   font-size: 0.8em;
 }
 .reservation-done-guide > :last-child > span {
   font-weight: bold;
-  color: #ff6289;
 }
 .reservation-done-guide > :last-child > span:hover {
   cursor: pointer;

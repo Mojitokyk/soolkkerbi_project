@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button1 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 
 const ReservationDone = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const ReservationDone = () => {
   /*마이페이지의 예약내역으로 이동하는 함수*/
   const toMypageReservation = () => {
     console.log("예약 내역 버튼 이벤트");
-    navigate("/mypage/reservation");
+    navigate("/mypage");
   };
 
   return (
@@ -33,14 +33,16 @@ const ReservationDone = () => {
             <span>{reservationStringNo}</span>입니다.
           </div>
           <div>
-            예약 내역은 마이페이지의{" "}
-            <span onClick={toMypageReservation}>예약 내역</span>에서 확인하실 수
+            예약 내역은 마이페이지의 <span>예약 내역</span>에서 확인하실 수
             있습니다.
+          </div>
+          <div>
+            <span onClick={toMypageReservation}>마이페이지로 이동</span>
           </div>
         </div>
       </div>
       <div className="reservation-done-btn">
-        <Button1 text="목록으로" clickEvent={toList} />
+        <Button2 text="목록으로" clickEvent={toList} />
       </div>
     </>
   );

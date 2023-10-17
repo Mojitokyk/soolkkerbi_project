@@ -52,13 +52,14 @@
   border-bottom: 1px solid #4f4f4f;
 }
 .notice-list > thead > tr th {
-  color: #4f4f4f;
+  /* color: #4f4f4f; */
   padding: 13px 5px;
 }
 .notice-list > tbody > tr {
   border: none;
 }
 .notice-list > tbody > tr > td {
+  color: #4f4f4f;
   padding: 13px 5px;
 }
 .notice-list > tbody > tr:hover {
@@ -107,6 +108,9 @@
   min-height: 300px;
   font-size: 1em;
 }
+.notice-content-box > .quill .ql-editor {
+  height: 500px;
+}
 
 .notice-frm-wrap > .notice-btn-box {
   text-align: right;
@@ -124,6 +128,7 @@
   font-family: ns-b;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 .toList-notice-btn {
   margin-right: 10px;
@@ -146,10 +151,14 @@
   border-bottom: 1px solid #ccc;
   padding: 10px;
   font-size: 1.1em;
+  color: #4f4f4f;
 }
 .notice-view-info {
   text-align: right;
   height: 50px;
+}
+.notice-view-info > div {
+  color: #4f4f4f;
 }
 .notice-view-info > :last-child {
   float: right;
@@ -165,6 +174,9 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
+.notice-view-detail > p {
+  color: #4f4f4f;
+}
 .notice-view-btn {
   text-align: right;
   margin-bottom: 5px;
@@ -179,6 +191,7 @@
   font-family: ns-b;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 }
 .notice-view-btn > button {
   width: 100px;

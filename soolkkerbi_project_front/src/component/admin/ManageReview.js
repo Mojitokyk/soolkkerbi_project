@@ -76,9 +76,9 @@ const ReviewItem = (props) => {
       </td>
       <td>{review.reviewTitle}</td>
       <td>{review.productName}</td>
-      <td>
-        <span className="material-icons reviewRate-star">star</span>
-        <span>{review.reviewRate}</span>
+      <td className="admin-reviewRate-box">
+        <div className="material-icons reviewRate-star">star</div>
+        <div className="admin-reviewRate">{review.reviewRate}</div>
       </td>
       <td>
         <div className="admin-change-btn-box">

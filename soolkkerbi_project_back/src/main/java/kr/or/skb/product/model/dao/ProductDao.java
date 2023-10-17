@@ -50,5 +50,7 @@ public interface ProductDao {
 
 	//메인페이지 추천리스트 조회
 	List recommendList();
+
+	int deleteProduct(int productNo);
 	
 }
