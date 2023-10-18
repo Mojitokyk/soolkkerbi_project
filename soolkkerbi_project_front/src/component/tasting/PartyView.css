@@ -159,8 +159,7 @@
   text-align: center;
   font-size: 1.1em;
 }
-.reservation-done-guide div,
-span {
+.reservation-done-guide div span {
   color: #4f4f4f;
 }
 .reservation-done-guide > :nth-child(2) {
