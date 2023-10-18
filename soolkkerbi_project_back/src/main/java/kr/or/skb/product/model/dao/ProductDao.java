@@ -54,5 +54,6 @@ public interface ProductDao {
 	int deleteProduct(int productNo);
 
 	int updateProduct(Product p);
+
 	
 }
