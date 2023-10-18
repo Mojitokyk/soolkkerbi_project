@@ -49,7 +49,7 @@ const ReservationConfirm = () => {
       .then((res) => {
         console.log(res.data);
 
-        navigate("/tasting/reservationDone", {
+        navigate("/taste/reservationDone", {
           state: {
             taste: taste,
             member: member,

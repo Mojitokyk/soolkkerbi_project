@@ -65,20 +65,47 @@ const PartyList = (props) => {
 const TasteItem = (props) => {
   const taste = props.taste;
   const navigate = useNavigate();
+
+  console.log(taste.tasteStatus);
+
   const tasteView = () => {
-    navigate("/tasting/view", { state: { tasteNo: taste.tasteNo } });
+    navigate("/taste/view", { state: { tasteNo: taste.tasteNo } });
   };
+
   return (
     <div className="taste-item" onClick={tasteView}>
       <div className="taste-item-img">
         {taste.tasteFilepath === null ? (
           <img src="/image/default.png" />
         ) : (
-          <img src={"/taste/" + taste.tasteFilepath} />
+          <>
+            {taste.tasteStatus == 1 ? (
+              <img src={"/taste/" + taste.tasteFilepath} />
+            ) : (
+              <div className="close-taste-wrap">
+                <div className="close-taste-img">
+                  <img src={"/taste/" + taste.tasteFilepath} />
+                </div>
+                <div className="close-taste">
+                  <p>CLOSE</p>
+                </div>
+              </div>
+            )}
+          </>
         )}
       </div>
       <div className="taste-item-info">
-        <div className="taste-item-title">{taste.tasteTitle}</div>
+        {taste.tasteStatus == 1 ? (
+          <div className="taste-item-title">
+            [진행중]
+            {taste.tasteTitle}
+          </div>
+        ) : (
+          <div className="taste-item-title">
+            [종료]
+            {taste.tasteTitle}
+          </div>
+        )}
         <div className="taste-item-date">
           <span className="taste-item-startdate">{taste.tasteStart}</span>
           <span>~</span>
