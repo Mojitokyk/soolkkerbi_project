@@ -67,7 +67,7 @@
 	</select>
 	
 	<insert id="insertOnePay">
-		insert into pay values(pay_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, to_char(sysdate,'yy/mm/dd'), #{payStringNo}, 1, #{pickupDate}, #{cartStock}, (select product_price from product where product_no=#{cartProductNo}))
+		insert into pay values(pay_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, to_char(sysdate,'yy/mm/dd'), #{payStringNo}, 1, #{pickupDate}, #{cartStock}, (select product_price from product where product_no=#{cartProductNo}), 0)
 	</insert>
 	
 	<update id="updateProductStock">
