@@ -33,7 +33,7 @@
   width: 100px;
 }
 .emptyOrder {
-  height: 500px;
+  height: 300px;
 }
 .my-order-tbl-tr > td:nth-child(4) {
   cursor: pointer;
