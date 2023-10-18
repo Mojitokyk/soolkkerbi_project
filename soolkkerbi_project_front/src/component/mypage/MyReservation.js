@@ -103,7 +103,7 @@ const ReservationList = (props) => {
   const navigate = useNavigate();
   //const [status, setStatus] = useState(resList.reservationStatus === 1 ? true : false);
   const reservationContent = () => {
-    navigate("/tasting/view", {
+    navigate("/taste/view", {
       state: { reservationNo: resList.reservationNo },
     });
   };
