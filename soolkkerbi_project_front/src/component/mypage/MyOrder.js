@@ -31,7 +31,7 @@ const MyOrder = (props) => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, [reqPage]);
+  }, [reqPage, changeStatus]);
 
   return (
     <div className="mypage-content-wrap">
@@ -167,7 +167,7 @@ const OrderList = (props) => {
               />
             </div>
           </>
-        ) : order.payStatus === 2 ? (
+        ) : order.payStatus === 2 && order.payReviewStatus === 0 ? (
           <>
             <div className="order-status-btn-box">
               <ReviewModal order={order} />
