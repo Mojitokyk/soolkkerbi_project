@@ -17,7 +17,7 @@ const Cart = (props) => {
   const [member, setMember] = useState({});
   //체크 박스 체크 시 cartNo 넣어줌
   const [checkList, setCheckList] = useState([]);
-  const navigate = useNavigate();
+
   //장바구니 조회 및 장바구니 내 합계 금액, 품목 건수 조회
   useEffect(() => {
     axios
@@ -91,6 +91,8 @@ const Cart = (props) => {
   };
   //수량 +버튼 클릭 시
   const plusCart = (cartNo, cartStock, productStock) => {
+    console.log(cartStock);
+    console.log(productStock);
     if (cartStock < productStock) {
       axios
         .post(
@@ -113,6 +115,7 @@ const Cart = (props) => {
   };
   //수량 -버튼 클릭 시
   const removeCart = (cartNo, cartStock) => {
+    console.log(cartStock);
     if (cartStock > 1) {
       axios
         .post(
