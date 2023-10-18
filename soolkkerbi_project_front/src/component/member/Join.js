@@ -41,7 +41,7 @@ const Join = () => {
   const [CheckPhoneMsg,setCheckPhoneMsg] = useState("");
   const navigate = useNavigate();
   const idCheck = () => {
-    const idReg = /^[a-zA-Z0-9]{4,8}$/;
+    const idReg = /^[a-zA-Z0-9]{4,12}$/;
     if (!idReg.test(memberId)) {
       //정구표현식 만족못함
       setCheckIdMsg("아이디는 영어 대소문자숫자로4-8글자입니다!");
