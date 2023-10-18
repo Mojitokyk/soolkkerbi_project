@@ -7,7 +7,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const ProductFrm = (props) => {
-  console.log(props);
+  //console.log(props);
   const productName = props.productName;
   const setProductName = props.setProductName;
   const thumbnail = props.thumbnail;
