@@ -1,13 +1,10 @@
 package kr.or.skb.qna.controller;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.skb.FileUtil;
-import kr.or.skb.notice.model.vo.Notice;
-import kr.or.skb.notice.model.vo.NoticeFile;
 import kr.or.skb.qna.model.service.QnaService;
 import kr.or.skb.qna.model.vo.Answer;
 import kr.or.skb.qna.model.vo.Qna;
