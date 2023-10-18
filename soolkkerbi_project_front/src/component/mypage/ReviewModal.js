@@ -46,6 +46,7 @@ export default function ReviewModal({ order }) {
 
   const reviewProductNo = order.payProductNo;
   const reviewMemberNo = order.payMemberNo;
+  const reviewPayNo = order.payNo;
   //상품번호 클릭시 동작할 함수(서버에 insert 요청하는 함수)
   const write = () => {
     const review = {
@@ -54,6 +55,7 @@ export default function ReviewModal({ order }) {
       reviewRate,
       reviewMemberNo,
       reviewProductNo,
+      reviewPayNo,
     };
     //console.log(review);
 
@@ -62,7 +64,7 @@ export default function ReviewModal({ order }) {
         .post("/review/insert", review)
         .then((res) => {
           console.log(res.data);
-          if (res.data > 0) {
+          if (res.data === 2) {
             Swal.fire({
               icon: "success",
               title: "등록 완료",

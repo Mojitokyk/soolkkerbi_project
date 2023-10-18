@@ -25,4 +25,5 @@ public class Pay {
 	private String payProductFilepath;
 	private int payProductCase;
 	private int payTotalPrice;
+	private int payReviewStatus;
 }

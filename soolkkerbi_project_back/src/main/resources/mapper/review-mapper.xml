@@ -94,4 +94,8 @@
   <update id="modifyMember">
   	update review set review_title=#{reviewTitle}, review_content=#{reviewContent}, review_rate = #{reviewRate} where review_no=#{reviewNo}
   </update>
+  
+  <update id="updatePayReviewStatus">
+  	update pay set pay_review_status = 1 where pay_no = #{reviewPayNo}
+  </update>
 </mapper>
