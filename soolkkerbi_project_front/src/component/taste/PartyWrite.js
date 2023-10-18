@@ -11,6 +11,8 @@ const PartyWrite = () => {
   const [tasteStart, setTasteStart] = useState(null);
   const [tasteEnd, setTasteEnd] = useState(null);
   const [tasteFilepath, setTasteFilepath] = useState(null);
+  //tasteImg -> 썸네일 미리보기용
+  const [tasteImg, setTasteImg] = useState(null);
   const navigate = useNavigate(); //글쓰기 버튼 클릭시 동작할 함수(서버에 insert요청함수)
   const write = () => {
     console.log(tasteTitle);
@@ -41,7 +43,7 @@ const PartyWrite = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data > 0) {
-            navigate("/tasting");
+            navigate("/taste");
           }
         })
         .catch((res) => {
@@ -65,6 +67,8 @@ const PartyWrite = () => {
         setTasteContent={setTasteContent}
         thumbnail={thumbnail}
         setThumbnail={setThumbnail}
+        tasteImg={tasteImg}
+        setTasteImg={setTasteImg}
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
         buttonEvent={write}

@@ -18,6 +18,7 @@ const ReservationCalendar = () => {
 
   console.log(taste.tasteStart);
   console.log(taste.tasteEnd);
+  console.log(taste.tasteStatus);
 
   //선택한 날짜
   console.log(moment(value).format("YYYY년 MM월 DD일"));
@@ -41,8 +42,14 @@ const ReservationCalendar = () => {
     console.log(selectDateForReservationNo);
     console.log(selectDateFormat);
     console.log(taste.tasteStart);
+    console.log(taste.tasteEnd);
+    console.log(taste.tasteStatus);
 
-    if (selectDateFormat < taste.tasteStart) {
+    if (
+      selectDateFormat < taste.tasteStart ||
+      selectDateFormat > taste.tasteEnd ||
+      taste.tasteStatus == 2
+    ) {
       Swal.fire({
         icon: "warning",
         title: "예약 가능한 날짜가 아닙니다.",
@@ -56,7 +63,7 @@ const ReservationCalendar = () => {
           taste.tasteEnd,
       });
     } else {
-      navigate("/tasting/reservationConfirm", {
+      navigate("/taste/reservationConfirm", {
         state: {
           member: member,
           taste: taste,

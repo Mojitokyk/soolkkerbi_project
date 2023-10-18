@@ -15,8 +15,8 @@ const PartyFrm = (props) => {
   const setTasteContent = props.setTasteContent;
   const thumbnail = props.thumbnail;
   const setThumbnail = props.setThumbnail;
-  //const tasteImg = props.tasteImg;
-  //const setTasteImg = props.setTasteImg;
+  const tasteImg = props.tasteImg;
+  const setTasteImg = props.setTasteImg;
   const tasteFilepath = props.tasteFilepath;
   const setTasteFilepath = props.setTasteFilepath;
   const buttonEvent = props.buttonEvent;
@@ -34,11 +34,13 @@ const PartyFrm = (props) => {
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onloadend = () => {
-        setTasteFilepath(reader.result);
+        // setTasteFilepath(reader.result);
+        setTasteImg(reader.result);
       };
     } else {
       setThumbnail({});
-      setTasteFilepath(null);
+      // setTasteFilepath(null);
+      setTasteImg(null);
     }
   };
   //   const changeFile = (e) => {
@@ -59,10 +61,12 @@ const PartyFrm = (props) => {
     <div className="taste-frm-wrap">
       <div className="taste-frm-top">
         <div className="taste-thumbnail">
-          {tasteFilepath === null ? (
+          {/* {tasteFilepath === null ? ( */}
+          {tasteImg === null ? (
             <img src="/image/default.png" />
           ) : (
-            <img src={tasteFilepath} />
+            // <img src={tasteFilepath} />
+            <img src={tasteImg} />
           )}
         </div>
         <div className="taste-info">
