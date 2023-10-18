@@ -312,7 +312,11 @@ const CartPrice = (props) => {
           <tr>
             <td>
               <p>총 주문금액</p>
-              <p className="cart-price">{commaPrice}원</p>
+              {cartList.length === 0 ? (
+                <p className="cart-price">0 원</p>
+              ) : (
+                <p className="cart-price">{commaPrice}원</p>
+              )}
             </td>
           </tr>
         </tbody>
