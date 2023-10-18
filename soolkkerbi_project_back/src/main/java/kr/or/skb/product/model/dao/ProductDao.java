@@ -55,6 +55,5 @@ public interface ProductDao {
 
 	int updateProduct(Product p);
 
-	List selectMyLike(String memberId);
 	
 }

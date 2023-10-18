@@ -15,7 +15,6 @@ const MyOrder = (props) => {
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
   const [changeStatus, setChangeStatus] = useState(true);
-  const [likeList, setLikeList] = useState([]);
 
   const token = window.localStorage.getItem("token");
 
@@ -30,7 +29,6 @@ const MyOrder = (props) => {
         //console.log(res.data);
         setOrderList(res.data.list);
         setPageInfo(res.data.pi);
-        setLikeList(res.data.likeList);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -62,11 +60,9 @@ const MyOrder = (props) => {
                   <OrderList
                     key={"order" + index}
                     order={order}
-                    setOrderList={setOrderList}
                     changeStatus={changeStatus}
                     setChangeStatus={setChangeStatus}
                     member={member}
-                    likeList={likeList}
                   />
                 );
               })
@@ -101,9 +97,6 @@ const MyOrder = (props) => {
 const OrderList = (props) => {
   const order = props.order;
   const member = props.member;
-  const likeList = props.likeList;
-  //console.log(likeList.isLike);
-  const setOrderList = props.setOrderList;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
   const payStock = order.payStock;
@@ -147,7 +140,7 @@ const OrderList = (props) => {
       state: {
         member: member,
         productNo: order.payProductNo,
-        like: likeList.isLike,
+        like: order.isLike,
       },
     });
   };
