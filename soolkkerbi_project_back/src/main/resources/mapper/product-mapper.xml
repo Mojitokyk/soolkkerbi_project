@@ -195,4 +195,5 @@
 			product_price=#{productPrice}
 		where product_no=#{productNo}
 	</update>
+
 </mapper>

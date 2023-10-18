@@ -22,7 +22,8 @@
 			product_filepath,
 			product_stock,
 			cart_stock,
-			cart_price
+			cart_price,
+			(SELECT COUNT(*) FROM FAVORITE WHERE FAVORITE_MEMBER_NO = (SELECT MEMBER_NO FROM MEMBER WHERE MEMBER_ID=#{memberId}) and FAVORITE_PRODUCT_NO = PRODUCT_NO) AS IS_LIKE
 		from cart join product on cart_product_no = product_no 
 		where cart_member_no=(select member_no from member where member_id=#{memberId})
 	</select>

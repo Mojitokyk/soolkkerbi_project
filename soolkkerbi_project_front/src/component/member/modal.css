@@ -45,3 +45,19 @@
 .timer{
     color: #FF6289;
 }
+#modal-modal-title{
+    font-family: ns-b;
+}
+.quit_off{
+    float: right;
+    cursor: pointer;
+}
+.pw-input-wrap > div{
+    margin: 0;
+}
+.pw-input-wrap > div> label{
+    width: 150px;
+}
+.input-form >input{
+    width: 100px;
+}

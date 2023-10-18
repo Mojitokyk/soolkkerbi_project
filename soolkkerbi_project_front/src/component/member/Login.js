@@ -13,7 +13,6 @@ const Login = (props) => {
 
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
-
   const navigate = useNavigate();
 
   const login = () => {
