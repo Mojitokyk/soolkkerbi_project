@@ -11,7 +11,10 @@
 }
 .my-reservation-tbl > table > thead td {
   font-family: ns-b;
+  padding: 13px 0;
+  border-top: 1px solid #4f4f4f;
   border-bottom: 1px solid #4f4f4f;
+  color: #4f4f4f;
 }
 .my-reservation-tbl > table > tbody > tr > td > img {
   width: 80px;
@@ -24,6 +27,8 @@
 }
 .my-reservation-tbl > table > tbody > tr > :nth-child(3) > div > button {
   color: #ff6289;
+  font-family: ns-r;
+  font-size: 14.4px;
 }
 .my-reservation-tbl > table > tbody > tr > :nth-child(3) > div > button:hover {
   background-color: #ffebf0;
@@ -49,20 +54,25 @@
 }
 .cancel {
   padding-left: 17px;
-  height: 61.38px;
-  line-height: 61.38px;
 }
-.enjoy{
+.enjoy {
   padding-left: 17px;
   color: #ff6289;
-  height: 61.38px;
-  line-height: 61.38px;
+
+  font-weight: bold;
 }
-.date{
+.date {
   padding-left: 17px;
-  height: 61.38px;
   text-align: center;
   margin: 0 auto;
-  line-height: 61.38px;
   padding-right: 20px;
+}
+.date > p {
+  font-family: ns-r;
+}
+.my-book-tbl > td > div {
+  font-family: ns-r;
+}
+.my-book-tbl {
+  height: 80px;
 }
