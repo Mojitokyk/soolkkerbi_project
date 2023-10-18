@@ -79,6 +79,7 @@ const MyReview = (props) => {
             reqPage={reqPage}
             setReqPage={setReqPage}
             pageInfo={pageInfo}
+            setList={setReviewList}
           />
         ) : (
           ""

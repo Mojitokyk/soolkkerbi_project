@@ -195,7 +195,9 @@ const ReviewItem = (props) => {
           <HalfRating reviewRate={review.reviewRate} />
         </td>
         <td>{review.reviewTitle}</td>
-        <td>{review.memberName}</td>
+        <td>
+          {review.reviewMemberId === null ? "탈퇴회원" : review.reviewMemberId}
+        </td>
         <td>{review.reviewDate}</td>
         <td>{review.reviewReadCount}</td>
       </tr>

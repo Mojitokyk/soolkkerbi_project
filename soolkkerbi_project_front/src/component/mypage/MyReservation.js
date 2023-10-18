@@ -40,7 +40,7 @@ const MyReservation = (props) => {
   return (
     <div className="mypage-content-wrap">
       <div className="mypage-content-title">예약내역</div>
-      <div className="my-order-tbl">
+      <div className="my-reservation-tbl">
         <table>
           <thead>
             <tr>
