@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
+import kr.or.skb.pay.model.dao.PayDao;
 import kr.or.skb.review.model.dao.ReviewDao;
 import kr.or.skb.review.model.vo.Review;
 import kr.or.skb.review.model.vo.ReviewData;
@@ -25,7 +26,10 @@ public class ReviewService {
 
 	@Transactional
 	public int insertReview(Review r) {
-		return reviewDao.insertReview(r);
+		int result1 = reviewDao.insertReview(r);
+		int result2 = reviewDao.updatePayReviewStatus(r);
+		
+		return (result1+result2);
 	}
 
 	public Map reviewList(int reqPage, String memberId) {
