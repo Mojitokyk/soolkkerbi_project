@@ -193,7 +193,13 @@ const CartProduct = (props) => {
   const member = props.member;
   const navigate = useNavigate();
   const productView = () => {
-    navigate("/product/view", { state: { productNo: cart.cartProductNo } });
+    navigate("/product/view", {
+      state: {
+        productNo: cart.cartProductNo,
+        member: member,
+        like: cart.isLike,
+      },
+    });
   };
   // 천원단위 콤마붙인 가격
   const commaPrice = cart.cartPrice

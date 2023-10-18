@@ -54,5 +54,7 @@ public interface ProductDao {
 	int deleteProduct(int productNo);
 
 	int updateProduct(Product p);
+
+	List selectMyLike(String memberId);
 	
 }

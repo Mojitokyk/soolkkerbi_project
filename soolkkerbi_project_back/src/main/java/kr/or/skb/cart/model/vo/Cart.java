@@ -24,4 +24,5 @@ public class Cart {
 	int productStock;//상품 재고 수량	
 	String payStringNo;//주문 번호
 	String pickupDate;//픽업일자
+	private int isLike;
 }

@@ -6,13 +6,16 @@ import { Button4, Button5 } from "../util/Buttons";
 import * as React from "react";
 import ReviewModal from "./ReviewModal";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const MyOrder = (props) => {
   const isLogin = props.isLogin;
+  const member = props.member;
   const [orderList, setOrderList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
   const [changeStatus, setChangeStatus] = useState(true);
+  const [likeList, setLikeList] = useState([]);
 
   const token = window.localStorage.getItem("token");
 
@@ -27,6 +30,7 @@ const MyOrder = (props) => {
         //console.log(res.data);
         setOrderList(res.data.list);
         setPageInfo(res.data.pi);
+        setLikeList(res.data.likeList);
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -61,6 +65,8 @@ const MyOrder = (props) => {
                     setOrderList={setOrderList}
                     changeStatus={changeStatus}
                     setChangeStatus={setChangeStatus}
+                    member={member}
+                    likeList={likeList}
                   />
                 );
               })
@@ -94,7 +100,9 @@ const MyOrder = (props) => {
 //주문내역 출력하기
 const OrderList = (props) => {
   const order = props.order;
-  //console.log(order);
+  const member = props.member;
+  const likeList = props.likeList;
+  //console.log(likeList.isLike);
   const setOrderList = props.setOrderList;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
@@ -131,20 +139,33 @@ const OrderList = (props) => {
       }
     });
   };
+  const navigate = useNavigate();
+  //상세페이지로 이동
+
+  const moveToDetail = () => {
+    navigate("/product/view", {
+      state: {
+        member: member,
+        productNo: order.payProductNo,
+        like: likeList.isLike,
+      },
+    });
+  };
+
   return (
-    <tr>
+    <tr className="my-order-tbl-tr">
       <td>{order.payDate}</td>
       <td>{order.payStringNo}</td>
       <td>
         {order.payProductFilepath === null ? (
-          <img src="/image/product_img/no_image.png" />
+          <img src="/image/product_img/no_image.jpg" />
         ) : order.productStock === 0 ? (
           <img src="/image/product_img/sold_out.png" />
         ) : (
           <img src={"/product/" + order.payProductFilepath} alt="drink" />
         )}
       </td>
-      <td>{order.payProductName}</td>
+      <td onClick={moveToDetail}>{order.payProductName}</td>
       <td>{order.payStock}</td>
       <td>{commaPrice}</td>
       <td>
