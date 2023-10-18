@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./modal.css";
 import Timer from "./Timer";
+import { useEffect } from "react";
 
 const style = {
   position: "absolute",
@@ -33,7 +34,14 @@ const style = {
 // module.exports = {
 //   target: 'node',
 //  };
+ 
+// const [open, setOpen] = React.useState(false);
+// const handleOpen = () => setOpen(true);
+// const handleClose = () => setOpen(false);
+// useEffect(()=>{
+//   <FindPw />
 
+// },[open])
 export default function FindPw() {
   const [isCodeShow,setIsCodeShow]=React.useState(false);
   const navigate = useNavigate();
@@ -159,12 +167,11 @@ export default function FindPw() {
     if(auth === checkauth){
       setChangeResult(true);
       
-      
     }else{
       Swal.fire("인증번호를 다시 확인해 주세요!")
     }
   }
-const changePw=()=>{
+const ChangePw=()=>{
   // const pw_check = /^[a-z]+[a-z0-9]{5,19}$/g;
   //   if(!pw_check.test(change_password)) {
   //     return alert('비밀번호는 영문자로 시작하는 6~20자여야만 합니다.')
@@ -172,41 +179,43 @@ const changePw=()=>{
   //   } else if(change_password !== check_change_password) {
   //     return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
   //   }
-
-      if (memberPw !== "" && memberPw === memberPwRe) {
-          axios
-                .post(
-                  "/member/memberPwChange",
-                  memberPwChange,
-                )
-                .then((res) => {
-                  if (res.data === 1) {
-                    setMemberPw("");
-                    setMemberPwRe("");
-                    Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!");
-                    setOpen(false);
-                    setPageReset(true);
-                  } else {
-                    Swal.fire({
-                      icon: "warning",
-                      title: "비번변경중 문제제발생",
-                    });
-                  }
-                })
-                .catch((res) => {});
-               } else {
-    Swal.fire({
-      icon: "success",
-      title: "비밀번호가 틀림/작성 확인부탁.",
-    });
-  }
+      //useEffect(()=>{
+              if (memberPw !== "" && memberPw === memberPwRe) {
+                axios
+                      .post(
+                        "/member/memberPwChange",
+                        memberPwChange,
+                      )
+                      .then((res) => {
+                        if (res.data === 1) {
+                          setMemberPw("");
+                          setMemberPwRe("");
+                          Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!");
+                          setOpen(false);
+                          setResult(false);
+                         // setPageReset(true);
+                        } else {
+                          Swal.fire({
+                            icon: "warning",
+                            title: "비번변경중 문제제발생",
+                          });
+                        }
+                      })
+                      .catch((res) => {});
+                    } else {
+            Swal.fire({
+            icon: "success",
+            title: "비밀번호가 틀림/작성 확인부탁.",
+            });
+            }
+    // },[open])
+     
 
             };        
  
 const back=()=>{
   setOpen(false);
 };
-
   return (
     <div>
       <p className="find_btn" onClick={handleOpen}>비밀번호 찾기</p>
@@ -317,7 +326,7 @@ const back=()=>{
                 </div>
             </div>
             <div className="change-btn-box">
-              <Button2 text="변경하기" clickEvent={changePw} />
+              <Button2 text="변경하기" clickEvent={ChangePw} />
             </div>
         
             
