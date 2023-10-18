@@ -159,6 +159,7 @@ export default function FindPw() {
     if(auth === checkauth){
       setChangeResult(true);
       
+      
     }else{
       Swal.fire("인증번호를 다시 확인해 주세요!")
     }
