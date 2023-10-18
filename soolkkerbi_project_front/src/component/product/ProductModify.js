@@ -70,10 +70,7 @@ export default function ProductModify(props) {
       productLiter !== "" &&
       productInfo !== "" &&
       productPrice !== "" &&
-      productStock !== "" &&
-      productStock !== 0 &&
-      productPrice !== 0 &&
-      productLiter !== 0
+      productStock !== ""
     ) {
       const form = new FormData();
       form.append("productName", productName);
