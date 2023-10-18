@@ -33,5 +33,7 @@ public interface ReviewDao {
 	int deleteReview(int reviewNo);
 
 	int modifyMember(Review r);
+
+	int updatePayReviewStatus(Review r);
 	
 }

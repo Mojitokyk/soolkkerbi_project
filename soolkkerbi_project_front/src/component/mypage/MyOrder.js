@@ -12,6 +12,7 @@ const MyOrder = (props) => {
   const [orderList, setOrderList] = useState([]);
   const [pageInfo, setPageInfo] = useState({});
   const [reqPage, setReqPage] = useState(1);
+  const [changeStatus, setChangeStatus] = useState(true);
 
   const token = window.localStorage.getItem("token");
 
@@ -30,7 +31,8 @@ const MyOrder = (props) => {
       .catch((res) => {
         console.log(res.response.status);
       });
-  }, [reqPage]);
+  }, [reqPage, changeStatus]);
+
   return (
     <div className="mypage-content-wrap">
       <div className="mypage-content-title">주문내역</div>
@@ -57,6 +59,8 @@ const MyOrder = (props) => {
                     key={"order" + index}
                     order={order}
                     setOrderList={setOrderList}
+                    changeStatus={changeStatus}
+                    setChangeStatus={setChangeStatus}
                   />
                 );
               })
@@ -92,6 +96,8 @@ const OrderList = (props) => {
   const order = props.order;
   //console.log(order);
   const setOrderList = props.setOrderList;
+  const changeStatus = props.changeStatus;
+  const setChangeStatus = props.setChangeStatus;
   const payStock = order.payStock;
   const payPrice = order.payPrice;
   //총 금액 구해서 콤마 붙이기
@@ -117,9 +123,7 @@ const OrderList = (props) => {
         axios
           .post("/pay/cancelPay", obj)
           .then((res) => {
-            console.log(res.data);
-            setOrderList(res.data);
-            //window.location.reload();
+            setChangeStatus(!changeStatus);
           })
           .catch((res) => {
             console.log(res.response.status);
@@ -163,7 +167,7 @@ const OrderList = (props) => {
               />
             </div>
           </>
-        ) : order.payStatus === 2 ? (
+        ) : order.payStatus === 2 && order.payReviewStatus === 0 ? (
           <>
             <div className="order-status-btn-box">
               <ReviewModal order={order} />
