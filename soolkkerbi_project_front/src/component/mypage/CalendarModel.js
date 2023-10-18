@@ -9,15 +9,11 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import moment from "moment";
 
-import { Button2, Button3 } from '../util/Buttons';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { Button2, Button3 } from "../util/Buttons";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import "./calendar.css";
-
-
-
-
 
 //사용한모달폼!!
 const style = {
@@ -33,10 +29,9 @@ const style = {
 
 function CalendarModel(props) {
   const changeStatus = props.changeStatus;
-  const setChangeStatus=props.setChangeStatus;
+  const setChangeStatus = props.setChangeStatus;
   const navigate = useNavigate();
-    const resList = props.resList;
-
+  const resList = props.resList;
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -48,14 +43,14 @@ function CalendarModel(props) {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="modal-calendar-title"
+        aria-describedby="modal-calendar-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-calendar-title" variant="h6" component="h2">
             예약날짜 변경하기
           </Typography>
-          <div id="modal-modal-description" sx={{ mt: 2 }}>
+          <div id="modal-calendar-description" sx={{ mt: 2 }}>
             <CustomCalendar
               resList={resList}
               setOpen={setOpen}
@@ -108,23 +103,28 @@ function CustomCalendar(props) {
   //   const newActiveMonth = moment(activeStartDate).format('YYYY-MM');
   //   setActiveMonth(newActiveMonth);
   // };
-const back=()=>{
-  setOpen(false);
-}
+  const back = () => {
+    setOpen(false);
+  };
   return (
-    <div>
-      <Calendar onChange={onChange} value={value}  formatDay={(locale, date) => moment(date).format("DD")} />
-         <div className="Calendartext">
-          <p>예약변경 선택날짜 : {moment(value).format("YYYY년 MM월 DD일")} </p>   
-         </div>
-         <div className='btn-box'>
-         <div className='changeDate-btn'>
-          <Button2  text="날짜 변경" clickEvent={changeDate}/>
-         </div>
-         <div className='back-btn'>
-          <Button3 text="돌아가기" clickEvent={back}/>
-         </div>
-         </div>
+    <div className="calendar-div">
+      <Calendar
+        onChange={onChange}
+        value={value}
+        formatDay={(locale, date) => moment(date).format("DD")}
+        calendarType="US"
+      />
+      <div className="Calendartext">
+        <p>예약변경 선택날짜 : {moment(value).format("YYYY년 MM월 DD일")} </p>
+      </div>
+      <div className="btn-box">
+        <div className="changeDate-btn">
+          <Button2 text="날짜 변경" clickEvent={changeDate} />
+        </div>
+        <div className="back-btn">
+          <Button3 text="돌아가기" clickEvent={back} />
+        </div>
+      </div>
     </div>
   );
 }
