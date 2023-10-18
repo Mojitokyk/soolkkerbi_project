@@ -61,7 +61,7 @@
 		        from pay
 		        join product on (pay_product_no = product_no)
 		        join member on (pay_member_no = member_no)
-		        order by pay_date desc )o )
+		        order by pay_date desc, pay_string_no )o )
 		        where pay_member_id=#{memberId})
 		where rnum between #{start} and #{end}
 	</select>
@@ -113,4 +113,6 @@
 	<update id="cancelPay">
 		update pay set pay_status = 3 where pay_no=#{payNo}
 	</update>
+	
+	
 </mapper>

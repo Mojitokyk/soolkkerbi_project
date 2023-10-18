@@ -248,7 +248,7 @@ const ProductDetail = (props) => {
         </div>
         <div className="product-view-thumbnail">
           {product.productFilepath === null ? (
-            <img src="/image/product_img/no_image.png" />
+            <img src="/image/product_img/no_image.jpg" />
           ) : product.productStock === 0 ? (
             // <img src="/image/product_img/sold_out.png" />
             <div className="detail-sold-out-wrap">

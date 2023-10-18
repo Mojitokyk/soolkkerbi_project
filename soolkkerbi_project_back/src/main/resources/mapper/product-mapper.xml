@@ -195,4 +195,18 @@
 			product_price=#{productPrice}
 		where product_no=#{productNo}
 	</update>
+	
+	<!-- 주문내역에서 좋아요리스트 가져올때 필요한 쿼리문 -->
+	<select id="selectMyLike" resultType="product">
+		select 
+			favorite_product_no,
+			product_no, 
+			product_name, 
+			product_filepath, 
+			product_stock,
+			(select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
+		from favorite 
+		join product on (favorite_product_no = product_no) 
+		where favorite_member_no=(select member_no from member where member_id=#{memberId}) order by 1 desc
+	</select>
 </mapper>

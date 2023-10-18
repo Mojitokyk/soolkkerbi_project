@@ -34,6 +34,9 @@
 .emptyOrder {
   height: 500px;
 }
+.my-order-tbl-tr > td:nth-child(4) {
+  cursor: pointer;
+}
 /*리뷰쓰기 버튼*/
 .order-status-btn-box .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   font-family: ns-r;
