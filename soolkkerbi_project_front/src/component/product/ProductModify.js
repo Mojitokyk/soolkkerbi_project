@@ -9,6 +9,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import ProductFrm from "./ProductFrm";
+import { useEffect } from "react";
 
 const style = {
   position: "absolute",
@@ -19,11 +20,11 @@ const style = {
   bgcolor: "background.paper",
   border: "1px solid #000",
   boxShadow: 20,
-  p: 4,
+  p: 7,
 };
 
 export default function ProductModify(props) {
-  //const product = props.product;
+  const product = props.product;
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -37,18 +38,28 @@ export default function ProductModify(props) {
   };
   //기존에 입력했던 자료들을 useState()에 저장
   //console.log(product);
-  const [productName, setProductName] = useState(props.product.productName);
-  console.log(props.product.productName);
+  //console.log(props.product.productName);
+  const [productName, setProductName] = useState("");
   const [thumbnail, setThumbnail] = useState({});
-  const [productInfo, setProductInfo] = useState(props.product.productInfo);
-  const [productAlc, setProductAlc] = useState(props.product.productAlc);
-  const [productLiter, setProductLiter] = useState(props.product.productLiter);
-  const [productPrice, setProductPrice] = useState(props.product.productPrice);
-  const [productCase, setProductCase] = useState(props.product.productCase);
-  const [productStock, setProductStock] = useState(props.product.productStock);
+  const [productInfo, setProductInfo] = useState("");
+  const [productAlc, setProductAlc] = useState("");
+  const [productLiter, setProductLiter] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productCase, setProductCase] = useState(1);
+  const [productStock, setProductStock] = useState("");
   //썸네일 미리보기용
-  const [productImg, setProductImg] = useState(props.product.productFilepath);
-  console.log(productName);
+  const [productImg, setProductImg] = useState(null);
+  useEffect(() => {
+    setProductName(product.productName);
+    setProductInfo(product.productInfo);
+    setProductAlc(product.productAlc);
+    setProductLiter(product.productLiter);
+    setProductPrice(product.productPrice);
+    setProductCase(product.productCase);
+    setProductStock(product.productStock);
+    setProductImg(product.productFilepath);
+  }, [product]);
+  // console.log(product.productNo);
   //상품 수정 함수
   const modify = () => {
     if (
@@ -58,7 +69,10 @@ export default function ProductModify(props) {
       productLiter !== "" &&
       productInfo !== "" &&
       productPrice !== "" &&
-      productStock !== ""
+      productStock !== "" &&
+      productStock != 0 &&
+      productPrice != 0 &&
+      productLiter != 0
     ) {
       const form = new FormData();
       form.append("productName", productName);
@@ -69,6 +83,8 @@ export default function ProductModify(props) {
       form.append("productPrice", productPrice);
       form.append("productCase", productCase);
       form.append("productStock", productStock);
+      form.append("productImg", productImg);
+      form.append("productNo", product.productNo);
       axios
         .post("/product/update", form, {
           headers: {
@@ -77,7 +93,14 @@ export default function ProductModify(props) {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          if (res.data > 0) {
+            Swal.fire({
+              icon: "success",
+              title: "수정 성공",
+              text: "상품 수정을 완료했습니다.",
+            });
+            navigate("/");
+          }
         })
         .catch((res) => {
           console.log(res.response.status);

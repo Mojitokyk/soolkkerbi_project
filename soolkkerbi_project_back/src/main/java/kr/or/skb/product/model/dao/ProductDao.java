@@ -52,5 +52,7 @@ public interface ProductDao {
 	List recommendList();
 
 	int deleteProduct(int productNo);
+
+	int updateProduct(Product p);
 	
 }
