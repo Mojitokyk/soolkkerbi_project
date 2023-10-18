@@ -58,6 +58,7 @@ export default function ProductModify(props) {
     setProductCase(product.productCase);
     setProductStock(product.productStock);
     setProductImg(product.productFilepath);
+    setThumbnail(product.productFilepath);
   }, [product]);
   // console.log(product.productNo);
   //상품 수정 함수
@@ -70,9 +71,9 @@ export default function ProductModify(props) {
       productInfo !== "" &&
       productPrice !== "" &&
       productStock !== "" &&
-      productStock != 0 &&
-      productPrice != 0 &&
-      productLiter != 0
+      productStock !== 0 &&
+      productPrice !== 0 &&
+      productLiter !== 0
     ) {
       const form = new FormData();
       form.append("productName", productName);
@@ -83,7 +84,7 @@ export default function ProductModify(props) {
       form.append("productPrice", productPrice);
       form.append("productCase", productCase);
       form.append("productStock", productStock);
-      form.append("productImg", productImg);
+      form.append("productFilepath", productImg);
       form.append("productNo", product.productNo);
       axios
         .post("/product/update", form, {
