@@ -58,8 +58,17 @@ const ProductWrite = () => {
               icon: "success",
               title: "등록 성공",
               text: "상품 등록을 완료했습니다.",
+            }).then(() => {
+              if (productCase === 1) {
+                navigate("/product/takju");
+              } else if (productCase === 2) {
+                navigate("/product/yakju");
+              } else if (productCase === 3) {
+                navigate("/product/fruit");
+              } else {
+                navigate("/product/spirits");
+              }
             });
-            navigate("/");
           }
         })
         .catch((res) => {

@@ -135,6 +135,9 @@ public class ProductController {
 	//상품 수정
 	@PostMapping(value="/update")
 	public int updateProduct(@ModelAttribute Product p, @ModelAttribute MultipartFile thumbnail) {
+		if (p.getProductFilepath().equals("null")) {
+			p.setProductFilepath(null);
+		}
 		String savepath = root+ "product/";
 		if(thumbnail != null) {
 			String filename = thumbnail.getOriginalFilename();
