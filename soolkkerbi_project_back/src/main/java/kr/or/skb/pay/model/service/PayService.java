@@ -74,11 +74,9 @@ public class PayService {
 		int end = pi.getEnd();
 		PayListData pld = new PayListData(start, end, memberId);
 		List orderList = payDao.selectMyOrderList(pld);
-		List likeList = productDao.selectMyLike(memberId);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list",orderList);
 		map.put("pi", pi);
-		map.put("likeList",likeList);
 		return map;
 	}
 

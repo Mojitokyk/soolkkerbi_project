@@ -57,7 +57,8 @@
 		            product_price as pay_price,
 		            pay_status,
 		            product_filepath as pay_product_filepath,
-		            pay_review_status
+		            pay_review_status,
+		            (select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
 		        from pay
 		        join product on (pay_product_no = product_no)
 		        join member on (pay_member_no = member_no)
