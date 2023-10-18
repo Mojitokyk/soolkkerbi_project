@@ -77,6 +77,15 @@
   width: 100px;
   font-family: ns-b;
 }
+.taste-view-btn > .reservation-button {
+  height: 41.28px;
+  background-color: #ff6289;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
 
 /*예약 날짜 선택*/
 .reservation-wrap {

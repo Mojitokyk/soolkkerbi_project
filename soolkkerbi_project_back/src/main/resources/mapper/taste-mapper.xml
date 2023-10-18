@@ -46,7 +46,7 @@
 	
 	<!-- 시음회 등록 -->
 	<insert id="insertTaste">
-		insert into taste values(taste_seq.nextval,#{tasteMemberNo},#{tasteTitle},#{tasteContent},#{tasteStart},#{tasteEnd},#{tasteFilepath})	
+		insert into taste values(taste_seq.nextval,#{tasteMemberNo},#{tasteTitle},#{tasteContent},#{tasteStart},#{tasteEnd},#{tasteFilepath}, #{tasteStatus})	
 	</insert>
 	
 	<!-- 시음회 삭제 -->
@@ -59,13 +59,15 @@
 		insert into reservation values(reservation_seq.nextval, #{reservationMemberNo}, #{reservationTasteNo}, #{reservationDate}, #{reservationStringNo}, 1)
 	</insert>
 	
+	<!-- 시음회 수정 -->
 	<update id="modify">
 	update taste set 
 	        taste_start=#{tasteStart},
 	        taste_end=#{tasteEnd},
 			taste_title = #{tasteTitle},
 			taste_content = #{tasteContent},
-			taste_Filepath =#{tasteFilepath}
+			taste_Filepath =#{tasteFilepath},
+			taste_status = #{tasteStatus}
 		where taste_no = #{tasteNo}
 	</update>
 

@@ -136,7 +136,10 @@ const PartyView = (props) => {
         )}
         <Button2 text="목록으로" clickEvent={toList} />
         {member.memberLevel === 2 ? (
-          <Button2 text="예약" clickEvent={reservation} />
+          // <Button2 text="예약" clickEvent={reservation} />
+          <button className="reservation-button" onClick={reservation}>
+            예약
+          </button>
         ) : (
           ""
         )}

@@ -10,6 +10,7 @@ const PartyWrite = () => {
   const [tasteContent, setTasteContent] = useState("");
   const [tasteStart, setTasteStart] = useState(null);
   const [tasteEnd, setTasteEnd] = useState(null);
+  const [tasteStatus, setTasteStatus] = useState(1);
   const [tasteFilepath, setTasteFilepath] = useState(null);
   //tasteImg -> 썸네일 미리보기용
   const [tasteImg, setTasteImg] = useState(null);
@@ -26,6 +27,7 @@ const PartyWrite = () => {
       form.append("tasteEnd", tasteEnd);
       form.append("tasteTitle", tasteTitle);
       form.append("tasteContent", tasteContent);
+      form.append("tasteStatus", tasteStatus);
       form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우 File객체를 전송
       //첨부파일이 여러개인경우(multiple인 경우 -> 같은 이름으로 첨부파일이 여러개인경우)
       //   for (let i = 0; i < boardFile.length; i++) {
@@ -71,6 +73,8 @@ const PartyWrite = () => {
         setTasteImg={setTasteImg}
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
+        tasteStatus={tasteStatus}
+        setTasteStatus={setTasteStatus}
         buttonEvent={write}
         type="write"
       />
