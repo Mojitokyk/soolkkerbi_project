@@ -63,13 +63,25 @@
   height: 100px;
   overflow: auto;
 }
-.emaliauth{
-  margin-bottom: 60px;
+.emailAuth {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
 }
-.authButton{
-  float: right;
+.dummyDiv {
+  width: 200px;
+  background-color: #4f4f4f;
 }
-.emailauthinput{
-  
+.emailAuthInput > input {
+  width: 200px;
+}
+.authButton > button {
+  width: 100px;
+}
+.emailAuthInput {
   width: 40%;
+}
+.emailAuthTimer {
+  display: flex;
+  justify-content: right;
 }
