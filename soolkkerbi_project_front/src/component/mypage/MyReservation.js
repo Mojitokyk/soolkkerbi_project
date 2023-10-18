@@ -76,22 +76,20 @@ const MyReservation = (props) => {
           </tbody>
         </table>
       </div>
-    <div>
-      {resList.length > 0 ? (
-        <Pagination
-          reqPage={reqPage}
-          setReqPage={setReqPage}
-          pageInfo={pageInfo}
-          setList={setResList}
-        />
-      ) : (
-        ""
-      )}
+      <div>
+        {resList.length > 0 ? (
+          <Pagination
+            reqPage={reqPage}
+            setReqPage={setReqPage}
+            pageInfo={pageInfo}
+            setList={setResList}
+          />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
-    </div>
-
-);
-
+  );
 };
 
 const ReservationList = (props) => {
@@ -198,7 +196,7 @@ const ReservationList = (props) => {
             clickEvent={() => {
               deleteRes(changeStatus, setChangeStatus);
             }} />*/}
-            {/* {resList.reservationStatus === 2 ? (
+          {/* {resList.reservationStatus === 2 ? (
               <Button2 text="예약취소진행중"
               clickEvent={() => {
                 deleteRes(changeStatus, setChangeStatus);
@@ -217,18 +215,18 @@ const ReservationList = (props) => {
               )}
               
             )} */}
-            {resList.reservationStatus === 2 ? (
-             <div className="cancel" >
+          {resList.reservationStatus === 2 ? (
+            <div className="cancel">
               <p>취소진행중</p>
-             </div>
-            ) : (
-              <Button2 text="예약취소요청"
+            </div>
+          ) : (
+            <Button2
+              text="예약취소요청"
               clickEvent={() => {
                 deleteRes(changeStatus, setChangeStatus);
-              }} />
-              
-            )}
-
+              }}
+            />
+          )}
         </div>
       </td>
     </tr>
