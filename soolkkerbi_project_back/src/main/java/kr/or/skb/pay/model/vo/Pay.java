@@ -26,4 +26,5 @@ public class Pay {
 	private int payProductCase;
 	private int payTotalPrice;
 	private int payReviewStatus;
+	private int isLike;
 }
