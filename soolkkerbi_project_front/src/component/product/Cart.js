@@ -270,7 +270,6 @@ const CartPrice = (props) => {
   const cartList = props.cartList;
   const member = props.member;
   const navigate = useNavigate();
-  console.log(cartList);
   const allPay = () => {
     if (cartList.length === 0) {
       Swal.fire({
