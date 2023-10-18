@@ -11,6 +11,10 @@ import { Button2 } from "../util/Buttons";
 
 import { CalendarModel, CustomCalendar } from "./CalendarModel";
 
+import moment from 'moment';
+// 안써도 자동으로 한국 시간을 불러온다. 명확하게 하기 위해 import
+import 'moment/locale/ko';
+
 const MyReservation = (props) => {
   const member = props.member;
   const [resList, setResList] = useState([]);
@@ -172,52 +176,76 @@ const ReservationList = (props) => {
     });
   };
 
+  // var today = new Date(),
+  // date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+  const nowTime = moment().format('YYYY-MM-DD');
+console.log(nowTime);
+
+const reservationDate =moment(resList.reservationDate).format('YYYY-MM-DD');
+console.log(reservationDate);
+
   return (
     <tr>
       <td>{resList.reservationStringNo}</td>
       <td onClick={reservationContent}>
         <div>{resList.reservationTasteTitle}</div>
       </td>
-      <td>
-        <CalendarModel
-          resList={resList}
-          setChangeStatus={setChangeStatus}
-          changeStatus={changeStatus}
-        />
+      
+        {resList.reservationStatus === 1 && reservationDate <= nowTime  ? (
+          
+          <td>
+             <div className="date">
+             <p>{resList.reservationDate}</p>             
+           </div>
+
+           </td>
+          
+        ):(
+          <td>
+            <CalendarModel
+            resList={resList}
+            setChangeStatus={setChangeStatus}
+            changeStatus={changeStatus}
+          />
+          </td>
+          
+        )}
+      
         {/* <td onClick={() => {
         // changeDate(resList);
         <CalendarModel resList={resList}/>
           }}> */}
         {/* {resList.reservationDate}  */}
         {/* <Calendar onChange={onChange} value={value}/> */}
-      </td>
       <td>
         <div className="order-status-btn-box">
-          {/* <Button2
-            text="예약취소요청"
-            clickEvent={() => {
-              deleteRes(changeStatus, setChangeStatus);
-            }} />*/}
-            {/* {resList.reservationStatus === 2 ? (
-              <Button2 text="예약취소진행중"
-              clickEvent={() => {
-                deleteRes(changeStatus, setChangeStatus);
-              }} />
+            {resList.reservationStatus === 2 ? (
+             <div className="cancel" >
+             <p>취소진행중</p>
+            </div>
             ) : (
-              {resList.reservationStatus === 1 ? (
-              <Button2 text="예약취소요청"
-              clickEvent={() => {
-                deleteRes(changeStatus, setChangeStatus);
-              }} />
+
+              resList.reservationStatus === 3 ? (
+                <div className="cancel" >
+                <p>취소 완료</p>
+               </div>
+             
               ):(
-                <Button2 text="예약취소완료"
+                resList.reservationStatus ===1 && reservationDate <= nowTime ? (
+                  <div className="enjoy" >
+                  <p>참석 완료</p>
+                 </div>
+                ) : (
+                  <Button2 text="예약취소요청"
                 clickEvent={() => {
                   deleteRes(changeStatus, setChangeStatus);
                 }} />
-              )}
+                )
+              )
               
-            )} */}
-            {resList.reservationStatus === 2 ? (
+            )}
+            {/* {resList.reservationStatus === 2 ? (
              <div className="cancel" >
               <p>취소진행중</p>
              </div>
@@ -227,7 +255,7 @@ const ReservationList = (props) => {
                 deleteRes(changeStatus, setChangeStatus);
               }} />
               
-            )}
+            )} */}
 
         </div>
       </td>

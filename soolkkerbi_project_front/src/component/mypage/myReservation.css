@@ -49,4 +49,20 @@
 }
 .cancel{
   padding-left: 17px;
+  height: 61.38px;
+  line-height: 61.38px;
+}
+.enjoy{
+  padding-left: 17px;
+  color: #ff6289;
+  height: 61.38px;
+  line-height: 61.38px;
+}
+.date{
+  padding-left: 17px;
+  height: 61.38px;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 61.38px;
+  padding-right: 20px;
 }
