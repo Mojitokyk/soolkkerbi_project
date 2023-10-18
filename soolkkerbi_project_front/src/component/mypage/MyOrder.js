@@ -79,6 +79,7 @@ const MyOrder = (props) => {
             reqPage={reqPage}
             setReqPage={setReqPage}
             pageInfo={pageInfo}
+            setList={setOrderList}
           />
         ) : (
           ""
