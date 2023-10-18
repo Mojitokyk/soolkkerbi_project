@@ -56,7 +56,8 @@
 		            pay_stock,
 		            product_price as pay_price,
 		            pay_status,
-		            product_filepath as pay_product_filepath
+		            product_filepath as pay_product_filepath,
+		            pay_review_status
 		        from pay
 		        join product on (pay_product_no = product_no)
 		        join member on (pay_member_no = member_no)
@@ -66,7 +67,7 @@
 	</select>
 	
 	<insert id="insertOnePay">
-		insert into pay values(pay_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, to_char(sysdate,'yy/mm/dd'), #{payStringNo}, 1, #{pickupDate}, #{cartStock}, (select product_price from product where product_no=#{cartProductNo}))
+		insert into pay values(pay_seq.nextval, (select member_no from member where member_id=#{memberId}), #{cartProductNo}, to_char(sysdate,'yy/mm/dd'), #{payStringNo}, 1, #{pickupDate}, #{cartStock}, (select product_price from product where product_no=#{cartProductNo}), 0)
 	</insert>
 	
 	<update id="updateProductStock">

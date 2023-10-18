@@ -47,7 +47,7 @@
 		        review_rate,
 		        review_read_count,
 		        to_char(review_date,'yyyy-mm-dd')as review_date,
-		        (substr(member_name,1,1)||lpad('*',length(member_name)-1,'*'))as member_name
+		        (substr(member_id,1,1)||lpad('*',length(member_id)-1,'*'))as review_member_id
 		    from review 
 		    left join member on (member_no = review_member_no)
 		    where review_product_no=#{productNo} order by 1 desc) r)
@@ -93,5 +93,9 @@
   
   <update id="modifyMember">
   	update review set review_title=#{reviewTitle}, review_content=#{reviewContent}, review_rate = #{reviewRate} where review_no=#{reviewNo}
+  </update>
+  
+  <update id="updatePayReviewStatus">
+  	update pay set pay_review_status = 1 where pay_no = #{reviewPayNo}
   </update>
 </mapper>

@@ -1,38 +1,38 @@
-.my-order-tbl {
+.my-reservation-tbl {
   border-bottom: 1px solid #ddd;
 }
-.my-order-tbl > table {
+.my-reservation-tbl > table {
   width: 100%;
   border-spacing: 0;
 }
-.my-order-tbl > table td {
+.my-reservation-tbl > table td {
   text-align: center;
   padding: 5px;
 }
-.my-order-tbl > table > thead td {
+.my-reservation-tbl > table > thead td {
   font-family: ns-b;
   border-bottom: 1px solid #4f4f4f;
 }
-.my-order-tbl > table > tbody > tr > td > img {
+.my-reservation-tbl > table > tbody > tr > td > img {
   width: 80px;
 }
-.my-order-tbl > table > tbody td {
+.my-reservation-tbl > table > tbody td {
   padding: 10px 0;
   /* border-bottom: 1px solid #eee; */
   font-size: 0.9rem;
   font-family: ns-r;
 }
-.my-order-tbl > table > tbody > tr > :nth-child(3) > div > button {
+.my-reservation-tbl > table > tbody > tr > :nth-child(3) > div > button {
   color: #ff6289;
 }
-.my-order-tbl > table > tbody > tr > :nth-child(3) > div > button:hover {
+.my-reservation-tbl > table > tbody > tr > :nth-child(3) > div > button:hover {
   background-color: #ffebf0;
 }
-.my-order-tbl > table > tbody td:nth-child(4) {
+.my-reservation-tbl > table > tbody td:nth-child(4) {
   text-align: left;
   padding-left: 20px;
 }
-.my-order-tbl > table > tbody td:last-child {
+.my-reservation-tbl > table > tbody td:last-child {
   padding-left: 40px;
 }
 .order-status-btn-box {
@@ -47,6 +47,22 @@
 .content-btn {
   padding-left: 10px;
 }
-.cancel{
+.cancel {
   padding-left: 17px;
+  height: 61.38px;
+  line-height: 61.38px;
+}
+.enjoy{
+  padding-left: 17px;
+  color: #ff6289;
+  height: 61.38px;
+  line-height: 61.38px;
+}
+.date{
+  padding-left: 17px;
+  height: 61.38px;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 61.38px;
+  padding-right: 20px;
 }

@@ -271,13 +271,21 @@ const CartPrice = (props) => {
   const member = props.member;
   const navigate = useNavigate();
   const allPay = () => {
-    navigate("/product/pay", {
-      state: {
-        cartList: cartList,
-        totalPrice: totalCount.totalPrice,
-        member: member,
-      },
-    });
+    if (cartList.length === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "주문 불가",
+        text: "장바구니에 담긴 상품이 없습니다.",
+      });
+    } else {
+      navigate("/product/pay", {
+        state: {
+          cartList: cartList,
+          totalPrice: totalCount.totalPrice,
+          member: member,
+        },
+      });
+    }
   };
   // 천원단위 콤마붙인 가격
   const commaPrice = totalCount.totalPrice
