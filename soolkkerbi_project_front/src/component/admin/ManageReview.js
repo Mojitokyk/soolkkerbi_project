@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button4 } from "../util/Buttons";
 import axios from "axios";
 import Pagination from "../common/Pagination";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ManageReview = () => {
   const [reviewList, setReviewList] = useState([]);
@@ -67,9 +69,33 @@ const ReviewItem = (props) => {
   const review = props.review;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
+  const token = window.localStorage.getItem("token");
+
+  const navigate = useNavigate();
+
+  const deleteReview = () => {
+    axios
+      .post("/review/delete", review, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        Swal.fire("후기가 삭제되었습니다.").then(() => {
+          setChangeStatus(!changeStatus);
+        });
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
+
+  const clickReview = () => {
+    navigate("/product/view");
+  };
 
   return (
-    <tr>
+    <tr onClick={clickReview}>
       <td>{review.reviewDate}</td>
       <td>
         {review.reviewMemberId === null ? "탈퇴회원" : review.reviewMemberId}
@@ -82,7 +108,7 @@ const ReviewItem = (props) => {
       </td>
       <td>
         <div className="admin-change-btn-box">
-          <Button4 text="삭제" />
+          <Button4 text="삭제" clickEvent={deleteReview} />
         </div>
       </td>
     </tr>

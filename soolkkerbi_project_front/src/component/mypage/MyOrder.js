@@ -31,6 +31,7 @@ const MyOrder = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage]);
+
   return (
     <div className="mypage-content-wrap">
       <div className="mypage-content-title">주문내역</div>
