@@ -91,7 +91,7 @@ const PartyView = (props) => {
       <div className="taste-view-wrap">
         <div className="taste-view-title">{taste.tasteTitle}</div>
         <div className="taste-view-info">
-          <div>관리자</div> {/*<div>{party.memberName}</div> */}
+          <div>운영자</div> {/*<div>{party.memberName}</div> */}
           {/* <div>{taste.tasteDate}</div> //없음 */}
         </div>
         <div

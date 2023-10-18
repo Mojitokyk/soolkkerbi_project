@@ -56,7 +56,7 @@ public class TasteController {
 		return result;
 	}
 	//시음회 등록 - 텍스트 에디터 파일 업로드
-	@PostMapping(value="/tasteImg")
+	@PostMapping(value="/contentImg")
 	public String tasteImg(@ModelAttribute MultipartFile image) {
 		String savepath = root+"taste/editor/";
 		String filename = image.getOriginalFilename();

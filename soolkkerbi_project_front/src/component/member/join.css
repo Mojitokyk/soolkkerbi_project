@@ -63,3 +63,13 @@
   height: 100px;
   overflow: auto;
 }
+.emaliauth{
+  margin-bottom: 60px;
+}
+.authButton{
+  float: right;
+}
+.emailauthinput{
+  
+  width: 40%;
+}

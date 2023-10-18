@@ -19,9 +19,11 @@ const MyInfo = (props) => {
   const setIsLogin = props.setIsLogin;
 
   const [checkPhoneMsg,setCheckPhoneMsg] = useState("");
+  const [File ,setFile]=useState(member.memberFilepath);
  
-  const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-  const fileInput = useRef(null);
+  
+const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+const fileInput = useRef(null)
 
   // const onChangeImage = e => {
   //   const file = e.target.files[0];
@@ -83,6 +85,37 @@ const MyInfo = (props) => {
     //document.querySelectorAll(".my-side a")[5].click();
   };
 
+
+
+
+  //프로필사진로직
+  // const onChange = (e,props) => {
+  //   const Image = props.Image;
+  //   const setImage = props.setImage;
+  //   if(e.target.files[0]){
+  //             setFile(e.target.files[0])
+  //         }else{ //업로드 취소할 시
+  //             setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+  //             return
+  //         }
+  //   //화면에 프로필 사진 표시
+  //         const reader = new FileReader();
+  //         reader.onload = () => {
+  //             if(reader.readyState === 2){
+  //                 setImage(reader.result)
+  //             }
+  //         }
+  //         reader.readAsDataURL(e.target.files[0])
+  //     }
+  //     <input 
+  //     type='file' 
+  //         style={{display:'none'}}
+  //           accept='image/jpg,impge/png,image/jpeg' 
+  //           name='profile_img'
+  //           onChange={onChange}
+  //           ref={fileInput}/>
+
+
   return (
     <div className="mypage-content-warp">
       <div className="mypage-content-title">회원정보 수정</div>
@@ -94,8 +127,21 @@ const MyInfo = (props) => {
           )}
           <input type="file" onChange={onChangeImage} />
         </div> */}
+
+                   <Avatar
+                       src={Image}
+                       style={{ margin: "20px" }}
+                       // size={200}
+                       sx={{ width: 160, height: 160 }}
+                       onClick={() => {
+                         fileInput.current.click();
+                       }}
+                     />
+
+             
+
         
-       
+       {/* <Profile member={member}/> */}
         
       <table className="mypage-info-tbl">
         <tbody>
@@ -227,57 +273,57 @@ const fileInput = useRef(null)
             } */}
 
             
-            const profile=(props)=>{
-              const fileInput =props.fileInput;
-              const Image=props.Image;
-              const setImage=props.setImage;
-              <Avatar
-                       src={Image}
-                       style={{ margin: "20px" }}
-                       // size={200}
-                       sx={{ width: 160, height: 160 }}
-                       onClick={() => {
-                         fileInput.current.click();
-                       }}
-                     />
+            // const Profile =(props)=>{
+            //   const fileInput =props.fileInput;
+            //   const Image=props.Image;
+            //   const setImage=props.setImage;
+            //   // <Avatar
+            //   //          src={Image}
+            //   //          style={{ margin: "20px" }}
+            //   //          // size={200}
+            //   //          sx={{ width: 160, height: 160 }}
+            //   //          onClick={() => {
+            //   //            fileInput.current.click();
+            //   //          }}
+            //   //        />
 
                      
-                      const onChange = e => {
-                        if (e.target.files[0]) {
-                          setImage(e.target.files[0]);
-                        } else {
-                          //업로드 취소할 시
-                          setImage(
-                            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                          );
-                          return;
-                        }
-                      //화면에 프로필 사진 표시
-                        // https://www.habonyphp.com/2019/03/js-api-filereader.html
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                          if (reader.readyState === 2) {
-                            setImage(reader.result);
-                          }
-                        };
-                        reader.readAsDataURL(e.target.files[0]);
-                      };
-                     return(
-                      <>
-                      <label htmlFor="ex_file">
-                        <div className="btn_select">이미지 선택</div>
-                      </label>
-                      <input
-                        type="file"
-                        id="ex_file"
-                        // style={{ display: "none" }}
-                        accept="image/jpg,image/png,image/jpeg"
-                        name="profile_img"
-                        onChange={onChange}
-                        ref={fileInput}
-                      />
-                      </>
-                     );
-            };
+            //           const onChange = e => {
+            //             if (e.target.files[0]) {
+            //               setImage(e.target.files[0]);
+            //             } else {
+            //               //업로드 취소할 시
+            //               setImage(
+            //                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            //               );
+            //               return;
+            //             }
+            //           //화면에 프로필 사진 표시
+            //             // https://www.habonyphp.com/2019/03/js-api-filereader.html
+            //             const reader = new FileReader();
+            //             reader.onload = () => {
+            //               if (reader.readyState === 2) {
+            //                 setImage(reader.result);
+            //               }
+            //             };
+            //             reader.readAsDataURL(e.target.files[0]);
+            //           };
+            //          return(
+            //           <>
+            //           <label htmlFor="ex_file">
+            //             <div className="btn_select">이미지 선택</div>
+            //           </label>
+            //           <input
+            //             type="file"
+            //             id="ex_file"
+            //             // style={{ display: "none" }}
+            //             accept="image/jpg,image/png,image/jpeg"
+            //             name="profile_img"
+            //             onChange={onChange}
+            //             ref={fileInput}
+            //           />
+            //           </>
+            //          );
+            // };
 
 export default MyInfo;

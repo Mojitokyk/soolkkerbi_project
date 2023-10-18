@@ -74,15 +74,15 @@
   text-align: center;
 }
 .taste-item-img {
-  border: 1px solid #ccc;
-  height: 247px;
+  /* border: 1px solid #ccc; */
+  width: 310px;
+  height: 175px;
   box-sizing: border-box;
-  border-radius: 5px;
   margin-bottom: 5px;
 }
 .taste-item-img > img {
-  width: 310px;
-  height: 247px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 .taste-item-title {
@@ -105,6 +105,7 @@
   padding: 50px 0;
   text-align: center;
   font-size: 1.2em;
+  color: #4f4f4f;
 }
 
 /*시음회 등록*/
@@ -127,6 +128,9 @@
   object-fit: contain;
   float: left;
   padding: 10px;
+}
+.taste-thumbnail > img {
+  width: 100%;
 }
 .taste-info {
   float: right;
@@ -166,5 +170,5 @@
   margin-right: 10px;
 }
 .taste-content-box > .quill > .ql-container > .ql-editor > p {
-  height: 400px;
+  /* min-height: 300px; */
 }
