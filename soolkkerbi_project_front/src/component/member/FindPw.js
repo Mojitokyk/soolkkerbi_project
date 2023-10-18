@@ -49,22 +49,37 @@ export default function FindPw() {
   const [memberPw, setMemberPw] = React.useState("");
   const [memberPwRe, setMemberPwRe] = React.useState("");
   const [CheckPwMsg, setCheckPWMsg] = React.useState("");
+  const [pwRegMsg,setReqPwMsg] = React.useState("");
 
   const [auth, setAuth] = React.useState("");
   const [checkauth, setCheckAuth]= React.useState("");
   const member = { memberId, memberEmail };
   const memberPwChange={memberId,memberPw};
+  const [pageReset,setPageReset] = React.useState(false);
+
+  const passwordReg = new RegExp(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])(?=.*[0-9])[A-Za-z\\d$@$!%*?&]{8,45}'
+  );
+//&& passwordReg.test(memberPw)
 
   const pwCheck = () => {
-    const passwordReg = new RegExp(
-        '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])(?=.*[0-9])[A-Za-z\\d$@$!%*?&]{8,45}'
-      );
+   
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
-    } else if(memberPw !== memberPwRe && passwordReg.test(memberEmail)) {
+    } else if(memberPw == memberPwRe) {
       setCheckPWMsg("");
     }
   };
+
+  const pwReg =()=>{
+    if(passwordReg.test(memberPw)){
+      setReqPwMsg("문자,숫자,특수문자포함 8자 이상입니다");
+    }else{
+      setReqPwMsg("");
+    }
+  }
+
+
 
   
  
@@ -156,32 +171,39 @@ const changePw=()=>{
   //   } else if(change_password !== check_change_password) {
   //     return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
   //   }
-  if (memberPw !== "" && memberPw === memberPwRe) {
-    axios
-      .post(
-        "/member/memberPwChange",
-        memberPwChange,
-      )
-      .then((res) => {
-        if (res.data === 1) {
-          setMemberPw("");
-          setMemberPwRe("");
-          Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!")
-          setOpen(false);
-        } else {
-          Swal.fire({
-            icon: "warning",
-            title: "비번변경중 문제제발생",
-          });
-        }
-      })
-      .catch((res) => {});
-  } else {
+
+      if (memberPw !== "" && memberPw === memberPwRe) {
+          axios
+                .post(
+                  "/member/memberPwChange",
+                  memberPwChange,
+                )
+                .then((res) => {
+                  if (res.data === 1) {
+                    setMemberPw("");
+                    setMemberPwRe("");
+                    Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!");
+                    setOpen(false);
+                    setPageReset(true);
+                  } else {
+                    Swal.fire({
+                      icon: "warning",
+                      title: "비번변경중 문제제발생",
+                    });
+                  }
+                })
+                .catch((res) => {});
+               } else {
     Swal.fire({
       icon: "success",
       title: "비밀번호가 틀림/작성 확인부탁.",
     });
   }
+
+            };        
+ 
+const back=()=>{
+  setOpen(false);
 };
 
   return (
@@ -195,6 +217,9 @@ const changePw=()=>{
       >
         {!result ? (
           <Box sx={style}>
+            <div className="closeModel">
+          <span class="material-icons quit_off" onClick={back}>close</span>
+          </div>
             <div id="modal-modal-title" variant="h6" component="h2">
               비밀번호 찾기
             </div>
@@ -225,7 +250,11 @@ const changePw=()=>{
           </Box>
         ) : !changeResult ?(
           //비번을 조회한 경우
+
           <Box sx={style}>
+            <div className="closeModel">
+          <span class="material-icons quit_off" onClick={back}>close</span>
+          </div>
           <div id="modal-modal-title" variant="h6" component="h2">
            이메일 인증하기
           </div>
@@ -254,24 +283,28 @@ const changePw=()=>{
         </Box>
           ) : (
             <Box sx={style}>
+              <div className="closeModel">
+          <span class="material-icons quit_off" onClick={back}>close</span>
+          </div>
             <div id="modal-modal-title" variant="h6" component="h2">
              비밀번호 재설정
             </div>
             <div id="modal-modal-description" sx={{ mt: 2 }}>
-             
-            <div className="new-pw-input-wrap">
-              <div className="pw-input-wrap">
-                <div>
+              <div className="input-wrap">
+           
                   <label htmlFor="memberPw">새비밀번호</label>
                   <Input
                     type="passWord"
                     data={memberPw}
                     setData={setMemberPw}
                     content="memberPw"
+                    CheckMsg={pwRegMsg}
+                    blurEvent={pwReg}
                   />
+              
                 </div>
-                <div>
-                  <label htmlFor="memberPwRe">새비밀번호 확인</label>
+                <div className="input-wrap">
+                  <label htmlFor="memberPwRe">비밀번호 재확인</label>
                   <Input
                     type="passWord"
                     data={memberPwRe}
@@ -281,13 +314,11 @@ const changePw=()=>{
                     blurEvent={pwCheck}
                   />
                 </div>
-              </div>
             </div>
             <div className="change-btn-box">
               <Button2 text="변경하기" clickEvent={changePw} />
             </div>
         
-            </div>
             
           </Box>
           
