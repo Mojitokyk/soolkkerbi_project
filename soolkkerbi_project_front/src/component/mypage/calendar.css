@@ -1,52 +1,64 @@
 /*예약 등록 페이지*/
 .react-calendar__navigation button:disabled {
-    background-color: #fff;
-  }
-  .react-calendar__tile:disabled {
-    background-color: #fcedf2;
-  }
-  .react-calendar__tile--active {
-    background-color: #ff6289;
-  }
-  .react-calendar__tile--active:enabled:hover,
-  .react-calendar__tile--active:enabled:focus {
-    background-color: #ff6289;
-  }
-  .react-calendar__tile--now {
-    background: #a3a3a3;
-    color: #fff;
-  }
-  .react-calendar__tile--now:enabled:hover {
-    background: #a3a3a3;
-  }
-  /*일요일 색상 변경*/
-  .react-calendar__month-view__days__day--weekend {
-    color: red;
-  }
-  /*토요일 색상 변경*/
-  .react-calendar__month-view__days > :nth-child(7),
-  .react-calendar__month-view__days > :nth-child(14),
-  .react-calendar__month-view__days > :nth-child(21),
-  .react-calendar__month-view__days > :nth-child(28),
-  .react-calendar__month-view__days > :nth-child(35),
-  .react-calendar__month-view__days > :nth-child(42) {
-    color: blue;
-  }
-  .btn-box{
-    display: flex;
-    align-content: center;
-  }
-  .changeDate-btn{
-    padding-left: 10px;
-    width: 45%;
-    align-items: start;
-  }
-  .back-btn{
-    padding-left: 10px;
-    width: 45%;
-    align-items: end;
-  }
-  .Calendartext{
-    text-align: center;
-    padding-bottom: 15px;
-  }
+  background-color: #fff;
+}
+.react-calendar__tile:disabled {
+  background-color: #fcedf2;
+}
+.react-calendar__tile--active {
+  background-color: #ff6289;
+}
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: #ff6289;
+}
+.react-calendar__tile--now {
+  background: #a3a3a3;
+  color: #fff;
+}
+.react-calendar__tile--now:enabled:hover {
+  background: #a3a3a3;
+}
+/*일요일 색상 변경*/
+.react-calendar__month-view__days__day--weekend {
+  color: red;
+}
+/*토요일 색상 변경*/
+.react-calendar__month-view__days > :nth-child(7),
+.react-calendar__month-view__days > :nth-child(14),
+.react-calendar__month-view__days > :nth-child(21),
+.react-calendar__month-view__days > :nth-child(28),
+.react-calendar__month-view__days > :nth-child(35),
+.react-calendar__month-view__days > :nth-child(42) {
+  color: blue;
+}
+.calendar-div .btn-box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.changeDate-btn {
+  padding-left: 10px;
+  width: 45%;
+  align-items: start;
+}
+.back-btn {
+  padding-left: 10px;
+  width: 45%;
+  align-items: end;
+}
+.Calendartext {
+  text-align: center;
+  padding-bottom: 30px;
+}
+.Calendartext > p {
+  font-family: ns-r;
+}
+#modal-calendar-title {
+  text-align: center;
+  font-family: ns-b;
+  font-size: 24px;
+}
+#modal-calendar-description .react-calendar {
+  margin: 30px;
+}

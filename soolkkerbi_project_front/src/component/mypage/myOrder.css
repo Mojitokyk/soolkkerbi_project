@@ -9,6 +9,7 @@
 .my-order-tbl > table > thead td {
   padding: 13px 0;
   font-family: ns-b;
+  color: #4f4f4f;
   border-top: 1px solid #4f4f4f;
   border-bottom: 1px solid #4f4f4f;
 }
