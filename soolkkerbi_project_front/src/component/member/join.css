@@ -66,11 +66,14 @@
 .emailAuth {
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .dummyDiv {
   width: 200px;
-  background-color: #4f4f4f;
+  margin-right: 41px;
+}
+.emailAuthInput {
+  margin-right: 10px;
 }
 .emailAuthInput > input {
   width: 200px;

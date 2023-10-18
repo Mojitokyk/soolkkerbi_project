@@ -102,7 +102,7 @@ const OrderList = (props) => {
   const order = props.order;
   const member = props.member;
   const likeList = props.likeList;
-  //console.log(likeList.isLike);
+  console.log(likeList);
   const setOrderList = props.setOrderList;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;

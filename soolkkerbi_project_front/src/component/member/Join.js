@@ -32,19 +32,19 @@ const Join = () => {
   const [memberName, setMemberName] = useState("");
   const [memberPhone, setMemberPhone] = useState("");
   const [memberEmail, setMemberEmail] = useState("");
-  const [CheckIdMsg, setCheckIdMsg] = useState("");
+  const [checkIdMsg, setCheckIdMsg] = useState("");
   // const [okcheckId, setOkCheckId] = useState(""); 만족시 파란색으로 사용가능?
-  const [CheckPwMsg, setCheckPWMsg] = useState("");
-  const [ReqPwMsg, setReqPwMsg] = useState("");
-  const [CheckEmailMsg, setCheckEmailMsg] = useState("");
-  const [CheckNameMsg, setCheckNameMsg] = useState("");
-  const [CheckPhoneMsg, setCheckPhoneMsg] = useState("");
+  const [checkPwMsg, setCheckPWMsg] = useState("");
+  const [reqPwMsg, setReqPwMsg] = useState("");
+  const [checkEmailMsg, setCheckEmailMsg] = useState("");
+  const [checkNameMsg, setCheckNameMsg] = useState("");
+  const [checkPhoneMsg, setCheckPhoneMsg] = useState("");
   const member = { memberId, memberEmail };
   const [isCodeShow, setIsCodeShow] = React.useState(false);
   const [auth, setAuth] = React.useState("");
   const [checkauth, setCheckAuth] = React.useState("");
   const [changeResult, setChangeResult] = React.useState(false);
-  const [Btnchange, setBtnchange] = useState(false);
+  const [btnchange, setBtnchange] = useState(false);
 
   const navigate = useNavigate();
   const idCheck = () => {
@@ -74,8 +74,8 @@ const Join = () => {
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
   const passwordRegEx =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-  const PhoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
-  const NameReg = /^[ㄱ-힣]+$/;
+  const phoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
+  const nameReg = /^[ㄱ-힣]+$/;
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
@@ -100,14 +100,14 @@ const Join = () => {
     }
   };
   const checkName = () => {
-    if (!NameReg.test(memberName)) {
+    if (!nameReg.test(memberName)) {
       setCheckNameMsg("이름은 한글만 기입해주세요");
     } else {
       setCheckNameMsg("");
     }
   };
   const checkPhone = () => {
-    if (!PhoneregExp.test(memberPhone)) {
+    if (!phoneregExp.test(memberPhone)) {
       setCheckPhoneMsg("전화번호 양식은 010-0000-0000입니다!");
     } else {
       setCheckPhoneMsg("");
@@ -115,12 +115,12 @@ const Join = () => {
   };
   const join = () => {
     if (
-      CheckIdMsg === "" &&
-      CheckPwMsg === "" &&
-      CheckEmailMsg === "" &&
-      ReqPwMsg === "" &&
-      CheckNameMsg === "" &&
-      CheckPhoneMsg === ""
+      checkIdMsg === "" &&
+      checkPwMsg === "" &&
+      checkEmailMsg === "" &&
+      reqPwMsg === "" &&
+      checkNameMsg === "" &&
+      checkPhoneMsg === ""
     ) {
       const member = {
         memberId,
@@ -182,7 +182,7 @@ const Join = () => {
         type="text"
         content="memberId"
         label="아이디"
-        CheckMsg={CheckIdMsg}
+        checkMsg={checkIdMsg}
         blurEvent={idCheck}
       />
       <JoinInputWrap
@@ -191,7 +191,7 @@ const Join = () => {
         type="passWord"
         content="memberPw"
         label="비밀번호"
-        CheckMsg={ReqPwMsg}
+        checkMsg={reqPwMsg}
         blurEvent={pwReqCheck}
       />
       <JoinInputWrap
@@ -200,7 +200,7 @@ const Join = () => {
         type="passWord"
         content="memberPwRe"
         label="비밀번호확인"
-        CheckMsg={CheckPwMsg}
+        checkMsg={checkPwMsg}
         blurEvent={pwCheck}
       />
       <JoinInputWrap
@@ -209,7 +209,7 @@ const Join = () => {
         type="text"
         content="memberName"
         label="이름"
-        CheckMsg={CheckNameMsg}
+        checkMsg={checkNameMsg}
         blurEvent={checkName}
       />
       <JoinInputWrap
@@ -218,7 +218,7 @@ const Join = () => {
         type="text"
         content="setMemberPhone"
         label="전화번호"
-        CheckMsg={CheckPhoneMsg}
+        checkMsg={checkPhoneMsg}
         blurEvent={checkPhone}
       />
       <JoinInputWrap
@@ -228,7 +228,7 @@ const Join = () => {
         type="text"
         content="memberEmail"
         label="이메일"
-        CheckMsg={CheckEmailMsg}
+        checkMsg={checkEmailMsg}
         blurEvent={checkEmail}
       />
       <div className="emailAuth">
@@ -242,7 +242,7 @@ const Join = () => {
           ></Input>
         </div>
         <div className="authButton">
-          {!Btnchange ? (
+          {!btnchange ? (
             <Button3 text="인증번호받기" clickEvent={sendEmail} />
           ) : (
             <Button1
@@ -732,7 +732,7 @@ const JoinInputWrap = (props) => {
   const content = props.content;
   const label = props.label;
   const blurEvent = props.blurEvent;
-  const CheckMsg = props.CheckMsg;
+  const checkMsg = props.checkMsg;
 
   return (
     <div className="join-input-wrap">
@@ -750,7 +750,7 @@ const JoinInputWrap = (props) => {
           />
         </div>
       </div>
-      <div className="check-msg">{CheckMsg}</div>
+      <div className="check-msg">{checkMsg}</div>
     </div>
   );
 };
