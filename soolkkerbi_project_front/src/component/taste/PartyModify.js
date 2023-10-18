@@ -14,6 +14,7 @@ const PartyModify = () => {
   const [tasteContent, setTasteContent] = useState(taste.tasteContent);
   const [tasteStart, setTasteStart] = useState(taste.tasteStart);
   const [tasteEnd, setTasteEnd] = useState(taste.tasteEnd);
+  const [tasteStatus, setTasteStatus] = useState(1);
   const [tasteFilepath, setTasteFilepath] = useState(taste.tasteFilepath);
   //썸네일 미리보기용
   const [tasteImg, setTasteImg] = useState(taste.tasteFilepath);
@@ -25,12 +26,14 @@ const PartyModify = () => {
     console.log(thumbnail);
     console.log(tasteContent);
     console.log(tasteFilepath);
+    console.log(tasteStatus);
 
     const form = new FormData();
     form.append("tasteStart", tasteStart);
     form.append("tasteEnd", tasteEnd);
     form.append("tasteTitle", tasteTitle);
     form.append("tasteContent", tasteContent);
+    form.append("tasteStatus", tasteStatus);
     // form.append("tasteFilepath", tasteFilepath);
     form.append("tasteFilepath", tasteImg);
     form.append("thumbnail", thumbnail);
@@ -74,6 +77,8 @@ const PartyModify = () => {
         setTasteFilepath={setTasteFilepath}
         tasteImg={tasteImg}
         setTasteImg={setTasteImg}
+        tasteStatus={tasteStatus}
+        setTasteStatus={setTasteStatus}
         buttonEvent={modify}
         type="modify"
       />
