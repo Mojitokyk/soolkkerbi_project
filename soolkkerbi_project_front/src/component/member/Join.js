@@ -45,6 +45,7 @@ const Join = () => {
   const [checkauth, setCheckAuth] = React.useState("");
   const [changeResult, setChangeResult] = React.useState(false);
   const [btnchange, setBtnchange] = useState(false);
+  const [authOk,setAuthOk] = useState(false);
 
   const navigate = useNavigate();
   const idCheck = () => {
@@ -120,7 +121,8 @@ const Join = () => {
       checkEmailMsg === "" &&
       reqPwMsg === "" &&
       checkNameMsg === "" &&
-      checkPhoneMsg === ""
+      checkPhoneMsg === "" &&
+      authOk === ""
     ) {
       const member = {
         memberId,
@@ -152,22 +154,30 @@ const Join = () => {
   const sendEmail = () => {
     const memberEmail = member.memberEmail;
     console.log(memberEmail);
-    axios
-      .post("/member/auth", { memberEmail })
-      .then((res) => {
-        console.log(res.data);
-        setCheckAuth(res.data);
-        setIsCodeShow(true);
-        setBtnchange(true);
-      })
-      .catch((res) => {
-        console.log(res.response.status);
-      });
+    if(memberEmail===""){
+      Swal.fire("이메일을 입력해주세여!")
+    }else{
+
+      axios
+        .post("/member/auth", { memberEmail })
+        .then((res) => {
+          console.log(res.data);
+          setCheckAuth(res.data);
+          setIsCodeShow(true);
+          setBtnchange(true);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    }
   };
 
   const authcheck = () => {
     if (auth === checkauth) {
       setChangeResult(true);
+      //setCheckAuth("");
+      setAuth("");
+      setAuthOk(true);
     } else {
       Swal.fire("인증번호를 다시 확인해 주세요!");
     }
@@ -231,36 +241,48 @@ const Join = () => {
         checkMsg={checkEmailMsg}
         blurEvent={checkEmail}
       />
-      <div className="emailAuth">
-        <div className="dummyDiv"></div>
-        <div className="emailAuthInput">
-          <Input
-            setData={setAuth}
-            data={auth}
-            type="type"
-            content="auth"
-          ></Input>
-        </div>
-        <div className="authButton">
-          {!btnchange ? (
-            <Button3 text="인증번호받기" clickEvent={sendEmail} />
-          ) : (
-            <Button1
-              text="인증하기"
-              clickEvent={() => {
-                authcheck(auth, checkauth);
-              }}
-            />
-          )}
-        </div>
-      </div>
-      <div
-        className={
-          "pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red] emailAuthTimer"
-        }
-      >
-        {isCodeShow ? <Timer /> : ""}
-      </div>
+
+    
+            {!authOk ? (
+              <>
+                    <div className="emailAuth">
+                    <div className="dummyDiv"></div>
+
+                    <div className="emailAuthInput">
+                      <Input
+                        setData={setAuth}
+                        data={auth}
+                        type="type"
+                        content="auth"
+                      ></Input>
+                    </div>
+                    <div className="authButton"> 
+                              {!btnchange ? (
+                                <Button3 text="인증번호받기" clickEvent={sendEmail} />
+                              ) : (
+                                <Button1
+                                  text="인증하기"
+                                  clickEvent={() => {
+                                    authcheck(auth, checkauth);
+                                  }}
+                                />
+                              )}
+                    </div>
+                    </div>
+                     <div
+                     className={
+                       "pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red] emailAuthTimer"
+                     }
+                   >
+                     {isCodeShow ? <Timer /> : ""}
+                   </div>
+                   </>
+            ):(
+              ""
+            )}
+
+     
+     
 
       {/* <div id="modal-modal-description" sx={{ mt: 2 }}>
            

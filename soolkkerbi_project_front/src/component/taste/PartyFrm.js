@@ -15,14 +15,16 @@ const PartyFrm = (props) => {
   const setTasteContent = props.setTasteContent;
   const thumbnail = props.thumbnail;
   const setThumbnail = props.setThumbnail;
-  //const tasteImg = props.tasteImg;
-  //const setTasteImg = props.setTasteImg;
+  const tasteImg = props.tasteImg;
+  const setTasteImg = props.setTasteImg;
   const tasteFilepath = props.tasteFilepath;
   const setTasteFilepath = props.setTasteFilepath;
   const buttonEvent = props.buttonEvent;
   const type = props.type;
   const delFileNo = props.delFileNo;
   const setDelFileNo = props.setDelFileNo;
+  const tasteStatus = props.tasteStatus;
+  const setTasteStatus = props.setTasteStatus;
   const navigate = useNavigate();
 
   const thumbnailChange = (e) => {
@@ -34,11 +36,13 @@ const PartyFrm = (props) => {
       const reader = new FileReader();
       reader.readAsDataURL(files[0]);
       reader.onloadend = () => {
-        setTasteFilepath(reader.result);
+        // setTasteFilepath(reader.result);
+        setTasteImg(reader.result);
       };
     } else {
       setThumbnail({});
-      setTasteFilepath(null);
+      // setTasteFilepath(null);
+      setTasteImg(null);
     }
   };
   //   const changeFile = (e) => {
@@ -55,14 +59,23 @@ const PartyFrm = (props) => {
     return navigate("*");
   };
 
+  const selectTasteStatus = (e) => {
+    console.log("시음회 상태 변경 함수 동작");
+    const changeValue = e.currentTarget.value;
+    setTasteStatus(changeValue);
+    console.log(changeValue);
+  };
+
   return (
     <div className="taste-frm-wrap">
       <div className="taste-frm-top">
         <div className="taste-thumbnail">
-          {tasteFilepath === null ? (
+          {/* {tasteFilepath === null ? ( */}
+          {tasteImg === null ? (
             <img src="/image/default.png" />
           ) : (
-            <img src={tasteFilepath} />
+            // <img src={tasteFilepath} />
+            <img src={tasteImg} />
           )}
         </div>
         <div className="taste-info">
@@ -83,7 +96,7 @@ const PartyFrm = (props) => {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="tasteStart">시음회 시작날짜</label>
+                  <label htmlFor="tasteStart">시음회 시작 날짜</label>
                 </td>
                 <td>
                   <Input
@@ -97,7 +110,7 @@ const PartyFrm = (props) => {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="tasteEnd">시음회 종료날짜</label>
+                  <label htmlFor="tasteEnd">시음회 종료 날짜</label>
                 </td>
                 <td>
                   <Input
@@ -109,7 +122,17 @@ const PartyFrm = (props) => {
                   />
                 </td>
               </tr>
-
+              <tr>
+                <td>
+                  <label htmlFor="tasteStatus">시음회 진행 여부</label>
+                </td>
+                <td>
+                  <select onChange={selectTasteStatus}>
+                    <option value="1">진행중</option>
+                    <option value="2">종료</option>
+                  </select>
+                </td>
+              </tr>
               <tr>
                 <td>
                   <label htmlFor="thumbnail">썸네일</label>

@@ -10,7 +10,7 @@
 	<select id="selectPartyList" resultType="taste">
 		select * from
 			(select rownum as rnum, T.* from(
-				(select taste_no,taste_title,taste_filepath,to_char(taste_end,'yyyy-mm-dd' )as taste_end,to_char(taste_start,'yyyy-mm-dd' )as taste_start from taste order by taste_end desc ) T )
+				(select taste_no,taste_title,taste_filepath,to_char(taste_end,'yyyy-mm-dd' )as taste_end,to_char(taste_start,'yyyy-mm-dd' )as taste_start, taste_status from taste order by taste_end desc ) T )
 			)
 		where rnum between #{start} and #{end}
 	</select>
@@ -38,14 +38,15 @@
 			taste_content,
 			taste_filepath,
 			to_char(taste_end,'yyyy-mm-dd')as taste_end,
-			to_char(taste_start,'yyyy-mm-dd')as taste_start
+			to_char(taste_start,'yyyy-mm-dd')as taste_start,
+			taste_status
 		 from taste left join member on(taste_member_no = member_no) 
 		 where taste_no=#{memberNo}
 	</select>
 	
 	<!-- 시음회 등록 -->
 	<insert id="insertTaste">
-		insert into taste values(taste_seq.nextval,#{tasteMemberNo},#{tasteTitle},#{tasteContent},#{tasteStart},#{tasteEnd},#{tasteFilepath})	
+		insert into taste values(taste_seq.nextval,#{tasteMemberNo},#{tasteTitle},#{tasteContent},#{tasteStart},#{tasteEnd},#{tasteFilepath}, #{tasteStatus})	
 	</insert>
 	
 	<!-- 시음회 삭제 -->
@@ -58,13 +59,15 @@
 		insert into reservation values(reservation_seq.nextval, #{reservationMemberNo}, #{reservationTasteNo}, #{reservationDate}, #{reservationStringNo}, 1)
 	</insert>
 	
+	<!-- 시음회 수정 -->
 	<update id="modify">
 	update taste set 
 	        taste_start=#{tasteStart},
 	        taste_end=#{tasteEnd},
 			taste_title = #{tasteTitle},
 			taste_content = #{tasteContent},
-			taste_Filepath =#{tasteFilepath}
+			taste_Filepath =#{tasteFilepath},
+			taste_status = #{tasteStatus}
 		where taste_no = #{tasteNo}
 	</update>
 

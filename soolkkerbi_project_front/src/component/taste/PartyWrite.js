@@ -10,7 +10,10 @@ const PartyWrite = () => {
   const [tasteContent, setTasteContent] = useState("");
   const [tasteStart, setTasteStart] = useState(null);
   const [tasteEnd, setTasteEnd] = useState(null);
+  const [tasteStatus, setTasteStatus] = useState(1);
   const [tasteFilepath, setTasteFilepath] = useState(null);
+  //tasteImg -> 썸네일 미리보기용
+  const [tasteImg, setTasteImg] = useState(null);
   const navigate = useNavigate(); //글쓰기 버튼 클릭시 동작할 함수(서버에 insert요청함수)
   const write = () => {
     console.log(tasteTitle);
@@ -24,6 +27,7 @@ const PartyWrite = () => {
       form.append("tasteEnd", tasteEnd);
       form.append("tasteTitle", tasteTitle);
       form.append("tasteContent", tasteContent);
+      form.append("tasteStatus", tasteStatus);
       form.append("thumbnail", thumbnail); //첨부파일을 전송하는 경우 File객체를 전송
       //첨부파일이 여러개인경우(multiple인 경우 -> 같은 이름으로 첨부파일이 여러개인경우)
       //   for (let i = 0; i < boardFile.length; i++) {
@@ -41,7 +45,7 @@ const PartyWrite = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data > 0) {
-            navigate("/tasting");
+            navigate("/taste");
           }
         })
         .catch((res) => {
@@ -65,8 +69,12 @@ const PartyWrite = () => {
         setTasteContent={setTasteContent}
         thumbnail={thumbnail}
         setThumbnail={setThumbnail}
+        tasteImg={tasteImg}
+        setTasteImg={setTasteImg}
         tasteFilepath={tasteFilepath}
         setTasteFilepath={setTasteFilepath}
+        tasteStatus={tasteStatus}
+        setTasteStatus={setTasteStatus}
         buttonEvent={write}
         type="write"
       />

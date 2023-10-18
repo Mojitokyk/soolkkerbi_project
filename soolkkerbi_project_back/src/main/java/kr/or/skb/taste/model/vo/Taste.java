@@ -18,5 +18,7 @@ public class Taste {
   private String tasteStart;
   private String tasteEnd;
   private String tasteFilepath;
+//  private String tasteImg;
   private String memberId;
+  private String tasteStatus;
 }
