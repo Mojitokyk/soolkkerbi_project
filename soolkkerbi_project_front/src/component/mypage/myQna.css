@@ -95,7 +95,7 @@
   font-size: 1em;
 }
 .qna-content-box > .quill .ql-editor {
-  height: 500px;
+  min-height: 300px;
 }
 .prev-qna-btn {
   margin-right: 10px;
@@ -125,6 +125,7 @@
 .qna-btn-box > button {
   width: 100px;
   font-family: ns-b;
+  border: none;
 }
 
 /* 공지사항 상세 */
@@ -341,4 +342,5 @@
   width: 105px;
   height: 30px;
   font-size: 1em;
+  border: 1px solid #ccc;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button2 } from "../util/Buttons";
 import TextEditor from "../util/TextEditor";
 import InputTitle from "../util/InputFormTitle";
@@ -12,7 +12,13 @@ const NoticeFrm = (props) => {
   const buttonEvent = props.buttonEvent;
   const type = props.type;
   const noticeNo = props.noticeNo;
+  const { pathName } = useLocation();
   const navigate = useNavigate();
+
+  //수정 버튼 클릭시, 양식의 최상단으로 이동
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [pathName]);
 
   //'취소'버튼
   const prev = () => {

@@ -109,7 +109,7 @@
   font-size: 1em;
 }
 .notice-content-box > .quill .ql-editor {
-  height: 300px;
+  min-height: 300px;
 }
 
 .notice-frm-wrap > .notice-btn-box {
