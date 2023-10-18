@@ -39,6 +39,7 @@
 .qna-list > thead > tr th {
   /* color: #fff; */
   color: #4f4f4f;
+  font-family: ns-b;
   padding: 13px 5px;
 }
 .qna-list > tbody > tr {
