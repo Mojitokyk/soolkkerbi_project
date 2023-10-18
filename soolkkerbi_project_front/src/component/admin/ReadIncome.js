@@ -77,7 +77,7 @@ const ReadIncome = () => {
 
   return (
     <div className="admin-content-wrap">
-      <div className="admin-content-title">매출현황조회</div>
+      <div className="admin-content-title">매출현황 조회</div>
       <div className="searchDate-btnBox-wrap">
         <div className="searchDate-btnBox-title">조회기간</div>
         <div className="searchDate-btnBox">
