@@ -182,4 +182,17 @@
 	<delete id="deleteProduct">
 		delete from product where product_no=#{productNo}
 	</delete>
+	
+	<update id="updateProduct">
+		update product set 
+			product_name=#{productName}, 
+			product_filepath=#{productFilepath},
+			product_liter=#{productLiter},
+			product_alc=#{productAlc},
+			product_case=#{productCase},
+			product_stock=#{productStock},
+			product_info=#{productInfo},
+			product_price=#{productPrice}
+		where product_no=#{productNo}
+	</update>
 </mapper>

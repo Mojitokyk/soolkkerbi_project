@@ -12,6 +12,7 @@
   line-height: 20px;
   padding: 5px;
   cursor: pointer;
+  color: #4f4f4f;
 }
 .page-item.active-page {
   background-color: #ff6289;

@@ -47,10 +47,10 @@
 		        review_rate,
 		        review_read_count,
 		        to_char(review_date,'yyyy-mm-dd')as review_date,
-		        (substr(member_name,1,1)||lpad('*',length(member_name)-1,'*'))as member_name
+		        (substr(member_id,1,1)||lpad('*',length(member_id)-1,'*'))as review_member_id
 		    from review 
-		    join member on (member_no = review_member_no)
-		    where review_product_no=#{productNo} order by 1 desc)r)
+		    left join member on (member_no = review_member_no)
+		    where review_product_no=#{productNo} order by 1 desc) r)
 	where rnum between #{start} and #{end}
   </select>
   <update id="updateCount">

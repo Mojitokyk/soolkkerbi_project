@@ -162,4 +162,9 @@ public class ProductService {
 	public int deleteProduct(int productNo) {
 		return productDao.deleteProduct(productNo);
 	}
+
+	@Transactional
+	public int updateProduct(Product p) {
+		return productDao.updateProduct(p);
+	}
 }

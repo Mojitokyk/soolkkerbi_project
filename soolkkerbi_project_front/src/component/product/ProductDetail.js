@@ -18,7 +18,7 @@ const ProductDetail = (props) => {
   const member = location.state.member;
   const [product, setProduct] = useState({});
   const { pathName } = useLocation();
-
+  // console.log("detail", product);
   //상세페이지에 필요한 데이터 가져오기
   useEffect(() => {
     const token = window.localStorage.getItem("token");

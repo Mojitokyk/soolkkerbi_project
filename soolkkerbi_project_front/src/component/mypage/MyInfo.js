@@ -17,7 +17,8 @@ const MyInfo = (props) => {
   const member = props.member;
   const setMember = props.setMember;
   const setIsLogin = props.setIsLogin;
-  const [CheckPhoneMsg,setCheckPhoneMsg] = useState("");
+
+  const [checkPhoneMsg,setCheckPhoneMsg] = useState("");
  
   const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
   const fileInput = useRef(null);
@@ -35,18 +36,17 @@ const MyInfo = (props) => {
   };
 
 
-  const PhoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
-  const checkPhone =()=>{
-    if (!PhoneregExp.test(member.memberPhone)) {
+  const phoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
+  const checkPhone = () => {
+    if (!phoneregExp.test(member.memberPhone)) {
       setCheckPhoneMsg("010-0000-0000");
-    } else{
+    } else {
       setCheckPhoneMsg("");
     }
-  }
+  };
   const updateMemberPhone = () => {
     const token = window.localStorage.getItem("token");
-    if(CheckPhoneMsg===""){
-
+    if (checkPhoneMsg === "") {
       axios
         .post("/member/changePhone", member, {
           headers: {
@@ -65,8 +65,8 @@ const MyInfo = (props) => {
             setIsLogin(false);
           }
         });
-    }else{
-      Swal.fire("전화번호양식참고하여 작성해주세요!")
+    } else {
+      Swal.fire("전화번호 양식을 참고하여 작성해주세요!");
     }
   };
 
@@ -74,13 +74,15 @@ const MyInfo = (props) => {
     navigate("/mypage/changepw");
   };
   const adminchangePw = () => {
-    <MemberChangePw setMember={setMember}
-    setIsLogin={setIsLogin}
-    member={member}/>
+    <MemberChangePw
+      setMember={setMember}
+      setIsLogin={setIsLogin}
+      member={member}
+    />;
     //navigate("/changepw",{replace: true});
     //document.querySelectorAll(".my-side a")[5].click();
   };
-  
+
   return (
     <div className="mypage-content-warp">
       <div className="mypage-content-title">회원정보 수정</div>
@@ -129,17 +131,17 @@ const MyInfo = (props) => {
                   label="전화번호"
                   //CheckMsg={CheckPhoneMsg}
                   blurEvent={checkPhone}
-                 />
+                />
                 <Button2 text="변경하기" clickEvent={updateMemberPhone} />
               </div>
-                <div className="check-msg">{CheckPhoneMsg}</div>
+              <div className="check-msg">{checkPhoneMsg}</div>
             </td>
           </tr>
         </tbody>
       </table>
 
       <div className="changepw-btn">
-      {/* {member.memberType === 1 ? (
+        {/* {member.memberType === 1 ? (
           <Button2
           text="비밀번호 변경하러가기"
            clickEvent={adminchangePw}
@@ -158,7 +160,7 @@ const MyInfo = (props) => {
         )} */}
         <Button2
           text="비밀번호 변경하러가기"
-           clickEvent={changePw}
+          clickEvent={changePw}
           setMember={setMember}
           setIsLogin={setIsLogin}
           member={member}
@@ -176,19 +178,17 @@ const JoinInputWrap = (props) => {
 
   return (
     <>
-        <div className="input">
-          <Input
-            type={type}
-            data={data}
-            setData={setData}
-            content={content}
-            blurEvent={blurEvent}
-          />
-        </div>
-      
-      
- </> 
- );
+      <div className="input">
+        <Input
+          type={type}
+          data={data}
+          setData={setData}
+          content={content}
+          blurEvent={blurEvent}
+        />
+      </div>
+    </>
+  );
 };
 
 {/*

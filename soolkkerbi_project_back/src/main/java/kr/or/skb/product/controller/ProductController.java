@@ -131,4 +131,19 @@ public class ProductController {
 		int productNo = p.getProductNo();
 		return productService.deleteProduct(productNo);
 	}
+	
+	//상품 수정
+	@PostMapping(value="/update")
+	public int updateProduct(@ModelAttribute Product p, @ModelAttribute MultipartFile thumbnail) {
+		String savepath = root+ "product/";
+		if(thumbnail != null) {
+			String filename = thumbnail.getOriginalFilename();
+			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
+			p.setProductFilepath(filepath);
+		}
+		System.out.println(p);
+		int result = productService.updateProduct(p);
+		return result;
+	}
+	
 }
