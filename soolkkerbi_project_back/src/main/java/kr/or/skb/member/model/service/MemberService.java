@@ -34,7 +34,7 @@ public class MemberService {
 	
 	public MemberService() {
 		super();
-		expiredMs = 1000 * 60 * 60 * 12;
+		expiredMs = 1000 * 60 * 60 * 24 * 8;
 	}
 
 	public Member selectOneMember(String memberId) {
