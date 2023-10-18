@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import * as React from 'react';
+import Timer from "./Timer";
 
 const style = {
   position: 'absolute',
@@ -39,6 +40,13 @@ const Join = () => {
   const [CheckEmailMsg,setCheckEmailMsg] = useState("");
   const [CheckNameMsg,setCheckNameMsg] = useState("");
   const [CheckPhoneMsg,setCheckPhoneMsg] = useState("");
+  const member = { memberId, memberEmail };
+  const [isCodeShow,setIsCodeShow]=React.useState(false);
+  const [auth, setAuth] = React.useState("");
+  const [checkauth, setCheckAuth]= React.useState("");
+  const [changeResult,setChangeResult] =React.useState(false);
+  const [Btnchange,setBtnchange] = useState(false);
+
   const navigate = useNavigate();
   const idCheck = () => {
     const idReg = /^[a-zA-Z0-9]{4,12}$/;
@@ -132,6 +140,34 @@ const Join = () => {
       Swal.fire("입력값확인");
     }
   };
+
+
+  const sendEmail=()=>{
+    const memberEmail = member.memberEmail;
+    console.log(memberEmail)
+    axios
+        .post("/member/auth", {memberEmail})
+        .then((res) => {  
+            console.log(res.data);
+            setCheckAuth(res.data);
+            setIsCodeShow(true);
+            setBtnchange(true);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+      }
+        
+        
+        const authcheck=()=>{
+          if(auth === checkauth){
+            setChangeResult(true);
+            
+          }else{
+            Swal.fire("인증번호를 다시 확인해 주세요!")
+          }
+        }
+
   return (
     <div className="join-wrap">
       <div className="join-title">회원가입</div>
@@ -180,7 +216,8 @@ const Join = () => {
         CheckMsg={CheckPhoneMsg}
         blurEvent={checkPhone}
       />
-      <JoinInputWrap
+         <JoinInputWrap 
+         className="emailAuth"
         data={memberEmail}
         setData={setMemberEmail}
         type="text"
@@ -189,6 +226,53 @@ const Join = () => {
         CheckMsg={CheckEmailMsg}
         blurEvent={checkEmail}
       />
+         <div className="emaliauth">
+         <div className="emailauthinput">
+             <Input
+               setData={setAuth}
+               data={auth}
+               type="type"
+               content="auth"
+             ></Input>
+           </div>
+          <div className="authButton">
+                {!Btnchange ? (
+                <Button3 text="인증번호받기" clickEvent={sendEmail} />
+                ):(
+                <Button1 text="인증하기"  clickEvent={()=>{authcheck(auth, checkauth)}}/>
+                )}
+           </div>
+           <div className={'pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red]'}>
+             {isCodeShow  ?<Timer />:""}
+           </div>
+         </div>
+          
+     
+          
+          
+{/* <div id="modal-modal-description" sx={{ mt: 2 }}>
+           
+           <div className="emailauthinput">
+             <Input
+               setData={setAuth}
+               data={auth}
+               type="type"
+               content="auth"
+             ></Input>
+           </div>
+           <div className="authButton">
+             <Button3 text="인증번호받기" clickEvent={sendEmail} />
+           </div>
+           <div className={'pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red]'}>
+             {isCodeShow  ?<Timer />:""}
+           </div>
+           
+         </div>
+         <div className="authclear">
+             <Button1 text="인증하기"  clickEvent={()=>{authcheck(auth, checkauth)}}/>
+           </div> */}
+
+
       <div className="join-btn-box">
          <Button1 text="이용약관 확인" clickEvent={handleOpen}></Button1>
         {/* <Button1 text="회원가입" clickEvent={join}></Button1> */}
