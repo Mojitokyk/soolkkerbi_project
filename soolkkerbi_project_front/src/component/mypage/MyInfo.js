@@ -17,12 +17,15 @@ const MyInfo = (props) => {
   const member = props.member;
   const setMember = props.setMember;
   const setIsLogin = props.setIsLogin;
+  const memberFilepath=props.memberFilepath;
+  const setMemberFilepath =props.setMemberFilepath;
 
   const [checkPhoneMsg,setCheckPhoneMsg] = useState("");
-  const [File ,setFile]=useState(member.memberFilepath);
+  const [File ,setFile]=useState("");
+  //const [memberImg, setMemberImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
  
   
-const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+//const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 const fileInput = useRef(null)
 
   // const onChangeImage = e => {
@@ -89,32 +92,60 @@ const fileInput = useRef(null)
 
 
   //프로필사진로직
-  // const onChange = (e,props) => {
-  //   const Image = props.Image;
-  //   const setImage = props.setImage;
-  //   if(e.target.files[0]){
-  //             setFile(e.target.files[0])
-  //         }else{ //업로드 취소할 시
-  //             setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-  //             return
-  //         }
-  //   //화면에 프로필 사진 표시
-  //         const reader = new FileReader();
-  //         reader.onload = () => {
-  //             if(reader.readyState === 2){
-  //                 setImage(reader.result)
-  //             }
-  //         }
-  //         reader.readAsDataURL(e.target.files[0])
-  //     }
-  //     <input 
-  //     type='file' 
-  //         style={{display:'none'}}
-  //           accept='image/jpg,impge/png,image/jpeg' 
-  //           name='profile_img'
-  //           onChange={onChange}
-  //           ref={fileInput}/>
+  const onChange = (e) => {
 
+    //const File = props.File;
+    //const setFile =props.setFile;
+    //const memberId = props.member.memberId;
+    //const Image = props.Image;
+    //const setImage = props.setImage;
+    //const memberFilepath=props.memberFilepath;
+    const setMemberFilepath =member.setMemberFilepath;
+    if(e.target.files[0]){
+              setFile(e.target.files[0])
+              console.log(member.memberFilepath)
+          }else{ //업로드 취소할 시
+            setMemberFilepath("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+              return
+          }
+   // 화면에 프로필 사진 표시
+          const reader = new FileReader();
+          reader.onload = () => {
+              if(reader.readyState === 2){
+                setMemberFilepath(reader.result)
+              }
+          }
+          reader.readAsDataURL(e.target.files[0])
+      };
+
+
+
+
+      //프로필사진 디비저장
+    //   const form = new FormData();
+    //   form.append("memberId", member.memberId);
+    //   form.append("memberFilepath", member.memberFilepath);
+
+    //   const token = window.localStorage.getItem("token");
+    // axios
+    //   .post("/taste/modify", form, {
+    //     headers: {
+    //       contentType: "multipart/form-data",
+    //       processData: false,
+    //       Authorization: "Bearer " + token,
+    //     },
+    //   })
+    //   .then((res) => {
+    //     if (res.data === 1) {
+    //       navigate("/taste");
+    //     } else {
+    //       Swal.fire("수정 중 문제가 발생했습니다. 잠시후 다시 시도해주세요");
+    //     }
+    //   })
+    //   .catch((res) => {
+    //     console.log(res.response.status);
+    //   });
+  
 
   return (
     <div className="mypage-content-warp">
@@ -129,7 +160,7 @@ const fileInput = useRef(null)
         </div> */}
 
                    <Avatar
-                       src={Image}
+                       src={memberFilepath}
                        style={{ margin: "20px" }}
                        // size={200}
                        sx={{ width: 160, height: 160 }}
@@ -137,6 +168,13 @@ const fileInput = useRef(null)
                          fileInput.current.click();
                        }}
                      />
+                     <input 
+                        type='file' 
+                        style={{display:'none'}}
+                          accept='image/*' 
+                          name='profile_img'
+                          onChange={onChange}
+                          ref={fileInput}/>
 
              
 

@@ -80,7 +80,10 @@ const Join = () => {
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
-    } else {
+    } else if(memberPw == ""){
+      setCheckPWMsg("");
+    }
+    else {
       setCheckPWMsg("");
     }
   };

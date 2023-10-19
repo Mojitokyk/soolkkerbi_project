@@ -73,7 +73,7 @@ export default function FindPw() {
   const pwCheck = () => {
    
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
+      setCheckPWMsg("비밀번호입력 재확인 해주세요");
     } else if(memberPw == memberPwRe) {
       setCheckPWMsg("");
     }
@@ -197,7 +197,7 @@ const ChangePw=()=>{
                         } else {
                           Swal.fire({
                             icon: "warning",
-                            title: "비번변경중 문제제발생",
+                            title: "비밀번호 변경중 문제제발생",
                           });
                         }
                       })
@@ -205,7 +205,7 @@ const ChangePw=()=>{
                     } else {
             Swal.fire({
             icon: "success",
-            title: "비밀번호가 틀림/작성 확인부탁.",
+            title: "비밀번호가 틀림/작성 확인해주세요",
             });
             }
     // },[open])
