@@ -109,7 +109,10 @@ const MypageMain = (props) => {
                 />
               }
             />
-            <Route path="quit" element={<Quit setIsLogin={setIsLogin} />} />
+            <Route
+              path="quit"
+              element={<Quit setIsLogin={setIsLogin} member={member} />}
+            />
             <Route path="/changepw" element={<MemberChangePw />} />
           </Routes>
         </div>
