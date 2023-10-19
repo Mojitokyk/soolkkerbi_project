@@ -248,19 +248,21 @@ const CartProduct = (props) => {
           <span
             className="material-icons"
             onClick={() => {
-              plusCart(cart.cartNo, cart.cartStock, cart.productStock);
-            }}
-          >
-            add
-          </span>
-          <span className="product-quantity">{cart.cartStock}</span>
-          <span
-            className="material-icons"
-            onClick={() => {
               removeCart(cart.cartNo, cart.cartStock);
             }}
           >
             remove
+          </span>
+
+          <span className="product-quantity">{cart.cartStock}</span>
+
+          <span
+            className="material-icons"
+            onClick={() => {
+              plusCart(cart.cartNo, cart.cartStock, cart.productStock);
+            }}
+          >
+            add
           </span>
         </div>
       </td>
