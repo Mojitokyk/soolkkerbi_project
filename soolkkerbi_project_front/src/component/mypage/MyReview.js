@@ -97,6 +97,8 @@ const ReviewList = (props) => {
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
   const navigate = useNavigate();
+
+  //상세페이지로 이동
   const reviewClick = () => {
     //console.log(review.reviewProductNo);
     navigate("/product/view", {
@@ -112,40 +114,65 @@ const ReviewList = (props) => {
     const obj = new Object();
     obj.reviewNo = review.reviewNo;
     //console.log(obj);
-    axios
-      .post("/review/delete", obj)
-      .then((res) => {
-        Swal.fire({
-          icon: "success",
-          title: "리뷰삭제 완료",
-        });
-        setChangeStatus(!changeStatus);
-      })
-      .catch((res) => {
-        console.log(res.response.status);
-      });
+    Swal.fire({
+      icon: "question",
+      title: "리뷰 삭제",
+      text: "리뷰를 삭제하시겠습니까? 다시 작성이 불가합니다",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        axios
+          .post("/review/delete", obj)
+          .then((res) => {
+            setChangeStatus(!changeStatus);
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    });
+  };
+  //console.log(review);
+  //리뷰쓴거 확인
+  const [visible, setVisible] = useState(false);
+  const detailReview = () => {
+    setVisible(!visible);
   };
   return (
-    <tr className="moveToDetail">
-      <td>{review.reviewNo}</td>
-      <td onClick={reviewClick}>{review.productName}</td>
-      <td onClick={reviewClick}>{review.reviewTitle}</td>
-      <td>{review.reviewDate}</td>
-      <td>{review.reviewReadCount}</td>
-      <td>
-        <div className="review-modify-btn">
-          <ReviewModify
-            review={review}
-            setReviewList={setReviewList}
-            changeStatus={changeStatus}
-            setChangeStatus={setChangeStatus}
-          />
-        </div>
-      </td>
-      <td>
-        <Button2 text="삭제" clickEvent={reviewDelete} />
-      </td>
-    </tr>
+    <>
+      <tr className="moveToDetail">
+        <td>{review.reviewNo}</td>
+        <td onClick={reviewClick}>{review.productName}</td>
+        <td onClick={detailReview}>{review.reviewTitle}</td>
+        <td>{review.reviewDate}</td>
+        <td>{review.reviewReadCount}</td>
+        <td>
+          <div className="review-modify-btn">
+            <ReviewModify
+              review={review}
+              setReviewList={setReviewList}
+              changeStatus={changeStatus}
+              setChangeStatus={setChangeStatus}
+            />
+          </div>
+        </td>
+        <td>
+          <Button2 text="삭제" clickEvent={reviewDelete} />
+        </td>
+      </tr>
+      {visible && (
+        <tr>
+          <td colSpan={7} className="change-td">
+            <div
+              className="review-info"
+              dangerouslySetInnerHTML={{ __html: review.reviewContent }}
+            ></div>
+          </td>
+        </tr>
+      )}
+    </>
   );
 };
 export default MyReview;
