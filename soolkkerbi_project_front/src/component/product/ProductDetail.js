@@ -304,7 +304,10 @@ const ProductDetail = (props) => {
             </ul>
           </div>
           <div className="product-price-box">
-            <div>수량</div>
+            <div>
+              <span>수량</span>
+              <span>재고 : {product.productStock} 개</span>
+            </div>
             <div className="option-btn-tool">
               <QuantityInput
                 quantity={quantity}

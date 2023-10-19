@@ -23,6 +23,10 @@ const MyReservation = (props) => {
   const token = window.localStorage.getItem("token");
   const [memberId, setMemberId] = useState(member.memberId);
   const [changeStatus, setChangeStatus] = useState(true);
+  const [tasteinfo,setTasteinfo] =useState([]);
+  const reservationNo= resList.reservationNo;
+  const reservationTasteNo =resList.reservationTasteNo;
+ 
 
   useEffect(() => {
     axios
@@ -40,6 +44,19 @@ const MyReservation = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage, changeStatus]);
+
+
+  // const obj = {reservationNo,reservationTasteNo};
+  // axios
+  // .get("/taste/oneinfo/" + obj)
+  // .then((res) => {
+  //   console.log(res.data);
+  //   //setTasteList(res.data.tasteList);
+  //   setTasteinfo(res.data);
+  // })
+  // .catch((res) => {
+  //   console.log(res.response.status);
+  //});
 
   return (
     <div className="mypage-content-wrap">
@@ -97,6 +114,7 @@ const MyReservation = (props) => {
 };
 
 const ReservationList = (props) => {
+  const member=props.member;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
   const resList = props.resList;
@@ -104,9 +122,25 @@ const ReservationList = (props) => {
   //const [status, setStatus] = useState(resList.reservationStatus === 1 ? true : false);
   const reservationContent = () => {
     navigate("/taste/view", {
-      state: { reservationNo: resList.reservationNo },
+      state: { tasteNo: resList.reservationTasteNo },
     });
   };
+
+  // const tastinfo =(props)=>{
+  //   const reservationNo = props.resList.reservationNo;
+  //   const setTasteinfo=props.setTasteinfo;
+  //   //const memberNo = props.member.memberNo;
+  //   axios
+  //   .get("/taste/oneinfo/" + {reservationNo})
+  //   .then((res) => {
+  //     console.log(res.data);
+  //     //setTasteList(res.data.tasteList);
+  //     setTasteinfo(res.data);
+  //   })
+  //   .catch((res) => {
+  //     console.log(res.response.status);
+  //   });
+  // }
   // const changeStatus = (e) => {
   //   const reservationDate = resList.reservationDate;
   //   const reservationNo = resList.reservationNo;
@@ -202,6 +236,7 @@ const ReservationList = (props) => {
             resList={resList}
             setChangeStatus={setChangeStatus}
             changeStatus={changeStatus}
+            member={member}
           />
         </td>
       )}

@@ -71,4 +71,5 @@
 		where taste_no = #{tasteNo}
 	</update>
 
+
 </mapper>
