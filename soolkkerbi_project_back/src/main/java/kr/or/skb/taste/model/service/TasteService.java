@@ -85,5 +85,10 @@ public class TasteService {
 		}
 		return null;
 	}
+
+	public Taste tastInfo(Taste taste) {
+		// TODO Auto-generated method stub
+		return tasteDao.tastInfo(taste);
+	}
 	
 }
