@@ -49,11 +49,14 @@ public interface ProductDao {
 	int spiritTotalCount();
 
 	//메인페이지 추천리스트 조회
-	List recommendList();
+	List recommendList(String memberId);
+	//메인페이지에서 제품상세로 이동시, isLike를 조회하기 위한 메서드
+	Product getProductIsLike(String memberId, int productNoElement);
 
 	int deleteProduct(int productNo);
 
 	int updateProduct(Product p);
+
 
 	
 }

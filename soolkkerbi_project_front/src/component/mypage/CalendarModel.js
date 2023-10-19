@@ -106,14 +106,38 @@ function CustomCalendar(props) {
   const back = () => {
     setOpen(false);
   };
+
+  const nowTime = moment().format("YYYY-MM-DD");
+  console.log(nowTime);
+  const start=moment(resList.tasteStart).format("YYYY-MM-DD");
+  const end = moment(resList.tasteEnd).format("YYYY-MM-DD");
+
   return (
     <div className="calendar-div">
-      <Calendar
-        onChange={onChange}
-        value={value}
-        formatDay={(locale, date) => moment(date).format("DD")}
-        calendarType="US"
-      />
+     
+     {nowTime >= start ? (
+          <Calendar
+          onChange={onChange}
+          value={value}
+          minDate={
+            new Date(nowTime)}
+          maxDate={new Date(resList.tasteEnd)}
+          formatDay={(locale, date) => moment(date).format("DD")}
+          calendarType="US"
+          />
+     ):(
+              <Calendar
+              onChange={onChange}
+              value={value}
+              minDate={
+                new Date(resList.tasteStart)}
+              maxDate={new Date(resList.tasteEnd)}
+              formatDay={(locale, date) => moment(date).format("DD")}
+              calendarType="US"
+            />
+     )}
+     
+     
       <div className="Calendartext">
         <p>예약변경 선택날짜 : {moment(value).format("YYYY년 MM월 DD일")} </p>
       </div>

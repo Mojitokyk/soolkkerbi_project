@@ -129,9 +129,9 @@ public class TasteController {
 		
 		
 	}
-	@GetMapping(value = "/oneinfo")
-	public Taste tastInfo(@RequestBody Taste taste) {
-		return tasteService.tastInfo(taste);
-		
-	}
+//	@GetMapping(value = "/oneinfo")
+//	public Taste tastInfo(@RequestBody Taste taste) {
+//		return tasteService.tastInfo(taste);
+//		
+//	}
 }
