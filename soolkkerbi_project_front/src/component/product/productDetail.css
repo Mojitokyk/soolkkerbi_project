@@ -57,6 +57,8 @@
 }
 .product-price-box > div:first-child {
   border-bottom: 1px dashed #ccc;
+  display: flex;
+  justify-content: space-between;
 }
 .option-btn-tool {
   display: flex;
