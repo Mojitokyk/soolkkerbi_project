@@ -91,8 +91,6 @@ const Cart = (props) => {
   };
   //수량 +버튼 클릭 시
   const plusCart = (cartNo, cartStock, productStock) => {
-    console.log(cartStock);
-    console.log(productStock);
     if (cartStock < productStock) {
       axios
         .post(
@@ -115,7 +113,6 @@ const Cart = (props) => {
   };
   //수량 -버튼 클릭 시
   const removeCart = (cartNo, cartStock) => {
-    console.log(cartStock);
     if (cartStock > 1) {
       axios
         .post(
