@@ -34,7 +34,7 @@ const PartyFrm = (props) => {
 
   const thumbnailChange = (e) => {
     const files = e.currentTarget.files; //객체임
-    if (files.length !== 0 && files[0] != 0) {
+    if (files.length !== 0 && files[0] !== 0) {
       //files[0] != 0파일이미지가 아닐때
       setThumbnail(files[0]); //썸네일 파일 전송을 위한 state에 값 파일 객체 저장
       //화면에 썸네일 미리보기
