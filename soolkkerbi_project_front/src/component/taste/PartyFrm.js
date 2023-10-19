@@ -77,7 +77,7 @@ const PartyFrm = (props) => {
         <div className="taste-thumbnail">
           {/* {tasteFilepath === null ? ( */}
           {tasteImg === null ? (
-            <img src="/image/default.png" />
+            <img src="/image/product_img/no_taste.jpg" />
           ) : (
             // <img src={tasteFilepath} />
             <img src={tasteImg} />

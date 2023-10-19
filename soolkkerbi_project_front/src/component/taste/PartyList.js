@@ -77,7 +77,7 @@ const TasteItem = (props) => {
       <div className="taste-item-img">
         {taste.tasteFilepath === null ? (
           <>
-            {taste.tasteStatus === 1 ? (
+            {taste.tasteStatus === "1" ? (
               <img src="/image/product_img/no_taste.jpg" />
             ) : (
               <div className="close-taste-wrap">
@@ -92,7 +92,7 @@ const TasteItem = (props) => {
           </>
         ) : (
           <>
-            {taste.tasteStatus === 1 ? (
+            {taste.tasteStatus === "1" ? (
               <img src={"/taste/" + taste.tasteFilepath} />
             ) : (
               <div className="close-taste-wrap">
@@ -108,7 +108,7 @@ const TasteItem = (props) => {
         )}
       </div>
       <div className="taste-item-info">
-        {taste.tasteStatus === 1 ? (
+        {taste.tasteStatus === "1" ? (
           <div className="taste-item-title">
             [진행중]
             {taste.tasteTitle}
