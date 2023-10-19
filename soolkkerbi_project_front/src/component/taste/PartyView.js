@@ -80,9 +80,29 @@ const PartyView = (props) => {
           text: "종료된 시음회 입니다.",
         });
       } else {
-        navigate("/taste/reservationCalendar", {
-          state: { member: member, taste: taste },
-        });
+        const memberNo = member.memberNo;
+        const tasteNo = taste.tasteNo;
+        console.log(memberNo);
+        console.log(tasteNo);
+        axios
+          .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data === 0) {
+              console.log(0);
+              navigate("/taste/reservationCalendar", {
+                state: { member: member, taste: taste },
+              });
+            } else {
+              Swal.fire({
+                icon: "warning",
+                text: "이미 예약이 완료된 시음회 입니다.",
+              });
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
       }
     } else {
       Swal.fire({
