@@ -80,7 +80,7 @@ const HeaderMember = (props) => {
   /*로그아웃 함수*/
   const logout = () => {
     Swal.fire({
-      title: "로그아웃되었습니다.",
+      title: "로그아웃 되었습니다.",
       text: "메인페이지로 이동합니다.",
       icon: "info",
     }).then(() => {

@@ -72,9 +72,11 @@ export default function FindPw() {
 
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
-      setCheckPwMsg("비밀번호입력 재확인 해주세욥!");
-    } else if (memberPw === memberPwRe) {
+
+      setCheckPwMsg("비밀번호입력 재확인 해주세요");
+    } else if(memberPw == memberPwRe) {
       setCheckPwMsg("");
+
     }
   };
 
@@ -168,6 +170,36 @@ export default function FindPw() {
     // const pw_check = /^[a-z]+[a-z0-9]{5,19}$/g;
     //   if(!pw_check.test(change_password)) {
     //     return alert('비밀번호는 영문자로 시작하는 6~20자여야만 합니다.')
+  //   } else if(change_password !== check_change_password) {
+  //     return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
+  //   }
+      //useEffect(()=>{
+              if (memberPw !== "" && memberPw === memberPwRe) {
+                axios
+                      .post(
+                        "/member/memberPwChange",
+                        memberPwChange,
+                      )
+                      .then((res) => {
+                        if (res.data === 1) {
+                          setMemberPw("");
+                          setMemberPwRe("");
+                          Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!");
+                          setOpen(false);
+                          setResult(false);
+                         // setPageReset(true);
+                        } else {
+                          Swal.fire({
+                            icon: "warning",
+                            title: "비밀번호 변경중 문제제발생",
+                          });
+                        }
+                      })
+                      .catch((res) => {});
+                    } else {
+            Swal.fire({
+            icon: "success",
+            title: "비밀번호가 틀림/작성 확인해주세요",})
 
     //   } else if(change_password !== check_change_password) {
     //     return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
@@ -188,6 +220,7 @@ export default function FindPw() {
             Swal.fire({
               icon: "warning",
               title: "비밀번호 변경 중 문제발생",
+
             });
           }
         })
@@ -337,4 +370,5 @@ export default function FindPw() {
       </Modal>
     </div>
   );
+}
 }
