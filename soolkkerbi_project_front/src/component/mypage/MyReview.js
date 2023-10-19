@@ -2,7 +2,7 @@ import "./myReview.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button1, Button2 } from "../util/Buttons";
+import { Button2 } from "../util/Buttons";
 import Pagination from "../common/Pagination";
 import Swal from "sweetalert2";
 import ReviewModify from "./ReviewModify";

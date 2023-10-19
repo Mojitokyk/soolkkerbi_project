@@ -41,11 +41,11 @@ export default function FindId() {
     console.log(member);
     // const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/
     // if(member != ""&& emailCheck.test(memberEmail)){
-    if (member != "") {
+    if (member !== "") {
       axios
         .post("/member/findId", member)
         .then((res) => {
-          if (res.data != "") {
+          if (res.data !== "") {
             console.log(res.data);
             setMemberId(res.data);
             console.log(memberId);
@@ -69,7 +69,9 @@ export default function FindId() {
 
   return (
     <div>
-      <p className="find_btn" onClick={handleOpen}>아이디 찾기</p>
+      <p className="find_btn" onClick={handleOpen}>
+        아이디 찾기
+      </p>
       <Modal
         open={open}
         onClose={handleClose}
@@ -78,9 +80,11 @@ export default function FindId() {
       >
         {!result ? (
           <Box sx={style}>
-             <div className="closeModel">
-          <span class="material-icons quit_off" onClick={back}>close</span>
-          </div>
+            <div className="closeModel">
+              <span class="material-icons quit_off" onClick={back}>
+                close
+              </span>
+            </div>
             <div id="modal-modal-title" variant="h6" component="h2">
               아이디 찾기
             </div>

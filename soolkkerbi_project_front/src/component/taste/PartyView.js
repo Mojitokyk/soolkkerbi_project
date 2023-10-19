@@ -73,7 +73,7 @@ const PartyView = (props) => {
     console.log(taste);
     console.log(isLogin);
     if (isLogin) {
-      if (taste.tasteStatus == 2) {
+      if (taste.tasteStatus === 2) {
         Swal.fire({
           icon: "warning",
           title: "예약 불가",
@@ -117,7 +117,7 @@ const PartyView = (props) => {
   return (
     <>
       <div className="taste-view-wrap">
-        {taste.tasteStatus == 1 ? (
+        {taste.tasteStatus === 1 ? (
           <div className="taste-view-title">
             [진행중]
             {taste.tasteTitle}
@@ -157,7 +157,7 @@ const PartyView = (props) => {
         <Button2 text="목록으로" clickEvent={toList} />
         {member.memberLevel === 2 ? (
           <>
-            {taste.tasteStatus == 1 ? (
+            {taste.tasteStatus === 1 ? (
               // <Button2 text="예약" clickEvent={reservation} />
               <button className="reservation-button" onClick={reservation}>
                 예약
