@@ -14,6 +14,8 @@ const Main = (props) => {
   const [isLike, setIsLike] = useState(0);
   const token = window.localStorage.getItem("token");
 
+  console.log(isLogin);
+
   //getMember를 수행하여 member값을 각각 SwiperMain, MainList에 전달
   useEffect(() => {
     axios
@@ -23,12 +25,15 @@ const Main = (props) => {
         },
       })
       .then((res) => {
+        // console.log(res.data);
         setMember(res.data);
       })
       .catch((res) => {
         console.log(res.response.data);
       });
   }, [isLogin]);
+
+  console.log(member);
 
   return (
     <>
@@ -40,40 +45,38 @@ const Main = (props) => {
 
 const SwiperMain = (props) => {
   const member = props.member;
-  const isLike = props.isLike;
-  const setIsLike = props.setIsLike;
+
+  //제품 상세페이지로 이동
+  const ToProductView = (productNo, member) => {
+    console.log("페이지 이동 이벤트 클릭");
+    console.log(productNo);
+    console.log(member);
+
+    const memberId = member.memberId;
+    console.log(memberId);
+
+    axios
+      .get("/product/getProductIsLike/" + memberId + "/" + productNo)
+      .then((res) => {
+        // console.log(memberId);
+        console.log(res.data); //memberId 미포함
+        console.log(res.data.isLike);
+
+        navigate("/product/view", {
+          state: {
+            productNo: productNo,
+            member: member,
+            like: res.data.isLike,
+          },
+        });
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
 
   const navigate = useNavigate();
   SwiperCore.use([Autoplay, Navigation, Pagination]);
-
-  const memberId = member.memberId;
-
-  useEffect(() => {
-    //메인페이지 번호에 해당하는 product조회(상세페이지로 넘기기 위한 isLike를 구하기 위함)
-    const productNoList = [51, 105, 122, 125, 52, 96, 91, 108, 111];
-    productNoList.forEach(function (productNoElement, index) {
-      console.log(productNoElement);
-
-      axios
-        .get("/product/getProductIsLike/" + memberId + "/" + productNoElement)
-        .then((res) => {
-          console.log(res.data);
-          setIsLike(res.data.isLike);
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
-    });
-  }, []);
-
-  //제품 상세페이지로 이동
-  const toProductView = (productNo, member) => {
-    console.log("페이지 이동 이벤트 클릭");
-    console.log(productNo);
-    navigate("/product/view", {
-      state: { productNo: productNo, member: member },
-    });
-  };
 
   return (
     <div className="main-slide">
@@ -87,7 +90,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main1_text_51.jpg"
             onClick={() => {
-              toProductView(51, member, isLike);
+              ToProductView(51, member);
             }}
           ></img>
         </SwiperSlide>
@@ -95,7 +98,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main2_text_105.jpg"
             onClick={() => {
-              toProductView(105, member, isLike);
+              ToProductView(105, member);
             }}
           ></img>
         </SwiperSlide>
@@ -103,7 +106,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main3_text_122.jpg"
             onClick={() => {
-              toProductView(122, member, isLike);
+              ToProductView(122, member);
             }}
           ></img>
         </SwiperSlide>
@@ -111,7 +114,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main4_text_125.jpg"
             onClick={() => {
-              toProductView(125, member, isLike);
+              ToProductView(125, member);
             }}
           ></img>
         </SwiperSlide>
@@ -119,7 +122,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main5_text_52.jpg"
             onClick={() => {
-              toProductView(52, member, isLike);
+              ToProductView(52, member);
             }}
           ></img>
         </SwiperSlide>
@@ -127,7 +130,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main6_text_96.jpg"
             onClick={() => {
-              toProductView(96, member, isLike);
+              ToProductView(96, member);
             }}
           ></img>
         </SwiperSlide>
@@ -135,7 +138,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main7_text_91.jpg"
             onClick={() => {
-              toProductView(91, member, isLike);
+              ToProductView(91, member);
             }}
           ></img>
         </SwiperSlide>
@@ -143,7 +146,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main8_text_108.jpg"
             onClick={() => {
-              toProductView(108, member, isLike);
+              ToProductView(108, member);
             }}
           ></img>
         </SwiperSlide>
@@ -151,7 +154,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main9_text_111.jpg"
             onClick={() => {
-              toProductView(111, member, isLike);
+              ToProductView(111, member);
             }}
           ></img>
         </SwiperSlide>
@@ -171,7 +174,7 @@ const MainList = (props) => {
     axios
       .get("/product/recommendList/" + memberId)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRecommendList(res.data);
       })
       .catch((res) => {
@@ -198,9 +201,9 @@ const ProductRecommend = (props) => {
   //제품 상세페이지로 이동
   const toProductView = (productNo, isLike, member) => {
     console.log("페이지 이동 이벤트 클릭");
-    console.log(productNo);
+    // console.log(productNo);
     navigate("/product/view", {
-      state: { productNo: productNo, isLike: isLike, member: member },
+      state: { productNo: productNo, like: isLike, member: member },
     });
   };
 

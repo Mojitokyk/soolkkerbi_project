@@ -130,6 +130,7 @@ public class ProductController {
 	public Product getProductIsLike(@PathVariable String memberId, @PathVariable int productNoElement) {
 		System.out.println("productController: "+memberId+" "+productNoElement);
 		Product p = productService.getProductIsLike(memberId, productNoElement);
+		System.out.println(p);
 		return p;
 	}
 	
