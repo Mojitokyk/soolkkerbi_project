@@ -32,7 +32,7 @@ public interface TasteDao {
 	//시음회 삭제
 	int deleteTaste(int tasteNo);
 
-	Taste tastInfo(Taste taste);
+//	Taste tastInfo(Taste taste);
 
 
 	

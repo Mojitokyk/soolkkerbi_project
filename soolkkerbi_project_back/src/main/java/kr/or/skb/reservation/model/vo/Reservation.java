@@ -19,4 +19,6 @@ public class Reservation {
 	private int reservationStatus;
 	private String reservationMemberId;
 	private String reservationTasteTitle;
+	private String tasteStart;
+	private String tasteEnd;
 }
