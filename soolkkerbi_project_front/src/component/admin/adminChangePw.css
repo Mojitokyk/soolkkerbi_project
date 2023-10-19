@@ -1,0 +1,45 @@
+.new-pw-input-wrap {
+  padding: 20px 0px;
+}
+.pw-input-wrap > div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px 0px;
+}
+.pw-input-wrap > div > label {
+  width: 20%;
+  color: #4f4f4f;
+  font-size: 18px;
+  font-family: ns-b;
+}
+.pw-input-wrap > div > input {
+  width: 50%;
+  margin: 0px 35px;
+}
+.pw-input-wrap > div > .input {
+  width: 50%;
+  margin: 0px 35px;
+}
+.pw-input-wrap > div > button {
+  width: 20%;
+}
+.change-btn-box {
+  display: flex;
+  justify-content: center;
+  margin-right: 20px;
+  margin-top: 30px;
+}
+.change-btn-box > button {
+  width: 51%;
+}
+.check-msg {
+  font-size: 0.8em;
+  width: 70%;
+  text-align: end;
+  /* align-self: flex-start; */
+  color: #ff6289;
+  box-sizing: border-box;
+  padding-left: 20px;
+  margin-left: 20px;
+}
