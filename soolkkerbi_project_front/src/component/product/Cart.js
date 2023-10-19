@@ -92,6 +92,8 @@ const Cart = (props) => {
   //수량 +버튼 클릭 시
   const plusCart = (cartNo, cartStock, productStock) => {
     if (cartStock < productStock) {
+      const plusBtn = document.getElementById("plusBtn");
+      plusBtn.disabled = true;
       axios
         .post(
           "/cart/plusCart",
@@ -105,6 +107,7 @@ const Cart = (props) => {
         .then((res) => {
           setCartList(res.data.cartList);
           setTotalCount(res.data.totalCount);
+          plusBtn.disabled = false;
         })
         .catch((res) => {
           console.log(res.response.status);
@@ -114,6 +117,8 @@ const Cart = (props) => {
   //수량 -버튼 클릭 시
   const removeCart = (cartNo, cartStock) => {
     if (cartStock > 1) {
+      const minusBtn = document.getElementById("minusBtn");
+      minusBtn.disabled = true;
       axios
         .post(
           "/cart/removeCart",
@@ -127,6 +132,7 @@ const Cart = (props) => {
         .then((res) => {
           setCartList(res.data.cartList);
           setTotalCount(res.data.totalCount);
+          minusBtn.disabled = false;
         })
         .catch((res) => {
           console.log(res.response.status);
@@ -242,25 +248,27 @@ const CartProduct = (props) => {
       </td>
       <td>
         <div className="product-quantity-wrap">
-          <span
-            className="material-icons"
-            onClick={() => {
-              removeCart(cart.cartNo, cart.cartStock);
-            }}
+          <button
+            id="minusBtn"
+            type="button"
+            disabled={cart.cartStock === 1}
+            onClick={() => removeCart(cart.cartNo, cart.cartStock)}
           >
-            remove
-          </span>
-
+            <span className="material-icons">remove</span>
+          </button>
           <span className="product-quantity">{cart.cartStock}</span>
-
-          <span
-            className="material-icons"
-            onClick={() => {
-              plusCart(cart.cartNo, cart.cartStock, cart.productStock);
-            }}
+          <button
+            id="plusBtn"
+            type="button"
+            disabled={
+              cart.cartStock < 1 || cart.productStock === cart.cartStock
+            }
+            onClick={() =>
+              plusCart(cart.cartNo, cart.cartStock, cart.productStock)
+            }
           >
-            add
-          </span>
+            <span className="material-icons">add</span>
+          </button>
         </div>
       </td>
       <td>

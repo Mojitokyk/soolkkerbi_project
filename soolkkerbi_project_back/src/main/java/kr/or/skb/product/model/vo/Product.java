@@ -24,4 +24,5 @@ public class Product {
 	private double starRate;
 	private String memberId;
 	private int isLike;
+	private int productNoElement;
 }

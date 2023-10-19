@@ -125,6 +125,15 @@ public class ProductController {
 		List list = productService.recommendList();
 		return list;
 	}
+	//메인페이지에서 제품상세로 이동시, isLike를 조회하기 위한 메서드
+	@GetMapping(value="/getProductIsLike/{memberId}/{productNo}")
+	public Product getProductIsLike(@PathVariable String memberId, @PathVariable int productNo) {
+		System.out.println("productController: "+memberId+" "+productNo);
+		Product p = productService.getProductIsLike(memberId, productNo);
+		System.out.println(p);
+		return p;
+	}
+	
 	//상품 삭제
 	@PostMapping(value="/delete")
 	public int deleteProduct(@RequestBody Product p) {
