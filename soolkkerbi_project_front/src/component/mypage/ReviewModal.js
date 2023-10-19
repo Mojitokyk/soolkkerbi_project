@@ -70,7 +70,8 @@ export default function ReviewModal({ order }) {
               title: "등록 완료",
               text: "리뷰가 등록되었습니다.",
             }).then(() => {
-              navigate("/");
+              navigate("/mypage/review");
+              document.querySelectorAll(".my-side a")[3].click();
             });
           }
         })
