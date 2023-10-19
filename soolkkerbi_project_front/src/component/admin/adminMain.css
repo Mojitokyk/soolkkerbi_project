@@ -191,6 +191,10 @@
   justify-content: center;
   cursor: pointer;
 }
+
+.moveToDetail {
+  cursor: pointer;
+}
 .admin-reviewRate-box {
   display: flex;
   align-items: center;

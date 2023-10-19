@@ -3,7 +3,6 @@ import { Button4 } from "../util/Buttons";
 import axios from "axios";
 import Pagination from "../common/Pagination";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
 const ManageReview = () => {
   const [reviewList, setReviewList] = useState([]);
@@ -71,47 +70,68 @@ const ReviewItem = (props) => {
   const setChangeStatus = props.setChangeStatus;
   const token = window.localStorage.getItem("token");
 
-  const navigate = useNavigate();
-
-  const deleteReview = () => {
-    axios
-      .post("/review/delete", review, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        Swal.fire("후기가 삭제되었습니다.").then(() => {
-          setChangeStatus(!changeStatus);
-        });
-      })
-      .catch((res) => {
-        console.log(res.response.status);
-      });
+  const deleteReview = (e) => {
+    e.stopPropagation();
+    Swal.fire({
+      icon: "question",
+      title: "후기 삭제",
+      text: "후기를 삭제하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        axios
+          .post("/review/delete", review, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) => {
+            setChangeStatus(!changeStatus);
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+    });
   };
 
-  const clickReview = () => {
-    navigate("/product/view");
+  const [visible, setVisible] = useState(false);
+  const clickReview = (e) => {
+    setVisible(!visible);
   };
 
   return (
-    <tr onClick={clickReview}>
-      <td>{review.reviewDate}</td>
-      <td>
-        {review.reviewMemberId === null ? "탈퇴회원" : review.reviewMemberId}
-      </td>
-      <td>{review.reviewTitle}</td>
-      <td>{review.productName}</td>
-      <td className="admin-reviewRate-box">
-        <div className="material-icons reviewRate-star">star</div>
-        <div className="admin-reviewRate">{review.reviewRate}</div>
-      </td>
-      <td>
-        <div className="admin-change-btn-box">
-          <Button4 text="삭제" clickEvent={deleteReview} />
-        </div>
-      </td>
-    </tr>
+    <>
+      <tr className="moveToDetail" onClick={clickReview}>
+        <td>{review.reviewDate}</td>
+        <td>
+          {review.reviewMemberId === null ? "탈퇴회원" : review.reviewMemberId}
+        </td>
+        <td>{review.reviewTitle}</td>
+        <td>{review.productName}</td>
+        <td className="admin-reviewRate-box">
+          <div className="material-icons reviewRate-star">star</div>
+          <div className="admin-reviewRate">{review.reviewRate}</div>
+        </td>
+        <td>
+          <div className="admin-change-btn-box">
+            <Button4 text="삭제" clickEvent={deleteReview} />
+          </div>
+        </td>
+      </tr>
+      {visible && (
+        <tr>
+          <td colSpan={7} className="change-td">
+            <div
+              className="review-info"
+              dangerouslySetInnerHTML={{ __html: review.reviewContent }}
+            ></div>
+          </td>
+        </tr>
+      )}
+    </>
   );
 };
 

@@ -83,22 +83,33 @@ const ReservationItem = (props) => {
   const token = window.localStorage.getItem("token");
 
   const updateReservationStatus = () => {
-    axios
-      .post("/reservation/updateReservationStatus", reservation, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        if (res.data === 1) {
-          Swal.fire("예약취소가 완료되었습니다.").then(() => {
-            setChangeStatus(!changeStatus);
+    Swal.fire({
+      icon: "question",
+      title: "예약 취소",
+      text: "예약을 취소하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        axios
+          .post("/reservation/updateReservationStatus", reservation, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) => {
+            if (res.data === 1) {
+              Swal.fire("예약취소가 완료되었습니다.").then(() => {
+                setChangeStatus(!changeStatus);
+              });
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
           });
-        }
-      })
-      .catch((res) => {
-        console.log(res.response.status);
-      });
+      }
+    });
   };
 
   return (

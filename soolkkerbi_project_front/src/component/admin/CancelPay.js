@@ -90,22 +90,33 @@ const PayItem = (props) => {
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   const updatePayStatus = () => {
-    axios
-      .post("/pay/updatePayStatus", pay, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      })
-      .then((res) => {
-        if (res.data === 2) {
-          Swal.fire("결제취소가 완료되었습니다.").then(() => {
-            setChangeStatus(!changeStatus);
+    Swal.fire({
+      icon: "question",
+      title: "결제 취소",
+      text: "결제를 취소하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        axios
+          .post("/pay/updatePayStatus", pay, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) => {
+            if (res.data === 2) {
+              Swal.fire("결제취소가 완료되었습니다.").then(() => {
+                setChangeStatus(!changeStatus);
+              });
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
           });
-        }
-      })
-      .catch((res) => {
-        console.log(res.response.status);
-      });
+      }
+    });
   };
 
   return (
