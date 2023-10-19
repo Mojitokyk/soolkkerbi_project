@@ -72,7 +72,6 @@ const Login = (props) => {
       </div>
       <div className="login-btn-box">
         <Button1 text="로그인" clickEvent={login} id="loginBtn"></Button1>
-        {/* 엔터클릭이벤트추가 */}
       </div>
     </div>
   );

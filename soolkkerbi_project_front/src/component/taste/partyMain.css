@@ -162,6 +162,7 @@
   object-fit: contain;
   float: left;
   padding: 10px;
+  margin-top: 45px;
 }
 .taste-thumbnail > img {
   width: 100%;

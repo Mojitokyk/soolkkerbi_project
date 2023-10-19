@@ -38,5 +38,8 @@
 	update reservation set reservation_status = 2 where reservation_no = #{reservationNo}
 	</delete>
 	
-	
+	<!-- 시음회 중복 예약 방지 메서드 -->
+	<select id="myReservationList2" resultType="reservation">
+		select * from reservation left join member on (reservation_member_no = member_no) where member_no=#{memberNo}
+	</select>
 </mapper>
