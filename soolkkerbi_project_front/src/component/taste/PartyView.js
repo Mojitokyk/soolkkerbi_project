@@ -11,6 +11,7 @@ const PartyView = (props) => {
   const location = useLocation();
   const tasteNo = location.state.tasteNo;
   const [taste, setTaste] = useState({});
+  const [doneReservation, setDoneReservation] = useState("0");
   const navigate = useNavigate();
 
   console.log("PartyView - location.state.tasteNo: " + location.state.tasteNo);
@@ -23,6 +24,17 @@ const PartyView = (props) => {
       .then((res) => {
         console.log(res.data);
         setTaste(res.data);
+
+        const memberNo = member.memberNo;
+        axios
+          .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
+          .then((res) => {
+            console.log(res.data);
+            setDoneReservation("1");
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
       })
       .catch((res) => {
         console.log(res.response.status);
@@ -73,36 +85,33 @@ const PartyView = (props) => {
     console.log(taste);
     console.log(isLogin);
     if (isLogin) {
-      if (taste.tasteStatus === 2) {
+      if (taste.tasteStatus === "2") {
         Swal.fire({
           icon: "warning",
           title: "예약 불가",
           text: "종료된 시음회 입니다.",
         });
       } else {
-        const memberNo = member.memberNo;
-        const tasteNo = taste.tasteNo;
-        console.log(memberNo);
-        console.log(tasteNo);
-        axios
-          .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data === 0) {
-              console.log(0);
-              navigate("/taste/reservationCalendar", {
-                state: { member: member, taste: taste },
-              });
-            } else {
-              Swal.fire({
-                icon: "warning",
-                text: "이미 예약이 완료된 시음회 입니다.",
-              });
-            }
-          })
-          .catch((res) => {
-            console.log(res.response.status);
+        if (doneReservation === 0) {
+          console.log(0);
+          navigate("/taste/reservationCalendar", {
+            state: { member: member, taste: taste },
           });
+        } else {
+          Swal.fire({
+            showCancelButton: true,
+            icon: "warning",
+            title: "예약 취소",
+            html:
+              "예약을 취소하시겠습니까?" +
+              "<br/>" +
+              "(마이페이지 > 예약내역에서 예약취소를 진행할 수 있습니다.)",
+          }).then((res) => {
+            if (res.value) {
+              navigate("/mypage/*");
+            }
+          });
+        }
       }
     } else {
       Swal.fire({
@@ -159,10 +168,18 @@ const PartyView = (props) => {
         {member.memberLevel === 2 ? (
           <>
             {taste.tasteStatus === "1" ? (
-              // <Button2 text="예약" clickEvent={reservation} />
-              <button className="reservation-button" onClick={reservation}>
-                예약
-              </button>
+              <>
+                {doneReservation === "0" ? (
+                  // <Button2 text="예약" clickEvent={reservation} />
+                  <button className="reservation-button" onClick={reservation}>
+                    예약
+                  </button>
+                ) : (
+                  <button className="reservation-button" onClick={reservation}>
+                    예약 취소
+                  </button>
+                )}
+              </>
             ) : (
               <button
                 className="disabled-reservation-button"
