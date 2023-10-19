@@ -80,9 +80,29 @@ const PartyView = (props) => {
           text: "종료된 시음회 입니다.",
         });
       } else {
-        navigate("/taste/reservationCalendar", {
-          state: { member: member, taste: taste },
-        });
+        const memberNo = member.memberNo;
+        const tasteNo = taste.tasteNo;
+        console.log(memberNo);
+        console.log(tasteNo);
+        axios
+          .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data === 0) {
+              console.log(0);
+              navigate("/taste/reservationCalendar", {
+                state: { member: member, taste: taste },
+              });
+            } else {
+              Swal.fire({
+                icon: "warning",
+                text: "이미 예약이 완료된 시음회 입니다.",
+              });
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
       }
     } else {
       Swal.fire({
@@ -94,10 +114,11 @@ const PartyView = (props) => {
     }
   };
 
+  console.log(taste.tasteStatus);
   return (
     <>
       <div className="taste-view-wrap">
-        {taste.tasteStatus === 1 ? (
+        {taste.tasteStatus === "1" ? (
           <div className="taste-view-title">
             [진행중]
             {taste.tasteTitle}
@@ -137,7 +158,7 @@ const PartyView = (props) => {
         <Button2 text="목록으로" clickEvent={toList} />
         {member.memberLevel === 2 ? (
           <>
-            {taste.tasteStatus === 1 ? (
+            {taste.tasteStatus === "1" ? (
               // <Button2 text="예약" clickEvent={reservation} />
               <button className="reservation-button" onClick={reservation}>
                 예약
