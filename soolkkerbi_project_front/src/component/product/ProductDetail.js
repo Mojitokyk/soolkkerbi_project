@@ -2,12 +2,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./productDetail.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Button1, Button2, Button3, Button4, Button5 } from "../util/Buttons";
+import { Button2, Button3, Button5 } from "../util/Buttons";
 import Tab1 from "./Tab1";
 import Swal from "sweetalert2";
 import * as React from "react";
-import Rating from "@mui/material/Rating";
-import Stack from "@mui/material/Stack";
 import ProductModify from "./ProductModify";
 
 const ProductDetail = (props) => {
@@ -263,19 +261,22 @@ const ProductDetail = (props) => {
         </div>
         <div className="product-view-thumbnail">
           {product.productFilepath === null ? (
-            <img src="/image/product_img/no_image.jpg" />
+            <img src="/image/product_img/no_image.jpg" alt="soldout" />
           ) : product.productStock === 0 ? (
             // <img src="/image/product_img/sold_out.png" />
             <div className="detail-sold-out-wrap">
               <div className="detail-sold-out-image">
-                <img src={"/product/" + product.productFilepath} />
+                <img
+                  src={"/product/" + product.productFilepath}
+                  alt="product"
+                />
               </div>
               <div className="detail-sold-out">
                 <p>SOLD OUT</p>
               </div>
             </div>
           ) : (
-            <img src={"/product/" + product.productFilepath} />
+            <img src={"/product/" + product.productFilepath} alt="product" />
           )}
         </div>
         <div className="product-view-info">
