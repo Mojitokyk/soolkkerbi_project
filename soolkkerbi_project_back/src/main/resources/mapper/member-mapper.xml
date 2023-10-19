@@ -42,5 +42,9 @@
     <delete id="deleteMember">
      delete from member where member_id=#{memberId}
     </delete>
+    
+    <update id="thumbnail">
+    update member set member_filepath=#{memberFilepath} where member_id=#{memberId}
+    </update>
  
 </mapper>

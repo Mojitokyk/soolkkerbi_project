@@ -3,7 +3,9 @@ package kr.or.skb.member.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.skb.EmailSender;
+import kr.or.skb.FileUtil;
 import kr.or.skb.member.model.service.MemberService;
 import kr.or.skb.member.model.vo.Member;
+import kr.or.skb.taste.model.vo.Taste;
 
 @RestController
 @RequestMapping(value = "/member")
@@ -24,6 +29,10 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private EmailSender emailSender;
+	@Autowired
+	private FileUtil fileUtil;
+	@Value("${file.root}")
+	private String root;
 	
 	
 	@GetMapping(value = "/checkId/{memberId}") 
@@ -108,6 +117,20 @@ public class MemberController {
 		String authCode = emailSender.authMail(member.getMemberEmail());
 		System.out.println(authCode);
 		return authCode;
+	}
+	
+	@PostMapping(value = "/thumbnail")
+	public int thumbnail(@ModelAttribute Member m,@ModelAttribute MultipartFile memberFilepath ) {
+		String savepath = root + "member/";
+		if (memberFilepath != null) {
+			String filename = memberFilepath.getOriginalFilename();
+			String filepath = fileUtil.getFilepath(savepath, filename, memberFilepath);
+			m.setMemberFilepath(filepath);
+
+		}
+		System.out.println(m);
+		int result =memberService.thumbnail(m);
+		return result;
 	}
 	
 }

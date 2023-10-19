@@ -101,4 +101,9 @@ public class MemberService {
 		return memberDao.deleteMember(memberId);
 	}
 
+	public int thumbnail(Member m) {
+		// TODO Auto-generated method stub
+		return memberDao.thumbnail(m);
+	}
+
 }

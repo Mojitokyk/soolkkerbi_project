@@ -25,8 +25,9 @@ const MyInfo = (props) => {
   //const [memberImg, setMemberImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
  
   
-//const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
 const fileInput = useRef(null)
+const [thumbnail, setThumbnail] = useState({});
 
   // const onChangeImage = e => {
   //   const file = e.target.files[0];
@@ -93,30 +94,51 @@ const fileInput = useRef(null)
 
   //프로필사진로직
   const onChange = (e) => {
+    const files = e.currentTarget.files;
+          if (files.length !== 0 && files[0] != 0) {
+            //files[0] != 0파일이미지가 아닐때
+            setThumbnail(files[0]); //썸네일 파일 전송을 위한 state에 값 파일 객체 저장
+            //화면에 썸네일 미리보기
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onloadend = () => {
+              setImage(reader.result);
+              console.log(thumbnail);
+            };
+          } else {
+            setThumbnail({});
+            setImage(null);
+          }
 
-    //const File = props.File;
-    //const setFile =props.setFile;
-    //const memberId = props.member.memberId;
-    //const Image = props.Image;
-    //const setImage = props.setImage;
-    //const memberFilepath=props.memberFilepath;
-    const setMemberFilepath =member.setMemberFilepath;
-    if(e.target.files[0]){
-              setFile(e.target.files[0])
-              console.log(member.memberFilepath)
-          }else{ //업로드 취소할 시
-            setMemberFilepath("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-              return
-          }
-   // 화면에 프로필 사진 표시
-          const reader = new FileReader();
-          reader.onload = () => {
-              if(reader.readyState === 2){
-                setMemberFilepath(reader.result)
-              }
-          }
-          reader.readAsDataURL(e.target.files[0])
+          console.log(thumbnail);
+          console.log(Image);
+         console.log(member.memberId);
+         const form = new FormData();
+          form.append("memberId", member.memberId);
+          form.append("memberFilepath",thumbnail);
+          const token = window.localStorage.getItem("token");
+          axios
+          .post("/member/thumbnail", form, {
+            headers: {
+              contentType: "multipart/form-data",
+              processData: false,
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) => {
+            if (res.data === 1) {
+              // navigate("/mypage");
+            } else {
+              Swal.fire("프로필수정 중 문제가 생겼어요!");
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+          
       };
+
+     
 
 
 
@@ -160,7 +182,7 @@ const fileInput = useRef(null)
         </div> */}
 
                    <Avatar
-                       src={memberFilepath}
+                       src={Image}
                        style={{ margin: "20px" }}
                        // size={200}
                        sx={{ width: 160, height: 160 }}
@@ -180,7 +202,7 @@ const fileInput = useRef(null)
 
         
        {/* <Profile member={member}/> */}
-        
+        <div className="image">이미지를 클릭해 변경해주세요</div>
       <table className="mypage-info-tbl">
         <tbody>
           <tr>
