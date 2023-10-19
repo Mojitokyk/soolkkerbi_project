@@ -91,8 +91,6 @@ const Cart = (props) => {
   };
   //수량 +버튼 클릭 시
   const plusCart = (cartNo, cartStock, productStock) => {
-    console.log(cartStock);
-    console.log(productStock);
     if (cartStock < productStock) {
       axios
         .post(
@@ -115,7 +113,6 @@ const Cart = (props) => {
   };
   //수량 -버튼 클릭 시
   const removeCart = (cartNo, cartStock) => {
-    console.log(cartStock);
     if (cartStock > 1) {
       axios
         .post(
@@ -248,19 +245,21 @@ const CartProduct = (props) => {
           <span
             className="material-icons"
             onClick={() => {
-              plusCart(cart.cartNo, cart.cartStock, cart.productStock);
-            }}
-          >
-            add
-          </span>
-          <span className="product-quantity">{cart.cartStock}</span>
-          <span
-            className="material-icons"
-            onClick={() => {
               removeCart(cart.cartNo, cart.cartStock);
             }}
           >
             remove
+          </span>
+
+          <span className="product-quantity">{cart.cartStock}</span>
+
+          <span
+            className="material-icons"
+            onClick={() => {
+              plusCart(cart.cartNo, cart.cartStock, cart.productStock);
+            }}
+          >
+            add
           </span>
         </div>
       </td>
