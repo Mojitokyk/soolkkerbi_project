@@ -3,13 +3,12 @@ import Pagination from "../common/Pagination";
 import "./myReservation.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Switch } from "@mui/material";
 import Swal from "sweetalert2";
 // import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Button2 } from "../util/Buttons";
 
-import { CalendarModel, CustomCalendar } from "./CalendarModel";
+import { CalendarModel } from "./CalendarModel";
 
 import moment from "moment";
 // 안써도 자동으로 한국 시간을 불러온다. 명확하게 하기 위해 import
@@ -23,10 +22,9 @@ const MyReservation = (props) => {
   const token = window.localStorage.getItem("token");
   const [memberId, setMemberId] = useState(member.memberId);
   const [changeStatus, setChangeStatus] = useState(true);
-  const [tasteinfo,setTasteinfo] =useState([]);
-  const reservationNo= resList.reservationNo;
-  const reservationTasteNo =resList.reservationTasteNo;
- 
+  const [tasteinfo, setTasteinfo] = useState([]);
+  const reservationNo = resList.reservationNo;
+  const reservationTasteNo = resList.reservationTasteNo;
 
   useEffect(() => {
     axios
@@ -44,7 +42,6 @@ const MyReservation = (props) => {
         console.log(res.response.status);
       });
   }, [reqPage, changeStatus]);
-
 
   // const obj = {reservationNo,reservationTasteNo};
   // axios
@@ -114,7 +111,7 @@ const MyReservation = (props) => {
 };
 
 const ReservationList = (props) => {
-  const member=props.member;
+  const member = props.member;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
   const resList = props.resList;
