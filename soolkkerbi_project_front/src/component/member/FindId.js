@@ -78,6 +78,9 @@ export default function FindId() {
       >
         {!result ? (
           <Box sx={style}>
+             <div className="closeModel">
+          <span class="material-icons quit_off" onClick={back}>close</span>
+          </div>
             <div id="modal-modal-title" variant="h6" component="h2">
               아이디 찾기
             </div>

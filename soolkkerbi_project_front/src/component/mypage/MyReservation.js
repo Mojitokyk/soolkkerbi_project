@@ -97,6 +97,7 @@ const MyReservation = (props) => {
 };
 
 const ReservationList = (props) => {
+  const member=props.member;
   const changeStatus = props.changeStatus;
   const setChangeStatus = props.setChangeStatus;
   const resList = props.resList;
@@ -202,6 +203,7 @@ const ReservationList = (props) => {
             resList={resList}
             setChangeStatus={setChangeStatus}
             changeStatus={changeStatus}
+            member={member}
           />
         </td>
       )}
