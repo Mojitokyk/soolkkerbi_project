@@ -76,7 +76,20 @@ const TasteItem = (props) => {
     <div className="taste-item" onClick={tasteView}>
       <div className="taste-item-img">
         {taste.tasteFilepath === null ? (
-          <img src="/image/default.png" />
+          <>
+            {taste.tasteStatus == 1 ? (
+              <img src="/image/product_img/no_taste.jpg" />
+            ) : (
+              <div className="close-taste-wrap">
+                <div className="close-taste-img">
+                  <img src="/image/product_img/no_taste.jpg" />
+                </div>
+                <div className="close-taste">
+                  <p>CLOSE</p>
+                </div>
+              </div>
+            )}
+          </>
         ) : (
           <>
             {taste.tasteStatus == 1 ? (

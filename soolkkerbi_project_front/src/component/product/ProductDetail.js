@@ -143,7 +143,15 @@ const ProductDetail = (props) => {
   };
   //이전페이지로 이동
   const backPage = () => {
-    navigate(-1);
+    if (product.productCase === 1) {
+      navigate("/product/takju");
+    } else if (product.productCase === 2) {
+      navigate("/product/yakju");
+    } else if (product.productCase === 3) {
+      navigate("/product/fruit");
+    } else {
+      navigate("/product/spirits");
+    }
   };
 
   //좋아요 함수
@@ -217,8 +225,15 @@ const ProductDetail = (props) => {
         axios
           .post("/product/delete", obj)
           .then((res) => {
-            //console.log(res.data);
-            navigate("/");
+            if (product.productCase === 1) {
+              navigate("/product/takju");
+            } else if (product.productCase === 2) {
+              navigate("/product/yakju");
+            } else if (product.productCase === 3) {
+              navigate("/product/fruit");
+            } else {
+              navigate("/product/spirits");
+            }
           })
           .catch((res) => {
             console.log(res.response.status);

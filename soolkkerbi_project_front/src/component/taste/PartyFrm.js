@@ -1,6 +1,6 @@
 import Input from "../util/InputForm";
 import { Button2 } from "../util/Buttons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextEditor from "../util/TextEditor";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -25,7 +25,12 @@ const PartyFrm = (props) => {
   const setDelFileNo = props.setDelFileNo;
   const tasteStatus = props.tasteStatus;
   const setTasteStatus = props.setTasteStatus;
+  const { pathName } = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [pathName]);
 
   const thumbnailChange = (e) => {
     const files = e.currentTarget.files; //객체임
