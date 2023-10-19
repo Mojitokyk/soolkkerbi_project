@@ -71,4 +71,17 @@
 		where taste_no = #{tasteNo}
 	</update>
 
+<select id="tastInfo" resultType="taste">
+select 
+		taste_no,
+		taste_member_no,
+		taste_title,
+		taste_content,
+		taste_filepath,
+		to_char(taste_end,'yyyy-mm-dd' )as taste_end,
+		to_char(taste_start,'yyyy-mm-dd' )as taste_start
+		from taste
+		join reservation on(reservation_taste_no = taste_no)
+		where reservation_no =#{reservationNo}
+</select>
 </mapper>

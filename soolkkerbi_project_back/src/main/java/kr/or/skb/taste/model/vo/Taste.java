@@ -21,4 +21,6 @@ public class Taste {
 //  private String tasteImg;
   private String memberId;
   private String tasteStatus;
+  private int reservationNo;
+  private int reservationTasteNo;
 }
