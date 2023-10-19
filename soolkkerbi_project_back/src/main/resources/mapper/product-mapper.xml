@@ -174,9 +174,19 @@
 	<!-- 메인페이지 추천리스트 조회 -->
 	<select id="recommendList" resultType="product">
 		select * from(
-		    select * from product
+		    select  
+		    	product_no, product_name, product_price, product_filepath, 
+		    	(select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
+		    from product
 		    order by dbms_random.value
 		) where rownum <![CDATA[<]]>  10
+	</select>
+	<!-- 메인페이지에서 제품상세로 이동시, isLike를 조회하기 위한 메서드 -->
+	<select id="getProductIsLike" resultType="product">
+		select 
+			product_no, (select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
+		from product
+		where product_no=#{productNoElement}
 	</select>
 	
 	<delete id="deleteProduct">

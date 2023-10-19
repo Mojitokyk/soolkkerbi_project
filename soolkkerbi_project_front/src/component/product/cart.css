@@ -68,6 +68,14 @@
 }
 .cart-tbl td > .product-quantity-wrap > span {
   margin-left: 10px;
+  margin-right: 10px;
+}
+#plusBtn,
+#minusBtn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: #fff;
 }
 .product-quantity {
   font-weight: bold;

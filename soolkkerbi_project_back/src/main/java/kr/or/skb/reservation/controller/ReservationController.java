@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.skb.reservation.model.service.ReservationService;
 import kr.or.skb.reservation.model.vo.Reservation;
+import kr.or.skb.taste.model.vo.Taste;
 
 @RestController
 @RequestMapping(value="/reservation")

@@ -32,7 +32,7 @@ function App() {
       <Header isLogin={isLogin} setIsLogin={setIsLogin} />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main isLogin={isLogin} />} />
           <Route path="/about" element={<About />} />
           <Route path="/direction" element={<Direction />} />
           <Route

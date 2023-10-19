@@ -120,11 +120,19 @@ public class ProductController {
 	}
 	
 	//메인페이지 추천리스트 조회
-	@GetMapping(value="/recommendList")
-	public List recommendList() {
-		List list = productService.recommendList();
+	@GetMapping(value="/recommendList/{memberId}")
+	public List recommendList(@PathVariable String memberId) {
+		List list = productService.recommendList(memberId);
 		return list;
 	}
+	//메인페이지에서 제품상세로 이동시, isLike를 조회하기 위한 메서드
+	@GetMapping(value="/getProductIsLike/{memberId}/{productNoElement}")
+	public Product getProductIsLike(@PathVariable String memberId, @PathVariable int productNoElement) {
+		System.out.println("productController: "+memberId+" "+productNoElement);
+		Product p = productService.getProductIsLike(memberId, productNoElement);
+		return p;
+	}
+	
 	//상품 삭제
 	@PostMapping(value="/delete")
 	public int deleteProduct(@RequestBody Product p) {

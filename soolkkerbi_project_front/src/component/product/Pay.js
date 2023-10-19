@@ -1,12 +1,12 @@
 import "./pay.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import Input from "../util/InputForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button2 } from "../util/Buttons";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-const Pay = (props) => {
+const Pay = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const cart = location.state.cart;
@@ -30,7 +30,7 @@ const Pay = (props) => {
       d.getMinutes() +
       "" +
       d.getSeconds();
-
+    //픽업일자 입력 여부 체크
     if (pickupDate === "") {
       Swal.fire({
         icon: "warning",
@@ -38,12 +38,14 @@ const Pay = (props) => {
         text: "방문일자를 확인해주세요.",
       });
     } else {
+      //재고량 체크1 : 바로 구매 클릭으로 cart를 받아왔을 때
       if (cart && cart.cartStock > cart.productStock) {
         Swal.fire({
           icon: "warning",
           title: "재고 부족",
           text: "재고 부족으로 결제할 수 없습니다.",
         });
+        //재고량 체크2 : 주문하기로 cartList를 받아왔을 때
       } else if (cartList) {
         for (let i = 0; i < cartList.length; i++) {
           if (cartList[i].cartStock > cartList[i].productStock) {
@@ -54,6 +56,7 @@ const Pay = (props) => {
             });
           }
         }
+        //픽업일자 입력 완료 & 재고량 체크 모두 통과했을 때 결제
       } else {
         const { IMP } = window;
         const price = totalPrice ? totalPrice : cart.cartPrice;
@@ -75,6 +78,7 @@ const Pay = (props) => {
 
         function callback(response) {
           const { success, error_msg } = response;
+          //결제 성공 시
           if (success) {
             if (cartList) {
               for (let i = 0; i < cartList.length; i++) {
@@ -121,6 +125,7 @@ const Pay = (props) => {
                 })
                 .catch((res) => {});
             }
+            //결제 실패 시
           } else {
             Swal.fire({
               icon: "warning",

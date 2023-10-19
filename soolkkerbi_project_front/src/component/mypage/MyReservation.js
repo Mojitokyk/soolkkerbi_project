@@ -25,7 +25,7 @@ const MyReservation = (props) => {
   const [changeStatus, setChangeStatus] = useState(true);
   const [tasteinfo,setTasteinfo] =useState([]);
   const reservationNo= resList.reservationNo;
-  const tasteNo =resList.reservationTasteNo;
+  const reservationTasteNo =resList.reservationTasteNo;
  
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const MyReservation = (props) => {
   }, [reqPage, changeStatus]);
 
 
-  // const obj = {reservationNo,tasteNo};
+  // const obj = {reservationNo,reservationTasteNo};
   // axios
   // .get("/taste/oneinfo/" + obj)
   // .then((res) => {
@@ -56,7 +56,7 @@ const MyReservation = (props) => {
   // })
   // .catch((res) => {
   //   console.log(res.response.status);
-  // });
+  //});
 
   return (
     <div className="mypage-content-wrap">
