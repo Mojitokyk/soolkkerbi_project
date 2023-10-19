@@ -155,12 +155,12 @@ public class ProductService {
 	}
 
 	//메인페이지 추천리스트 조회
-	public List recommendList(String memberId) {
-		return productDao.recommendList(memberId);
+	public List recommendList( ) {
+		return productDao.recommendList();
 	}
 	//메인페이지에서 제품상세로 이동시, isLike를 조회하기 위한 메서드
-	public Product getProductIsLike(String memberId, int productNoElement) {
-		return productDao.getProductIsLike(memberId, productNoElement);
+	public Product getProductIsLike(String memberId, int productNo) {
+		return productDao.getProductIsLike(memberId, productNo);
 	}
 
 	public int deleteProduct(int productNo) {

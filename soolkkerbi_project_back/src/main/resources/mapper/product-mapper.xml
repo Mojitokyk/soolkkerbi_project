@@ -174,10 +174,7 @@
 	<!-- 메인페이지 추천리스트 조회 -->
 	<select id="recommendList" resultType="product">
 		select * from(
-		    select  
-		    	product_no, product_name, product_price, product_filepath, 
-		    	(select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
-		    from product
+		    select * from product
 		    order by dbms_random.value
 		) where rownum <![CDATA[<]]>  10
 	</select>
@@ -186,7 +183,7 @@
 		select 
 			product_no, (select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
 		from product
-		where product_no=#{productNoElement}
+		where product_no=#{productNo}
 	</select>
 	
 	<delete id="deleteProduct">

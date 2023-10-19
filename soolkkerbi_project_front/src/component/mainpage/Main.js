@@ -11,7 +11,6 @@ import axios from "axios";
 const Main = (props) => {
   const isLogin = props.isLogin;
   const [member, setMember] = useState({});
-  const [isLike, setIsLike] = useState(0);
   const token = window.localStorage.getItem("token");
 
   console.log(isLogin);
@@ -37,8 +36,8 @@ const Main = (props) => {
 
   return (
     <>
-      <SwiperMain member={member} isLike={isLike} setIsLike={setIsLike} />
-      <MainList member={member} isLike={isLike} setIsLike={setIsLike} />
+      <SwiperMain member={member} />
+      <MainList member={member} />
     </>
   );
 };
@@ -47,7 +46,7 @@ const SwiperMain = (props) => {
   const member = props.member;
 
   //제품 상세페이지로 이동
-  const ToProductView = (productNo, member) => {
+  const toProductView = (productNo, member) => {
     console.log("페이지 이동 이벤트 클릭");
     console.log(productNo);
     console.log(member);
@@ -90,7 +89,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main1_text_51.jpg"
             onClick={() => {
-              ToProductView(51, member);
+              toProductView(51, member);
             }}
           ></img>
         </SwiperSlide>
@@ -98,7 +97,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main2_text_105.jpg"
             onClick={() => {
-              ToProductView(105, member);
+              toProductView(105, member);
             }}
           ></img>
         </SwiperSlide>
@@ -106,7 +105,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main3_text_122.jpg"
             onClick={() => {
-              ToProductView(122, member);
+              toProductView(122, member);
             }}
           ></img>
         </SwiperSlide>
@@ -114,7 +113,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main4_text_125.jpg"
             onClick={() => {
-              ToProductView(125, member);
+              toProductView(125, member);
             }}
           ></img>
         </SwiperSlide>
@@ -122,7 +121,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main5_text_52.jpg"
             onClick={() => {
-              ToProductView(52, member);
+              toProductView(52, member);
             }}
           ></img>
         </SwiperSlide>
@@ -130,7 +129,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main6_text_96.jpg"
             onClick={() => {
-              ToProductView(96, member);
+              toProductView(96, member);
             }}
           ></img>
         </SwiperSlide>
@@ -138,7 +137,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main7_text_91.jpg"
             onClick={() => {
-              ToProductView(91, member);
+              toProductView(91, member);
             }}
           ></img>
         </SwiperSlide>
@@ -146,7 +145,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main8_text_108.jpg"
             onClick={() => {
-              ToProductView(108, member);
+              toProductView(108, member);
             }}
           ></img>
         </SwiperSlide>
@@ -154,7 +153,7 @@ const SwiperMain = (props) => {
           <img
             src="/image/main_img/main9_text_111.jpg"
             onClick={() => {
-              ToProductView(111, member);
+              toProductView(111, member);
             }}
           ></img>
         </SwiperSlide>
@@ -170,11 +169,13 @@ const MainList = (props) => {
 
   //추천 리스트 DB에서 조회 -> memberId 값 전달 필요
   const memberId = member.memberId;
+  console.log(memberId);
+
   useEffect(() => {
     axios
-      .get("/product/recommendList/" + memberId)
+      .get("/product/recommendList")
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setRecommendList(res.data);
       })
       .catch((res) => {
@@ -199,12 +200,32 @@ const ProductRecommend = (props) => {
   const navigate = useNavigate();
 
   //제품 상세페이지로 이동
-  const toProductView = (productNo, isLike, member) => {
+  const toProductView = (productNo, member) => {
     console.log("페이지 이동 이벤트 클릭");
-    // console.log(productNo);
-    navigate("/product/view", {
-      state: { productNo: productNo, like: isLike, member: member },
-    });
+    console.log(productNo);
+    console.log(member);
+
+    const memberId = member.memberId;
+    console.log(memberId);
+
+    axios
+      .get("/product/getProductIsLike/" + memberId + "/" + productNo)
+      .then((res) => {
+        // console.log(memberId);
+        console.log(res.data); //memberId 미포함
+        console.log(res.data.isLike);
+
+        navigate("/product/view", {
+          state: {
+            productNo: productNo,
+            member: member,
+            like: res.data.isLike,
+          },
+        });
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
   };
 
   //이미지 경로 삽입(미사용 함수) -> onLoad
@@ -244,7 +265,7 @@ const ProductRecommend = (props) => {
             className="productR-item"
             key={"productR" + index}
             onClick={() => {
-              toProductView(product.productNo, product.isLike, member);
+              toProductView(product.productNo, member);
             }}
           >
             <div className="productR-item-img">

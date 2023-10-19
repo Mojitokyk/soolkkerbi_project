@@ -120,16 +120,16 @@ public class ProductController {
 	}
 	
 	//메인페이지 추천리스트 조회
-	@GetMapping(value="/recommendList/{memberId}")
-	public List recommendList(@PathVariable String memberId) {
-		List list = productService.recommendList(memberId);
+	@GetMapping(value="/recommendList")
+	public List recommendList() {
+		List list = productService.recommendList();
 		return list;
 	}
 	//메인페이지에서 제품상세로 이동시, isLike를 조회하기 위한 메서드
-	@GetMapping(value="/getProductIsLike/{memberId}/{productNoElement}")
-	public Product getProductIsLike(@PathVariable String memberId, @PathVariable int productNoElement) {
-		System.out.println("productController: "+memberId+" "+productNoElement);
-		Product p = productService.getProductIsLike(memberId, productNoElement);
+	@GetMapping(value="/getProductIsLike/{memberId}/{productNo}")
+	public Product getProductIsLike(@PathVariable String memberId, @PathVariable int productNo) {
+		System.out.println("productController: "+memberId+" "+productNo);
+		Product p = productService.getProductIsLike(memberId, productNo);
 		System.out.println(p);
 		return p;
 	}
