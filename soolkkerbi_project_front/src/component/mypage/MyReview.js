@@ -91,6 +91,7 @@ const MyReview = (props) => {
 //리뷰리스트 가져오기
 const ReviewList = (props) => {
   const review = props.review;
+  console.log(review);
   const setReviewList = props.setReviewList;
   const member = props.member;
   const changeStatus = props.changeStatus;

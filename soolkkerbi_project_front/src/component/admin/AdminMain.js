@@ -13,6 +13,8 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import ManageQna from "./ManageQna";
 import ManageReview from "./ManageReview";
+import AdminInfo from "./AdminInfo";
+import AdminChangePw from "./AdminChangePw";
 
 const AdminMain = (props) => {
   const isLogin = props.isLogin;
@@ -70,7 +72,7 @@ const AdminMain = (props) => {
             <Route
               path="info"
               element={
-                <MyInfo
+                <AdminInfo
                   member={member}
                   setMember={setMember}
                   setIsLogin={setIsLogin}
@@ -89,6 +91,7 @@ const AdminMain = (props) => {
             />
             <Route path="manageReview" element={<ManageReview />} />
             <Route path="readIncome" element={<ReadIncome />} />
+            <Route path="/changePw" element={<AdminChangePw />} />
           </Routes>
         </div>
       </div>
