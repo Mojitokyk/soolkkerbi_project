@@ -307,13 +307,13 @@ const PrintAnswer = (props) => {
                     <li style={{ whiteSpace: "pre-line" }}>
                       <TextareaAutosize
                         className="modify-textarea"
-                        value={answerContent || ""}
                         onChange={changeContent}
                         // onKeyUp={enterCheck}
-                        placeholder={answer.answerContent}
-                        spellcheck="false"
-                        autoFocus
-                      />
+                        spellCheck="false"
+                        // autoFocus
+                      >
+                        {answer.answerContent}
+                      </TextareaAutosize>
                       <input type="hidden" value={answer.answerNo} />
                     </li>
                   </ul>
