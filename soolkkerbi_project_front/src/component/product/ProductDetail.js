@@ -66,43 +66,120 @@ const ProductDetail = (props) => {
   // comma붙인 total가격
   const commaTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  //장바구니에 인서트
-  const cart = () => {
+  //장바구니 불러오기
+  const [cartList, setCartList] = useState([]);
+  useEffect(() => {
     if (isLogin) {
       axios
-        .post(
-          "/cart/addFromDetail",
-          {
-            cartProductNo: product.productNo,
-            cartPrice: product.productPrice,
-            cartStock: quantity,
+        .post("/cart/selectCart", null, {
+          headers: {
+            Authorization: "Bearer " + token,
           },
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        )
+        })
         .then((res) => {
           //console.log(res.data);
-          if (res.data === 1) {
-            Swal.fire({
-              icon: "success",
-              title: "담기 완료",
-              text: "술주머니로 이동하시겠습니까?",
-              showCancelButton: true,
-              confirmButtonText: "술주머니",
-              cancelButtonText: "계속 쇼핑",
-            }).then((res) => {
-              if (res.isConfirmed) {
-                navigate("/cart");
-              }
-            });
-          }
+          setCartList(res.data.cartList);
         })
         .catch((res) => {
           console.log(res.response.status);
         });
+    }
+  }, []);
+  //장바구니에 인서트
+  const cart = () => {
+    if (isLogin) {
+      //장바구니에 상품이 있을 때
+      if (cartList) {
+        let count = 0;
+        for (let i = 0; i < cartList.length; i++) {
+          if (
+            product.productNo === cartList[i].cartProductNo &&
+            product.productStock === cartList[i].cartStock
+          ) {
+            count++;
+          }
+        }
+        //장바구니에 있는 상품이 이미 재고 여유가 없는 경우
+        if (count > 0) {
+          Swal.fire({
+            icon: "warning",
+            title: "재고 부족",
+            text: "장바구니에 담은 수량이 최대 수량입니다.",
+          });
+        } //재고 여유가 있는 경우
+        else {
+          axios
+            .post(
+              "/cart/addFromDetail",
+              {
+                cartProductNo: product.productNo,
+                cartPrice: product.productPrice,
+                cartStock: quantity,
+              },
+              {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
+              }
+            )
+            .then((res) => {
+              //console.log(res.data);
+              if (res.data === 1) {
+                Swal.fire({
+                  icon: "success",
+                  title: "담기 완료",
+                  text: "술주머니로 이동하시겠습니까?",
+                  showCancelButton: true,
+                  confirmButtonText: "술주머니",
+                  cancelButtonText: "계속 쇼핑",
+                }).then((res) => {
+                  if (res.isConfirmed) {
+                    navigate("/cart");
+                  }
+                });
+              }
+            })
+            .catch((res) => {
+              console.log(res.response.status);
+            });
+        }
+      } //장바구니에 상품이 없는 경우 인서트
+      else {
+        axios
+          .post(
+            "/cart/addFromDetail",
+            {
+              cartProductNo: product.productNo,
+              cartPrice: product.productPrice,
+              cartStock: quantity,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            //console.log(res.data);
+            if (res.data === 1) {
+              Swal.fire({
+                icon: "success",
+                title: "담기 완료",
+                text: "술주머니로 이동하시겠습니까?",
+                showCancelButton: true,
+                confirmButtonText: "술주머니",
+                cancelButtonText: "계속 쇼핑",
+              }).then((res) => {
+                if (res.isConfirmed) {
+                  navigate("/cart");
+                }
+              });
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
     } else {
       Swal.fire({
         icon: "warning",
