@@ -98,7 +98,10 @@ const PayItem = (props) => {
       })
       .then((res) => {
         if (res.data === 1) {
-          Swal.fire("상품수령이 확정되었습니다.").then(() => {
+          Swal.fire({
+            icon: "success",
+            text: "상품수령이 확정되었습니다.",
+          }).then(() => {
             setChangeStatus(!changeStatus);
           });
         }

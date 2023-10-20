@@ -21,6 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: bold;
 }
 .join-input-wrap > div > .label {
   width: 30%;
@@ -47,6 +48,7 @@
 }
 .join-btn-box > button {
   font-size: 18px;
+  font-family: ns-b;
 }
 #modal-modal-description {
   width: 800px;
@@ -59,9 +61,11 @@
 }
 .modal-content {
   border: #4f4f4f;
-  width: 90%;
-  height: 100px;
+  width: 100%;
+  height: 150px;
   overflow: auto;
+  font-size: 0.9em;
+  margin-bottom: 15px;
 }
 .emailAuth {
   display: flex;
@@ -80,6 +84,9 @@
 }
 .authButton > button {
   width: 100px;
+}
+.authButton > button:hover {
+  background-color: #e2e2e2;
 }
 .emailAuthInput {
   width: 40%;

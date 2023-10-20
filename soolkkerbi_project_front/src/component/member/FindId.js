@@ -54,7 +54,10 @@ export default function FindId() {
             setMemberEmail("");
           } else {
             setOpen(false);
-            Swal.fire("존재하지않은 회원정보입니다!");
+            Swal.fire({
+              icon: "warning",
+              text: "존재하지않은 회원정보입니다.",
+            });
             setMemberName("");
             setMemberEmail("");
           }
@@ -63,7 +66,10 @@ export default function FindId() {
           console.log(res.response.status);
         });
     } else {
-      Swal.fire("입력값 확인해주세요!");
+      Swal.fire({
+        icon: "warning",
+        text: "입력값을 확인해주세요.",
+      });
     }
   };
 
@@ -90,7 +96,7 @@ export default function FindId() {
             </div>
             <div id="modal-modal-description" sx={{ mt: 2 }}>
               <div className="input-wrap">
-                <label htmlFor="memberId">이름입력</label>
+                <label htmlFor="memberId">이름 입력</label>
                 <Input
                   setData={setMemberName}
                   data={memberName}
@@ -99,7 +105,7 @@ export default function FindId() {
                 ></Input>
               </div>
               <div className="input-wrap">
-                <label htmlFor="memberEmail">이메일입력</label>
+                <label htmlFor="memberEmail">이메일 입력</label>
                 <Input
                   setData={setMemberEmail}
                   data={memberEmail}

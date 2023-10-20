@@ -70,16 +70,17 @@ const AdminChangePw = (props) => {
             //navigator("/mypage/info");
           } else {
             Swal.fire({
-              icon: "warning",
-              title: "비번변경중 뮨제발생",
+              icon: "error",
+              title: "비밀번호 변경 실패",
+              text: "잠시후 다시 시도해주세요.",
             });
           }
         })
         .catch((res) => {});
     } else {
       Swal.fire({
-        icon: "success",
-        title: "비밀번호가 틀림/작성 확인부탁.",
+        icon: "warning",
+        title: "비밀번호가 일치하지 않습니다.",
       });
     }
   };

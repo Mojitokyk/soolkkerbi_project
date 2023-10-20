@@ -103,9 +103,11 @@ const HeaderMember = (props) => {
         })
         .catch((res) => {
           if (res.response.status === 403) {
-            Swal.fire("로그인이 필요합니다.").then(() => {
-              navigate("/login");
-            });
+            Swal.fire({ icon: "warning", text: "로그인이 필요합니다." }).then(
+              () => {
+                navigate("/login");
+              }
+            );
           }
         });
     }

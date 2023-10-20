@@ -89,7 +89,7 @@ const ProductItem = (props) => {
       })
       .then((res) => {
         if (res.data === 1) {
-          Swal.fire("재고가 변경되었습니다.");
+          Swal.fire({ icon: "success", text: "재고가 변경되었습니다." });
         }
       })
       .catch((res) => {

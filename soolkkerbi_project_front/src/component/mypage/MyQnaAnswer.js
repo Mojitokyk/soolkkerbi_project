@@ -67,7 +67,7 @@ const RegistAnswer = (props) => {
           console.log(res);
         });
     } else {
-      Swal.fire("입력값을 확인하세요.");
+      Swal.fire({ icon: "warning", text: "입력값을 확인하세요." });
     }
   };
 
@@ -307,13 +307,13 @@ const PrintAnswer = (props) => {
                     <li style={{ whiteSpace: "pre-line" }}>
                       <TextareaAutosize
                         className="modify-textarea"
-                        value={answerContent || ""}
                         onChange={changeContent}
                         // onKeyUp={enterCheck}
-                        placeholder={answer.answerContent}
-                        spellcheck="false"
-                        autoFocus
-                      />
+                        spellCheck="false"
+                        // autoFocus
+                      >
+                        {answer.answerContent}
+                      </TextareaAutosize>
                       <input type="hidden" value={answer.answerNo} />
                     </li>
                   </ul>

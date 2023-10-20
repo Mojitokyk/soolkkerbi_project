@@ -56,7 +56,7 @@ const PartyView = (props) => {
   const deleteTaste = () => {
     console.log("삭제 이벤트");
     Swal.fire({
-      icon: "warning",
+      icon: "question",
       text: "시음회를 삭제하시겠습니까?",
       confirmButtonText: "삭제",
       showCancelButton: true,
@@ -100,7 +100,7 @@ const PartyView = (props) => {
         } else {
           Swal.fire({
             showCancelButton: true,
-            icon: "warning",
+            icon: "question",
             title: "예약 취소",
             html:
               "예약을 취소하시겠습니까?" +
@@ -115,9 +115,9 @@ const PartyView = (props) => {
       }
     } else {
       Swal.fire({
-        icon: "warning",
+        icon: "info",
         title: "로그인 필요",
-        text: "로그인이 필요한 서비스입니다.",
+        text: "로그인인 페이지로 이동합니다.",
       });
       navigate("/login");
     }
@@ -164,33 +164,50 @@ const PartyView = (props) => {
         ) : (
           ""
         )}
-        <Button2 text="목록으로" clickEvent={toList} />
-        {member.memberLevel === 2 ? (
+
+        {isLogin === false ? (
+          <button className="dosent-login-toList" onClick={toList}>
+            목록으로
+          </button>
+        ) : (
           <>
-            {taste.tasteStatus === "1" ? (
+            <button className="logined-toList" onClick={toList}>
+              목록으로
+            </button>
+            {member.memberLevel === 2 ? (
               <>
-                {doneReservation === "0" ? (
-                  // <Button2 text="예약" clickEvent={reservation} />
-                  <button className="reservation-button" onClick={reservation}>
-                    예약
-                  </button>
+                {taste.tasteStatus === "1" ? (
+                  <>
+                    {doneReservation === "0" ? (
+                      // <Button2 text="예약" clickEvent={reservation} />
+                      <button
+                        className="reservation-button"
+                        onClick={reservation}
+                      >
+                        예약
+                      </button>
+                    ) : (
+                      <button
+                        className="reservation-button"
+                        onClick={reservation}
+                      >
+                        예약 취소
+                      </button>
+                    )}
+                  </>
                 ) : (
-                  <button className="reservation-button" onClick={reservation}>
-                    예약 취소
+                  <button
+                    className="disabled-reservation-button"
+                    onClick={reservation}
+                  >
+                    예약
                   </button>
                 )}
               </>
             ) : (
-              <button
-                className="disabled-reservation-button"
-                onClick={reservation}
-              >
-                예약
-              </button>
+              ""
             )}
           </>
-        ) : (
-          ""
         )}
       </div>
     </>

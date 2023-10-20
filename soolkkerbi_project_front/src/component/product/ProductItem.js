@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./productList.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,6 +9,24 @@ const ProductItem = (props) => {
   const isLogin = props.isLogin;
   const member = props.member;
   const navigate = useNavigate();
+  //장바구니 불러오기
+  const [cartList, setCartList] = useState([]);
+  useEffect(() => {
+    if (isLogin) {
+      axios
+        .post("/cart/selectCart", null, {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          setCartList(res.data.cartList);
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
+    }
+  }, [cartList]);
   //좋아요 함수
   const [like, setLike] = useState(product.isLike);
   const token = window.localStorage.getItem("token");
@@ -68,37 +86,99 @@ const ProductItem = (props) => {
       state: { productNo: product.productNo, like: like, member: member },
     });
   };
+  //장바구니 넣기
   const addCart = () => {
+    //로그인 체크
     if (isLogin) {
-      axios
-        .post(
-          "/cart/addCart",
-          { cartProductNo: product.productNo, cartPrice: product.productPrice },
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
+      //장바구니에 상품이 있을 때
+      if (cartList) {
+        let count = 0;
+        for (let i = 0; i < cartList.length; i++) {
+          if (
+            product.productNo === cartList[i].cartProductNo &&
+            product.productStock === cartList[i].cartStock
+          ) {
+            count++;
           }
-        )
-        .then((res) => {
-          if (res.data === 1) {
-            Swal.fire({
-              icon: "success",
-              title: "담기 완료",
-              text: "술주머니로 이동하시겠습니까?",
-              showCancelButton: true,
-              confirmButtonText: "술주머니",
-              cancelButtonText: "계속 쇼핑",
-            }).then((res) => {
-              if (res.isConfirmed) {
-                navigate("/cart");
+        }
+        //장바구니에 있는 상품이 이미 재고 여유가 없는 경우
+        if (count > 0) {
+          Swal.fire({
+            icon: "warning",
+            title: "재고 부족",
+            text: "장바구니에 담은 수량이 최대 수량입니다.",
+          });
+          //재고 여유가 있는 경우
+        } else {
+          axios
+            .post(
+              "/cart/addCart",
+              {
+                cartProductNo: product.productNo,
+                cartPrice: product.productPrice,
+              },
+              {
+                headers: {
+                  Authorization: "Bearer " + token,
+                },
               }
+            )
+            .then((res) => {
+              if (res.data === 1) {
+                Swal.fire({
+                  icon: "success",
+                  title: "담기 완료",
+                  text: "술주머니로 이동하시겠습니까?",
+                  showCancelButton: true,
+                  confirmButtonText: "술주머니",
+                  cancelButtonText: "계속 쇼핑",
+                }).then((res) => {
+                  if (res.isConfirmed) {
+                    navigate("/cart");
+                  }
+                });
+              }
+            })
+            .catch((res) => {
+              console.log(res.response.status);
             });
-          }
-        })
-        .catch((res) => {
-          console.log(res.response.status);
-        });
+        }
+        //장바구니에 상품이 없을 때
+      } else {
+        axios
+          .post(
+            "/cart/addCart",
+            {
+              cartProductNo: product.productNo,
+              cartPrice: product.productPrice,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          )
+          .then((res) => {
+            if (res.data === 1) {
+              Swal.fire({
+                icon: "success",
+                title: "담기 완료",
+                text: "술주머니로 이동하시겠습니까?",
+                showCancelButton: true,
+                confirmButtonText: "술주머니",
+                cancelButtonText: "계속 쇼핑",
+              }).then((res) => {
+                if (res.isConfirmed) {
+                  navigate("/cart");
+                }
+              });
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+      }
+      //비로그인 시
     } else {
       Swal.fire({
         icon: "warning",

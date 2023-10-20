@@ -180,7 +180,7 @@ const ReservationList = (props) => {
     const reservationNo = resList.reservationNo;
 
     Swal.fire({
-      icon: "warning",
+      icon: "question",
       text: "예약을 취소하시겠습니까?",
       showCancelButton: true,
       confirmButtonText: "취소하기",
@@ -192,14 +192,21 @@ const ReservationList = (props) => {
           .then((res) => {
             console.log(res.data);
             if (res.data === 1) {
-              Swal.fire("예약이 취소요청이 완료되었습니다.").then(() => {
+              Swal.fire({
+                icon: "success",
+                text: "예약이 취소요청이 완료되었습니다.",
+              }).then(() => {
                 setChangeStatus(!changeStatus);
               });
             }
           })
           .catch((res) => {
             console.log(res.response.status);
-            Swal.fire("예약취소중 문제 발생");
+            Swal.fire({
+              icon: "error",
+              title: "예약 취소 요청 실패",
+              text: "잠시후에 다시 시도해주세요.",
+            });
           });
       }
     });

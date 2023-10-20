@@ -45,7 +45,7 @@ const MyQnaView = (props) => {
   const deleteQna = () => {
     console.log("삭제 이벤트");
     Swal.fire({
-      icon: "warning",
+      icon: "question",
       text: " 문의사항을 삭제하시겠습니까?",
       showCancelButton: true,
       confirmButtonText: "삭제",

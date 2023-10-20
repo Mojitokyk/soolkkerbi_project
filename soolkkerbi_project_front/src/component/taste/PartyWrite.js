@@ -52,7 +52,7 @@ const PartyWrite = () => {
           console.log(res.response.status);
         });
     } else {
-      Swal.fire("입력값을 확인하세요.");
+      Swal.fire({ icon: "warning", text: "입력값을 확인해주세요." });
     }
   };
   return (

@@ -45,14 +45,14 @@ const Join = () => {
   const [checkauth, setCheckAuth] = React.useState("");
   const [changeResult, setChangeResult] = React.useState(false);
   const [btnchange, setBtnchange] = useState(false);
-  const [authOk,setAuthOk] = useState(false);
+  const [authOk, setAuthOk] = useState(false);
 
   const navigate = useNavigate();
   const idCheck = () => {
     const idReg = /^[a-zA-Z0-9]{4,12}$/;
     if (!idReg.test(memberId)) {
       //정구표현식 만족못함
-      setCheckIdMsg("아이디는 영어 대소문자숫자로4-8글자입니다!");
+      setCheckIdMsg("아이디는 영어 대소문자, 숫자로 4~8글자 입니다.");
     } else {
       //민족->DB중복채크
       axios
@@ -62,7 +62,7 @@ const Join = () => {
           if (res.data === 0) {
             setCheckIdMsg("");
           } else {
-            setCheckIdMsg("이미사용중인 아이디");
+            setCheckIdMsg("이미 사용중인 아이디입니다.");
           }
         })
         .catch((res) => {
@@ -79,18 +79,17 @@ const Join = () => {
   const nameReg = /^[ㄱ-힣]+$/;
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
-    } else if(memberPw == ""){
+      setCheckPWMsg("입력하신 비밀번호를 확인해주세요.");
+    } else if (memberPw == "") {
       setCheckPWMsg("");
-    }
-    else {
+    } else {
       setCheckPWMsg("");
     }
   };
   //최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식
   const pwReqCheck = () => {
     if (!passwordRegEx.test(memberPw)) {
-      setReqPwMsg("비밀번호는 문자,숫자 및 하나의 특수문자 최소8자입니다.");
+      setReqPwMsg("비밀번호는 특수 문자와 문자, 숫자를 포함한 최소 8자입니다.");
     } else {
       setReqPwMsg("");
     }
@@ -98,21 +97,21 @@ const Join = () => {
 
   const checkEmail = () => {
     if (!emailRegEx.test(memberEmail)) {
-      setCheckEmailMsg("이메일 형식에 맞게 작성해주세요");
+      setCheckEmailMsg("이메일 형식에 맞게 작성해주세요.");
     } else {
       setCheckEmailMsg("");
     }
   };
   const checkName = () => {
     if (!nameReg.test(memberName)) {
-      setCheckNameMsg("이름은 한글만 기입해주세요");
+      setCheckNameMsg("이름은 한글로만 입력이 가능합니다.");
     } else {
       setCheckNameMsg("");
     }
   };
   const checkPhone = () => {
     if (!phoneregExp.test(memberPhone)) {
-      setCheckPhoneMsg("전화번호 양식은 010-0000-0000입니다!");
+      setCheckPhoneMsg("전화번호는 '010-0000-0000' 형태로 입력해주세요.");
     } else {
       setCheckPhoneMsg("");
     }
@@ -140,27 +139,40 @@ const Join = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data === 1) {
-            Swal.fire("회원가입완료!");
+            Swal.fire({
+              icon: "success",
+              title: "환영합니다.",
+              text: "회원가입이 완료되었습니다.",
+            });
             navigate("/login");
           } else {
-            Swal.fire("에러발생");
+            Swal.fire({
+              icon: "error",
+              title: "회원가입 실패",
+              text: "잠시후에 다시 시도해주세요",
+            });
           }
         })
         .catch((res) => {
           console.log(res.data);
         });
     } else {
-      Swal.fire("입력값확인");
+      Swal.fire({
+        icon: "warning",
+        text: "입력값을 확인해주세요.",
+      });
     }
   };
 
   const sendEmail = () => {
     const memberEmail = member.memberEmail;
     console.log(memberEmail);
-    if(memberEmail===""){
-      Swal.fire("이메일을 입력해주세여!")
-    }else{
-
+    if (memberEmail === "") {
+      Swal.fire({
+        icon: "warning",
+        text: "이메일을 입력해주세요.",
+      });
+    } else {
       axios
         .post("/member/auth", { memberEmail })
         .then((res) => {
@@ -182,7 +194,10 @@ const Join = () => {
       setAuth("");
       setAuthOk(true);
     } else {
-      Swal.fire("인증번호를 다시 확인해 주세요!");
+      Swal.fire({
+        icon: "warning",
+        text: "인증번호를 다시 확인해주세요.",
+      });
     }
   };
 
@@ -245,47 +260,43 @@ const Join = () => {
         blurEvent={checkEmail}
       />
 
-    
-            {!authOk ? (
-              <>
-                    <div className="emailAuth">
-                    <div className="dummyDiv"></div>
+      {!authOk ? (
+        <>
+          <div className="emailAuth">
+            <div className="dummyDiv"></div>
 
-                    <div className="emailAuthInput">
-                      <Input
-                        setData={setAuth}
-                        data={auth}
-                        type="type"
-                        content="auth"
-                      ></Input>
-                    </div>
-                    <div className="authButton"> 
-                              {!btnchange ? (
-                                <Button3 text="인증번호받기" clickEvent={sendEmail} />
-                              ) : (
-                                <Button1
-                                  text="인증하기"
-                                  clickEvent={() => {
-                                    authcheck(auth, checkauth);
-                                  }}
-                                />
-                              )}
-                    </div>
-                    </div>
-                     <div
-                     className={
-                       "pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red] emailAuthTimer"
-                     }
-                   >
-                     {isCodeShow ? <Timer /> : ""}
-                   </div>
-                   </>
-            ):(
-              ""
-            )}
-
-     
-     
+            <div className="emailAuthInput">
+              <Input
+                setData={setAuth}
+                data={auth}
+                type="type"
+                content="auth"
+              ></Input>
+            </div>
+            <div className="authButton">
+              {!btnchange ? (
+                <Button3 text="인증번호받기" clickEvent={sendEmail} />
+              ) : (
+                <Button1
+                  text="인증하기"
+                  clickEvent={() => {
+                    authcheck(auth, checkauth);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          <div
+            className={
+              "pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red] emailAuthTimer"
+            }
+          >
+            {isCodeShow ? <Timer /> : ""}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
 
       {/* <div id="modal-modal-description" sx={{ mt: 2 }}>
            
