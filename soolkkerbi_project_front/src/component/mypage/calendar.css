@@ -7,10 +7,12 @@
 }
 .react-calendar__tile--active {
   background-color: #ff6289;
+  color: #fff;
 }
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
   background-color: #ff6289;
+  color: #fff;
 }
 .react-calendar__tile--now {
   background: #a3a3a3;
@@ -23,6 +25,9 @@
 .react-calendar__month-view__days__day--weekend {
   color: red;
 }
+.react-calendar__month-view__days__day--weekend:focus {
+  color: #fff;
+}
 /*토요일 색상 변경*/
 .react-calendar__month-view__days > :nth-child(7),
 .react-calendar__month-view__days > :nth-child(14),
@@ -32,6 +37,15 @@
 .react-calendar__month-view__days > :nth-child(42) {
   color: blue;
 }
+.react-calendar__month-view__days > :nth-child(7):focus,
+.react-calendar__month-view__days > :nth-child(14):focus,
+.react-calendar__month-view__days > :nth-child(21):focus,
+.react-calendar__month-view__days > :nth-child(28):focus,
+.react-calendar__month-view__days > :nth-child(35):focus,
+.react-calendar__month-view__days > :nth-child(42):focus {
+  color: #fff;
+}
+
 .calendar-div .btn-box {
   display: flex;
   justify-content: center;
