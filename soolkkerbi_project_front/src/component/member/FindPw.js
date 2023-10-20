@@ -62,15 +62,14 @@ export default function FindPw() {
   //&& passwordReg.test(memberPw)
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
-      setCheckPWMsg("비밀번호입력 재확인 해주세요");
+      setCheckPWMsg("비밀번호 입력을 재확인 해주세요.");
     } else if (memberPw == memberPwRe) {
       setCheckPWMsg("");
     }
   };
   const pwReg = () => {
     if (passwordReg.test(memberPw)) {
-      setReqPwMsg("문자,숫자,특수문자포함 8자 이상입니다");
+      setReqPwMsg("문자, 숫자, 특수문자를 포함한 8자 이상입니다.");
     } else {
       setReqPwMsg("");
     }
@@ -88,7 +87,10 @@ export default function FindPw() {
             setMemberId(res.data);
             setResult(true);
           } else {
-            Swal.fire("존재하지않은 회원정보입니다!");
+            Swal.fire({
+              icon: "warning",
+              text: "존재하지 않는 회원정보입니다.",
+            });
             navigate("/login");
           }
         })
@@ -96,7 +98,7 @@ export default function FindPw() {
           console.log(res.response.status);
         });
     } else {
-      Swal.fire("입력값 확인해주세요!");
+      Swal.fire({ icon: "warning", text: "입력값을 확인해주세요." });
     }
   };
   const sendEmail = () => {
@@ -145,7 +147,7 @@ export default function FindPw() {
     if (auth === checkauth) {
       setChangeResult(true);
     } else {
-      Swal.fire("인증번호를 다시 확인해 주세요!");
+      Swal.fire({ icon: "warning", text: "인증번호를 다시 확인해주세요." });
     }
   };
   const ChangePw = () => {
@@ -163,24 +165,27 @@ export default function FindPw() {
           if (res.data === 1) {
             setMemberPw("");
             setMemberPwRe("");
-            Swal.fire("비밀번호 재설정완료! 다시 로그인해주세요!");
+            Swal.fire({
+              icon: "success",
+              title: "비밀번호 재설정 완료",
+              text: "다시 로그인해주세요.",
+            });
             setOpen(false);
             setResult(false);
             // setPageReset(true);
           } else {
             Swal.fire({
-              icon: "warning",
-              title: "비번변경중 문제제발생",
-              title: "비밀번호 변경중 문제제발생",
+              icon: "error",
+              title: "비밀번호 변경 실패",
+              text: "잠시후에 다시 시도해주세요.",
             });
           }
         })
         .catch((res) => {});
     } else {
       Swal.fire({
-        icon: "success",
-        title: "비밀번호가 틀림/작성 확인부탁.",
-        title: "비밀번호가 틀림/작성 확인해주세요",
+        icon: "warning",
+        text: "비밀번호가 일치하지 않습니다.",
       });
     }
     // },[open])
@@ -286,7 +291,7 @@ export default function FindPw() {
             </div>
             <div id="modal-modal-description" sx={{ mt: 2 }}>
               <div className="input-wrap">
-                <label htmlFor="memberPw">새비밀번호</label>
+                <label htmlFor="memberPw">새 비밀번호</label>
                 <Input
                   type="passWord"
                   data={memberPw}

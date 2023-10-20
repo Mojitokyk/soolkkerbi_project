@@ -82,8 +82,7 @@ export default function ReviewModify(props) {
     } else {
       Swal.fire({
         icon: "warning",
-        title: "입력값 확인",
-        text: "입력하지 않은 값이 있는지 확인해주세요",
+        text: "입력값을 확인해주세요",
       });
     }
   };

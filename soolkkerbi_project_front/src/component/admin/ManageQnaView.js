@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button1 } from "../util/Buttons";
-import Swal from "sweetalert2";
 import MyQnaAnswer from "../mypage/MyQnaAnswer";
 
 const ManageQnaView = (props) => {

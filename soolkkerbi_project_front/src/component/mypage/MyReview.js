@@ -117,7 +117,7 @@ const ReviewList = (props) => {
     Swal.fire({
       icon: "question",
       title: "리뷰 삭제",
-      text: "리뷰를 삭제하시겠습니까? 다시 작성이 불가합니다",
+      html: "리뷰를 삭제하시겠습니까? <br/>해당 상품에 대한 리뷰 재작성이 불가능해 집니다.",
       showCancelButton: true,
       confirmButtonText: "삭제",
       cancelButtonText: "취소",

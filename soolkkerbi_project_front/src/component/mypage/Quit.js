@@ -26,9 +26,9 @@ const Quit = (props) => {
 
   const deleteMember = () => {
     Swal.fire({
-      icon: "warning",
-      title: "회원탈퇴",
-      text: "회원을 탈퇴하시겠습니까?",
+      icon: "question",
+      title: "회원 탈퇴",
+      text: "탈퇴하시겠습니까?",
       showCancelButton: true,
       confirmButtonText: "탈퇴하기",
       cancelButtonText: "취소",
@@ -44,7 +44,8 @@ const Quit = (props) => {
           .then((res) => {
             Swal.fire({
               icon: "success",
-              title: "탈퇴완료",
+              title: "회원 탈퇴 완료",
+              text: "회원 탈퇴가 완료되었습니다.",
             });
             window.localStorage.removeItem("token");
             setIsLogin(false);

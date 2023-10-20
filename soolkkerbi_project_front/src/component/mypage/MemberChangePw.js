@@ -14,10 +14,13 @@ const MemberChangePw = (props) => {
   const [ReqPwMsg, setReqPwMsg] = useState("");
   const token = window.localStorage.getItem("token");
 
-  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  const passwordRegEx =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   const pwReqCheck = () => {
     if (!passwordRegEx.test(memberPw)) {
-      setReqPwMsg("비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수문자 최소8자입니다.");
+      setReqPwMsg(
+        "비밀번호는 하나 이상의 문자, 하나의 숫자 및 하나의 특수문자 최소 8자입니다."
+      );
     } else {
       setReqPwMsg("");
     }
@@ -68,16 +71,17 @@ const MemberChangePw = (props) => {
             //navigator("/mypage/info");
           } else {
             Swal.fire({
-              icon: "warning",
-              title: "비번변경중 뮨제발생",
+              icon: "error",
+              title: "비밀번호 변경 실패",
+              text: "잠시후에 다시 시도해주세요.",
             });
           }
         })
         .catch((res) => {});
     } else {
       Swal.fire({
-        icon: "success",
-        title: "비밀번호가 틀림/작성 확인부탁.",
+        icon: "warning",
+        text: "비밀번호가 일치하지 않습니다.",
       });
     }
   };
@@ -92,26 +96,26 @@ const MemberChangePw = (props) => {
                 <div>
                   <label htmlFor="memberPw">새비밀번호</label>
                   <JoinInputWrap
-                      data={memberPw}
-                      setData={setMemberPw}
-                      type="passWord"
-                      content="memberPw"
-                      label="비밀번호"
-                      CheckMsg={ReqPwMsg}
-                      blurEvent={pwReqCheck}
-                    />
+                    data={memberPw}
+                    setData={setMemberPw}
+                    type="passWord"
+                    content="memberPw"
+                    label="비밀번호"
+                    CheckMsg={ReqPwMsg}
+                    blurEvent={pwReqCheck}
+                  />
                 </div>
                 <div>
                   <label htmlFor="memberPwRe">새비밀번호 확인</label>
                   <JoinInputWrap
-                          data={memberPwRe}
-                          setData={setMemberPwRe}
-                          type="passWord"
-                          content="memberPwRe"
-                          label="비밀번호확인"
-                          //CheckMsg={CheckPwMsg}
-                          blurEvent={pwCheck}
-                      />
+                    data={memberPwRe}
+                    setData={setMemberPwRe}
+                    type="passWord"
+                    content="memberPwRe"
+                    label="비밀번호확인"
+                    //CheckMsg={CheckPwMsg}
+                    blurEvent={pwCheck}
+                  />
                 </div>
               </div>
             </div>
@@ -147,18 +151,18 @@ const JoinInputWrap = (props) => {
 
   return (
     <>
-        <div className="input">
-          <Input
-            type={type}
-            data={data}
-            setData={setData}
-            content={content}
-            blurEvent={blurEvent}
-          />
-        </div>
-       <div className="check-msg">{CheckMsg}</div>  
- </> 
- );
+      <div className="input">
+        <Input
+          type={type}
+          data={data}
+          setData={setData}
+          content={content}
+          blurEvent={blurEvent}
+        />
+      </div>
+      <div className="check-msg">{CheckMsg}</div>
+    </>
+  );
 };
 
 export default MemberChangePw;

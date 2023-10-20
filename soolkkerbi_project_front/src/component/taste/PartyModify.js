@@ -52,7 +52,11 @@ const PartyModify = () => {
         if (res.data === 1) {
           navigate("/taste");
         } else {
-          Swal.fire("수정 중 문제가 발생했습니다. 잠시후 다시 시도해주세요");
+          Swal.fire({
+            icon: "error",
+            title: "수정 실패",
+            text: "잠시후에 다시 시도해주세요",
+          });
         }
       })
       .catch((res) => {

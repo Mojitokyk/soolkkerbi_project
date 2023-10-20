@@ -67,7 +67,7 @@ export default function ReviewModal({ order }) {
           if (res.data === 2) {
             Swal.fire({
               icon: "success",
-              title: "등록 완료",
+              title: "리뷰 등록 완료",
               text: "리뷰가 등록되었습니다.",
             }).then(() => {
               navigate("/mypage/review");
@@ -81,8 +81,7 @@ export default function ReviewModal({ order }) {
     } else {
       Swal.fire({
         icon: "warning",
-        title: "입력값 확인",
-        text: "입력하지 않은 값이 있는지 확인해주세요",
+        text: "입력값을 확인해주세요",
       });
     }
   };

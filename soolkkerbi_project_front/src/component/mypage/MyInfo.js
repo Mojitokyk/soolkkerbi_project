@@ -9,25 +9,23 @@ import { useRef, useState } from "react";
 //import { Avatar } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 
-
-
-
 const MyInfo = (props) => {
   const navigate = useNavigate();
   const member = props.member;
   const setMember = props.setMember;
   const setIsLogin = props.setIsLogin;
-  const memberFilepath=props.memberFilepath;
-  const setMemberFilepath =props.setMemberFilepath;
+  const memberFilepath = props.memberFilepath;
+  const setMemberFilepath = props.setMemberFilepath;
 
-  const [checkPhoneMsg,setCheckPhoneMsg] = useState("");
-  const [File ,setFile]=useState("");
+  const [checkPhoneMsg, setCheckPhoneMsg] = useState("");
+  const [File, setFile] = useState("");
   //const [memberImg, setMemberImg] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
- 
-  
-const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
-const fileInput = useRef(null)
-const [thumbnail, setThumbnail] = useState({});
+
+  const [Image, setImage] = useState(
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  );
+  const fileInput = useRef(null);
+  const [thumbnail, setThumbnail] = useState({});
 
   // const onChangeImage = e => {
   //   const file = e.target.files[0];
@@ -35,12 +33,10 @@ const [thumbnail, setThumbnail] = useState({});
   //   setUploadedImage(imageUrl);
   // };
 
-
   const setMemberPhone = (data) => {
     member.memberPhone = data;
     setMember({ ...member });
   };
-
 
   const phoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
   const checkPhone = () => {
@@ -62,7 +58,7 @@ const [thumbnail, setThumbnail] = useState({});
         .then((res) => {
           Swal.fire({
             icon: "success",
-            title: "전화번호가 수정되었습니다.",
+            text: "전화번호가 수정되었습니다.",
           });
         })
         .catch((res) => {
@@ -72,7 +68,10 @@ const [thumbnail, setThumbnail] = useState({});
           }
         });
     } else {
-      Swal.fire("전화번호 양식을 참고하여 작성해주세요!");
+      Swal.fire({
+        icon: "warning",
+        text: "전화번호 양식을 참고하여 작성해주세요.",
+      });
     }
   };
 
@@ -89,85 +88,79 @@ const [thumbnail, setThumbnail] = useState({});
     //document.querySelectorAll(".my-side a")[5].click();
   };
 
-
-
-
   //프로필사진로직
   const onChange = (e) => {
     const files = e.currentTarget.files;
-          if (files.length !== 0 && files[0] != 0) {
-            //files[0] != 0파일이미지가 아닐때
-            setThumbnail(files[0]); //썸네일 파일 전송을 위한 state에 값 파일 객체 저장
-            //화면에 썸네일 미리보기
-            const reader = new FileReader();
-            reader.readAsDataURL(files[0]);
-            reader.onloadend = () => {
-              setImage(reader.result);
-              console.log(thumbnail);
-            };
-          } else {
-            setThumbnail({});
-            setImage(null);
-          }
-
-          console.log(thumbnail);
-          console.log(Image);
-         console.log(member.memberId);
-         const form = new FormData();
-          form.append("memberId", member.memberId);
-          form.append("memberFilepath",thumbnail);
-          const token = window.localStorage.getItem("token");
-          axios
-          .post("/member/thumbnail", form, {
-            headers: {
-              contentType: "multipart/form-data",
-              processData: false,
-              Authorization: "Bearer " + token,
-            },
-          })
-          .then((res) => {
-            if (res.data === 1) {
-              // navigate("/mypage");
-            } else {
-              Swal.fire("프로필수정 중 문제가 생겼어요!");
-            }
-          })
-          .catch((res) => {
-            console.log(res.response.status);
-          });
-          
+    if (files.length !== 0 && files[0] != 0) {
+      //files[0] != 0파일이미지가 아닐때
+      setThumbnail(files[0]); //썸네일 파일 전송을 위한 state에 값 파일 객체 저장
+      //화면에 썸네일 미리보기
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onloadend = () => {
+        setImage(reader.result);
+        console.log(thumbnail);
       };
+    } else {
+      setThumbnail({});
+      setImage(null);
+    }
 
-     
+    console.log(thumbnail);
+    console.log(Image);
+    console.log(member.memberId);
+    const form = new FormData();
+    form.append("memberId", member.memberId);
+    form.append("memberFilepath", thumbnail);
+    const token = window.localStorage.getItem("token");
+    axios
+      .post("/member/thumbnail", form, {
+        headers: {
+          contentType: "multipart/form-data",
+          processData: false,
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        if (res.data === 1) {
+          // navigate("/mypage");
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "프로필 사진 변경 실패",
+            text: "잠시후에 다시 시도해주세요.",
+          });
+        }
+      })
+      .catch((res) => {
+        console.log(res.response.status);
+      });
+  };
 
+  //프로필사진 디비저장
+  //   const form = new FormData();
+  //   form.append("memberId", member.memberId);
+  //   form.append("memberFilepath", member.memberFilepath);
 
-
-
-      //프로필사진 디비저장
-    //   const form = new FormData();
-    //   form.append("memberId", member.memberId);
-    //   form.append("memberFilepath", member.memberFilepath);
-
-    //   const token = window.localStorage.getItem("token");
-    // axios
-    //   .post("/taste/modify", form, {
-    //     headers: {
-    //       contentType: "multipart/form-data",
-    //       processData: false,
-    //       Authorization: "Bearer " + token,
-    //     },
-    //   })
-    //   .then((res) => {
-    //     if (res.data === 1) {
-    //       navigate("/taste");
-    //     } else {
-    //       Swal.fire("수정 중 문제가 발생했습니다. 잠시후 다시 시도해주세요");
-    //     }
-    //   })
-    //   .catch((res) => {
-    //     console.log(res.response.status);
-    //   });
-  
+  //   const token = window.localStorage.getItem("token");
+  // axios
+  //   .post("/taste/modify", form, {
+  //     headers: {
+  //       contentType: "multipart/form-data",
+  //       processData: false,
+  //       Authorization: "Bearer " + token,
+  //     },
+  //   })
+  //   .then((res) => {
+  //     if (res.data === 1) {
+  //       navigate("/taste");
+  //     } else {
+  //       Swal.fire("수정 중 문제가 발생했습니다. 잠시후 다시 시도해주세요");
+  //     }
+  //   })
+  //   .catch((res) => {
+  //     console.log(res.response.status);
+  //   });
 
   return (
     <div className="mypage-content-warp">
@@ -181,28 +174,26 @@ const [thumbnail, setThumbnail] = useState({});
           <input type="file" onChange={onChangeImage} />
         </div> */}
 
-                   <Avatar
-                       src={Image}
-                       style={{ margin: "20px" }}
-                       // size={200}
-                       sx={{ width: 160, height: 160 }}
-                       onClick={() => {
-                         fileInput.current.click();
-                       }}
-                     />
-                     <input 
-                        type='file' 
-                        style={{display:'none'}}
-                          accept='image/*' 
-                          name='profile_img'
-                          onChange={onChange}
-                          ref={fileInput}/>
+      <Avatar
+        src={Image}
+        style={{ margin: "20px" }}
+        // size={200}
+        sx={{ width: 160, height: 160 }}
+        onClick={() => {
+          fileInput.current.click();
+        }}
+      />
+      <input
+        type="file"
+        style={{ display: "none" }}
+        accept="image/*"
+        name="profile_img"
+        onChange={onChange}
+        ref={fileInput}
+      />
 
-             
-
-        
-       {/* <Profile member={member}/> */}
-        <div className="image">이미지를 클릭해 변경해주세요</div>
+      {/* <Profile member={member}/> */}
+      <div className="image">이미지를 클릭해 변경해주세요</div>
       <table className="mypage-info-tbl">
         <tbody>
           <tr>
@@ -265,7 +256,7 @@ const [thumbnail, setThumbnail] = useState({});
         /> 
         )} */}
         <Button2
-          text="비밀번호 변경하러가기"
+          text="비밀번호 변경하기"
           clickEvent={changePw}
           setMember={setMember}
           setIsLogin={setIsLogin}
@@ -297,7 +288,8 @@ const JoinInputWrap = (props) => {
   );
 };
 
-{/*
+{
+  /*
 const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 const fileInput = useRef(null)
 
@@ -330,60 +322,59 @@ const fileInput = useRef(null)
                     }
                 }
                 reader.readAsDataURL(e.target.files[0])
-            } */}
+            } */
+}
 
-            
-            // const Profile =(props)=>{
-            //   const fileInput =props.fileInput;
-            //   const Image=props.Image;
-            //   const setImage=props.setImage;
-            //   // <Avatar
-            //   //          src={Image}
-            //   //          style={{ margin: "20px" }}
-            //   //          // size={200}
-            //   //          sx={{ width: 160, height: 160 }}
-            //   //          onClick={() => {
-            //   //            fileInput.current.click();
-            //   //          }}
-            //   //        />
+// const Profile =(props)=>{
+//   const fileInput =props.fileInput;
+//   const Image=props.Image;
+//   const setImage=props.setImage;
+//   // <Avatar
+//   //          src={Image}
+//   //          style={{ margin: "20px" }}
+//   //          // size={200}
+//   //          sx={{ width: 160, height: 160 }}
+//   //          onClick={() => {
+//   //            fileInput.current.click();
+//   //          }}
+//   //        />
 
-                     
-            //           const onChange = e => {
-            //             if (e.target.files[0]) {
-            //               setImage(e.target.files[0]);
-            //             } else {
-            //               //업로드 취소할 시
-            //               setImage(
-            //                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-            //               );
-            //               return;
-            //             }
-            //           //화면에 프로필 사진 표시
-            //             // https://www.habonyphp.com/2019/03/js-api-filereader.html
-            //             const reader = new FileReader();
-            //             reader.onload = () => {
-            //               if (reader.readyState === 2) {
-            //                 setImage(reader.result);
-            //               }
-            //             };
-            //             reader.readAsDataURL(e.target.files[0]);
-            //           };
-            //          return(
-            //           <>
-            //           <label htmlFor="ex_file">
-            //             <div className="btn_select">이미지 선택</div>
-            //           </label>
-            //           <input
-            //             type="file"
-            //             id="ex_file"
-            //             // style={{ display: "none" }}
-            //             accept="image/jpg,image/png,image/jpeg"
-            //             name="profile_img"
-            //             onChange={onChange}
-            //             ref={fileInput}
-            //           />
-            //           </>
-            //          );
-            // };
+//           const onChange = e => {
+//             if (e.target.files[0]) {
+//               setImage(e.target.files[0]);
+//             } else {
+//               //업로드 취소할 시
+//               setImage(
+//                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+//               );
+//               return;
+//             }
+//           //화면에 프로필 사진 표시
+//             // https://www.habonyphp.com/2019/03/js-api-filereader.html
+//             const reader = new FileReader();
+//             reader.onload = () => {
+//               if (reader.readyState === 2) {
+//                 setImage(reader.result);
+//               }
+//             };
+//             reader.readAsDataURL(e.target.files[0]);
+//           };
+//          return(
+//           <>
+//           <label htmlFor="ex_file">
+//             <div className="btn_select">이미지 선택</div>
+//           </label>
+//           <input
+//             type="file"
+//             id="ex_file"
+//             // style={{ display: "none" }}
+//             accept="image/jpg,image/png,image/jpeg"
+//             name="profile_img"
+//             onChange={onChange}
+//             ref={fileInput}
+//           />
+//           </>
+//          );
+// };
 
 export default MyInfo;
