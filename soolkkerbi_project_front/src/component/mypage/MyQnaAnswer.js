@@ -311,7 +311,7 @@ const PrintAnswer = (props) => {
                         onChange={changeContent}
                         // onKeyUp={enterCheck}
                         placeholder={answer.answerContent}
-                        spellcheck="false"
+                        spellCheck="false"
                         autoFocus
                       />
                       <input type="hidden" value={answer.answerNo} />
