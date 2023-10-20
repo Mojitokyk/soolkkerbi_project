@@ -175,11 +175,11 @@ const PartyView = (props) => {
           </button>
         ) : (
           <>
-            <button className="logined-toList" onClick={toList}>
-              목록으로
-            </button>
             {member.memberLevel === 2 ? (
               <>
+                <button className="logined-toList" onClick={toList}>
+                  목록으로
+                </button>
                 {taste.tasteStatus === "1" ? (
                   <>
                     {doneReservation === "0" ? (
@@ -209,7 +209,9 @@ const PartyView = (props) => {
                 )}
               </>
             ) : (
-              ""
+              <button className="logined-toList-admin" onClick={toList}>
+                목록으로
+              </button>
             )}
           </>
         )}
