@@ -17,7 +17,7 @@ const MyInfo = (props) => {
   const member = props.member;
   const setMember = props.setMember;
   const setIsLogin = props.setIsLogin;
-  const memberFilepath=props.memberFilepath;
+ // const memberFilepath=props.memberFilepath;
   const setMemberFilepath =props.setMemberFilepath;
 
   const [checkPhoneMsg,setCheckPhoneMsg] = useState("");
@@ -26,6 +26,7 @@ const MyInfo = (props) => {
  
   
 const [Image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+//const [Image, setImage] = useState(member.setMemberFilepath)
 const fileInput = useRef(null)
 const [thumbnail, setThumbnail] = useState({});
 
@@ -98,24 +99,26 @@ const [thumbnail, setThumbnail] = useState({});
           if (files.length !== 0 && files[0] != 0) {
             //files[0] != 0파일이미지가 아닐때
             setThumbnail(files[0]); //썸네일 파일 전송을 위한 state에 값 파일 객체 저장
+           
             //화면에 썸네일 미리보기
             const reader = new FileReader();
             reader.readAsDataURL(files[0]);
             reader.onloadend = () => {
               setImage(reader.result);
-              console.log(thumbnail);
+            
             };
           } else {
             setThumbnail({});
             setImage(null);
           }
-
+          console.log(fileInput);
           console.log(thumbnail);
           console.log(Image);
          console.log(member.memberId);
+        // const thumbnailCh = JSON.stringify(thumbnail);
          const form = new FormData();
           form.append("memberId", member.memberId);
-          form.append("memberFilepath",thumbnail);
+          form.append("thumbnail",thumbnail);
           const token = window.localStorage.getItem("token");
           axios
           .post("/member/thumbnail", form, {
@@ -127,7 +130,8 @@ const [thumbnail, setThumbnail] = useState({});
           })
           .then((res) => {
             if (res.data === 1) {
-              // navigate("/mypage");
+              console.log(res.data)
+               //navigate("/mypage");
             } else {
               Swal.fire("프로필수정 중 문제가 생겼어요!");
             }
@@ -138,7 +142,7 @@ const [thumbnail, setThumbnail] = useState({});
           
       };
 
-     
+       console.log(thumbnail);
 
 
 
@@ -180,10 +184,9 @@ const [thumbnail, setThumbnail] = useState({});
           )}
           <input type="file" onChange={onChangeImage} />
         </div> */}
-
-                   <Avatar
+                  <div className="mypage-memberImg" >
+                  <Avatar
                        src={Image}
-                       style={{ margin: "20px" }}
                        // size={200}
                        sx={{ width: 160, height: 160 }}
                        onClick={() => {
@@ -191,18 +194,21 @@ const [thumbnail, setThumbnail] = useState({});
                        }}
                      />
                      <input 
-                        type='file' 
-                        style={{display:'none'}}
-                          accept='image/*' 
-                          name='profile_img'
+                        type="file"
+                        style={{display:"none"}}
+                          accept="image/*"
+                          name="profile_img"
                           onChange={onChange}
+                          id="thumbnail"
                           ref={fileInput}/>
 
              
 
         
        {/* <Profile member={member}/> */}
-        <div className="image">이미지를 클릭해 변경해주세요</div>
+        <div className="image-putMsg">이미지를 클릭해 변경해주세요</div>
+                  </div>
+                 
       <table className="mypage-info-tbl">
         <tbody>
           <tr>

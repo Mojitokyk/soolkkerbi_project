@@ -126,7 +126,13 @@ const FirstPage = (props) => {
   return (
     <div className="myProfile-box">
       <div className="profile-img">
-        <img src="/image/profile_img/default_profile.png" alt="face" />
+        {member.memberFilepath === null ? (
+          <img src="/image/profile_img/default_profile.png" alt="face" />
+        ):(
+          //<img src = {member.memberFilepath} />
+          <img src={"/member/" + member.memberFilepath} />
+        )}
+       
       </div>
       <div className="profile-content">
         <div>{member.memberName}님 안녕하세요</div>
