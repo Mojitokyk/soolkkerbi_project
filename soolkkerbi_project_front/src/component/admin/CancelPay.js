@@ -107,7 +107,10 @@ const PayItem = (props) => {
           })
           .then((res) => {
             if (res.data === 2) {
-              Swal.fire("결제취소가 완료되었습니다.").then(() => {
+              Swal.fire({
+                icon: "success",
+                text: "결제취소가 완료되었습니다.",
+              }).then(() => {
                 setChangeStatus(!changeStatus);
               });
             }

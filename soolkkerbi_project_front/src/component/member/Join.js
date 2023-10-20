@@ -45,7 +45,7 @@ const Join = () => {
   const [checkauth, setCheckAuth] = React.useState("");
   const [changeResult, setChangeResult] = React.useState(false);
   const [btnchange, setBtnchange] = useState(false);
-  const [authOk,setAuthOk] = useState(false);
+  const [authOk, setAuthOk] = useState(false);
 
   const navigate = useNavigate();
   const idCheck = () => {
@@ -80,10 +80,9 @@ const Join = () => {
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
-    } else if(memberPw == ""){
+    } else if (memberPw == "") {
       setCheckPWMsg("");
-    }
-    else {
+    } else {
       setCheckPWMsg("");
     }
   };
@@ -140,27 +139,40 @@ const Join = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data === 1) {
-            Swal.fire("회원가입완료!");
+            Swal.fire({
+              icon: "success",
+              title: "환영합니다.",
+              text: "회원가입이 완료되었습니다.",
+            });
             navigate("/login");
           } else {
-            Swal.fire("에러발생");
+            Swal.fire({
+              icon: "error",
+              title: "회원가입 실패",
+              text: "잠시후에 다시 시도해주세요",
+            });
           }
         })
         .catch((res) => {
           console.log(res.data);
         });
     } else {
-      Swal.fire("입력값확인");
+      Swal.fire({
+        icon: "warning",
+        text: "입력값을 확인해주세요.",
+      });
     }
   };
 
   const sendEmail = () => {
     const memberEmail = member.memberEmail;
     console.log(memberEmail);
-    if(memberEmail===""){
-      Swal.fire("이메일을 입력해주세여!")
-    }else{
-
+    if (memberEmail === "") {
+      Swal.fire({
+        icon: "warning",
+        text: "이메일을 입력해주세요.",
+      });
+    } else {
       axios
         .post("/member/auth", { memberEmail })
         .then((res) => {
@@ -182,7 +194,10 @@ const Join = () => {
       setAuth("");
       setAuthOk(true);
     } else {
-      Swal.fire("인증번호를 다시 확인해 주세요!");
+      Swal.fire({
+        icon: "warning",
+        text: "인증번호를 다시 확인해주세요.",
+      });
     }
   };
 
@@ -245,47 +260,43 @@ const Join = () => {
         blurEvent={checkEmail}
       />
 
-    
-            {!authOk ? (
-              <>
-                    <div className="emailAuth">
-                    <div className="dummyDiv"></div>
+      {!authOk ? (
+        <>
+          <div className="emailAuth">
+            <div className="dummyDiv"></div>
 
-                    <div className="emailAuthInput">
-                      <Input
-                        setData={setAuth}
-                        data={auth}
-                        type="type"
-                        content="auth"
-                      ></Input>
-                    </div>
-                    <div className="authButton"> 
-                              {!btnchange ? (
-                                <Button3 text="인증번호받기" clickEvent={sendEmail} />
-                              ) : (
-                                <Button1
-                                  text="인증하기"
-                                  clickEvent={() => {
-                                    authcheck(auth, checkauth);
-                                  }}
-                                />
-                              )}
-                    </div>
-                    </div>
-                     <div
-                     className={
-                       "pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red] emailAuthTimer"
-                     }
-                   >
-                     {isCodeShow ? <Timer /> : ""}
-                   </div>
-                   </>
-            ):(
-              ""
-            )}
-
-     
-     
+            <div className="emailAuthInput">
+              <Input
+                setData={setAuth}
+                data={auth}
+                type="type"
+                content="auth"
+              ></Input>
+            </div>
+            <div className="authButton">
+              {!btnchange ? (
+                <Button3 text="인증번호받기" clickEvent={sendEmail} />
+              ) : (
+                <Button1
+                  text="인증하기"
+                  clickEvent={() => {
+                    authcheck(auth, checkauth);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          <div
+            className={
+              "pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red] emailAuthTimer"
+            }
+          >
+            {isCodeShow ? <Timer /> : ""}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
 
       {/* <div id="modal-modal-description" sx={{ mt: 2 }}>
            

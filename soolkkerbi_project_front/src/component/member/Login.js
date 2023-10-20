@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 import FindId from "./FindId";
 import FindPw from "./FindPw";
 
-
 const Login = (props) => {
   const setIsLogin = props.setIsLogin;
 
@@ -22,7 +21,10 @@ const Login = (props) => {
       .post("/member/login", member)
       .then((res) => {
         if (res.data === "실패") {
-          Swal.fire("아이디와 비밀번호를 확인해주세요");
+          Swal.fire({
+            icon: "warning",
+            text: "아이디와 비밀번호를 확인해주세요.",
+          });
         } else {
           window.localStorage.setItem("token", res.data);
           setIsLogin(true);

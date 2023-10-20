@@ -49,7 +49,7 @@ const AdminInfo = (props) => {
         .then((res) => {
           Swal.fire({
             icon: "success",
-            title: "전화번호가 수정되었습니다.",
+            text: "전화번호가 수정되었습니다.",
           });
         })
         .catch((res) => {
@@ -59,7 +59,10 @@ const AdminInfo = (props) => {
           }
         });
     } else {
-      Swal.fire("전화번호 양식을 참고하여 작성해주세요!");
+      Swal.fire({
+        icon: "warning",
+        text: "전화번호 양식을 참고하여 작성해주세요.",
+      });
     }
   };
 

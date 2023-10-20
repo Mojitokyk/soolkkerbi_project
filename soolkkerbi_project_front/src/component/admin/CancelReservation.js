@@ -100,7 +100,10 @@ const ReservationItem = (props) => {
           })
           .then((res) => {
             if (res.data === 1) {
-              Swal.fire("예약취소가 완료되었습니다.").then(() => {
+              Swal.fire({
+                icon: "success",
+                text: "예약취소가 완료되었습니다.",
+              }).then(() => {
                 setChangeStatus(!changeStatus);
               });
             }

@@ -29,7 +29,7 @@ function CustomCalendar(props) {
       })
       .then((res) => {
         console.log(activeDate);
-        Swal.fire("예약날찌 변경완료");
+        Swal.fire({ icon: "success", text: "예약날짜 변경이 완료되었습니다." });
       })
       .catch((res) => {
         console.log(res);
