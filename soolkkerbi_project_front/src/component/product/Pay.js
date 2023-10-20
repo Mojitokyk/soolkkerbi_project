@@ -107,7 +107,8 @@ const Pay = () => {
           Swal.fire({
             icon: "warning",
             title: "결제 취소",
-            text: error_msg,
+            // text: error_msg,
+            text: "결제가 취소되었습니다.",
           });
         }
       }
