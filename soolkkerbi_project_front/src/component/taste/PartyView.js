@@ -164,33 +164,50 @@ const PartyView = (props) => {
         ) : (
           ""
         )}
-        <Button2 text="목록으로" clickEvent={toList} />
-        {member.memberLevel === 2 ? (
+
+        {isLogin === false ? (
+          <button className="dosent-login-toList" onClick={toList}>
+            목록으로
+          </button>
+        ) : (
           <>
-            {taste.tasteStatus === "1" ? (
+            <button className="logined-toList" onClick={toList}>
+              목록으로
+            </button>
+            {member.memberLevel === 2 ? (
               <>
-                {doneReservation === "0" ? (
-                  // <Button2 text="예약" clickEvent={reservation} />
-                  <button className="reservation-button" onClick={reservation}>
-                    예약
-                  </button>
+                {taste.tasteStatus === "1" ? (
+                  <>
+                    {doneReservation === "0" ? (
+                      // <Button2 text="예약" clickEvent={reservation} />
+                      <button
+                        className="reservation-button"
+                        onClick={reservation}
+                      >
+                        예약
+                      </button>
+                    ) : (
+                      <button
+                        className="reservation-button"
+                        onClick={reservation}
+                      >
+                        예약 취소
+                      </button>
+                    )}
+                  </>
                 ) : (
-                  <button className="reservation-button" onClick={reservation}>
-                    예약 취소
+                  <button
+                    className="disabled-reservation-button"
+                    onClick={reservation}
+                  >
+                    예약
                   </button>
                 )}
               </>
             ) : (
-              <button
-                className="disabled-reservation-button"
-                onClick={reservation}
-              >
-                예약
-              </button>
+              ""
             )}
           </>
-        ) : (
-          ""
         )}
       </div>
     </>
