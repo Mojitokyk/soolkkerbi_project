@@ -26,7 +26,7 @@ const ProductItem = (props) => {
           console.log(res.response.status);
         });
     }
-  }, [cartList]);
+  }, []);
   //좋아요 함수
   const [like, setLike] = useState(product.isLike);
   const token = window.localStorage.getItem("token");
