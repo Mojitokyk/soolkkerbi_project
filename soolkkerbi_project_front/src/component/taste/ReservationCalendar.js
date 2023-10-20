@@ -100,7 +100,9 @@ const ReservationCalendar = () => {
       </div>
       <div className="reservation-btn">
         <Button2 text="목록으로" clickEvent={toList} />
-        <Button2 text="다음" clickEvent={reservationConfirm} />
+        <button className="calendar-next-btn" onClick={reservationConfirm}>
+          다음
+        </button>
       </div>
     </>
   );

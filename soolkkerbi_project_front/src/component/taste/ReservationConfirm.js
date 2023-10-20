@@ -83,7 +83,9 @@ const ReservationConfirm = () => {
       </div>
       <div className="reservation-btn">
         <Button2 text="목록으로" clickEvent={toList} />
-        <Button2 text="예약완료" clickEvent={reservationDone} />
+        <button className="confirm-done-btn" onClick={reservationDone}>
+          예약 완료
+        </button>
       </div>
     </>
   );

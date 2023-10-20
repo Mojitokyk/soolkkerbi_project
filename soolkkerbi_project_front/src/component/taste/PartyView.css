@@ -182,6 +182,16 @@
   width: 100px;
   font-family: ns-b;
 }
+.calendar-next-btn {
+  width: 100px;
+  height: 41.28px;
+  background-color: #ff6289;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
 
 /*예약 내역 확인*/
 .reservation-info {
@@ -208,6 +218,16 @@
 }
 .reservation-direction > :last-child {
   float: right;
+}
+.confirm-done-btn {
+  width: 100px;
+  height: 41.28px;
+  background-color: #ff6289;
+  color: #fff;
+  font-family: ns-b;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
 }
 
 /*예약 완료*/
