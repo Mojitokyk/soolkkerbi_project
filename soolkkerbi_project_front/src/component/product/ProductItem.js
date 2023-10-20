@@ -86,8 +86,11 @@ const ProductItem = (props) => {
       state: { productNo: product.productNo, like: like, member: member },
     });
   };
+  //장바구니 넣기
   const addCart = () => {
+    //로그인 체크
     if (isLogin) {
+      //장바구니에 상품이 있을 때
       if (cartList) {
         let count = 0;
         for (let i = 0; i < cartList.length; i++) {
@@ -98,12 +101,14 @@ const ProductItem = (props) => {
             count++;
           }
         }
+        //장바구니에 있는 상품이 이미 재고 여유가 없는 경우
         if (count > 0) {
           Swal.fire({
             icon: "warning",
             title: "재고 부족",
             text: "장바구니에 담은 수량이 최대 수량입니다.",
           });
+          //재고 여유가 있는 경우
         } else {
           axios
             .post(
@@ -138,6 +143,7 @@ const ProductItem = (props) => {
               console.log(res.response.status);
             });
         }
+        //장바구니에 상품이 없을 때
       } else {
         axios
           .post(
@@ -172,6 +178,7 @@ const ProductItem = (props) => {
             console.log(res.response.status);
           });
       }
+      //비로그인 시
     } else {
       Swal.fire({
         icon: "warning",
