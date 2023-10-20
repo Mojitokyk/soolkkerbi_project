@@ -46,10 +46,8 @@ const Pay = () => {
           });
         } else {
           const { IMP } = window;
-          const price = totalPrice ? totalPrice : cart.cartPrice;
-          const productName = cartList
-            ? cartList[0].productName + " 외 " + cartList.length + "건"
-            : cart.productName;
+          const price = cart.cartPrice;
+          const productName = cart.productName;
           IMP.init("imp83034442");
           const data = {
             pg: "html5_inicis",
@@ -67,53 +65,29 @@ const Pay = () => {
             const { success, error_msg } = response;
             //결제 성공 시
             if (success) {
-              if (cartList) {
-                for (let i = 0; i < cartList.length; i++) {
-                  cartList[i].payStringNo = payStringNo;
-                  cartList[i].pickupDate = pickupDate;
-                }
-                //pay테이블 insert : 여러 개
-                axios
-                  .post("/pay/insertPayList", cartList, {
-                    headers: {
-                      Authorization: "Bearer " + token,
-                    },
-                  })
-                  .then((res) => {
-                    if (res.data === 1) {
-                      Swal.fire({
-                        icon: "success",
-                        title: "결제 완료",
-                        text: "결제가 완료되었습니다.",
-                      });
-                      navigate("/mypage/order");
-                    }
-                  })
-                  .catch((res) => {});
-              } else {
-                //pay테이블 insert : 한 개
-                cart.payStringNo = payStringNo;
-                cart.pickupDate = pickupDate;
-                axios
-                  .post("/pay/insertOnePay", cart, {
-                    headers: {
-                      Authorization: "Bearer " + token,
-                    },
-                  })
-                  .then((res) => {
-                    if (res.data === 1) {
-                      Swal.fire({
-                        icon: "success",
-                        title: "결제 완료",
-                        text: "결제가 완료되었습니다.",
-                      });
-                      navigate("/mypage/order");
-                    }
-                  })
-                  .catch((res) => {});
-              }
-              //결제 실패 시
-            } else {
+              //pay테이블 insert : 한 개
+              cart.payStringNo = payStringNo;
+              cart.pickupDate = pickupDate;
+              axios
+                .post("/pay/insertOnePay", cart, {
+                  headers: {
+                    Authorization: "Bearer " + token,
+                  },
+                })
+                .then((res) => {
+                  if (res.data === 1) {
+                    Swal.fire({
+                      icon: "success",
+                      title: "결제 완료",
+                      text: "결제가 완료되었습니다.",
+                    });
+                    navigate("/mypage/order");
+                  }
+                })
+                .catch((res) => {});
+            }
+            //결제 실패 시
+            else {
               Swal.fire({
                 icon: "warning",
                 title: "결제 취소",
@@ -139,9 +113,8 @@ const Pay = () => {
         } else {
           const { IMP } = window;
           const price = totalPrice ? totalPrice : cart.cartPrice;
-          const productName = cartList
-            ? cartList[0].productName + " 외 " + cartList.length + "건"
-            : cart.productName;
+          const productName =
+            cartList[0].productName + " 외 " + cartList.length + "건";
           IMP.init("imp83034442");
           const data = {
             pg: "html5_inicis",
@@ -159,51 +132,28 @@ const Pay = () => {
             const { success, error_msg } = response;
             //결제 성공 시
             if (success) {
-              if (cartList) {
-                for (let i = 0; i < cartList.length; i++) {
-                  cartList[i].payStringNo = payStringNo;
-                  cartList[i].pickupDate = pickupDate;
-                }
-                //pay테이블 insert : 여러 개
-                axios
-                  .post("/pay/insertPayList", cartList, {
-                    headers: {
-                      Authorization: "Bearer " + token,
-                    },
-                  })
-                  .then((res) => {
-                    if (res.data === 1) {
-                      Swal.fire({
-                        icon: "success",
-                        title: "결제 완료",
-                        text: "결제가 완료되었습니다.",
-                      });
-                      navigate("/mypage/order");
-                    }
-                  })
-                  .catch((res) => {});
-              } else {
-                //pay테이블 insert : 한 개
-                cart.payStringNo = payStringNo;
-                cart.pickupDate = pickupDate;
-                axios
-                  .post("/pay/insertOnePay", cart, {
-                    headers: {
-                      Authorization: "Bearer " + token,
-                    },
-                  })
-                  .then((res) => {
-                    if (res.data === 1) {
-                      Swal.fire({
-                        icon: "success",
-                        title: "결제 완료",
-                        text: "결제가 완료되었습니다.",
-                      });
-                      navigate("/mypage/order");
-                    }
-                  })
-                  .catch((res) => {});
+              for (let i = 0; i < cartList.length; i++) {
+                cartList[i].payStringNo = payStringNo;
+                cartList[i].pickupDate = pickupDate;
               }
+              //pay테이블 insert : 여러 개
+              axios
+                .post("/pay/insertPayList", cartList, {
+                  headers: {
+                    Authorization: "Bearer " + token,
+                  },
+                })
+                .then((res) => {
+                  if (res.data === 1) {
+                    Swal.fire({
+                      icon: "success",
+                      title: "결제 완료",
+                      text: "결제가 완료되었습니다.",
+                    });
+                    navigate("/mypage/order");
+                  }
+                })
+                .catch((res) => {});
             } else {
               Swal.fire({
                 icon: "warning",
