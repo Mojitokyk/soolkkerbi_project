@@ -42,7 +42,7 @@ public class NoticeController {
 	//게시글 작성
 	@PostMapping(value="/insert")
 	public int insertNotice(@RequestBody Notice n) {
-		System.out.println(n);
+//		System.out.println(n);
 		int result = noticeService.insertNotice(n);
 		return result;
 	}
@@ -50,7 +50,7 @@ public class NoticeController {
 	//게시글 상세
 	@GetMapping(value="/view/{noticeNo}")
 	public Notice view(@PathVariable int noticeNo) {
-		System.out.println(noticeNo);
+//		System.out.println(noticeNo);
 		return noticeService.selectOneNotice(noticeNo);
 	}
 
@@ -74,8 +74,8 @@ public class NoticeController {
 	//게시글 수정
 	@PostMapping(value="/modify")
 	public int modify(@ModelAttribute Notice n, @ModelAttribute MultipartFile thumbnail, @ModelAttribute MultipartFile[] noticeFile) {
-		System.out.println(n.getNoticeTitle());
-		System.out.println(n.getNoticeContent());
+//		System.out.println(n.getNoticeTitle());
+//		System.out.println(n.getNoticeContent());
 		return noticeService.modify(n);
 
 	}

@@ -48,7 +48,7 @@ public class NoticeService {
 	//게시글 작성
 	@Transactional
 	public int insertNotice(Notice n) {
-		System.out.println(n);
+//		System.out.println(n);
 		int result = noticeDao.insertNotice(n);
 		return result;
 	}

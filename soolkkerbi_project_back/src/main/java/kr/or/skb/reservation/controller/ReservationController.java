@@ -49,11 +49,11 @@ public class ReservationController {
 	@GetMapping(value="/getReservationStatus/{memberNo}/{tasteNo}")
 	public int getReservationStatus(@PathVariable int memberNo, @PathVariable int tasteNo) {
 		List myReservationList = reservationService.myReservationList2(memberNo);
-		System.out.println(myReservationList);
+//		System.out.println(myReservationList);
 		
 		for(int i=0;i < myReservationList.size();i++) {
 			Reservation r = (Reservation)myReservationList.get(i); //다운캐스팅 필요 myReservation.get(i).getReservationTasteNo()는 불가
-			System.out.println(r.getReservationTasteNo());
+//			System.out.println(r.getReservationTasteNo());
 			if(tasteNo == r.getReservationTasteNo() && r.getReservationStatus() == 1) //조회된 예약내역과 현제페이지의 시음회가 일치하고, 예약완료 상태이면 1반환 
 			{
 				return 1;

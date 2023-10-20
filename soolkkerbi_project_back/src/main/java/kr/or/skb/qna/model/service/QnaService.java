@@ -57,16 +57,16 @@ public class QnaService {
 	//게시글 작성
 	@Transactional
 	public int insertQna(Qna q) {
-		System.out.println("qnaService: "+q);
+//		System.out.println("qnaService: "+q);
 		
 		//Board테이블에 insert하기 위해서는 회원번호를 알아야한다.
 		//작성자 정보를 현재 아이디만 알고있다. -> Board테이블에는 회원번호가 외래키로 설정되어있다.
 		//아이디를 이용하여 회원번호를 구해온다(회원정보를 조회하여 회원 정보 중 회원번호를 사용한다)
 
 		Member member = memberDao.selectOneMember(q.getMemberId());
-		System.out.println("memberNo: "+member.getMemberNo());
+//		System.out.println("memberNo: "+member.getMemberNo());
 		q.setQnaMemberNo(member.getMemberNo());
-		System.out.println("qnaMemberNo: "+q.getQnaMemberNo());
+//		System.out.println("qnaMemberNo: "+q.getQnaMemberNo());
 		int result = qnaDao.insertQna(q);
 			return result;
 	}
@@ -80,16 +80,16 @@ public class QnaService {
 	//게시글 삭제
 	@Transactional
 	public int delete(int qnaNo) {
-		System.out.println("qnaService - qnaNo: "+qnaNo);
+//		System.out.println("qnaService - qnaNo: "+qnaNo);
 		return qnaDao.deleteQna(qnaNo);
 	}
 	
 	//게시물 수정
 	@Transactional
 	public int modify(Qna q) {
-		System.out.println("qnaService: "+q.getQnaNo());
-		System.out.println("qnaService: "+q.getQnaTitle());
-		System.out.println("qnaService: "+q.getQnaContent());
+//		System.out.println("qnaService: "+q.getQnaNo());
+//		System.out.println("qnaService: "+q.getQnaTitle());
+//		System.out.println("qnaService: "+q.getQnaContent());
 		return qnaDao.updateQna(q);
 	}
 
@@ -99,7 +99,7 @@ public class QnaService {
 		//문의사항의 답변상태 변경1
 		int resultStatus = qnaDao.updateQnaStatus1(a.getAnswerQnaNo());
 		//제일 최신 번호를 조회 -> selectKey 사용
-		System.out.println("answerNo: "+a.getAnswerNo());
+//		System.out.println("answerNo: "+a.getAnswerNo());
 		Answer answer = qnaDao.printRecentAnswer(a.getAnswerNo());
 		return answer;
 	}
@@ -134,7 +134,7 @@ public class QnaService {
 		int numPerPage = 10; //한 페이지당 게시물 수
 		int pageNaviSize = 5; //페이지 네비게이션에 표시되는 개수(길이)
 		int totalCount = qnaDao.totalCountAdmin(); //전체 게시물 수
-		System.out.println("totalCountAdmin: "+totalCount);
+//		System.out.println("totalCountAdmin: "+totalCount);
 		
 		//페이징 조회 및 페이지네비 제작에 필요한 데이터를 객체로 받아옴
 		PageInfo pi = pagination.getPageInfo(reqPage, numPerPage, pageNaviSize, totalCount);
@@ -144,7 +144,7 @@ public class QnaService {
 		QnaListDataAdmin qld = new QnaListDataAdmin(start, end, answerStatus);
 		
 		List qnaList = qnaDao.selectQnaListAdmin(qld); //pi로 start, end값을 mybatis로 넘김
-		System.out.println("qnaListAdmin: "+qnaList);
+//		System.out.println("qnaListAdmin: "+qnaList);
 		
 		//pi와 boardList를 반환해야하나, 1개만 	반환할 수 있다.
 		//방법1. VO 제작

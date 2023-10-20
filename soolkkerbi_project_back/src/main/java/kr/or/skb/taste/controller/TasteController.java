@@ -52,7 +52,7 @@ public class TasteController {
 			t.setTasteFilepath(filepath);
 
 		}
-		System.out.println(t);
+//		System.out.println(t);
 		int result = tasteService.insertTaste(t);
 		return result;
 	}
@@ -68,15 +68,15 @@ public class TasteController {
 	//시음회 게시글 상세보기
 	@GetMapping(value = "/view/{tasteNo}") 
 	public Taste view(@PathVariable int tasteNo) {
-		System.out.println("tasteNo - controller: "+tasteNo);
+//		System.out.println("tasteNo - controller: "+tasteNo);
 		return tasteService.selectOneTaste(tasteNo);
 	}
 	
 	//시음회 게시글 삭제
 	@GetMapping(value="/delete/{tasteNo}")
 	public int deleteTaste(@PathVariable int tasteNo) {
-		System.out.println("tasteNo - controller: "+tasteNo);
-		System.out.println("controller delete");
+//		System.out.println("tasteNo - controller: "+tasteNo);
+//		System.out.println("controller delete");
 		Taste taste = tasteService.delete(tasteNo);
 		if(taste != null) {
 			String savepath = root+"taste/";
@@ -93,9 +93,9 @@ public class TasteController {
 	//시음회 예약 등록
 	@PostMapping(value="/insertReservation")
 	public int insertReservation(@ModelAttribute Reservation r, @RequestAttribute String memberId) {
-		System.out.println("tasteController - memberId: "+memberId);
+//		System.out.println("tasteController - memberId: "+memberId);
 		r.setReservationMemberId(memberId);
-		System.out.println("tasteController - rservation: "+r);
+//		System.out.println("tasteController - rservation: "+r);
 		int result = tasteService.insertReservation(r);
 		return result;
 
@@ -105,10 +105,10 @@ public class TasteController {
 	//시음회 게시글 수정
 	@PostMapping(value="/modify")
 	public int modify(@ModelAttribute Taste t,@ModelAttribute MultipartFile thumbnail) {
-		System.out.println(t.getTasteTitle());
-		System.out.println(t.getTasteContent());
-		System.out.println(t.getTasteFilepath());
-		System.out.println(thumbnail);
+//		System.out.println(t.getTasteTitle());
+//		System.out.println(t.getTasteContent());
+//		System.out.println(t.getTasteFilepath());
+//		System.out.println(thumbnail);
 		//Board table 업데이트, 
 		//썸네일이 들어오면 -> 썸네일 교체, 썸네일 없으면 기존 썸네일로 덮어쓰기
 		//Board_file 테이블 업데이트 -> 삭제한게 있으면 삭제, 추가한 거 있으면 insert
@@ -123,7 +123,7 @@ public class TasteController {
 			String filepath = fileUtil.getFilepath(savepath, thumbnail.getOriginalFilename(), thumbnail);
 			t.setTasteFilepath(filepath);
 		}
-		System.out.println(t);
+//		System.out.println(t);
 		int  changeList = tasteService.modify(t);
 	   return changeList;
 		

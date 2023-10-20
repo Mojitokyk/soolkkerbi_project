@@ -60,9 +60,9 @@ public class TasteService {
 	public int insertReservation(Reservation r) {
 		//1. 회원번호를 가져옴
 		Member m = memberDao.selectOneMember(r.getReservationMemberId());
-		System.out.println("tasteService - memberNo: "+m.getMemberNo());
+//		System.out.println("tasteService - memberNo: "+m.getMemberNo());
 		r.setReservationMemberNo(m.getMemberNo());
-		System.out.println("tasteService - reservationMemberNo: "+r.getReservationMemberNo());
+//		System.out.println("tasteService - reservationMemberNo: "+r.getReservationMemberNo());
 		//2. 회원번호를 사용하여 insert 
 		return tasteDao.insertReservation(r);
 
@@ -77,7 +77,7 @@ public class TasteService {
 	//시음회 삭제
 	@Transactional
 	public Taste delete(int tasteNo) {
-		System.out.println("service delete로 넘어옴");
+//		System.out.println("service delete로 넘어옴");
 		Taste taste = tasteDao.selectOneTaste(tasteNo);
 		int result = tasteDao.deleteTaste(tasteNo);
 		if(result > 0) {

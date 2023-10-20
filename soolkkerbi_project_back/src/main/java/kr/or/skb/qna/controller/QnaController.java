@@ -40,8 +40,8 @@ public class QnaController {
 	//Board b: boardTitle, boardDetail
 	@PostMapping(value="/insert")
 	public int insertQna(@ModelAttribute Qna q, @RequestAttribute String memberId) {
-		System.out.println("qnaController: "+q);
-		System.out.println("memberId: "+memberId);
+//		System.out.println("qnaController: "+q);
+//		System.out.println("memberId: "+memberId);
 		q.setMemberId(memberId);
 		int result = qnaService.insertQna(q);
 		return result;
@@ -58,16 +58,16 @@ public class QnaController {
 	//게시글 상세
 	@GetMapping(value="/view/{qnaNo}")
 	public Qna view(@PathVariable int qnaNo) {
-		System.out.println("view: "+qnaNo);
+//		System.out.println("view: "+qnaNo);
 		return qnaService.selectOneQna(qnaNo);
 	}
 	
 	//게시글 삭제
 	@GetMapping(value="/delete/{qnaNo}")
 	public int deleteQna(@PathVariable int qnaNo) {		
-		System.out.println("qnaController - qnaNo: "+qnaNo);
+//		System.out.println("qnaController - qnaNo: "+qnaNo);
 		int result = qnaService.delete(qnaNo);
-		System.out.println(result);
+//		System.out.println(result);
 		if(result > 0) {
 			return 1;
 		}else {
@@ -78,9 +78,9 @@ public class QnaController {
 	//게시글 수정
 	@PostMapping(value="/modify")
 	public int modify(@ModelAttribute Qna q) {
-		System.out.println("modify: "+q.getQnaNo());
-		System.out.println("modify: "+q.getQnaTitle());
-		System.out.println("modify: "+q.getQnaContent());
+//		System.out.println("modify: "+q.getQnaNo());
+//		System.out.println("modify: "+q.getQnaTitle());
+//		System.out.println("modify: "+q.getQnaContent());
 		
 		//Board table 업데이트
 		int result = qnaService.modify(q);
@@ -94,8 +94,8 @@ public class QnaController {
 	//댓글 작성
 	@PostMapping(value="/registAnswer")
 	public Answer insertComment(@ModelAttribute Answer a) {
-		System.out.println("registAnswer - answerQnaNo: "+a.getAnswerQnaNo());
-		System.out.println("registAnswer - answerContent: "+a.getAnswerContent());
+//		System.out.println("registAnswer - answerQnaNo: "+a.getAnswerQnaNo());
+//		System.out.println("registAnswer - answerContent: "+a.getAnswerContent());
 		Answer answer = qnaService.registAnswer(a);
 		return answer;
 	}
@@ -103,7 +103,7 @@ public class QnaController {
 	//댓글 출력
 	@GetMapping(value="/printAnswer/{answerQnaNo}")
 	public List printAnswer(@PathVariable int answerQnaNo) {
-		System.out.println("answerQnaNo: "+answerQnaNo);
+//		System.out.println("answerQnaNo: "+answerQnaNo);
 		List answerContent = qnaService.printAnswer(answerQnaNo);
 		return answerContent;
 	}
@@ -111,7 +111,7 @@ public class QnaController {
 	//댓글 삭제
 	@PostMapping(value="/deleteAnswer")
 	public int deleteAnswer(@ModelAttribute Answer a) {
-		System.out.println(a);
+//		System.out.println(a);
 		int result = qnaService.deleteAnswer(a);
 		return result;
 	}
@@ -119,16 +119,16 @@ public class QnaController {
 	//댓글 수정
 	@PostMapping(value="/modifyAnswer")
 	public int modifyAnswer(@ModelAttribute Answer a) {
-		System.out.println("answerNo: "+a.getAnswerNo());
-		System.out.println("answerContent: "+a.getAnswerContent());
-		System.out.println(a);
+//		System.out.println("answerNo: "+a.getAnswerNo());
+//		System.out.println("answerContent: "+a.getAnswerContent());
+//		System.out.println(a);
 		return qnaService.modifyAnswer(a);
 	}
 	
 	//답변 대기 중인 문의사항 출력 - 관리자페이지
 	@GetMapping(value="/adminList/{reqPage}/{answerStatus}")
 	public Map adminList(@PathVariable int reqPage, @PathVariable int answerStatus) {
-		System.out.println("answerStatus: "+answerStatus);
+//		System.out.println("answerStatus: "+answerStatus);
 		Map map = qnaService.adminList(reqPage, answerStatus);
 		return map;
 	}
