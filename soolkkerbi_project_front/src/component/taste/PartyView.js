@@ -158,7 +158,9 @@ const PartyView = (props) => {
       <div className="taste-view-btn">
         {member.memberLevel === 1 ? (
           <>
-            <Button2 text="수정" clickEvent={modifyTaste} />
+            <button className="taste-modify-btn" onClick={modifyTaste}>
+              수정
+            </button>
             <button className="taste-delete-btn" onClick={deleteTaste}>
               삭제
             </button>
