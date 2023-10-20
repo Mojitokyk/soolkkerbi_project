@@ -46,6 +46,7 @@ const Join = () => {
   const [changeResult, setChangeResult] = React.useState(false);
   const [btnchange, setBtnchange] = useState(false);
   const [authOk, setAuthOk] = useState(false);
+  //const [authclearMsg, setAuthclearMsg] =useState("")
 
   const navigate = useNavigate();
   const idCheck = () => {
@@ -80,8 +81,6 @@ const Join = () => {
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
       setCheckPWMsg("입력하신 비밀번호를 확인해주세요.");
-    } else if (memberPw == "") {
-      setCheckPWMsg("");
     } else {
       setCheckPWMsg("");
     }
@@ -124,7 +123,8 @@ const Join = () => {
       reqPwMsg === "" &&
       checkNameMsg === "" &&
       checkPhoneMsg === "" &&
-      authOk === ""
+      authOk === true
+     // authclearMsg === ""
     ) {
       const member = {
         memberId,

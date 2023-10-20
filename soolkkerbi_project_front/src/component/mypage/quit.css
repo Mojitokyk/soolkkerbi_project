@@ -5,9 +5,9 @@
 .delete-input-wrap > div {
   padding: 10px 0;
 }
-.delete-input-wrap > div > label {
+/* .delete-input-wrap > div > label {
   font-family: ns-b;
-}
+} */
 .delete-input-wrap > div > .input {
   padding: 10px 0;
 }
@@ -15,6 +15,7 @@
 .delete-btn-box > button {
   font-family: ns-b;
   font-size: 18px;
+  float: left;
 }
 .delete-btn-box > button:hover {
   background-color: #4f4f4f;
@@ -25,3 +26,27 @@
   text-align: left;
   font-family: ns-r;
 }
+.check_btn{
+  width: 100px;
+  margin-top: 20px;
+  float: left;
+}
+.delete-input-wrap > div > input{
+ width: 60%;
+ float: left;
+ margin-right: 20px
+
+}
+.delete-input-wrap > div > button{
+  width: 100px;
+}
+.title{
+  margin-bottom: 10px;
+}
+.title > label{
+  font-family: ns-b;
+}
+.delete-input-wrap > div{
+  overflow: hidden;
+}
+

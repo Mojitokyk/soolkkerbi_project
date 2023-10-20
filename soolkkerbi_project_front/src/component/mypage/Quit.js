@@ -14,18 +14,34 @@ const Quit = (props) => {
   const [currPwRe, setCurrPwRe] = useState("");
   const [reqPwMsg, setReqPwMsg] = useState("");
 
-  // const pwReqCheck = () => {
-  //   if (currPw !== member.memberPw) {
-  //     setReqPwMsg("비밀번호를 확인하세요");
-  //   } else if (currPw === "") {
-  //     setReqPwMsg("");
-  //   } else {
-  //     setReqPwMsg("");
-  //   }
-  // };
-
+  const pwCheck = () => {
+    const token = window.localStorage.getItem("token");
+    axios
+      .post(
+        "/member/pwCheck",
+        { memberPw: currPw },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === 1) {
+          //setIsPwauth(true);
+          deleteMember();
+          setCurrPw("")
+        } else {
+          Swal.fire({
+            icon: "warning",
+            text: "비밀번호가 일치하지 않습니다.",
+          });
+        }
+      });
+  };
   const deleteMember = () => {
-    if (currPw !== "" && currPwRe !== "") {
+   
       Swal.fire({
         icon: "warning",
         title: "회원탈퇴",
@@ -60,42 +76,24 @@ const Quit = (props) => {
             });
         }
       });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "입력값 확인",
-        text: "비밀번호가 일치하지 않습니다",
-      });
-    }
   };
 
   return (
     <div className="mypage-content-warp">
       <div className="delete-input-wrap">
         <div>
-          <label htmlFor="currPw">비밀번호</label>
-          <JoinInputWrap
-            data={currPw}
-            setData={setCurrPw}
-            type="password"
-            content="currPw"
-            label="비밀번호"
-            CheckMsg={reqPwMsg}
-            // blurEvent={pwReqCheck}
-          />
-        </div>
-        <div>
-          <label htmlFor="currPwRe">비밀번호 확인</label>
-          <JoinInputWrap
-            data={currPwRe}
-            setData={setCurrPwRe}
-            type="password"
-            content="currPwRe"
-            label="비밀번호 확인"
-          />
-        </div>
-        <div className="delete-btn-box">
-          <Button3 text="회원 탈퇴" clickEvent={deleteMember} />
+          <div className="title">
+            <label htmlFor="currPwRe">비밀번호 확인</label>
+          </div>
+          
+          <Input
+                type="passWord"
+                data={currPw}
+                setData={setCurrPw}
+                content="currPw"
+              />
+              <Button3 text="탈퇴하기" clickEvent={pwCheck} />
+              
         </div>
       </div>
     </div>
