@@ -52,7 +52,7 @@ const Join = () => {
     const idReg = /^[a-zA-Z0-9]{4,12}$/;
     if (!idReg.test(memberId)) {
       //정구표현식 만족못함
-      setCheckIdMsg("아이디는 영어 대소문자숫자로4-8글자입니다!");
+      setCheckIdMsg("아이디는 영어 대소문자, 숫자로 4~8글자 입니다.");
     } else {
       //민족->DB중복채크
       axios
@@ -62,7 +62,7 @@ const Join = () => {
           if (res.data === 0) {
             setCheckIdMsg("");
           } else {
-            setCheckIdMsg("이미사용중인 아이디");
+            setCheckIdMsg("이미 사용중인 아이디입니다.");
           }
         })
         .catch((res) => {
@@ -79,7 +79,7 @@ const Join = () => {
   const nameReg = /^[ㄱ-힣]+$/;
   const pwCheck = () => {
     if (memberPw !== memberPwRe) {
-      setCheckPWMsg("비밀번호입력 재확인 해주세욥!");
+      setCheckPWMsg("입력하신 비밀번호를 확인해주세요.");
     } else if (memberPw == "") {
       setCheckPWMsg("");
     } else {
@@ -89,7 +89,7 @@ const Join = () => {
   //최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 정규식
   const pwReqCheck = () => {
     if (!passwordRegEx.test(memberPw)) {
-      setReqPwMsg("비밀번호는 문자,숫자 및 하나의 특수문자 최소8자입니다.");
+      setReqPwMsg("비밀번호는 특수 문자와 문자, 숫자를 포함한 최소 8자입니다.");
     } else {
       setReqPwMsg("");
     }
@@ -97,21 +97,21 @@ const Join = () => {
 
   const checkEmail = () => {
     if (!emailRegEx.test(memberEmail)) {
-      setCheckEmailMsg("이메일 형식에 맞게 작성해주세요");
+      setCheckEmailMsg("이메일 형식에 맞게 작성해주세요.");
     } else {
       setCheckEmailMsg("");
     }
   };
   const checkName = () => {
     if (!nameReg.test(memberName)) {
-      setCheckNameMsg("이름은 한글만 기입해주세요");
+      setCheckNameMsg("이름은 한글로만 입력이 가능합니다.");
     } else {
       setCheckNameMsg("");
     }
   };
   const checkPhone = () => {
     if (!phoneregExp.test(memberPhone)) {
-      setCheckPhoneMsg("전화번호 양식은 010-0000-0000입니다!");
+      setCheckPhoneMsg("전화번호는 '010-0000-0000' 형태로 입력해주세요.");
     } else {
       setCheckPhoneMsg("");
     }
