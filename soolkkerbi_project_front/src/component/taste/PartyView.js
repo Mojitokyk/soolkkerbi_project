@@ -105,7 +105,7 @@ const PartyView = (props) => {
             html:
               "예약을 취소하시겠습니까?" +
               "<br/>" +
-              "(마이페이지 > 예약내역에서 예약취소를 진행할 수 있습니다.)",
+              "(마이페이지 > 예약내역에서 예약 취소를 진행할 수 있습니다.)",
           }).then((res) => {
             if (res.value) {
               navigate("/mypage/*");
