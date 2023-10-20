@@ -1,13 +1,27 @@
-#modal-modal-title{
-    text-align: center;
+.delete-input-wrap {
+  width: 500px;
+  margin: 0 auto;
 }
-#modal-modal-description{
-    width: 350px;
+.delete-input-wrap > div {
+  padding: 10px 0;
 }
-.delete-btn-box{
-    padding-top: 25px;
+.delete-input-wrap > div > label {
+  font-family: ns-b;
 }
-.quit_off{
-    float: right;
-    cursor: pointer;
+.delete-input-wrap > div > .input {
+  padding: 10px 0;
+}
+
+.delete-btn-box > button {
+  font-family: ns-b;
+  font-size: 18px;
+}
+.delete-btn-box > button:hover {
+  background-color: #4f4f4f;
+  color: #fff;
+  transition: 0.5s;
+}
+.delete-input-wrap > div > .check-msg {
+  text-align: left;
+  font-family: ns-r;
 }
