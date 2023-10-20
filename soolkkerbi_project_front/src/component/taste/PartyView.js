@@ -29,8 +29,10 @@ const PartyView = (props) => {
         axios
           .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
           .then((res) => {
-            // console.log(res.data);
-            setDoneReservation("1");
+            console.log(res.data);
+            if (res.data === 1) {
+              setDoneReservation("1");
+            }
           })
           .catch((res) => {
             console.log(res.response.status);
@@ -80,10 +82,10 @@ const PartyView = (props) => {
 
   //예약 진행 함수
   const reservation = () => {
-    // console.log("예약 이벤트");
-    // console.log(member);
-    // console.log(taste);
-    // console.log(isLogin);
+    console.log("예약 이벤트");
+    console.log(member);
+    console.log(taste);
+    console.log(isLogin);
     if (isLogin) {
       if (taste.tasteStatus === "2") {
         Swal.fire({
@@ -92,7 +94,7 @@ const PartyView = (props) => {
           text: "종료된 시음회 입니다.",
         });
       } else {
-        if (doneReservation === 0) {
+        if (doneReservation === "0") {
           // console.log(0);
           navigate("/taste/reservationCalendar", {
             state: { member: member, taste: taste },

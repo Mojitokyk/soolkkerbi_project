@@ -18,7 +18,7 @@ const ManageQnaList = (props) => {
   };
 
   useEffect(() => {
-    console.log(answerStatus);
+    // console.log(answerStatus);
     axios
       .get("/qna/adminList/" + reqPage + "/" + answerStatus) //get메서드 사용
       .then((res) => {
@@ -70,7 +70,7 @@ const QnaItem = (props) => {
   const qna = props.qna;
   const navigate = useNavigate();
   const qnaView = () => {
-    console.log("qnaItem - qnaNo: " + qna.qnaNo);
+    // console.log("qnaItem - qnaNo: " + qna.qnaNo);
     navigate("/admin/manageQna/manageQnaView", {
       state: {
         qnaNo: qna.qnaNo,
