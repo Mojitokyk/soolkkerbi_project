@@ -43,7 +43,10 @@ public class MemberService {
 
 	@Transactional
 	public int insertMember(Member member) {
-		return memberDao.insertMember(member);
+		System.out.println(member);
+		int result = memberDao.insertMember(member);
+		System.out.println("dao -> service");
+		return result;
 	}
 
 	public String login(Member member) {

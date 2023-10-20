@@ -46,8 +46,10 @@ public class MemberController {
 	}
 	@PostMapping(value = "/join")
 	public int join(@RequestBody Member member) {
+		
 		System.out.println(member);
 		int result = memberService.insertMember(member);
+		System.out.println("sevice에서 controller로 옴");
 		return result;
 	}
 	@PostMapping(value = "/login")
@@ -120,17 +122,23 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "/thumbnail")
-	public int thumbnail(@ModelAttribute Member m,@ModelAttribute MultipartFile memberFilepath ) {
+	public int thumbnail(@ModelAttribute Member m,@ModelAttribute MultipartFile thumbnail ) {
 		String savepath = root + "member/";
-		if (memberFilepath != null) {
-			String filename = memberFilepath.getOriginalFilename();
-			String filepath = fileUtil.getFilepath(savepath, filename, memberFilepath);
+//		String savepath = root+""
+//				+ "member/";
+//		if(m.getMemberFilepath().equals("null")) {
+//			m.setMemberFilepath(null);
+//		}
+//		
+		System.out.println(thumbnail);
+		 if (thumbnail != null) {
+			String filename = thumbnail.getOriginalFilename();
+			String filepath = fileUtil.getFilepath(savepath, filename, thumbnail);
 			m.setMemberFilepath(filepath);
-
 		}
 		System.out.println(m);
 		int result =memberService.thumbnail(m);
 		return result;
 	}
-	
+//	
 }

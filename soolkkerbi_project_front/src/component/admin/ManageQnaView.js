@@ -13,16 +13,16 @@ const ManageQnaView = (props) => {
   const [qna, setQna] = useState({});
   const navigate = useNavigate();
 
-  console.log(member.memberLevel);
-  console.log("QnaView - location.state.qnaNo: " + location.state.qnaNo);
+  // console.log(member.memberLevel);
+  // console.log("QnaView - location.state.qnaNo: " + location.state.qnaNo);
 
   useEffect(() => {
-    console.log("axios - qnaNo: " + qnaNo);
+    // console.log("axios - qnaNo: " + qnaNo);
     axios
       .get("/qna/view/" + qnaNo)
       .then((res) => {
         setQna(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((res) => {
         console.log(res.response.status);
