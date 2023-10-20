@@ -38,100 +38,181 @@ const Pay = () => {
         text: "방문일자를 확인해주세요.",
       });
     } else {
-      //재고량 체크1 : 바로 구매 클릭으로 cart를 받아왔을 때
-      if (cart && cart.cartStock > cart.productStock) {
-        Swal.fire({
-          icon: "warning",
-          title: "재고 부족",
-          text: "재고 부족으로 결제할 수 없습니다.",
-        });
-        //재고량 체크2 : 주문하기로 cartList를 받아왔을 때
-      } else if (cartList) {
-        for (let i = 0; i < cartList.length; i++) {
-          if (cartList[i].cartStock > cartList[i].productStock) {
-            Swal.fire({
-              icon: "warning",
-              title: "재고 부족",
-              text: "재고 부족으로 결제할 수 없습니다.",
-            });
+      if (cart) {
+        if (cart.cartStock > cart.productStock) {
+          Swal.fire({
+            icon: "warning",
+            title: "재고 부족",
+            text: "재고 부족으로 결제할 수 없습니다.",
+          });
+        } else {
+          const { IMP } = window;
+          const price = totalPrice ? totalPrice : cart.cartPrice;
+          const productName = cartList
+            ? cartList[0].productName + " 외 " + cartList.length + "건"
+            : cart.productName;
+          IMP.init("imp83034442");
+          const data = {
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: "주문번호_" + payStringNo,
+            name: productName,
+            amount: price,
+            buyer_email: member.memberEmail,
+            buyer_name: member.memberName,
+            buyer_tel: member.memberPhone,
+          };
+          IMP.request_pay(data, callback);
+
+          function callback(response) {
+            const { success, error_msg } = response;
+            //결제 성공 시
+            if (success) {
+              if (cartList) {
+                for (let i = 0; i < cartList.length; i++) {
+                  cartList[i].payStringNo = payStringNo;
+                  cartList[i].pickupDate = pickupDate;
+                }
+                //pay테이블 insert : 여러 개
+                axios
+                  .post("/pay/insertPayList", cartList, {
+                    headers: {
+                      Authorization: "Bearer " + token,
+                    },
+                  })
+                  .then((res) => {
+                    if (res.data === 1) {
+                      Swal.fire({
+                        icon: "success",
+                        title: "결제 완료",
+                        text: "결제가 완료되었습니다.",
+                      });
+                      navigate("/mypage/order");
+                    }
+                  })
+                  .catch((res) => {});
+              } else {
+                //pay테이블 insert : 한 개
+                cart.payStringNo = payStringNo;
+                cart.pickupDate = pickupDate;
+                axios
+                  .post("/pay/insertOnePay", cart, {
+                    headers: {
+                      Authorization: "Bearer " + token,
+                    },
+                  })
+                  .then((res) => {
+                    if (res.data === 1) {
+                      Swal.fire({
+                        icon: "success",
+                        title: "결제 완료",
+                        text: "결제가 완료되었습니다.",
+                      });
+                      navigate("/mypage/order");
+                    }
+                  })
+                  .catch((res) => {});
+              }
+              //결제 실패 시
+            } else {
+              Swal.fire({
+                icon: "warning",
+                title: "결제 취소",
+                text: error_msg,
+              });
+            }
           }
         }
-        //픽업일자 입력 완료 & 재고량 체크 모두 통과했을 때 결제
-      } else {
-        const { IMP } = window;
-        const price = totalPrice ? totalPrice : cart.cartPrice;
-        const productName = cartList
-          ? cartList[0].productName + " 외 " + cartList.length + "건"
-          : cart.productName;
-        IMP.init("imp83034442");
-        const data = {
-          pg: "html5_inicis",
-          pay_method: "card",
-          merchant_uid: "주문번호_" + payStringNo,
-          name: productName,
-          amount: price,
-          buyer_email: member.memberEmail,
-          buyer_name: member.memberName,
-          buyer_tel: member.memberPhone,
-        };
-        IMP.request_pay(data, callback);
+      }
+      if (cartList) {
+        let count = 0;
+        for (let i = 0; i < cartList.length; i++) {
+          if (cartList[i].cartStock > cartList[i].productStock) {
+            count++;
+          }
+        }
+        if (count > 0) {
+          Swal.fire({
+            icon: "warning",
+            title: "재고 부족",
+            text: "재고 부족으로 결제할 수 없습니다.",
+          });
+        } else {
+          const { IMP } = window;
+          const price = totalPrice ? totalPrice : cart.cartPrice;
+          const productName = cartList
+            ? cartList[0].productName + " 외 " + cartList.length + "건"
+            : cart.productName;
+          IMP.init("imp83034442");
+          const data = {
+            pg: "html5_inicis",
+            pay_method: "card",
+            merchant_uid: "주문번호_" + payStringNo,
+            name: productName,
+            amount: price,
+            buyer_email: member.memberEmail,
+            buyer_name: member.memberName,
+            buyer_tel: member.memberPhone,
+          };
+          IMP.request_pay(data, callback);
 
-        function callback(response) {
-          const { success, error_msg } = response;
-          //결제 성공 시
-          if (success) {
-            if (cartList) {
-              for (let i = 0; i < cartList.length; i++) {
-                cartList[i].payStringNo = payStringNo;
-                cartList[i].pickupDate = pickupDate;
+          function callback(response) {
+            const { success, error_msg } = response;
+            //결제 성공 시
+            if (success) {
+              if (cartList) {
+                for (let i = 0; i < cartList.length; i++) {
+                  cartList[i].payStringNo = payStringNo;
+                  cartList[i].pickupDate = pickupDate;
+                }
+                //pay테이블 insert : 여러 개
+                axios
+                  .post("/pay/insertPayList", cartList, {
+                    headers: {
+                      Authorization: "Bearer " + token,
+                    },
+                  })
+                  .then((res) => {
+                    if (res.data === 1) {
+                      Swal.fire({
+                        icon: "success",
+                        title: "결제 완료",
+                        text: "결제가 완료되었습니다.",
+                      });
+                      navigate("/mypage/order");
+                    }
+                  })
+                  .catch((res) => {});
+              } else {
+                //pay테이블 insert : 한 개
+                cart.payStringNo = payStringNo;
+                cart.pickupDate = pickupDate;
+                axios
+                  .post("/pay/insertOnePay", cart, {
+                    headers: {
+                      Authorization: "Bearer " + token,
+                    },
+                  })
+                  .then((res) => {
+                    if (res.data === 1) {
+                      Swal.fire({
+                        icon: "success",
+                        title: "결제 완료",
+                        text: "결제가 완료되었습니다.",
+                      });
+                      navigate("/mypage/order");
+                    }
+                  })
+                  .catch((res) => {});
               }
-              //pay테이블 insert : 여러 개
-              axios
-                .post("/pay/insertPayList", cartList, {
-                  headers: {
-                    Authorization: "Bearer " + token,
-                  },
-                })
-                .then((res) => {
-                  if (res.data === 1) {
-                    Swal.fire({
-                      icon: "success",
-                      title: "결제 완료",
-                      text: "결제가 완료되었습니다.",
-                    });
-                    navigate("/mypage/order");
-                  }
-                })
-                .catch((res) => {});
+              //결제 실패 시
             } else {
-              //pay테이블 insert : 한 개
-              cart.payStringNo = payStringNo;
-              cart.pickupDate = pickupDate;
-              axios
-                .post("/pay/insertOnePay", cart, {
-                  headers: {
-                    Authorization: "Bearer " + token,
-                  },
-                })
-                .then((res) => {
-                  if (res.data === 1) {
-                    Swal.fire({
-                      icon: "success",
-                      title: "결제 완료",
-                      text: "결제가 완료되었습니다.",
-                    });
-                    navigate("/mypage/order");
-                  }
-                })
-                .catch((res) => {});
+              Swal.fire({
+                icon: "warning",
+                title: "결제 취소",
+                text: error_msg,
+              });
             }
-            //결제 실패 시
-          } else {
-            Swal.fire({
-              icon: "warning",
-              title: "결제 취소",
-              text: error_msg,
-            });
           }
         }
       }
