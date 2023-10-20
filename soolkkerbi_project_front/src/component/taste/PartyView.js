@@ -14,22 +14,22 @@ const PartyView = (props) => {
   const [doneReservation, setDoneReservation] = useState("0");
   const navigate = useNavigate();
 
-  console.log("PartyView - location.state.tasteNo: " + location.state.tasteNo);
-  console.log(member.memberId);
+  // console.log("PartyView - location.state.tasteNo: " + location.state.tasteNo);
+  // console.log(member.memberId);
 
   useEffect(() => {
-    console.log("axios - partyNo: " + tasteNo);
+    // console.log("axios - partyNo: " + tasteNo);
     axios
       .get("/taste/view/" + tasteNo)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTaste(res.data);
 
         const memberNo = member.memberNo;
         axios
           .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setDoneReservation("1");
           })
           .catch((res) => {
@@ -48,13 +48,13 @@ const PartyView = (props) => {
 
   //수정 버튼 함수
   const modifyTaste = () => {
-    console.log("수정 이벤트");
+    // console.log("수정 이벤트");
     navigate("/taste/modifyTaste", { state: { taste: taste } });
   };
 
   //삭제 버튼 함수
   const deleteTaste = () => {
-    console.log("삭제 이벤트");
+    // console.log("삭제 이벤트");
     Swal.fire({
       icon: "question",
       text: "시음회를 삭제하시겠습니까?",
@@ -66,7 +66,7 @@ const PartyView = (props) => {
         axios
           .get("/taste/delete/" + taste.tasteNo)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data === 1) {
               navigate("/taste");
             }
@@ -80,10 +80,10 @@ const PartyView = (props) => {
 
   //예약 진행 함수
   const reservation = () => {
-    console.log("예약 이벤트");
-    console.log(member);
-    console.log(taste);
-    console.log(isLogin);
+    // console.log("예약 이벤트");
+    // console.log(member);
+    // console.log(taste);
+    // console.log(isLogin);
     if (isLogin) {
       if (taste.tasteStatus === "2") {
         Swal.fire({
@@ -93,7 +93,7 @@ const PartyView = (props) => {
         });
       } else {
         if (doneReservation === 0) {
-          console.log(0);
+          // console.log(0);
           navigate("/taste/reservationCalendar", {
             state: { member: member, taste: taste },
           });
@@ -123,7 +123,7 @@ const PartyView = (props) => {
     }
   };
 
-  console.log(taste.tasteStatus);
+  // console.log(taste.tasteStatus);
   return (
     <>
       <div className="taste-view-wrap">

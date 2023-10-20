@@ -16,7 +16,7 @@ const PartyList = (props) => {
     axios
       .get("/taste/list/" + reqPage) //경로에 reqPage 보내줌
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTasteList(res.data.tasteList);
         setPageInfo(res.data.pi);
       })
@@ -66,7 +66,7 @@ const TasteItem = (props) => {
   const taste = props.taste;
   const navigate = useNavigate();
 
-  console.log(taste.tasteStatus);
+  // console.log(taste.tasteStatus);
 
   const tasteView = () => {
     navigate("/taste/view", { state: { tasteNo: taste.tasteNo } });

@@ -40,20 +40,20 @@ const NoticeWrite = (props) => {
 
   //글쓰기 버튼 클릭 시 동작할 함수(서버에 insert요청 함수)
   const write = () => {
-    console.log(noticeTitle);
-    console.log(noticeContent);
-    console.log(member.memberNo);
+    // console.log(noticeTitle);
+    // console.log(noticeContent);
+    // console.log(member.memberNo);
 
     if (noticeTitle !== "" && noticeContent !== "") {
       const obj = new Object();
       obj.noticeMemberNo = member.memberNo;
       obj.noticeTitle = noticeTitle;
       obj.noticeContent = noticeContent;
-      console.log(obj);
+      // console.log(obj);
       axios
         .post("/notice/insert", obj)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           navigate("/notice");
         })
         .catch((res) => {

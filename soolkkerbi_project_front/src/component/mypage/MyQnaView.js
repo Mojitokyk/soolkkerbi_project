@@ -14,15 +14,15 @@ const MyQnaView = (props) => {
   const [qna, setQna] = useState({});
   const navigate = useNavigate();
 
-  console.log(member.memberLevel);
-  console.log("QnaView - location.state.qnaNo: " + location.state.qnaNo);
+  // console.log(member.memberLevel);
+  // console.log("QnaView - location.state.qnaNo: " + location.state.qnaNo);
 
   useEffect(() => {
-    console.log("axios - qnaNo: " + qnaNo);
+    // console.log("axios - qnaNo: " + qnaNo);
     axios
       .get("/qna/view/" + qnaNo)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setQna(res.data);
       })
       .catch((res) => {
@@ -37,13 +37,13 @@ const MyQnaView = (props) => {
 
   //수정 버튼 함수
   const modifyQna = () => {
-    console.log("수정 이벤트");
+    // console.log("수정 이벤트");
     navigate("/mypage/qna/qnaModify", { state: { qna: qna } });
   };
 
   //삭제 버튼 함수
   const deleteQna = () => {
-    console.log("삭제 이벤트");
+    // console.log("삭제 이벤트");
     Swal.fire({
       icon: "question",
       text: " 문의사항을 삭제하시겠습니까?",
@@ -55,7 +55,7 @@ const MyQnaView = (props) => {
         axios
           .get("/qna/delete/" + qna.qnaNo) //boardNo를 같이 보냄
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data === 1) {
               navigate("/mypage/qna");
             }

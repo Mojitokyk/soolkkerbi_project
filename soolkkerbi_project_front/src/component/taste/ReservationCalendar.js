@@ -12,18 +12,18 @@ const ReservationCalendar = () => {
   const location = useLocation();
   const member = location.state.member;
   const taste = location.state.taste;
-  console.log(member);
-  console.log(taste);
+  // console.log(member);
+  // console.log(taste);
   const [value, onChange] = useState();
 
-  console.log(taste.tasteStart);
-  console.log(taste.tasteEnd);
-  console.log(taste.tasteStatus);
+  // console.log(taste.tasteStart);
+  // console.log(taste.tasteEnd);
+  // console.log(taste.tasteStatus);
 
   //선택한 날짜
-  console.log(moment(value).format("YYYY년 MM월 DD일"));
-  console.log(moment(value).format("YYYY/MM/DD"));
-  console.log(moment(value).format("YYYYMMDD"));
+  // console.log(moment(value).format("YYYY년 MM월 DD일"));
+  // console.log(moment(value).format("YYYY/MM/DD"));
+  // console.log(moment(value).format("YYYYMMDD"));
   const selectDateFormat = moment(value).format("YYYY-MM-DD");
   const selectDate = moment(value).format("YY/MM/DD");
   const selectDateForReservationNo = moment(value).format("YYYYMMDD");
@@ -35,15 +35,15 @@ const ReservationCalendar = () => {
 
   /*'다음'버튼 함수 */
   const reservationConfirm = () => {
-    console.log("다음 버튼 이벤트");
-    console.log(member);
-    console.log(taste);
-    console.log(selectDate);
-    console.log(selectDateForReservationNo);
-    console.log(selectDateFormat);
-    console.log(taste.tasteStart);
-    console.log(taste.tasteEnd);
-    console.log(taste.tasteStatus);
+    // console.log("다음 버튼 이벤트");
+    // console.log(member);
+    // console.log(taste);
+    // console.log(selectDate);
+    // console.log(selectDateForReservationNo);
+    // console.log(selectDateFormat);
+    // console.log(taste.tasteStart);
+    // console.log(taste.tasteEnd);
+    // console.log(taste.tasteStatus);
 
     if (
       selectDateFormat < taste.tasteStart ||

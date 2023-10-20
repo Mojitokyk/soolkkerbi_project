@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const MyQnaAnswer = (props) => {
   const member = props.member;
   const answerQnaNo = props.qnaNo; //현재 문의사항 번호
-  console.log(answerQnaNo);
+  // console.log(answerQnaNo);
   const [answerList, setAnswerList] = useState([]);
 
   return (
@@ -36,7 +36,7 @@ const MyQnaAnswer = (props) => {
 //답변등록
 const RegistAnswer = (props) => {
   const answerQnaNo = props.answerQnaNo; //현재 문의사항 번호
-  console.log(answerQnaNo);
+  // console.log(answerQnaNo);
   const answerList = props.answerList;
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
@@ -53,7 +53,7 @@ const RegistAnswer = (props) => {
       axios
         .post("/qna/registAnswer", form)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setAnswerContent("");
 
           const newArr = [...answerList];
@@ -71,7 +71,7 @@ const RegistAnswer = (props) => {
     }
   };
 
-  console.log(answerList);
+  // console.log(answerList);
 
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
@@ -124,7 +124,7 @@ const RegistAnswer = (props) => {
 const PrintAnswer = (props) => {
   const member = props.member;
   const answerQnaNo = props.answerQnaNo; //현재 문의사항 번호
-  console.log(answerQnaNo);
+  // console.log(answerQnaNo);
   const answerList = props.answerList;
   const setAnswerList = props.setAnswerList;
   const [answerContent, setAnswerContent] = useState("");
@@ -136,7 +136,7 @@ const PrintAnswer = (props) => {
     axios
       .get("/qna/printAnswer/" + answerQnaNo)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAnswerList(res.data);
 
         //등록된 답변 존재시, 등록 창을 숨김
@@ -155,10 +155,10 @@ const PrintAnswer = (props) => {
 
   //답변 삭제 함수
   const deleteAnswer = (answerNo, index) => {
-    console.log("답변 삭제 함수 클릭");
-    console.log(answerNo);
-    console.log(index);
-    console.log(answerQnaNo);
+    // console.log("답변 삭제 함수 클릭");
+    // console.log(answerNo);
+    // console.log(index);
+    // console.log(answerQnaNo);
 
     const form = new FormData();
     form.append("answerNo", answerNo);
@@ -166,7 +166,7 @@ const PrintAnswer = (props) => {
     axios
       .post("/qna/deleteAnswer", form)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         const newArr = [...answerList];
         newArr.splice(index, 1);
@@ -182,18 +182,18 @@ const PrintAnswer = (props) => {
 
   //답변 수정 함수
   const modifyAnswerFrm = (answerNo, index) => {
-    console.log("답변 수정양식 함수 클릭");
-    console.log(answerNo);
-    console.log(index);
+    // console.log("답변 수정양식 함수 클릭");
+    // console.log(answerNo);
+    // console.log(index);
 
     setModifyFrm(true);
   };
   const modifyAnswer = (answer, index) => {
     // const answerNo = props.answerNo;
-    console.log(answer.answerNo);
-    console.log(answer.answerContent); /*이전 값*/
-    console.log(answerContent); /*새로운 값*/
-    console.log(index);
+    // console.log(answer.answerNo);
+    // console.log(answer.answerContent); /*이전 값*/
+    // console.log(answerContent); /*새로운 값*/
+    // console.log(index);
 
     // if (qnaComment !== "" && memberLevel === 1) {
     if (answerContent !== "") {
@@ -205,7 +205,7 @@ const PrintAnswer = (props) => {
       axios
         .post("/qna/modifyAnswer", form)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setAnswerContent("");
 
           const newArr = [...answerList];
@@ -229,10 +229,10 @@ const PrintAnswer = (props) => {
 
   //textarea의 변화를 감지한 후, 값을 answerContent에 set하는 함수
   const changeContent = (e) => {
-    console.log("content-change");
+    // console.log("content-change");
     const inputValue = e.currentTarget.value;
     setAnswerContent(inputValue);
-    console.log(answerContent);
+    // console.log(answerContent);
   };
   //Enter로 '등록'을 수행하는 함수
   // const enterCheck = (e) => {
@@ -248,7 +248,7 @@ const PrintAnswer = (props) => {
 
   //수정취소 함수
   const cancelModify = () => {
-    console.log(answerQnaNo);
+    // console.log(answerQnaNo);
     setModifyFrm(false);
   };
 

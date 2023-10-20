@@ -12,7 +12,7 @@ const MyQnaList = (props) => {
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
 
-  console.log(member.memberLevel);
+  // console.log(member.memberLevel);
 
   const token = window.localStorage.getItem("token");
 
@@ -26,7 +26,7 @@ const MyQnaList = (props) => {
         },
       }) //get메서드 사용
       .then((res) => {
-        console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
+        // console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setQnaList(res.data.qnaList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
         setPageInfo(res.data.pi); //res.data의 'pi'key의 값을 setPageInfo에 넣음
       })
@@ -92,7 +92,7 @@ const QnaItem = (props) => {
   const qna = props.qna;
   const navigate = useNavigate();
   const qnaView = () => {
-    console.log("qnaItem - qnaNo: " + qna.qnaNo);
+    // console.log("qnaItem - qnaNo: " + qna.qnaNo);
     navigate("/mypage/qna/qnaView", { state: { qnaNo: qna.qnaNo } });
   };
   return (

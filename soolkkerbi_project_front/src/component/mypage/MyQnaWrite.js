@@ -14,8 +14,8 @@ const MyQnaWrite = () => {
 
   //글쓰기 버튼 클릭 시 동작할 함수(서버에 insert요청 함수)
   const write = () => {
-    console.log(qnaTitle);
-    console.log(qnaContnet);
+    // console.log(qnaTitle);
+    // console.log(qnaContnet);
     if (qnaTitle !== "" && qnaContnet !== "") {
       //기본적인 문자열 또는 숫자데이터를 전송하는 경우, JSON을 전송
       //파일이 포함되어 있는 경우 -> FormData
@@ -31,7 +31,7 @@ const MyQnaWrite = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           navigate("/mypage/qna");
         })
         .catch((res) => {

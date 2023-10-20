@@ -7,9 +7,9 @@ const ReservationDone = () => {
   const member = location.state.member;
   const taste = location.state.taste;
   const reservationStringNo = location.state.reservationStringNo;
-  console.log(member);
-  console.log(taste);
-  console.log(reservationStringNo);
+  // console.log(member);
+  // console.log(taste);
+  // console.log(reservationStringNo);
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -18,7 +18,7 @@ const ReservationDone = () => {
 
   /*마이페이지의 예약내역으로 이동하는 함수*/
   const toMypageReservation = () => {
-    console.log("예약 내역 버튼 이벤트");
+    // console.log("예약 내역 버튼 이벤트");
     navigate("/mypage");
   };
 

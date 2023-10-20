@@ -22,7 +22,7 @@ const NoticeFrm = (props) => {
 
   //'취소'버튼
   const prev = () => {
-    console.log("취소 버튼 클릭");
+    // console.log("취소 버튼 클릭");
     navigate("/notice/noticeView", { state: { noticeNo: noticeNo } });
   };
 

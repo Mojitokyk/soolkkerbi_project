@@ -7,7 +7,7 @@ import PartyFrm from "./PartyFrm";
 const PartyModify = () => {
   const location = useLocation();
   const taste = location.state.taste;
-  console.log(taste);
+  // console.log(taste);
 
   const [tasteTitle, setTasteTitle] = useState(taste.tasteTitle);
   const [thumbnail, setThumbnail] = useState({});
@@ -18,15 +18,15 @@ const PartyModify = () => {
   const [tasteFilepath, setTasteFilepath] = useState(taste.tasteFilepath);
   //썸네일 미리보기용
   const [tasteImg, setTasteImg] = useState(taste.tasteFilepath);
-  console.log(tasteImg);
+  // console.log(tasteImg);
 
   const navigate = useNavigate(); //글쓰기 버튼 클릭시 동작할 함수(서버에 insert요청함수)
   const modify = () => {
-    console.log(tasteTitle);
-    console.log(thumbnail);
-    console.log(tasteContent);
-    console.log(tasteFilepath);
-    console.log(tasteStatus);
+    // console.log(tasteTitle);
+    // console.log(thumbnail);
+    // console.log(tasteContent);
+    // console.log(tasteFilepath);
+    // console.log(tasteStatus);
 
     const form = new FormData();
     form.append("tasteStart", tasteStart);

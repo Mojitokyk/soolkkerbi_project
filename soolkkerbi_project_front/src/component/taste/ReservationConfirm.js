@@ -10,17 +10,17 @@ const ReservationConfirm = () => {
   const selectDate = location.state.selectDate;
   const selectDateFormat = location.state.selectDateFormat;
   const selectDateForReservationNo = location.state.selectDateForReservationNo;
-  console.log(member);
-  console.log(taste);
-  console.log(selectDate);
-  console.log(selectDateFormat);
-  console.log(selectDateForReservationNo);
+  // console.log(member);
+  // console.log(taste);
+  // console.log(selectDate);
+  // console.log(selectDateFormat);
+  // console.log(selectDateForReservationNo);
 
   //reservationStringNo 생성
   //RN(예약번호 - reservationNo) + 시음회번호(tasteNo) + 회원번호(memberNo) + 현재날짜(selectDateForReservationNo)
   const reservationStringNo =
     "RN" + taste.tasteNo + member.memberNo + selectDateForReservationNo;
-  console.log(reservationStringNo);
+  // console.log(reservationStringNo);
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -29,10 +29,10 @@ const ReservationConfirm = () => {
 
   /*'예약완료'버튼 함수*/
   const reservationDone = () => {
-    console.log("예약완료 버튼 이벤트");
-    console.log(member.memberNo);
-    console.log(taste.tasteNo);
-    console.log(selectDate);
+    // console.log("예약완료 버튼 이벤트");
+    // console.log(member.memberNo);
+    // console.log(taste.tasteNo);
+    // console.log(selectDate);
 
     const form = new FormData();
     form.append("reservationTasteNo", taste.tasteNo);
@@ -47,7 +47,7 @@ const ReservationConfirm = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         navigate("/taste/reservationDone", {
           state: {

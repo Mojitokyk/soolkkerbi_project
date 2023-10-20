@@ -16,9 +16,9 @@ const PartyWrite = () => {
   const [tasteImg, setTasteImg] = useState(null);
   const navigate = useNavigate(); //글쓰기 버튼 클릭시 동작할 함수(서버에 insert요청함수)
   const write = () => {
-    console.log(tasteTitle);
-    console.log(thumbnail);
-    console.log(tasteContent);
+    // console.log(tasteTitle);
+    // console.log(thumbnail);
+    // console.log(tasteContent);
     if (tasteTitle !== "" && tasteContent !== "") {
       //기본적인 문자열 또는 숫자데이터를 전송하는 경우 json전송
       //파일이 포함되어있는 경우 => FormData
@@ -43,7 +43,7 @@ const PartyWrite = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data > 0) {
             navigate("/taste");
           }

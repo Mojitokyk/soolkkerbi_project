@@ -65,10 +65,10 @@ const PartyFrm = (props) => {
   };
 
   const selectTasteStatus = (e) => {
-    console.log("시음회 상태 변경 함수 동작");
+    // console.log("시음회 상태 변경 함수 동작");
     const changeValue = e.currentTarget.value;
     setTasteStatus(changeValue);
-    console.log(changeValue);
+    // console.log(changeValue);
   };
 
   return (

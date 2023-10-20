@@ -13,7 +13,7 @@ const Main = (props) => {
   const [member, setMember] = useState({});
   const token = window.localStorage.getItem("token");
 
-  console.log(isLogin);
+  // console.log(isLogin);
 
   //getMember를 수행하여 member값을 각각 SwiperMain, MainList에 전달
   useEffect(() => {
@@ -32,7 +32,7 @@ const Main = (props) => {
       });
   }, [isLogin]);
 
-  console.log(member);
+  // console.log(member);
 
   return (
     <>
@@ -47,19 +47,19 @@ const SwiperMain = (props) => {
 
   //제품 상세페이지로 이동
   const toProductView = (productNo, member) => {
-    console.log("페이지 이동 이벤트 클릭");
-    console.log(productNo);
-    console.log(member);
+    // console.log("페이지 이동 이벤트 클릭");
+    // console.log(productNo);
+    // console.log(member);
 
     const memberId = member.memberId;
-    console.log(memberId);
+    // console.log(memberId);
 
     axios
       .get("/product/getProductIsLike/" + memberId + "/" + productNo)
       .then((res) => {
         // console.log(memberId);
-        console.log(res.data); //memberId 미포함
-        console.log(res.data.isLike);
+        // console.log(res.data); //memberId 미포함
+        // console.log(res.data.isLike);
 
         navigate("/product/view", {
           state: {
@@ -169,13 +169,13 @@ const MainList = (props) => {
 
   //추천 리스트 DB에서 조회 -> memberId 값 전달 필요
   const memberId = member.memberId;
-  console.log(memberId);
+  // console.log(memberId);
 
   useEffect(() => {
     axios
       .get("/product/recommendList")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setRecommendList(res.data);
       })
       .catch((res) => {
@@ -201,19 +201,19 @@ const ProductRecommend = (props) => {
 
   //제품 상세페이지로 이동
   const toProductView = (productNo, member) => {
-    console.log("페이지 이동 이벤트 클릭");
-    console.log(productNo);
-    console.log(member);
+    // console.log("페이지 이동 이벤트 클릭");
+    // console.log(productNo);
+    // console.log(member);
 
     const memberId = member.memberId;
-    console.log(memberId);
+    // console.log(memberId);
 
     axios
       .get("/product/getProductIsLike/" + memberId + "/" + productNo)
       .then((res) => {
         // console.log(memberId);
-        console.log(res.data); //memberId 미포함
-        console.log(res.data.isLike);
+        // console.log(res.data); //memberId 미포함
+        // console.log(res.data.isLike);
 
         navigate("/product/view", {
           state: {

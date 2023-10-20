@@ -13,15 +13,15 @@ const NoticeView = (props) => {
   const [notice, setNotice] = useState({});
   const navigate = useNavigate();
 
-  console.log(
-    "NoticeView - location.state.noticeNo: " + location.state.noticeNo
-  );
+  // console.log(
+  //   "NoticeView - location.state.noticeNo: " + location.state.noticeNo
+  // );
   useEffect(() => {
-    console.log("axios - noticeNo: " + noticeNo);
+    // console.log("axios - noticeNo: " + noticeNo);
     axios
       .get("/notice/view/" + noticeNo)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setNotice(res.data);
       })
       .catch((res) => {
@@ -36,13 +36,13 @@ const NoticeView = (props) => {
 
   //수정 버튼 함수
   const modifyNotice = () => {
-    console.log("수정 이벤트");
+    // console.log("수정 이벤트");
     navigate("/notice/noticeModify", { state: { notice: notice } });
   };
 
   //삭제 버튼 함수
   const deleteNotice = () => {
-    console.log("삭제 이벤트");
+    // console.log("삭제 이벤트");
     Swal.fire({
       icon: "warning",
       text: "공지사항을 삭제하시겠습니까?",
@@ -54,7 +54,7 @@ const NoticeView = (props) => {
         axios
           .get("/notice/delete/" + notice.noticeNo) //boardNo를 같이 보냄
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data === 1) {
               navigate("/notice");
             }

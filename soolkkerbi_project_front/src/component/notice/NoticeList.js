@@ -12,7 +12,7 @@ const NoticeList = (props) => {
   const [reqPage, setReqPage] = useState(1); //1로 시작
   const [pageInfo, setPageInfo] = useState({});
 
-  console.log(member.memberLevel);
+  // console.log(member.memberLevel);
 
   //useEffect: 최초에 1회 수행후, [ ]배열 값이 달라지면 값에 따라 한 번 더 수행
   useEffect(() => {
@@ -20,7 +20,7 @@ const NoticeList = (props) => {
     axios
       .get("/notice/list/" + reqPage) //get메서드 사용
       .then((res) => {
-        console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
+        // console.log(res.data); //서버로부터 반환된 pi, boardList가 들어있다.
         setNoticeList(res.data.noticeList); //res.data의 'boardList'key의 값을 setBoardList에 넣음
         setPageInfo(res.data.pi); //res.data의 'pi'key의 값을 setPageInfo에 넣음
       })
@@ -87,7 +87,7 @@ const NoticeItem = (props) => {
   const notice = props.notice;
   const navigate = useNavigate();
   const noticeView = () => {
-    console.log("NoticeItem - noticeNo: " + notice.noticeNo);
+    // console.log("NoticeItem - noticeNo: " + notice.noticeNo);
     navigate("/notice/noticeView", { state: { noticeNo: notice.noticeNo } });
   };
   return (
