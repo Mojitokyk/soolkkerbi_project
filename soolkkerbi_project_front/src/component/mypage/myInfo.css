@@ -6,7 +6,7 @@
   width: 55%;
   border-spacing: 0;
   padding: 10px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 .mypage-info-tbl > tbody > tr > td:first-child {
   width: 30%;
@@ -37,4 +37,13 @@
   width: 50.5%;
   box-sizing: content-box;
   font-family: ns-b;
+}
+.mypage-memberImg{
+  text-align: center;
+}
+.mypage-memberImg > .css-1hpz50q-MuiAvatar-root{
+  margin: 0 auto;
+}
+.image-putMsg{
+  margin-top: 20px;
 }
