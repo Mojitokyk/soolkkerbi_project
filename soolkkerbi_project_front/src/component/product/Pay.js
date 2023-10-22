@@ -114,7 +114,9 @@ const Pay = () => {
           const { IMP } = window;
           const price = totalPrice ? totalPrice : cart.cartPrice;
           const productName =
-            cartList[0].productName + " 외 " + cartList.length + "건";
+            cartList.length === 1
+              ? cartList[0].productName
+              : cartList[0].productName + " 외 " + cartList.length + "건";
           IMP.init("imp83034442");
           const data = {
             pg: "html5_inicis",
@@ -171,7 +173,11 @@ const Pay = () => {
       <div className="pay-title">결제하기</div>
       <div className="pay-wrap">
         <div className="left-wrap">
-          {cartList ? <CartList cartList={cartList} /> : <Cart cart={cart} />}
+          {cartList ? (
+            <CartList cartList={cartList} member={member} />
+          ) : (
+            <Cart cart={cart} member={member} />
+          )}
           <div className="pay-member-info-wrap">
             <h3>주문자 정보</h3>
             <div className="pay-member-info">
@@ -204,9 +210,7 @@ const Pay = () => {
               <p>술꺼비</p>
               <p>02)1234-5678</p>
               <p>sulkkeobi@iei.or.kr</p>
-              <p>
-                서울시 영등포구 선유동2로 57 이레빌딩 1층 술꺼비 오프라인 매장
-              </p>
+              <p>서울시 영등포구 선유동2로 57 이레빌딩 1층</p>
               <p>07212</p>
             </div>
             <h3>방문 일자 및 시간</h3>
@@ -250,9 +254,12 @@ const Pay = () => {
 //장바구니에서 전체 상품 주문 시 -> cartList라는 배열로 받음
 const CartList = (props) => {
   const cartList = props.cartList;
+  const member = props.member;
   const navigate = useNavigate();
-  const productView = (productNo) => {
-    navigate("/product/view", { state: { productNo: productNo } });
+  const productView = (productNo, isLike) => {
+    navigate("/product/view", {
+      state: { productNo: productNo, member: member, like: isLike },
+    });
   };
   return (
     <div className="pay-product-info-wrap">
@@ -267,7 +274,7 @@ const CartList = (props) => {
             <div
               className="pay-product-img"
               onClick={() => {
-                productView(cart.cartProductNo);
+                productView(cart.cartProductNo, cart.isLike);
               }}
             >
               {cart.productFilepath === null ? (
@@ -290,9 +297,16 @@ const CartList = (props) => {
 //장바구니에서 개별 상품 주문 시 -> cart라는 객체로 받음
 const Cart = (props) => {
   const cart = props.cart;
+  const member = props.member;
   const navigate = useNavigate();
   const productView = () => {
-    navigate("/product/view", { state: { productNo: cart.cartProductNo } });
+    navigate("/product/view", {
+      state: {
+        productNo: cart.cartProductNo,
+        member: member,
+        like: cart.isLike,
+      },
+    });
   };
   //천원 단위 콤마붙인 가격
   const commaPrice = cart.cartPrice
