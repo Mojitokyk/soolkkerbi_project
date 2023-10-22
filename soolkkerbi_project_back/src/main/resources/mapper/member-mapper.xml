@@ -5,6 +5,10 @@
 	<select id="selectOneMember" resultType="member">
 		select * from member where member_id=#{memberId}
 	</select>
+	
+	<select id="selectOneMemberEmail" resultType="member">
+	select * from member where member_email=#{memberEmail}
+	</select>
  
  
 	 <insert id="insertMember">
@@ -45,6 +49,10 @@
     
     <update id="thumbnail">
     update member set member_filepath=#{memberFilepath} where member_id=#{memberId}
+    </update>
+    
+    <update id="thumbnailReset">
+    update member set member_filepath = null where member_id=#{memberId}
     </update>
  
 </mapper>

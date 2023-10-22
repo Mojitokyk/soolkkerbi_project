@@ -40,10 +40,16 @@
 }
 .mypage-memberImg{
   text-align: center;
+  padding-bottom: 50px;
 }
 .mypage-memberImg > .css-1hpz50q-MuiAvatar-root{
   margin: 0 auto;
 }
 .image-putMsg{
   margin-top: 20px;
+}
+.image-reset{
+  width: 150px;
+  padding-top: 20px;
+  margin: 0 auto;
 }

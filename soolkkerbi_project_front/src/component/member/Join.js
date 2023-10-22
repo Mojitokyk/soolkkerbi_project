@@ -26,6 +26,10 @@ const Join = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [allCheck, setAllCheck] = useState(false);
+  const [useingCheck, setUseingheck] = useState(false);
+  const [useInfoCheck, setUseInfoCheck] = useState(false);
+
   const [memberId, setMemberId] = useState("");
   const [memberPw, setMemberPw] = useState("");
   const [memberPwRe, setMemberPwRe] = useState("");
@@ -98,6 +102,19 @@ const Join = () => {
     if (!emailRegEx.test(memberEmail)) {
       setCheckEmailMsg("이메일 형식에 맞게 작성해주세요.");
     } else {
+      axios
+        .get("/member/checkEmail/" + memberEmail)
+        .then((res) => {
+          console.log(res);
+          if (res.data === 0) {
+            setCheckEmailMsg("");
+          } else {
+            setCheckEmailMsg("이미 사용중인 이메일입니다.");
+          }
+        })
+        .catch((res) => {
+          console.log(res.response.status);
+        });
       setCheckEmailMsg("");
     }
   };
@@ -199,6 +216,50 @@ const Join = () => {
         text: "인증번호를 다시 확인해주세요.",
       });
     }
+  };
+  // const [allCheck, setAllCheck] = useState(false);
+  // const [useingCheck, setUseingheck] = useState(false);
+  // const [useInfoCheck, setUseInfoCheck] = useState(false);
+
+
+  const allBtnEvent =()=>{
+    if(allCheck === false) {
+      setAllCheck(true);
+      setUseingheck(true);
+      setUseInfoCheck(true);
+    }else {
+      setAllCheck(false);
+      setUseingheck(false);
+      setUseInfoCheck(false);
+    } 
+  };
+  
+  const useingBtnEvent =()=>{
+    if(useingCheck === false) {
+      setUseingheck(true)
+    }else {
+      setUseingheck(false)
+    }
+  };
+  
+  const useInfoBtnEvent =()=>{
+    if(useInfoCheck === false) {
+      setUseInfoCheck(true)
+    }else {
+      setUseInfoCheck(false)
+    }
+  };
+
+  React.useEffect(()=>{
+    if(useingCheck===true && useInfoCheck===true){
+      setAllCheck(true)
+    } else{
+      setAllCheck(false)
+    }
+  }, [useingCheck,useInfoCheck])
+
+  const back = () => {
+    setOpen(false);
   };
 
   return (
@@ -331,16 +392,22 @@ const Join = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
+          <div className="closeModel">
+              <span class="material-icons quit_off" onClick={back}>
+                close
+              </span>
+            </div>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               술꺼비 이용약관안내
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <div id="modal-modal-description" sx={{ mt: 2 }}>
+              <input type="checkbox" id="all-check" checked={allCheck} onChange={allBtnEvent}/>
+        		 <label for="all-check"> 전체동의</label>
               <h3>이용약관</h3>
+              <input type="checkbox" id="check1" checked={useingCheck} onChange={useingBtnEvent}/>
+        		<label for="check1"> <strong> (주)술꺼비 이용약관</strong> <span>(필수)</span></label>
               <div class="modal-content">
-                <br />
-                <strong>(주)술꺼비 이용약관</strong>
-                <br />
-                <br />
+              <br />
                 <strong>제 1조(목적)</strong>
                 <br />
                 본 약관은 (주)술꺼비(이하 "회사"라 한다.)에서 운영하는 웹사이트
@@ -391,7 +458,7 @@ const Join = () => {
                 명시하여 현행 약관과 함께 장터의 초기화면에 그 적용일자 7일
                 이전부터 적용일자 전일까지 공지합니다.
                 <br />
-                ④ "장터"가 약관을 개정할 경우에는 그 개정약관은 그 적용일자
+                ④ "사이트"가 약관을 개정할 경우에는 그 개정약관은 그 적용일자
                 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에
                 대해서는 개정전의 약관조항이 그대로 적용됩니다.
                 <br />
@@ -419,7 +486,7 @@ const Join = () => {
                 <br />
                 <strong>제5조(서비스의 중단)</strong>
                 <br />
-                ① "장터"는 컴퓨터 등 정보통신설비의 보수점검·교체 및 고장,
+                ① "사이트"는 컴퓨터 등 정보통신설비의 보수점검·교체 및 고장,
                 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을
                 일시적으로 중단할 수 있습니다.
                 <br />
@@ -429,7 +496,7 @@ const Join = () => {
                 <br />
                 <strong>제6조(이용계약의 성립)</strong>
                 <br />
-                ① 그린북 서비스 이용계약(이하 "이용계약"이라고 합니다)은 그린북
+                ① 술꺼비 서비스 이용계약(이하 "이용계약"이라고 합니다)은 그린북
                 서비스를 이용하고자 하는 자의 이용신청에 대하여 회사가
                 승낙함으로써 성립합니다. ② 이용신청의 방법은 회사가 온라인으로
                 제공하는 가입신청양식 중 회원가입란을 이용합니다. 회원 가입은
@@ -438,7 +505,7 @@ const Join = () => {
                 ③ 비회원으로 그린북 서비스를 이용하기 위해서는 제2항의
                 이용신청방법과는 별도로 비회원 인증절차를 거쳐야 합니다
                 <br />
-                ④ 그린북 서비스를 이용하기 위해서는 본 약관의 내용과 본 약관이
+                ④ 술꺼비 서비스를 이용하기 위해서는 본 약관의 내용과 본 약관이
                 이용계약의 일부가 됨을 동의하여야 합니다.
                 <br />
                 <br />
@@ -470,7 +537,7 @@ const Join = () => {
                 <br />
                 1. 등록 내용에 허위, 기재누락, 오기가 있는 경우
                 <br />
-                2. 회원으로 등록하는 것이 "장터"의 기술상 현저히 지장이 있다고
+                2. 회원으로 등록하는 것이 "사이트"의 기술상 현저히 지장이 있다고
                 판단되는 경우
                 <br />
                 3. 회사가 신청양식에서 정한 회원정보가 미비 되었을 경우
@@ -480,7 +547,7 @@ const Join = () => {
                 ③ 회원가입계약의 성립시기는 등록을 완료한 시점으로 합니다.
                 <br />
                 ④ 회원은 제7조 제1항에 의한 등록사항에 변경이 있는 경우, 즉시
-                전자우편 기타 방법으로 "장터"에 대하여 그 변경사항을 알려야
+                전자우편 기타 방법으로 "사이트"에 대하여 그 변경사항을 알려야
                 합니다.
                 <br />
                 <br />
@@ -524,12 +591,13 @@ const Join = () => {
                 수 있습니다.
                 <br />
                 <br />
-                <strong>제11조(직거래와 책임 소재)</strong>
+                <strong>제11조(거래와 책임 소재)</strong>
                 <br />
-                "직거래"라 함은 구매를 원하는 사람과 판매를 원하는 판매자 간에
-                직접 거래를 하는 행위를 말합니다. "사이트"는 직거래로 인한 어떤
+                "거래"라 함은 구매를 원하는 사람과 판매를 원하는 판매자 간에
+                직접 거래를 하는 행위를 말합니다. 
+                {/* "사이트"는 직거래로 인한 어떤
                 피해에도 책임을 질 수 없습니다. 만약 피해가 발생했을 경우에는
-                해당 당사자에게 책임이 있습니다.
+                해당 당사자에게 책임이 있습니다. */}
                 <br />
                 <br />
                 <strong>제12조(재화 교환)</strong>
@@ -669,9 +737,12 @@ const Join = () => {
                 <br />
               </div>
               <h3>개인정보 수집/이용 안내</h3>
+              <input type="checkbox" id="check2" checked={useInfoCheck}  onChange={useInfoBtnEvent}/>
+        		<label for="check2">  <strong> 개인정보 사용 및 수집 동의</strong><span>(필수)</span></label>
+                
               <div class="modal-content">
                 <br />
-                <strong>■ 수집하는 개인정보 항목</strong>
+                <strong> ■ 수집하는 개인정보 항목</strong>
                 <br />
                 <br />
                 회사는 개인정보 보호법 제32조에 따라 회원가입, 상담, 서비스 신청
@@ -748,13 +819,18 @@ const Join = () => {
                 <br />
               </div>
               <div className="join-btn-box">
+                {!allCheck ? (
+                  <Button3
+                  text="약관확인 및 회원가입"
+                  />
+                ):(
                 <Button2
                   text="약관확인 및 회원가입"
                   clickEvent={join}
                 ></Button2>
+                )}
               </div>
-              {/* 동의체크박스혀말어? */}
-            </Typography>
+            </div>
           </Box>
         </Modal>
       </div>

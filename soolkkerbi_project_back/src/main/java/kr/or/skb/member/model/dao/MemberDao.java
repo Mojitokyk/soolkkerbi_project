@@ -30,6 +30,10 @@ public interface MemberDao {
 	int deleteMember(String memberId);
 
 	int thumbnail(Member m);
+
+	int thumbnailReset(String memberId);
+
+	Member selectOneMemberEmail(String memberEmail);
 	
 
 

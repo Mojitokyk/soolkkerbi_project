@@ -5,9 +5,10 @@ import "./myInfo.css";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import MemberChangePw from "./MemberChangePw";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 //import { Avatar } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
+
 
 const MyInfo = (props) => {
   const navigate = useNavigate();
@@ -161,6 +162,33 @@ const [change,setChange] = useState(false);
   }
        console.log(thumbnail);
 
+       //useEffect(()=>{
+        const reset =()=>{
+          const memberId = member.memberId;
+          const token = window.localStorage.getItem("token");
+          axios
+          .post("/member/thumbnailReset", null, {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
+          })
+          .then((res) => {
+            if (res.data === 1) {
+              console.log(res.data)
+              setImage(null);
+              //setChange(true);
+              window.location.reload("/mypage/info");
+            } else {
+              Swal.fire("프로필수정 중 문제가 생겼어요!");
+            }
+          })
+          .catch((res) => {
+            console.log(res.response.status);
+          });
+         }
+      // },[change])
+       
+
   return (
     <div className="mypage-content-warp">
       <div className="mypage-content-title">회원정보 수정</div>
@@ -188,14 +216,17 @@ const [change,setChange] = useState(false);
         
        {/* <Profile member={member}/> */}
         <div className="image-putMsg">이미지를 클릭해 변경해주세요</div>
+        <div className="image-reset">
+          <Button3 text="프로필 초기화" clickEvent={reset}/>
+        </div>
                   </div>
 
       <table className="mypage-info-tbl">
         <tbody>
-          <tr>
+          {/* <tr>
             <td>회원번호</td>
             <td>{member.memberNo}</td>
-          </tr>
+          </tr> */}
           <tr>
             <td>아이디</td>
             <td>{member.memberId}</td>
@@ -220,9 +251,13 @@ const [change,setChange] = useState(false);
                 />
                 <Button2 text="변경하기" clickEvent={updateMemberPhone} />
               </div>
-              <div className="check-msg">{checkPhoneMsg}</div>
             </td>
           </tr>
+          <tr>
+            <td>이메일</td>
+            <td>{member.memberEmail}</td>
+          </tr>
+              <div className="check-msg">{checkPhoneMsg}</div>
         </tbody>
       </table>
 

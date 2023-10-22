@@ -95,3 +95,11 @@
   display: flex;
   justify-content: right;
 }
+#modal-modal-description span{
+  color: #ff6289;
+  
+}
+#modal-modal-title{
+  text-align: center;
+  padding-left: 15px;
+}

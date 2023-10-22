@@ -44,6 +44,16 @@ public class MemberController {
 			return 1;
 		}
 	}
+	@GetMapping(value = "/checkEmail/{memberId}")
+	public int checkEmail(@PathVariable String memberEmail) {
+		Member m = memberService.selectOneMemberEmail(memberEmail);
+		if (m == null) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
+	
 	@PostMapping(value = "/join")
 	public int join(@RequestBody Member member) {
 		
@@ -140,5 +150,10 @@ public class MemberController {
 		int result =memberService.thumbnail(m);
 		return result;
 	}
-//	
+	
+	@PostMapping(value = "/thumbnailReset")
+	public int thumbnailReset(@RequestAttribute String memberId) {
+		return memberService.thumbnailReset(memberId);
+	}
+
 }

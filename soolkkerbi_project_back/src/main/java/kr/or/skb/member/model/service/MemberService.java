@@ -109,4 +109,14 @@ public class MemberService {
 		return memberDao.thumbnail(m);
 	}
 
+	public int thumbnailReset(String memberId) {
+		// TODO Auto-generated method stub
+		return memberDao.thumbnailReset(memberId);
+	}
+
+	public Member selectOneMemberEmail(String memberEmail) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneMemberEmail(memberEmail);
+	}
+
 }
