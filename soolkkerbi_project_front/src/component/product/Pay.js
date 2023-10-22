@@ -11,8 +11,6 @@ const Pay = () => {
   const location = useLocation();
   const cart = location.state.cart;
   const cartList = location.state.cartList;
-  console.log(cart);
-  console.log(cartList);
   const totalPrice = location.state.totalPrice;
   const member = location.state.member;
   const [pickupDate, setPickupDate] = useState("");
