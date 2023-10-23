@@ -46,6 +46,7 @@
 }
 .title > label {
   font-family: ns-b;
+  color: #4f4f4f;
 }
 .delete-input-wrap > div {
   overflow: hidden;
