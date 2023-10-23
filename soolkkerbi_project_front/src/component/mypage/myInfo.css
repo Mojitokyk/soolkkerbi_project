@@ -38,18 +38,24 @@
   box-sizing: content-box;
   font-family: ns-b;
 }
-.mypage-memberImg{
+.mypage-memberImg {
   text-align: center;
   padding-bottom: 50px;
 }
-.mypage-memberImg > .css-1hpz50q-MuiAvatar-root{
+.mypage-memberImg > .css-1hpz50q-MuiAvatar-root {
   margin: 0 auto;
 }
-.image-putMsg{
+.image-putMsg {
   margin-top: 20px;
+  font-family: ns-r;
+  color: #4f4f4f;
 }
-.image-reset{
+.image-reset {
   width: 150px;
   padding-top: 20px;
   margin: 0 auto;
+}
+.image-reset > button {
+  font-family: ns-r;
+  color: #ccc;
 }

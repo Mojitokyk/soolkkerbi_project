@@ -10,9 +10,17 @@
 }
 .mypage-info-tbl > tbody > tr > td:first-child {
   width: 30%;
+  font-family: ns-r;
+  color: #4f4f4f;
 }
 .mypage-info-tbl > tbody > tr > td {
   padding: 20px 10px;
+  font-family: ns-r;
+  color: #4f4f4f;
+}
+.input > input {
+  font-family: ns-r;
+  color: #4f4f4f;
 }
 #member-phone {
   padding: 0;

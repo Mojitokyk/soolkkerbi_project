@@ -26,27 +26,28 @@
   text-align: left;
   font-family: ns-r;
 }
-.check_btn{
+.check_btn {
   width: 100px;
   margin-top: 20px;
   float: left;
 }
-.delete-input-wrap > div > input{
- width: 60%;
- float: left;
- margin-right: 20px
-
+.delete-input-wrap > div > input {
+  width: 60%;
+  float: left;
+  margin-right: 20px;
 }
-.delete-input-wrap > div > button{
+.delete-input-wrap > div > button {
   width: 100px;
+  font-family: ns-b;
+  color: #ccc;
 }
-.title{
+.title {
   margin-bottom: 10px;
 }
-.title > label{
+.title > label {
   font-family: ns-b;
+  color: #4f4f4f;
 }
-.delete-input-wrap > div{
+.delete-input-wrap > div {
   overflow: hidden;
 }
-
