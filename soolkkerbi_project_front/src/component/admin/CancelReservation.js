@@ -115,9 +115,12 @@ const ReservationItem = (props) => {
     });
   };
 
+  const reservationDate = reservation.reservationDate
+    .split(" ")[0]
+    .substring(0);
   return (
     <tr>
-      <td>{reservation.reservationDate}</td>
+      <td>{reservationDate}</td>
       <td>{reservation.reservationStringNo}</td>
       <td>{reservation.reservationMemberId}</td>
       <td>{reservation.reservationTasteTitle}</td>
