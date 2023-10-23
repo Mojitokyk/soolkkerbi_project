@@ -88,6 +88,7 @@ const LikeList = (props) => {
       .then((res) => {
         Swal.fire({
           icon: "success",
+          title: "저장 취소",
           text: "좋아요 취소 완료",
         }).then(() => {
           setChangeStatus(!changeStatus);
