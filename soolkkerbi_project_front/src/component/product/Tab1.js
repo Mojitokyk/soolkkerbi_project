@@ -246,10 +246,7 @@ const PickupInfo = () => {
           - 오프라인 매장 주소 : 서울시 영등포구 선유도2로 57 이레빌딩 1층
           술꺼비 오프라인 매장
         </p>
-        <p>
-          - 운영시간 : 10:00 - 18:00, 월요일 - 금요일 (휴무일 : 토, 일요일,
-          공휴일)
-        </p>
+        <p>- 운영시간 : 10:00 - 22:00, 연중무휴</p>
       </div>
       <div className="pickup-content">
         <div>[How to Pick-Up]</div>
@@ -262,10 +259,7 @@ const PickupInfo = () => {
           - Offline Store Address : 1st floor, 57, Seonyudong 2-ro,
           Yeongdeungpo-gu, Seoul, Republic of Korea
         </p>
-        <p>
-          - Opening Hours : 10:00 - 18:00, Mon - Fri (Closed : Sat - Sun,
-          Holiday)
-        </p>
+        <p>- Opening Hours : 10:00 - 22:00, 24/7</p>
       </div>
       <div className="pickup-content">
         <div>[취소/교환/반품]</div>
@@ -300,10 +294,7 @@ const PickupInfo = () => {
           <span className="material-icons">call</span>
           02-1234-5678
         </div>
-        <p>
-          상담 운영시간은 10:00 ~ 18:00까지 입니다. (토요일, 일요일 / 공휴일
-          휴무)
-        </p>
+        <p>상담 운영시간은 09:00 ~ 18:00까지 입니다.</p>
         <p>다른 문의사항은 마이페이지 {">"} 1:1문의로 부탁드립니다.</p>
       </div>
     </div>
