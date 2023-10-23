@@ -168,7 +168,9 @@
 				(select count(*) from favorite where favorite_member_no = (select member_no from member where member_id=#{memberId}) and favorite_product_no = product_no) as is_like
 			from favorite 
 			join product on (favorite_product_no = product_no) 
-			where favorite_member_no=(select member_no from member where member_id=#{memberId}) order by 1 desc)f
+			where favorite_member_no=(select member_no from member where member_id=#{memberId}))f
+			order by 1 desc
+			
 	</select>
 	
 	<!-- 메인페이지 추천리스트 조회 -->
