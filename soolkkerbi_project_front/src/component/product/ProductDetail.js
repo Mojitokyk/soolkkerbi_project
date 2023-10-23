@@ -322,15 +322,11 @@ const ProductDetail = (props) => {
               <span>{commaTotal} 원</span>
             </div>
           </div>
-          {!member || (member && member.memberLevel === 1) ? (
-            member && member.memberLevel === 1 ? (
-              <div className="product-order-box">
-                <ProductModify product={product} setProduct={setProduct} />
-                <Button2 text="삭제" clickEvent={deleteProduct} />
-              </div>
-            ) : (
-              ""
-            )
+          {member && member.memberLevel === 1 ? (
+            <div className="product-order-box">
+              <ProductModify product={product} setProduct={setProduct} />
+              <Button2 text="삭제" clickEvent={deleteProduct} />
+            </div>
           ) : product.productStock === 0 ? (
             <div className="product-order-box">
               <Button5 text="품절된 상품입니다" readOnly />
