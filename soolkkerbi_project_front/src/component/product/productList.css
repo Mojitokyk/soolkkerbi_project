@@ -3,11 +3,6 @@
   width: 1200px;
   margin: 50px auto;
 }
-/*상품등록 전체 wrap*/
-.product-insert-all-wrap {
-  width: 900px;
-  margin: 30px auto;
-}
 .product-title {
   text-align: center;
   font-size: 22px;
@@ -135,4 +130,12 @@
 .sold-out > p {
   display: table-cell;
   vertical-align: middle;
+}
+/*상품등록 제목*/
+.product-insert-all-wrap > .product-title {
+  padding-bottom: 30px;
+  font-family: ns-b;
+  font-size: 22px;
+  color: #4f4f4f;
+  text-align: left;
 }
