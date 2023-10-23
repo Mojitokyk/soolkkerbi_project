@@ -51,6 +51,10 @@
   margin: 0 10px;
   color: #4f4f4f;
 }
+.guide-party-date > :last-child {
+  margin-top: 50px;
+  font-weight: bold;
+}
 .taste-view-btn {
   width: 1000px;
   text-align: right;

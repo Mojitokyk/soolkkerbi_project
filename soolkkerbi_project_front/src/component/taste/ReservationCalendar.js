@@ -27,6 +27,9 @@ const ReservationCalendar = () => {
   const selectDateFormat = moment(value).format("YYYY-MM-DD");
   const selectDate = moment(value).format("YY/MM/DD");
   const selectDateForReservationNo = moment(value).format("YYYYMMDD");
+  const today = moment().format("YYYY-MM-DD");
+  const yesterday = moment().add(-1, "days").format("YYYY-MM-DD");
+  taste.tasteStart = today;
 
   /*목록으로 돌아가는 함수*/
   const toList = () => {
@@ -48,6 +51,7 @@ const ReservationCalendar = () => {
     if (
       selectDateFormat < taste.tasteStart ||
       selectDateFormat > taste.tasteEnd ||
+      selectDateFormat == today ||
       taste.tasteStatus == 2
     ) {
       Swal.fire({
@@ -57,7 +61,7 @@ const ReservationCalendar = () => {
           "선택하신 희망 예약 날짜 : " +
           selectDateFormat +
           "<br/>" +
-          "시음회 기간 : " +
+          "선택 가능한 날짜 : " +
           taste.tasteStart +
           " ~ " +
           taste.tasteEnd,

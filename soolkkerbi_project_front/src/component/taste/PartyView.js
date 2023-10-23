@@ -29,7 +29,7 @@ const PartyView = (props) => {
         axios
           .get("/reservation/getReservationStatus/" + memberNo + "/" + tasteNo)
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data === 1) {
               setDoneReservation("1");
             }
@@ -82,10 +82,10 @@ const PartyView = (props) => {
 
   //예약 진행 함수
   const reservation = () => {
-    console.log("예약 이벤트");
-    console.log(member);
-    console.log(taste);
-    console.log(isLogin);
+    // console.log("예약 이벤트");
+    // console.log(member);
+    // console.log(taste);
+    // console.log(isLogin);
     if (isLogin) {
       if (taste.tasteStatus === "2") {
         Swal.fire({
@@ -153,6 +153,7 @@ const PartyView = (props) => {
           <span>{taste.tasteStart}</span>
           <span>~</span>
           <span>{taste.tasteEnd}</span>
+          <div>당일 예약은 불가능합니다.</div>
         </div>
       </div>
       <div className="taste-view-btn">
