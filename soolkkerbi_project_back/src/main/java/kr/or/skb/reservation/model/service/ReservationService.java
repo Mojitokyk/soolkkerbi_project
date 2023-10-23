@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.skb.PageInfo;
 import kr.or.skb.Pagination;
-import kr.or.skb.member.model.dao.MemberDao;
-import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.reservation.model.dao.ReservationDao;
 import kr.or.skb.reservation.model.vo.Reservation;
 import kr.or.skb.reservation.model.vo.ReservationData;
@@ -20,8 +18,6 @@ import kr.or.skb.reservation.model.vo.ReservationData;
 public class ReservationService {
 	@Autowired
 	private ReservationDao reservationDao;
-	@Autowired
-	private MemberDao memberDao;
 	@Autowired
 	private Pagination pagination;
 
@@ -43,8 +39,7 @@ public class ReservationService {
 	}
 
 	public Map myReservationList(int reqPage, String memberId) {
-		Member member = memberDao.selectOneMember(memberId);
-		int totalCount = reservationDao.totalCount2(member);
+		int totalCount = reservationDao.totalCount2(memberId);
 		
 		int numPerPage = 10;
 		int pageNaviSize = 5;

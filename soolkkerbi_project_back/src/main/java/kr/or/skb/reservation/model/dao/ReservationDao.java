@@ -27,7 +27,7 @@ public interface ReservationDao {
 	//시음회 중복 예약 방지 메서드
 	List myReservationList2(int memberNo);
 
-	int totalCount2(Member member);
+	int totalCount2(String memberId);
 
 	Member getmember(String memberId);
 	
