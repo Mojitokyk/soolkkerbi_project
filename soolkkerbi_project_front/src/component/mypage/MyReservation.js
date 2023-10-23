@@ -228,7 +228,7 @@ const ReservationList = (props) => {
         <div>{resList.reservationTasteTitle}</div>
       </td>
 
-      {resList.reservationStatus === 3 || reservationDate <= nowTime ? (
+      {resList.reservationStatus === 3 || reservationDate <= nowTime || resList.reservationStatus === 2 ? (
         <td>
           <div className="date">
             <p>{resList.reservationDate}</p>
