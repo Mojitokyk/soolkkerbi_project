@@ -20,6 +20,7 @@ const InputTitle = (props) => {
         onChange={changeValue}
         onBlur={blurEvent}
         placeholder="제목을 입력하세요."
+        autoComplete="off"
       ></input>
     </>
   );

@@ -23,6 +23,7 @@ const Input = (props) => {
         onBlur={blurEvent}
         placeholder={placeholder}
         onKeyUp={keyEvent}
+        autoComplete="off"
       ></input>
     </>
   );
