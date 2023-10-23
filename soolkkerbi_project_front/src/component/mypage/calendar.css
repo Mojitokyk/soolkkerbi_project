@@ -76,3 +76,6 @@
 #modal-calendar-description .react-calendar {
   margin: 30px;
 }
+.react-calendar__tile--now{
+color: black;
+}
