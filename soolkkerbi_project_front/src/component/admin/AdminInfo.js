@@ -13,14 +13,8 @@ const AdminInfo = (props) => {
   const setIsLogin = props.setIsLogin;
 
   const [checkPhoneMsg, setCheckPhoneMsg] = useState("");
-  const [File, setFile] = useState(member.memberFilepath);
 
   const navigate = useNavigate();
-
-  const [Image, setImage] = useState(
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-  );
-  const fileInput = useRef(null);
 
   const setMemberPhone = (data) => {
     member.memberPhone = data;
@@ -73,33 +67,8 @@ const AdminInfo = (props) => {
   return (
     <div className="mypage-content-warp">
       <div className="mypage-content-title">회원정보 수정</div>
-      {/* <div>
-          {uploadedImage ? (
-            <S.MyProfileImg src={uploadedImage} alt="프로필 없을때" />
-          ) : (
-            <S.MyProfileImg src="./images/profile.png" alt="프로필사진" />
-          )}
-          <input type="file" onChange={onChangeImage} />
-        </div> */}
-
-      <Avatar
-        src={Image}
-        style={{ margin: "20px" }}
-        // size={200}
-        sx={{ width: 160, height: 160 }}
-        onClick={() => {
-          fileInput.current.click();
-        }}
-      />
-
-      {/* <Profile member={member}/> */}
-
       <table className="mypage-info-tbl">
         <tbody>
-          <tr>
-            <td>회원번호</td>
-            <td>{member.memberNo}</td>
-          </tr>
           <tr>
             <td>아이디</td>
             <td>{member.memberId}</td>
@@ -107,6 +76,10 @@ const AdminInfo = (props) => {
           <tr>
             <td>이름</td>
             <td>{member.memberName}</td>
+          </tr>
+          <tr>
+            <td>이메일</td>
+            <td>{member.memberEmail}</td>
           </tr>
           <tr>
             <td>전화번호</td>

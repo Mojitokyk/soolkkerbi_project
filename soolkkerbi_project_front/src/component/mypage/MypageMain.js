@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import "./mypageMain.css";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import MyOrder from "./MyOrder";
 import MyReservation from "./MyReservation";
 import MyWishList from "./MyWishList";
@@ -16,6 +22,10 @@ const MypageMain = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
   const token = window.localStorage.getItem("token");
+
+  // const location = useLocation();
+  // const memberThumbnail = location.state.thumbnail;
+  // console.log(memberThumbnail);
 
   //회원 불러오기
   const [member, setMember] = useState({});
@@ -34,9 +44,7 @@ const MypageMain = (props) => {
         //console.log(res.data.memberLevel);
         //document.querySelectorAll(".my-side a")[0].click();
         //관리자페이지에서 회원비번변경요청시 바로 비번변경페이지로이동하기위함!!
-        if (res.data.memberLevel === 2) {
-          document.querySelectorAll(".my-side a")[0].click();
-        }
+        navigate("/mypage/info");
       })
       .catch((res) => {
         if (res.response.status === 403) {
@@ -52,12 +60,12 @@ const MypageMain = (props) => {
   }, [isLogin]);
 
   const [menus, setMenus] = useState([
-    { url: "order", text: "주문 내역", active: true },
+    { url: "info", text: "정보 수정", active: true },
+    { url: "order", text: "주문 내역", active: false },
     { url: "reservation", text: "예약 내역", active: false },
     { url: "wish", text: "관심 상품", active: false },
     { url: "review", text: "작성한 후기", active: false },
     { url: "qna", text: "1:1 문의", active: false },
-    { url: "info", text: "정보 수정", active: false },
     { url: "quit", text: "회원 탈퇴", active: false },
   ]);
 
@@ -128,11 +136,10 @@ const FirstPage = (props) => {
       <div className="profile-img">
         {member.memberFilepath === null ? (
           <img src="/image/profile_img/default_profile.png" alt="face" />
-        ):(
+        ) : (
           //<img src = {member.memberFilepath} />
           <img src={"/member/" + member.memberFilepath} />
         )}
-       
       </div>
       <div className="profile-content">
         <div>{member.memberName}님 안녕하세요</div>
