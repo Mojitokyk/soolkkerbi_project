@@ -107,6 +107,7 @@ const Join = () => {
         .then((res) => {
           console.log(res);
           if (res.data === 0) {
+            console.log(res.data);
             setCheckEmailMsg("");
           } else {
             setCheckEmailMsg("이미 사용중인 이메일입니다.");
@@ -115,7 +116,7 @@ const Join = () => {
         .catch((res) => {
           console.log(res.response.status);
         });
-      setCheckEmailMsg("");
+        setCheckEmailMsg("");
     }
   };
   const checkName = () => {

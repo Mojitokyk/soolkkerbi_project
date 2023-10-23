@@ -44,9 +44,11 @@ public class MemberController {
 			return 1;
 		}
 	}
-	@GetMapping(value = "/checkEmail/{memberId}")
+	@GetMapping(value = "/checkEmail/{memberEmail}")
 	public int checkEmail(@PathVariable String memberEmail) {
+		System.out.println(memberEmail);
 		Member m = memberService.selectOneMemberEmail(memberEmail);
+		
 		if (m == null) {
 			return 0;
 		} else {
