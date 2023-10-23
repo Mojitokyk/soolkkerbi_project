@@ -71,7 +71,7 @@ export default function ReviewModal({ order }) {
               text: "리뷰가 등록되었습니다.",
             }).then(() => {
               navigate("/mypage/review");
-              document.querySelectorAll(".my-side a")[3].click();
+              document.querySelectorAll(".my-side a")[4].click();
             });
           }
         })
