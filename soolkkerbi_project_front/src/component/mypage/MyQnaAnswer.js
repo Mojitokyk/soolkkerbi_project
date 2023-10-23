@@ -330,7 +330,7 @@ const PrintAnswer = (props) => {
                       modifyAnswer(answer, index);
                     }}
                   >
-                    수정완료
+                    수정 완료
                   </button>
                 </div>
               </>
