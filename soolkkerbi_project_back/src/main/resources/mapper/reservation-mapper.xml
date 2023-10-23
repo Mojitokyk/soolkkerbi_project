@@ -4,6 +4,10 @@
 	<select id="totalCount" resultType="int">
 		select count(*) from reservation where reservation_status = 2
 	</select>
+	<select id="totalCount2" resultType="int">
+	select count(*) from reservation join member on (#{memberNo}= reservation_member_no) where member_id=#{memberId}
+	</select>
+
 	
 	<select id="selectAllReservation" resultType="reservation">
 		select * from

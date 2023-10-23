@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kr.or.skb.PageInfo;
+import kr.or.skb.member.model.vo.Member;
 import kr.or.skb.reservation.model.vo.Reservation;
 import kr.or.skb.reservation.model.vo.ReservationData;
 
@@ -25,5 +26,9 @@ public interface ReservationDao {
 
 	//시음회 중복 예약 방지 메서드
 	List myReservationList2(int memberNo);
+
+	int totalCount2(Member member);
+
+	Member getmember(String memberId);
 	
 }
