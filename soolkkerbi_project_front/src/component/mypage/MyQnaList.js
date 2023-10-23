@@ -48,7 +48,7 @@ const MyQnaList = (props) => {
             <th>글번호</th>
             <th>제목</th>
             <th>문의일</th>
-            <th>답변상태</th>
+            <th>답변 상태</th>
           </tr>
         </thead>
         {qnaList.length > 0 ? (
