@@ -261,7 +261,7 @@ const ReservationList = (props) => {
             <div className="cancel">
               <p>취소 완료</p>
             </div>
-          ) : resList.reservationStatus === 1 && reservationDate <= nowTime ? (
+          ) : resList.reservationStatus === 1 && reservationDate < nowTime ? (
             <div className="enjoy">
               <p>참석 완료</p>
             </div>
