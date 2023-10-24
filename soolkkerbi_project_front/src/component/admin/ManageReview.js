@@ -14,7 +14,6 @@ const ManageReview = () => {
     axios
       .get("/review/readAllReview/" + reqPage)
       .then((res) => {
-        console.log(res.data);
         setReviewList(res.data.list);
         setPageInfo(res.data.pi);
       })
