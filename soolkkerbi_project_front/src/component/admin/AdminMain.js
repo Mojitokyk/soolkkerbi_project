@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./adminMain.css";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import MyInfo from "../mypage/MyInfo";
 import ReadAllMember from "./ReadAllMember";
 import ManageStock from "./ManageStock";
 import CancelPay from "./CancelPay";
