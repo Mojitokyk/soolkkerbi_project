@@ -46,9 +46,9 @@ export default function FindId() {
         .post("/member/findId", member)
         .then((res) => {
           if (res.data !== "") {
-            console.log(res.data);
+           // console.log(res.data);
             setMemberId(res.data);
-            console.log(memberId);
+           // console.log(memberId);
             setResult(true);
             setMemberName("");
             setMemberEmail("");
@@ -63,7 +63,7 @@ export default function FindId() {
           }
         })
         .catch((res) => {
-          console.log(res.response.status);
+         // console.log(res.response.status);
         });
     } else {
       Swal.fire({

@@ -83,7 +83,7 @@ export default function FindPw() {
         .post("/member/findPw", member)
         .then((res) => {
           if (res.data != "") {
-            console.log(res.data);
+           // console.log(res.data);
             setMemberId(res.data);
             setResult(true);
           } else {
@@ -95,7 +95,7 @@ export default function FindPw() {
           }
         })
         .catch((res) => {
-          console.log(res.response.status);
+         // console.log(res.response.status);
         });
     } else {
       Swal.fire({ icon: "warning", text: "입력값을 확인해주세요." });
@@ -103,7 +103,7 @@ export default function FindPw() {
   };
   const sendEmail = () => {
     const memberEmail = member.memberEmail;
-    console.log(memberEmail);
+   // console.log(memberEmail);
     axios
       .post("/member/auth", { memberEmail })
       .then((res) => {
@@ -112,36 +112,9 @@ export default function FindPw() {
         setIsCodeShow(true);
       })
       .catch((res) => {
-        console.log(res.response.status);
+       // console.log(res.response.status);
       });
-    //   const { smtpTransport } = require('../config/Email');
-    //   var generateRandom = function (min, max) {
-    //     var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
-    //     return ranNum;
-    //   }
-    //   const auth = {
-    //     SendEmail : async(req, res) => {
-    //         const number = generateRandom(111111,999999)
-    //         const { sendEmail } = req.body;
-    //         const mailOptions = {
-    //             from: "술꺼비들",
-    //             to: sendEmail,
-    //             subject: "술꺼비 이메일 인증번호입니다 :)",
-    //             text: "오른쪽 숫자 6자리를 입력해주세요 : " + number
-    //         };
-    //         const result = await smtpTransport.sendMail(mailOptions, (error, responses) => {
-    //             if (error) {
-    //                 return res.status(statusCode.OK).send(util.fail(statusCode.BAD_REQUEST, responseMsg.AUTH_EMAIL_FAIL))
-    //             } else {
-    //               /* 클라이언트에게 인증 번호를 보내서 사용자가 맞게 입력하는지 확인! */
-    //                 return res.status(statusCode.OK).send(util.success(statusCode.OK, responseMsg.AUTH_EMAIL_SUCCESS, {
-    //                     number: number
-    //                 }))
-    //             }
-    //             smtpTransport.close();
-    //         });
-    //     }
-    // }
+   
   };
   const authcheck = () => {
     if (auth === checkauth) {
@@ -151,13 +124,6 @@ export default function FindPw() {
     }
   };
   const ChangePw = () => {
-    // const pw_check = /^[a-z]+[a-z0-9]{5,19}$/g;
-    //   if(!pw_check.test(change_password)) {
-    //     return alert('비밀번호는 영문자로 시작하는 6~20자여야만 합니다.')
-    //   } else if(change_password !== check_change_password) {
-    //     return alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.')
-    //   }
-    //useEffect(()=>{
     if (memberPw !== "" && memberPw === memberPwRe) {
       axios
         .post("/member/memberPwChange", memberPwChange)

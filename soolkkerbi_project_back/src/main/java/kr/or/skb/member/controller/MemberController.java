@@ -59,7 +59,7 @@ public class MemberController {
 	@PostMapping(value = "/join")
 	public int join(@RequestBody Member member) {
 		
-		System.out.println(member);
+		//System.out.println(member);
 		int result = memberService.insertMember(member);
 		System.out.println("sevice에서 controller로 옴");
 		return result;
@@ -67,26 +67,26 @@ public class MemberController {
 	@PostMapping(value = "/login")
 	public String login(@RequestBody Member member) {
 		String result=memberService.login(member);
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 
 	@PostMapping(value = "/findId")
 	public String findId(@RequestBody Member member) {
-		System.out.println(member);
+		//System.out.println(member);
 		Member m = memberService.selectMemberId(member);
 		if (m != null) {
-			System.out.println(member);
+			//System.out.println(member);
 			return m.getMemberId();
 		}
 		return null;
 	}
 	@PostMapping(value = "/findPw")
 	public String findPw(@RequestBody Member member) {
-		System.out.println(member);
+		//System.out.println(member);
 		Member m = memberService.selectMemberPw(member);
 		if (m != null) {
-			System.out.println(member);
+			//System.out.println(member);
 			return m.getMemberId();
 		}
 		return null;
@@ -127,9 +127,9 @@ public class MemberController {
 	
 	@PostMapping(value = "/auth")
 	public String authMail(@RequestBody Member member) {
-		System.out.println(member.getMemberEmail());
+		//System.out.println(member.getMemberEmail());
 		String authCode = emailSender.authMail(member.getMemberEmail());
-		System.out.println(authCode);
+		//System.out.println(authCode);
 		return authCode;
 	}
 	

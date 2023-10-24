@@ -43,9 +43,9 @@ public class MemberService {
 
 	@Transactional
 	public int insertMember(Member member) {
-		System.out.println(member);
+		//System.out.println(member);
 		int result = memberDao.insertMember(member);
-		System.out.println("dao -> service");
+		//System.out.println("dao -> service");
 		return result;
 	}
 
@@ -53,7 +53,7 @@ public class MemberService {
 		Member m = memberDao.selectOneMember(member.getMemberId());
 		if (m != null && bCryptPasswordEncoder.matches(member.getMemberPw(), m.getMemberPw())) {
 			String token = jwtUtil.createToken(member.getMemberId(), secretKey, expiredMs);
-			System.out.println(jwtUtil.isExpired(token, secretKey));
+			//System.out.println(jwtUtil.isExpired(token, secretKey));
 			return token;
 		} else {
 			return "실패";
@@ -74,7 +74,7 @@ public class MemberService {
 	}
 
 	public Member selectMemberId(Member member) {
-		System.out.println(member);
+		//System.out.println(member);
 		return memberDao.selectMemberId(member);
 	}
 

@@ -38,7 +38,7 @@ const MyInfo = (props) => {
   const phoneregExp = /^\d{3}-\d{3,4}-\d{4}$/;
   const checkPhone = () => {
     if (!phoneregExp.test(member.memberPhone)) {
-      setCheckPhoneMsg("010-0000-0000");
+      setCheckPhoneMsg("ex ) 010-0000-0000");
     } else {
       setCheckPhoneMsg("");
     }
@@ -139,14 +139,14 @@ const MyInfo = (props) => {
       reader.readAsDataURL(files[0]);
       reader.onloadend = () => {
         setImage(reader.result);
-        console.log(thumbnail);
+        //console.log(thumbnail);
       };
     } else {
       setThumbnail({});
       setImage(null);
     }
   };
-  console.log(thumbnail);
+  //console.log(thumbnail);
 
   //useEffect(()=>{
   const reset = () => {
@@ -160,7 +160,7 @@ const MyInfo = (props) => {
       })
       .then((res) => {
         if (res.data === 1) {
-          console.log(res.data);
+          //console.log(res.data);
           setImage(null);
           //setChange(true);
           window.location.reload("/mypage/info");
@@ -170,7 +170,7 @@ const MyInfo = (props) => {
         }
       })
       .catch((res) => {
-        console.log(res.response.status);
+       // console.log(res.response.status);
       });
   };
   // },[change])
@@ -219,6 +219,10 @@ const MyInfo = (props) => {
             <td>이름</td>
             <td>{member.memberName}</td>
           </tr>
+              <tr>
+                <td>이메일</td>
+                <td>{member.memberEmail}</td>
+              </tr>
           <tr>
             <td>전화번호</td>
             <td id="member-phone">
@@ -237,10 +241,11 @@ const MyInfo = (props) => {
             </td>
           </tr>
           <tr>
-            <td>이메일</td>
-            <td>{member.memberEmail}</td>
+            <td></td>
+            <td>
+              <div className="phone-check">{checkPhoneMsg}</div>
+            </td>
           </tr>
-          <div className="check-msg">{checkPhoneMsg}</div>
         </tbody>
       </table>
 

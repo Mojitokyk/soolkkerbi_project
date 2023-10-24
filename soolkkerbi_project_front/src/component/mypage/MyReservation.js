@@ -43,17 +43,6 @@ const MyReservation = (props) => {
       });
   }, [reqPage, changeStatus]);
 
-  // const obj = {reservationNo,reservationTasteNo};
-  // axios
-  // .get("/taste/oneinfo/" + obj)
-  // .then((res) => {
-  //   console.log(res.data);
-  //   //setTasteList(res.data.tasteList);
-  //   setTasteinfo(res.data);
-  // })
-  // .catch((res) => {
-  //   console.log(res.response.status);
-  //});
 
   return (
     <div className="mypage-content-wrap">
@@ -123,58 +112,6 @@ const ReservationList = (props) => {
     });
   };
 
-  // const tastinfo =(props)=>{
-  //   const reservationNo = props.resList.reservationNo;
-  //   const setTasteinfo=props.setTasteinfo;
-  //   //const memberNo = props.member.memberNo;
-  //   axios
-  //   .get("/taste/oneinfo/" + {reservationNo})
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     //setTasteList(res.data.tasteList);
-  //     setTasteinfo(res.data);
-  //   })
-  //   .catch((res) => {
-  //     console.log(res.response.status);
-  //   });
-  // }
-  // const changeStatus = (e) => {
-  //   const reservationDate = resList.reservationDate;
-  //   const reservationNo = resList.reservationNo;
-  //   const checkStatus = e.target.checked;
-  //   const reservationStatus = checkStatus ? 1 : 2;
-
-  //   //const obj={boardNo : boardNo, boardStatus : boardStatus}
-  //   const obj = { reservationNo, reservationStatus };
-  //   const token = window.localStorage.getItem("token");
-  //      axios
-  //     .post("/reservation/changeStatus", obj, {
-  //       headers: {
-  //         Authorization: "Bearer " + token,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       if (res.data === 1) {
-  //         setStatus(checkStatus);
-  //       } else {
-  //         Swal.fire("변경중 문제발생");
-  //       }
-  //     })
-  //     .catch((res) => {
-  //       console.log(res);
-  //     });
-
-  // };
-
-  // const changeDate=(resList)=>{
-  //   //const navigate = useNavigate();
-  //   console.log(resList);
-  //   //const [value, onChange] = useState(new Date());
-  //   return(
-  //   <Calendar resList={resList}/>
-  //   )
-
-  // };
   const deleteRes = (changeStatus, setChangeStatus) => {
     const member = props.member;
     const reservationNo = resList.reservationNo;
@@ -190,7 +127,7 @@ const ReservationList = (props) => {
         axios
           .get("/reservation/delete/" + reservationNo)
           .then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             if (res.data === 1) {
               Swal.fire({
                 icon: "success",
@@ -201,7 +138,7 @@ const ReservationList = (props) => {
             }
           })
           .catch((res) => {
-            console.log(res.response.status);
+           // console.log(res.response.status);
             Swal.fire({
               icon: "error",
               title: "예약 취소 요청 실패",
@@ -216,10 +153,10 @@ const ReservationList = (props) => {
   // date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
   const nowTime = moment().format("YYYY-MM-DD");
-  console.log(nowTime);
+
 
   const reservationDate = moment(resList.reservationDate).format("YYYY-MM-DD");
-  console.log(reservationDate);
+
 
   return (
     <tr className="my-book-tbl">
