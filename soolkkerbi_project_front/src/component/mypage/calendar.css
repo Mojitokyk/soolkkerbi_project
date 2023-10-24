@@ -16,7 +16,7 @@
 }
 .react-calendar__tile--now {
   background: #a3a3a3;
-  color: #fff;
+  color: #ccc;
 }
 .react-calendar__tile--now:enabled:hover {
   background: #a3a3a3;
@@ -75,7 +75,4 @@
 }
 #modal-calendar-description .react-calendar {
   margin: 30px;
-}
-.react-calendar__tile--now{
-color: black;
 }
