@@ -208,7 +208,7 @@ const ProductDetail = (props) => {
 
   //상품삭제
   const deleteProduct = () => {
-    console.log(product.productNo);
+    //console.log(product.productNo);
     Swal.fire({
       icon: "question",
       title: "삭제",
