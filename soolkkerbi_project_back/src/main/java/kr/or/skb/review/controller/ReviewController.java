@@ -42,7 +42,7 @@ public class ReviewController {
 	//리뷰 등록
 	@PostMapping(value="/insert")
 	public int insertReview(@RequestBody Review r) {
-		System.out.println(r);
+		//System.out.println(r);
 		return reviewService.insertReview(r);
 	}
 	
@@ -87,7 +87,7 @@ public class ReviewController {
 	//리뷰 수정
 	@PostMapping(value="/modify")
 	public int modify(@RequestBody Review r) {
-		System.out.println(r);
+		//System.out.println(r);
 		return reviewService.modifyReview(r);
 	}
 }

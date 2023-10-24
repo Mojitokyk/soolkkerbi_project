@@ -88,7 +88,7 @@ const ReservationItem = (props) => {
       title: "예약 취소",
       text: "예약을 취소하시겠습니까?",
       showCancelButton: true,
-      confirmButtonText: "삭제",
+      confirmButtonText: "확인",
       cancelButtonText: "취소",
     }).then((res) => {
       if (res.isConfirmed) {

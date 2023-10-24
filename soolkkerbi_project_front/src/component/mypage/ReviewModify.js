@@ -60,12 +60,12 @@ export default function ReviewModify(props) {
       reviewRate,
       reviewNo,
     };
-    console.log(review);
+    //console.log(review);
     if (reviewTitle !== "" && reviewContent !== "") {
       axios
         .post("/review/modify", review)
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
           if (res.data > 0) {
             Swal.fire({
               icon: "success",
