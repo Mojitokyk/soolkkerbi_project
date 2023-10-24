@@ -34,7 +34,7 @@ const MyReservation = (props) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+       // console.log(res.data);
         setResList(res.data.myReservationList);
         setPageInfo(res.data.pi);
       })
