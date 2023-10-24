@@ -63,7 +63,7 @@ const Join = () => {
       axios
         .get("/member/checkId/" + memberId)
         .then((res) => {
-          console.log(res);
+         // console.log(res);
           if (res.data === 0) {
             setCheckIdMsg("");
           } else {
@@ -71,7 +71,7 @@ const Join = () => {
           }
         })
         .catch((res) => {
-          console.log(res.response.status);
+          //console.log(res.response.status);
         });
       setCheckIdMsg("");
     }
@@ -105,16 +105,16 @@ const Join = () => {
       axios
         .get("/member/checkEmail/" + memberEmail)
         .then((res) => {
-          console.log(res);
+          //console.log(res);
           if (res.data === 0) {
-            console.log(res.data);
+           // console.log(res.data);
             setCheckEmailMsg("");
           } else {
             setCheckEmailMsg("이미 사용중인 이메일입니다.");
           }
         })
         .catch((res) => {
-          console.log(res.response.status);
+          //console.log(res.response.status);
         });
         setCheckEmailMsg("");
     }
@@ -155,7 +155,7 @@ const Join = () => {
 
         .post("/member/join", member)
         .then((res) => {
-          console.log(res.data);
+        //  console.log(res.data);
           if (res.data === 1) {
             Swal.fire({
               icon: "success",
@@ -172,7 +172,7 @@ const Join = () => {
           }
         })
         .catch((res) => {
-          console.log(res.data);
+         // console.log(res.data);
         });
     } else {
       Swal.fire({
@@ -184,7 +184,7 @@ const Join = () => {
 
   const sendEmail = () => {
     const memberEmail = member.memberEmail;
-    console.log(memberEmail);
+    //console.log(memberEmail);
     if (memberEmail === "") {
       Swal.fire({
         icon: "warning",
@@ -194,13 +194,13 @@ const Join = () => {
       axios
         .post("/member/auth", { memberEmail })
         .then((res) => {
-          console.log(res.data);
+         // console.log(res.data);
           setCheckAuth(res.data);
           setIsCodeShow(true);
           setBtnchange(true);
         })
         .catch((res) => {
-          console.log(res.response.status);
+         // console.log(res.response.status);
         });
     }
   };
@@ -359,28 +359,6 @@ const Join = () => {
       ) : (
         ""
       )}
-
-      {/* <div id="modal-modal-description" sx={{ mt: 2 }}>
-           
-           <div className="emailauthinput">
-             <Input
-               setData={setAuth}
-               data={auth}
-               type="type"
-               content="auth"
-             ></Input>
-           </div>
-           <div className="authButton">
-             <Button3 text="인증번호받기" clickEvent={sendEmail} />
-           </div>
-           <div className={'pt-[1rem] w-20 mb-16 ml-3 mt-8 font-bold text-[red]'}>
-             {isCodeShow  ?<Timer />:""}
-           </div>
-           
-         </div>
-         <div className="authclear">
-             <Button1 text="인증하기"  clickEvent={()=>{authcheck(auth, checkauth)}}/>
-           </div> */}
 
       <div className="join-btn-box">
         <Button1 text="이용약관 확인" clickEvent={handleOpen}></Button1>
@@ -596,9 +574,7 @@ const Join = () => {
                 <br />
                 "거래"라 함은 구매를 원하는 사람과 판매를 원하는 판매자 간에
                 직접 거래를 하는 행위를 말합니다. 
-                {/* "사이트"는 직거래로 인한 어떤
-                피해에도 책임을 질 수 없습니다. 만약 피해가 발생했을 경우에는
-                해당 당사자에게 책임이 있습니다. */}
+               
                 <br />
                 <br />
                 <strong>제12조(재화 교환)</strong>

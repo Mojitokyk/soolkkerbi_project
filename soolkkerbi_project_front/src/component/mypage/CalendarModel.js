@@ -90,13 +90,13 @@ function CustomCalendar(props) {
         },
       })
       .then((res) => {
-        console.log(activeDate);
+        //console.log(activeDate);
         Swal.fire({ icon: "success", text: "예약날짜 변경이 완료되었습니다." });
         setOpen(false);
         setChangeStatus(!changeStatus);
       })
       .catch((res) => {
-        console.log(res);
+        //console.log(res);
       });
   };
   // const getActiveMonth = (activeStartDate: moment.MomentInput) => {
@@ -109,7 +109,7 @@ function CustomCalendar(props) {
 
   const nowTime = moment().add(1,"days").format("YYYY-MM-DD");
   //nowTime.add(1,"days");
-  console.log(nowTime);
+  //console.log(nowTime);
   const start = moment(resList.tasteStart).format("YYYY-MM-DD");
   const end = moment(resList.tasteEnd).format("YYYY-MM-DD");
 

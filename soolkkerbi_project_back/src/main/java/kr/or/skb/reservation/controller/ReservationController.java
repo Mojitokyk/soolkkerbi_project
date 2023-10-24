@@ -33,7 +33,7 @@ public class ReservationController {
 	}
 	@GetMapping(value = "/myReservationList/{reqPage}")
 	public Map myReservationList(@PathVariable int reqPage,@RequestAttribute String memberId ) {
-		System.out.println("memberId :"+memberId);
+		//System.out.println("memberId :"+memberId);
 		return reservationService.myReservationList(reqPage,memberId);
 	}
 	@PostMapping(value = "/changeDate")

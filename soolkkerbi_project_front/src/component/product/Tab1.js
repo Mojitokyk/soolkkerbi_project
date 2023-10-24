@@ -180,7 +180,7 @@ const ReviewItem = (props) => {
       axios
         .post("/review/updateCount", obj)
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
         })
         .catch((res) => {
           console.log(res.response.status);
