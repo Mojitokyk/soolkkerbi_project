@@ -41,6 +41,11 @@
   font-family: ns-b;
   color: #ccc;
 }
+.delete-input-wrap > div > button:hover {
+  color: #4f4f4f;
+  font-family: ns-b;
+  transition: 0.8s;
+}
 .title {
   margin-bottom: 10px;
 }

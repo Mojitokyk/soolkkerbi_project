@@ -28,6 +28,12 @@
   font-family: ns-b;
   width: 30%;
 }
+#member-phone > div > button:hover {
+  font-family: ns-b;
+  background-color: #eee;
+  color: #4f4f4f;
+  transition: 0.5s;
+}
 .changepw-btn {
   margin-top: 30px;
   display: flex;
@@ -37,6 +43,12 @@
   width: 50.5%;
   box-sizing: content-box;
   font-family: ns-b;
+}
+.changepw-btn > button:hover {
+  background-color: #eee;
+  color: #4f4f4f;
+  font-family: ns-b;
+  transition: 0.5s;
 }
 .mypage-memberImg {
   text-align: center;
@@ -59,11 +71,16 @@
   font-family: ns-r;
   color: #ccc;
 }
-.phone-check{
+.image-reset > button:hover {
+  color: #4f4f4f;
+  font-family: ns-b;
+  transition: 0.3s;
+}
+.phone-check {
   font-size: 0.8em;
   color: #ff6289;
   /* padding-left: 10px; */
 }
-.mypage-info-tbl>tbody>tr:last-child>td{
+.mypage-info-tbl > tbody > tr:last-child > td {
   padding: 0;
 }

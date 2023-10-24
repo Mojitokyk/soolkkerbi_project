@@ -63,7 +63,7 @@ export default function ReviewModal({ order }) {
       axios
         .post("/review/insert", review)
         .then((res) => {
-          console.log(res.data);
+          //console.log(res.data);
           if (res.data === 2) {
             Swal.fire({
               icon: "success",
