@@ -33,6 +33,7 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		registry.addResourceHandler("/member/**")
 		.addResourceLocations("file:///C:/Temp/soolkkerbi/member/");
+		
 	}
 
 	@Bean

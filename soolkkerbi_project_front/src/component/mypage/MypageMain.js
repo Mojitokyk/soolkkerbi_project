@@ -22,6 +22,7 @@ const MypageMain = (props) => {
   const isLogin = props.isLogin;
   const setIsLogin = props.setIsLogin;
   const token = window.localStorage.getItem("token");
+  const { pathName } = useLocation();
 
   // const location = useLocation();
   // const memberThumbnail = location.state.thumbnail;
@@ -32,6 +33,7 @@ const MypageMain = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scroll(0, 0);
     axios
       .post("/member/getMember", null, {
         headers: {
@@ -57,7 +59,7 @@ const MypageMain = (props) => {
           });
         }
       });
-  }, [isLogin]);
+  }, [isLogin, pathName]);
 
   const [menus, setMenus] = useState([
     { url: "info", text: "정보 수정", active: true },

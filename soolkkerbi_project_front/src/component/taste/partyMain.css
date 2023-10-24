@@ -113,8 +113,11 @@
   vertical-align: middle;
 }
 .close-taste-img > img {
-  width: 100%;
-  height: 100%;
+  /* 시음회 종료시, 이미지 비율이 16:9가 아닌 이미지가 섬네일일 경우 범위를 벗어남*/
+  /* width: 100%; */
+  /* height: 100%; */
+  width: 310px;
+  height: 175px;
   object-fit: contain;
 }
 .close-taste {

@@ -29,6 +29,7 @@ const ReservationCalendar = () => {
   const selectDateForReservationNo = moment(value).format("YYYYMMDD");
   const today = moment().format("YYYY-MM-DD");
   const yesterday = moment().add(-1, "days").format("YYYY-MM-DD");
+  const tomorrow = moment().add(+1, "days").format("YYYY-MM-DD");
   taste.tasteStart = today;
 
   /*목록으로 돌아가는 함수*/
@@ -99,6 +100,7 @@ const ReservationCalendar = () => {
             <span>희망 예약 날짜</span>
             <span>:</span>
             <span>{selectDateFormat}</span>
+            <div>당일 예약은 불가능합니다.</div>
           </div>
         </div>
       </div>

@@ -28,7 +28,8 @@ const Main = (props) => {
         setMember(res.data);
       })
       .catch((res) => {
-        console.log(res.response.data);
+        // console.log(res.response.data);
+        console.log(res.response.status);
       });
   }, [isLogin]);
 
