@@ -107,7 +107,7 @@ export default function FindPw() {
     axios
       .post("/member/auth", { memberEmail })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setCheckAuth(res.data);
         setIsCodeShow(true);
       })
@@ -151,7 +151,7 @@ export default function FindPw() {
     } else {
       Swal.fire({
         icon: "warning",
-        text: "비밀번호가 일치하지 않습니다.",
+        text: "비밀번호가 양식에 맞지않거나 일치하지 않습니다.",
       });
     }
     // },[open])

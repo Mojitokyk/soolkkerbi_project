@@ -194,7 +194,7 @@ const Join = () => {
       axios
         .post("/member/auth", { memberEmail })
         .then((res) => {
-          console.log(res.data);
+         // console.log(res.data);
           setCheckAuth(res.data);
           setIsCodeShow(true);
           setBtnchange(true);
